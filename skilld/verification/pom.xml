@@ -34,6 +34,7 @@
         <micronaut.client.core.version>4.3.12</micronaut.client.core.version>
         <micronaut.serde.api.version>2.8.2</micronaut.serde.api.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <reactor.core.version>3.6.4</reactor.core.version>
         <release.version>21</release.version>
         <swagger.annotations.version>2.2.20</swagger.annotations.version>
     </properties>
@@ -101,6 +102,11 @@
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-annotations</artifactId>
             <version>${swagger.annotations.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+            <version>${reactor.core.version}</version>
         </dependency>
 
         <!-- TEST -->

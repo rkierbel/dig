@@ -10,10 +10,11 @@ import reactor.core.publisher.Mono;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 @MicronautTest(rebuildContext = true)
-class InseeClientTest {
+class InseeHttpClientTest {
 
     @Inject
     InseeHttpClient client;
@@ -35,5 +36,19 @@ class InseeClientTest {
     @Test
     void givenInvalidGrantType_whenPostToken_isBadRequest() {
         assertThrows(HttpClientException.class, () -> Mono.from(client.token("bad")).block());
+    }
+
+    @Test
+    void givenValidBearerToken_whenGetInfo_isOk() {
+        SirenInfoResponse infoResponse = Mono.from(client.informations()).block();
+        assertNotNull(infoResponse);
+        assertNotNull(infoResponse.sirenVersion());
+        assertTrue(infoResponse.sirenVersion().contains("3"));
+    }
+
+    @Test
+    @Property(name = "insee.consumer-key", value = "a")
+    void givenInvalidCredentials_whenGetInfo_isBadRequest() {
+        assertThrows(HttpClientException.class, () -> Mono.from(client.informations()).block());
     }
 }

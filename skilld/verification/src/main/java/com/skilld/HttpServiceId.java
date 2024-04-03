@@ -1,6 +1,6 @@
 package com.skilld;
 
-public class HttpServiceId {
+class HttpServiceId {
 
     static final String INSEE = "insee";
 }
