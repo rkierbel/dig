@@ -7,6 +7,7 @@ import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -21,7 +22,8 @@ class InseeClientTest {
     void givenValidCredentials_whenPostToken_validTokenGenerated() {
         InseeTokenResponse resp = Mono.from(client.token(InseeConfig.CLIENT_CREDENTIALS)).block();
         assertNotNull(resp);
-        System.out.println(resp);
+        assertNotNull(resp.accessToken());
+        assertEquals(InseeTokenResponse.BEARER, resp.tokenType());
     }
 
     @Test

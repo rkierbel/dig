@@ -12,62 +12,53 @@
 
     <artifactId>verification</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>${packaging}</packaging>
+    <packaging>jar</packaging>
 
     <properties>
-        <packaging>jar</packaging>
+        <exec.mainClass>com.skilld.Application</exec.mainClass>
         <jdk.version>21</jdk.version>
-        <release.version>21</release.version>
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
+        <lombok.version>1.18.32</lombok.version>
+        <lombok.mapstruct.binding.version>0.2.0</lombok.mapstruct.binding.version>
+        <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <micronaut.version>4.3.7</micronaut.version>
         <micronaut.aot.enabled>false</micronaut.aot.enabled>
         <micronaut.aot.packageName>com.skilld.aot.generated</micronaut.aot.packageName>
         <micronaut.runtime>netty</micronaut.runtime>
-        <exec.mainClass>com.skilld.Application</exec.mainClass>
-        <mapstruct.version>1.5.5.Final</mapstruct.version>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <micronaut.test.version>4.2.1</micronaut.test.version>
+        <micronaut.context.version>4.3.12</micronaut.context.version>
+        <micronaut.http.version>4.3.12</micronaut.http.version>
+        <micronaut.client.core.version>4.3.12</micronaut.client.core.version>
+        <micronaut.serde.api.version>2.8.2</micronaut.serde.api.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <lombok.version>1.18.32</lombok.version>
-        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <release.version>21</release.version>
+        <swagger.annotations.version>2.2.20</swagger.annotations.version>
     </properties>
 
-
     <dependencies>
+        <!-- MICRONAUT -->
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-context</artifactId>
-            <version>4.3.12</version>
-        </dependency>
-        <dependency>
-            <groupId>io.swagger.core.v3</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>2.2.20</version>
+            <version>${micronaut.context.version}</version>
         </dependency>
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-http</artifactId>
-            <version>4.3.12</version>
+            <version>${micronaut.http.version}</version>
         </dependency>
         <dependency>
             <groupId>io.micronaut.serde</groupId>
             <artifactId>micronaut-serde-api</artifactId>
-            <version>2.8.2</version>
+            <version>${micronaut.serde.api.version}</version>
         </dependency>
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-http-client-core</artifactId>
-            <version>4.3.12</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.9.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.micronaut.test</groupId>
-            <artifactId>micronaut-test-rest-assured</artifactId>
-            <version>4.2.1</version>
+            <version>${micronaut.client.core.version}</version>
         </dependency>
         <dependency>
             <groupId>io.micronaut</groupId>
@@ -85,6 +76,13 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>io.micronaut.openapi</groupId>
+            <artifactId>micronaut-openapi-annotations</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- TOOLING -->
+        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <scope>runtime</scope>
@@ -95,18 +93,36 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>io.micronaut.openapi</groupId>
-            <artifactId>micronaut-openapi-annotations</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger.annotations.version}</version>
+        </dependency>
+
+        <!-- TEST -->
         <dependency>
             <groupId>io.micronaut.test</groupId>
             <artifactId>micronaut-test-junit5</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>io.micronaut.test</groupId>
+            <artifactId>micronaut-test-rest-assured</artifactId>
+            <version>${micronaut.test.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -119,23 +135,20 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
+
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
+                <version>${maven.surefire.plugin.version}</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.junit.jupiter</groupId>
                         <artifactId>junit-jupiter-engine</artifactId>
-                        <version>5.9.1</version>
+                        <version>${junit.jupiter.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -193,7 +206,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok-mapstruct-binding</artifactId>
-                            <version>0.2.0</version>
+                            <version>${lombok.mapstruct.binding.version}</version>
                         </path>
                         <path>
                             <groupId>org.mapstruct</groupId>
