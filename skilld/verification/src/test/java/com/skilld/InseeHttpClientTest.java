@@ -40,7 +40,7 @@ class InseeHttpClientTest {
 
     @Test
     void givenValidBearerToken_whenGetInfo_isOk() {
-        SirenInfoResponse infoResponse = Mono.from(client.informations()).block();
+        SirenInfoResponse infoResponse = Mono.from(client.information()).block();
         assertNotNull(infoResponse);
         assertNotNull(infoResponse.sirenVersion());
         assertTrue(infoResponse.sirenVersion().contains("3"));
@@ -49,6 +49,6 @@ class InseeHttpClientTest {
     @Test
     @Property(name = "insee.consumer-key", value = "a")
     void givenInvalidCredentials_whenGetInfo_isBadRequest() {
-        assertThrows(HttpClientException.class, () -> Mono.from(client.informations()).block());
+        assertThrows(HttpClientException.class, () -> Mono.from(client.information()).block());
     }
 }

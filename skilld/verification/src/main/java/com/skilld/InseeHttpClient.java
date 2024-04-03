@@ -21,5 +21,5 @@ interface InseeHttpClient {
     @Get("${siren.api.prefix}${siren.api.info}")
     @Consumes(APPLICATION_JSON)
     @SingleResult
-    Publisher<SirenInfoResponse> informations();
+    Publisher<SirenInfoResponse> information();
 }
