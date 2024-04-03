@@ -1,0 +1,12 @@
+micronaut:
+  application:
+    name: verification
+  http:
+    services:
+      insee:
+        url: https://api.insee.fr
+insee:
+  api:
+    token: /token
+  consumer-key: l20m5bog7Vo4VRFYy55SLv5685wa
+  consumer-secret: b1FqyKenafwZIEiEevl4BUSb_8Ma

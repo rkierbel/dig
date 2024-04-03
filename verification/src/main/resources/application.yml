@@ -1,7 +1,0 @@
-micronaut:
-  application:
-    name: verification
-insee:
-  api:
-    prefix: https://api.insee.fr
-    token: /token
