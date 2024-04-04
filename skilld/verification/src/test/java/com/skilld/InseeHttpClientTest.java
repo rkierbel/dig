@@ -5,7 +5,9 @@ import io.micronaut.http.client.exceptions.HttpClientException;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -18,6 +20,8 @@ class InseeHttpClientTest {
 
     @Inject
     InseeHttpClient client;
+
+
 
     @Test
     void givenValidCredentials_whenPostToken_validTokenGenerated() {
@@ -39,7 +43,7 @@ class InseeHttpClientTest {
     }
 
     @Test
-    void givenValidBearerToken_whenGetInfo_isOk() {
+    void givenValidBearerToken_whenGetInfoFromSirenV3_isOk() {
         SirenInfoResponse infoResponse = Mono.from(client.information()).block();
         assertNotNull(infoResponse);
         assertNotNull(infoResponse.sirenVersion());
@@ -49,6 +53,8 @@ class InseeHttpClientTest {
     @Test
     @Property(name = "insee.consumer-key", value = "a")
     void givenInvalidCredentials_whenGetInfo_isBadRequest() {
-        assertThrows(HttpClientException.class, () -> Mono.from(client.information()).block());
+        StepVerifier.create(Flux.from(client.information()))
+                .expectError()
+                .verify();
     }
 }
