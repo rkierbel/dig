@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
+import reactor.test.publisher.PublisherProbe;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -20,8 +23,6 @@ class InseeHttpClientTest {
 
     @Inject
     InseeHttpClient client;
-
-
 
     @Test
     void givenValidCredentials_whenPostToken_validTokenGenerated() {
@@ -54,7 +55,8 @@ class InseeHttpClientTest {
     @Property(name = "insee.consumer-key", value = "a")
     void givenInvalidCredentials_whenGetInfo_isBadRequest() {
         StepVerifier.create(Flux.from(client.information()))
-                .expectError()
-                .verify();
+                .expectError(HttpClientException.class)
+                .verifyThenAssertThat()
+                .hasNotDroppedErrors();
     }
 }
