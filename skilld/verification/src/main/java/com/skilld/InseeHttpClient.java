@@ -20,7 +20,7 @@ interface InseeHttpClient {
     @Consumes(APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
-    Publisher<InseeTokenResponse> token(@QueryValue(value = InseeConfig.GRANT_TYPE) String grantType);
+    Publisher<InseeTokenResponse> token(@QueryValue(value = InseeHttpConfig.GRANT_TYPE) String grantType);
 
     @Get("${siren.api.prefix}${siren.api.info}")
     @Consumes(APPLICATION_JSON)

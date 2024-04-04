@@ -11,11 +11,11 @@ import reactor.core.publisher.Mono;
 @Slf4j
 class InseeHttpFilter {
 
-    private final InseeConfig config;
+    private final InseeHttpConfig config;
     private final BeanProvider<InseeHttpClient> inseeHttpClient;
     private final int MAX_RETRY = 5;
 
-    InseeHttpFilter(InseeConfig config, BeanProvider<InseeHttpClient> inseeHttpClient) {
+    InseeHttpFilter(InseeHttpConfig config, BeanProvider<InseeHttpClient> inseeHttpClient) {
         this.config = config;
         this.inseeHttpClient = inseeHttpClient;
     }
@@ -29,7 +29,7 @@ class InseeHttpFilter {
 
     @RequestFilter("${siren.api.prefix}/**")
     void doFilterSiren(MutableHttpRequest<?> request) {
-        Mono.from(inseeHttpClient.get().token(InseeConfig.CLIENT_CREDENTIALS))
+        Mono.from(inseeHttpClient.get().token(InseeHttpConfig.CLIENT_CREDENTIALS))
                 .doOnError(InseeHttpException::logTokenGenerationFailure)
                 .retry(MAX_RETRY)
                 .blockOptional()

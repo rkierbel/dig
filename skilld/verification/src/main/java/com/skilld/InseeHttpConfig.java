@@ -3,10 +3,10 @@ package com.skilld;
 import io.micronaut.context.annotation.ConfigurationProperties;
 import io.micronaut.context.annotation.Requires;
 
-@ConfigurationProperties(InseeConfig.PREFIX)
-@Requires(property = InseeConfig.PREFIX)
-record InseeConfig(String consumerKey,
-                   String consumerSecret) {
+@ConfigurationProperties(InseeHttpConfig.PREFIX)
+@Requires(property = InseeHttpConfig.PREFIX)
+record InseeHttpConfig(String consumerKey,
+                       String consumerSecret) {
 
 
     static final String PREFIX = "insee";

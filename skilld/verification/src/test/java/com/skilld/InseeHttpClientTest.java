@@ -8,9 +8,6 @@ import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
-import reactor.test.publisher.PublisherProbe;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -26,7 +23,7 @@ class InseeHttpClientTest {
 
     @Test
     void givenValidCredentials_whenPostToken_validTokenGenerated() {
-        InseeTokenResponse resp = Mono.from(client.token(InseeConfig.CLIENT_CREDENTIALS)).block();
+        InseeTokenResponse resp = Mono.from(client.token(InseeHttpConfig.CLIENT_CREDENTIALS)).block();
         assertNotNull(resp);
         assertNotNull(resp.accessToken());
         assertEquals(InseeTokenResponse.BEARER, resp.tokenType());
@@ -35,7 +32,7 @@ class InseeHttpClientTest {
     @Test
     @Property(name = "insee.consumer-key", value = "a")
     void givenInvalidCredentials_whenPostToken_isBadRequest() {
-        assertThrows(HttpClientException.class, () -> Mono.from(client.token(InseeConfig.CLIENT_CREDENTIALS)).block());
+        assertThrows(HttpClientException.class, () -> Mono.from(client.token(InseeHttpConfig.CLIENT_CREDENTIALS)).block());
     }
 
     @Test
