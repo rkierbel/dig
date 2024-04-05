@@ -32,5 +32,5 @@ interface InseeHttpClient {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
-    Publisher<SirenSearchResponse> search(@QueryValue(value= "q") SirenSearchRequest request);
+    Publisher<SirenSearchResponse> search(@QueryValue(value= InseeHttpConfig.QUERY) String searchRequest);
 }

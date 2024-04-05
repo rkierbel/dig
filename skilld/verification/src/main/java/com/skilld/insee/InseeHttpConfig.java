@@ -12,4 +12,5 @@ record InseeHttpConfig(String consumerKey,
     static final String PREFIX = "insee";
     static final String CLIENT_CREDENTIALS = "client_credentials";
     static final String GRANT_TYPE = "grant_type";
+    static final String QUERY = "q";
 }
