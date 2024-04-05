@@ -1,5 +1,6 @@
-package com.skilld;
+package com.skilld.insee;
 
+import com.skilld.HttpServiceId;
 import io.micronaut.context.BeanProvider;
 import io.micronaut.http.MutableHttpRequest;
 import io.micronaut.http.annotation.ClientFilter;
@@ -22,12 +23,12 @@ class InseeHttpFilter {
 
     //TODO -> configure number of retries + handle errors
 
-    @RequestFilter("${insee.api.token}/**")
+    @RequestFilter("${insee.api.token}${micronaut.http.wildcard}")
     public void doFilterInseeToken(MutableHttpRequest<?> request) {
         request.basicAuth(config.consumerKey(), config.consumerSecret());
     }
 
-    @RequestFilter("${siren.api.prefix}/**")
+    @RequestFilter("${siren.api.prefix}${micronaut.http.wildcard}")
     void doFilterSiren(MutableHttpRequest<?> request) {
         Mono.from(inseeHttpClient.get().token(InseeHttpConfig.CLIENT_CREDENTIALS))
                 .doOnError(InseeHttpException::logTokenGenerationFailure)

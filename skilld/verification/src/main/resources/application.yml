@@ -5,6 +5,7 @@ micronaut:
     services:
       insee:
         url: https://api.insee.fr
+    wildcard: /**
 
 insee:
   api:
@@ -16,3 +17,4 @@ siren:
   api:
     prefix: /entreprises/sirene/V3
     info: /informations
+    siren-search: /siren

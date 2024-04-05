@@ -1,5 +1,7 @@
 package com.skilld;
 
+import com.skilld.insee.InseeHttpError;
+import com.skilld.insee.InseeHttpException;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;

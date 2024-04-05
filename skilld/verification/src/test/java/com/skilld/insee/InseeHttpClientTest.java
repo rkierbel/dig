@@ -1,5 +1,6 @@
-package com.skilld;
+package com.skilld.insee;
 
+import com.skilld.SirenInfoResponse;
 import io.micronaut.context.annotation.Property;
 import io.micronaut.http.client.exceptions.HttpClientException;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;

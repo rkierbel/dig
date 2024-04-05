@@ -1,4 +1,4 @@
-package com.skilld;
+package com.skilld.insee;
 
 import io.micronaut.context.annotation.ConfigurationProperties;
 import io.micronaut.context.annotation.Requires;
