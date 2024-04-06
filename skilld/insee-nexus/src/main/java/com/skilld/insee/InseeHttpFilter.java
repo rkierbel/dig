@@ -30,6 +30,7 @@ class InseeHttpFilter {
 
     @RequestFilter("${siren.api.prefix}${micronaut.http.wildcard}")
     void doFilterSiren(MutableHttpRequest<?> request) { //TODO -> mechanism to fetch token every week - on each request, filter checks if token exists, then uses it
+        // TODO -> save token + creation date in mem store -> only fetch new when now > crea + one week
         Mono.from(inseeHttpClient.get().token(InseeHttpConfig.CLIENT_CREDENTIALS))
                 .doOnError(InseeHttpException::logTokenGenerationFailure)
                 .retry(MAX_RETRY)

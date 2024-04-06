@@ -8,7 +8,7 @@
   <url>http://maven.apache.org</url>
 
   <modules>
-    <module>verification</module>
+    <module>insee-nexus</module>
     <module>skilld-webclient</module>
   </modules>
 

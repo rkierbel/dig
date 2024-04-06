@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.info.*;
 
 @OpenAPIDefinition(
         info = @Info(
-                title = "verification",
+                title = "insee-nexus",
                 version = "0.0"
         )
 )

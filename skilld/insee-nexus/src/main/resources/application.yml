@@ -1,6 +1,6 @@
 micronaut:
   application:
-    name: verification
+    name: insee-nexus
   http:
     services:
       insee:
