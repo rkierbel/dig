@@ -1,4 +1,4 @@
-package com.skilld.insee;
+package com.inseenexus.inseeclient;
 
 public class SirenSearchResponse {
 }

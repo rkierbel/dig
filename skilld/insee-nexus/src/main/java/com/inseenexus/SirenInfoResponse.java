@@ -1,4 +1,4 @@
-package com.skilld;
+package com.inseenexus;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.serde.annotation.Serdeable;

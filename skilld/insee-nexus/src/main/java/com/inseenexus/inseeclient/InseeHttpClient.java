@@ -1,7 +1,7 @@
-package com.skilld.insee;
+package com.inseenexus.inseeclient;
 
-import com.skilld.HttpServiceId;
-import com.skilld.SirenInfoResponse;
+import com.inseenexus.HttpServiceId;
+import com.inseenexus.SirenInfoResponse;
 import io.micronaut.core.async.annotation.SingleResult;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Consumes;
@@ -13,14 +13,14 @@ import io.micronaut.http.client.annotation.Client;
 import org.reactivestreams.Publisher;
 
 @Client(id = HttpServiceId.INSEE,
-        errorType = InseeHttpError.class)
+        errorType = com.inseenexus.inseeclient.InseeHttpError.class)
 interface InseeHttpClient {
 
     @Post("${insee.api.token}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
-    Publisher<InseeTokenResponse> token(@QueryValue(value = InseeHttpConfig.GRANT_TYPE) String grantType);
+    Publisher<com.inseenexus.inseeclient.InseeTokenResponse> token(@QueryValue(value = com.inseenexus.inseeclient.InseeHttpConfig.GRANT_TYPE) String grantType);
 
     @Get("${siren.api.prefix}${siren.api.info}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -32,5 +32,5 @@ interface InseeHttpClient {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
-    Publisher<SirenSearchResponse> search(@QueryValue(value= InseeHttpConfig.QUERY) String searchRequest);
+    Publisher<com.inseenexus.inseeclient.SirenSearchResponse> search(@QueryValue(value= com.inseenexus.inseeclient.InseeHttpConfig.QUERY) String searchRequest);
 }

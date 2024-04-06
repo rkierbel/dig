@@ -1,4 +1,4 @@
-package com.skilld.insee;
+package com.inseenexus.inseeclient;
 
 import lombok.extern.slf4j.Slf4j;
 

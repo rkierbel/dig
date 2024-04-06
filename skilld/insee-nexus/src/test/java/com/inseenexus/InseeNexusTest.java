@@ -1,4 +1,4 @@
-package com.skilld;
+package com.inseenexus;
 
 import io.micronaut.runtime.EmbeddedApplication;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;

@@ -1,4 +1,4 @@
-package com.skilld.insee;
+package com.inseenexus.inseeclient;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.serde.annotation.Serdeable;

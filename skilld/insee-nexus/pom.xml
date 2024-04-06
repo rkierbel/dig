@@ -15,7 +15,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <exec.mainClass>com.skilld.Application</exec.mainClass>
+        <exec.mainClass>com.inseenexus.Application</exec.mainClass>
         <jdk.version>21</jdk.version>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <lombok.version>1.18.32</lombok.version>
@@ -26,7 +26,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <micronaut.version>4.3.7</micronaut.version>
         <micronaut.aot.enabled>false</micronaut.aot.enabled>
-        <micronaut.aot.packageName>com.skilld.aot.generated</micronaut.aot.packageName>
+        <micronaut.aot.packageName>com.inseenexus.aot.generated</micronaut.aot.packageName>
         <micronaut.runtime>netty</micronaut.runtime>
         <micronaut.test.version>4.2.1</micronaut.test.version>
         <micronaut.context.version>4.3.12</micronaut.context.version>
@@ -234,7 +234,7 @@
                         </path>
                     </annotationProcessorPaths>
                     <compilerArgs>
-                        <arg>-Amicronaut.processing.group=com.skilld</arg>
+                        <arg>-Amicronaut.processing.group=com.inseenexus</arg>
                         <arg>-Amicronaut.processing.module=verification</arg>
                     </compilerArgs>
                 </configuration>

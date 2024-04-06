@@ -1,4 +1,4 @@
-package com.skilld.insee;
+package com.inseenexus.inseeclient;
 
 import io.micronaut.context.annotation.ConfigurationProperties;
 import io.micronaut.context.annotation.Requires;

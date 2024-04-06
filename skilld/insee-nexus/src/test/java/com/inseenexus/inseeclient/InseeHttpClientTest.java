@@ -1,6 +1,6 @@
-package com.skilld.insee;
+package com.inseenexus.inseeclient;
 
-import com.skilld.SirenInfoResponse;
+import com.inseenexus.SirenInfoResponse;
 import io.micronaut.context.annotation.Property;
 import io.micronaut.http.client.exceptions.HttpClientException;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
@@ -20,20 +20,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class InseeHttpClientTest {
 
     @Inject
-    InseeHttpClient client;
+    com.inseenexus.inseeclient.InseeHttpClient client;
 
     @Test
     void givenValidCredentials_whenPostToken_validTokenGenerated() {
-        InseeTokenResponse resp = Mono.from(client.token(InseeHttpConfig.CLIENT_CREDENTIALS)).block();
+        com.inseenexus.inseeclient.InseeTokenResponse resp = Mono.from(client.token(com.inseenexus.inseeclient.InseeHttpConfig.CLIENT_CREDENTIALS)).block();
         assertNotNull(resp);
         assertNotNull(resp.accessToken());
-        assertEquals(InseeTokenResponse.BEARER, resp.tokenType());
+        assertEquals(com.inseenexus.inseeclient.InseeTokenResponse.BEARER, resp.tokenType());
     }
 
     @Test
     @Property(name = "insee.consumer-key", value = "a")
     void givenInvalidCredentials_whenPostToken_isBadRequest() {
-        assertThrows(HttpClientException.class, () -> Mono.from(client.token(InseeHttpConfig.CLIENT_CREDENTIALS)).block());
+        assertThrows(HttpClientException.class, () -> Mono.from(client.token(com.inseenexus.inseeclient.InseeHttpConfig.CLIENT_CREDENTIALS)).block());
     }
 
     @Test
