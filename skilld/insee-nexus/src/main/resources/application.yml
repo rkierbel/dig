@@ -15,6 +15,8 @@ insee:
 
 siren:
   api:
-    prefix: /entreprises/sirene/V3
+    prefix: /entreprises/sirene
+    version-3: /V3
+    version-3-11: /V3.11
     info: /informations
     siren-search: /siren

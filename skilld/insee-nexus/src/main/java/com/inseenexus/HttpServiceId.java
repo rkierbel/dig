@@ -1,4 +1,4 @@
-package com.skilld;
+package com.inseenexus;
 
 public class HttpServiceId {
 

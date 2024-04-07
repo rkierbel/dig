@@ -13,24 +13,25 @@ import io.micronaut.http.client.annotation.Client;
 import org.reactivestreams.Publisher;
 
 @Client(id = HttpServiceId.INSEE,
-        errorType = com.inseenexus.inseeclient.InseeHttpError.class)
+        errorType = InseeHttpError.class)
 interface InseeHttpClient {
 
     @Post("${insee.api.token}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
-    Publisher<com.inseenexus.inseeclient.InseeTokenResponse> token(@QueryValue(value = com.inseenexus.inseeclient.InseeHttpConfig.GRANT_TYPE) String grantType);
+    Publisher<InseeTokenResponse> token(@QueryValue(value = InseeHttpConfig.GRANT_TYPE) String grantType);
 
-    @Get("${siren.api.prefix}${siren.api.info}")
+    @Get("${siren.api.prefix}${siren.api.version-3}${siren.api.info}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
     Publisher<SirenInfoResponse> information();
 
-    @Get("${siren.api.prefix}${siren.api.siren-search}") //q=periode(nomUniteLegale:grzeszezak) or q=raisonSociale:blabla
+    @Get("${siren.api.prefix}${siren.api.version-3-11}${siren.api.siren-search}")
+    //q=periode(nomUniteLegale:grzeszezak) or q=raisonSociale:blabla
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
-    Publisher<com.inseenexus.inseeclient.SirenSearchResponse> search(@QueryValue(value= com.inseenexus.inseeclient.InseeHttpConfig.QUERY) String searchRequest);
+    Publisher<SirenSearchResponse> search(@QueryValue(value = InseeHttpConfig.QUERY) String sirenSearch);
 }

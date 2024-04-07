@@ -10,6 +10,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -20,20 +22,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class InseeHttpClientTest {
 
     @Inject
-    com.inseenexus.inseeclient.InseeHttpClient client;
+    InseeHttpClient client;
+
+    @Inject
+    SirenSearchFactory sirenSearch;
 
     @Test
     void givenValidCredentials_whenPostToken_validTokenGenerated() {
-        com.inseenexus.inseeclient.InseeTokenResponse resp = Mono.from(client.token(com.inseenexus.inseeclient.InseeHttpConfig.CLIENT_CREDENTIALS)).block();
+        InseeTokenResponse resp = Mono.from(client.token(InseeHttpConfig.CLIENT_CREDENTIALS)).block();
         assertNotNull(resp);
         assertNotNull(resp.accessToken());
-        assertEquals(com.inseenexus.inseeclient.InseeTokenResponse.BEARER, resp.tokenType());
+        assertEquals(InseeTokenResponse.BEARER, resp.tokenType());
     }
 
     @Test
     @Property(name = "insee.consumer-key", value = "a")
     void givenInvalidCredentials_whenPostToken_isBadRequest() {
-        assertThrows(HttpClientException.class, () -> Mono.from(client.token(com.inseenexus.inseeclient.InseeHttpConfig.CLIENT_CREDENTIALS)).block());
+        assertThrows(HttpClientException.class, () -> Mono.from(client.token(InseeHttpConfig.CLIENT_CREDENTIALS)).block());
     }
 
     @Test
@@ -56,5 +61,17 @@ class InseeHttpClientTest {
                 .expectError(HttpClientException.class)
                 .verifyThenAssertThat()
                 .hasNotDroppedErrors();
+    }
+
+    @Test
+    void givenValidSimpleSearch_returnSirenSearchResult() {
+        var criteria = SearchCriteria.from(SearchVariable.BUSINESS_UNIT_NAME, "grzeszezak");
+
+        StepVerifier.create(Mono.from(
+                        client.search(
+                                sirenSearch.historicized(Set.of(criteria)))
+                ))
+                .expectComplete()
+                .verify();
     }
 }
