@@ -2,14 +2,14 @@ package com.inseenexus.inseeclient;
 
 import static com.inseenexus.inseeclient.SirenSearchFactory.WHITESPACE;
 
-record SearchCriteria(SearchVariable key, String value, SearchOperator operator) {
+record SearchCriteria(SearchVariable searchVar, String value, SearchOperator operator) {
 
-    static SearchCriteria from(SearchVariable key, String value, SearchOperator operator) {
-        return new SearchCriteria(key, value, operator);
+    static SearchCriteria from(SearchVariable searchVar, String value, SearchOperator operator) {
+        return new SearchCriteria(searchVar, value, operator);
     }
 
-    static SearchCriteria from(SearchVariable key, String value) {
-        return new SearchCriteria(key, value, SearchOperator.NONE);
+    static SearchCriteria from(SearchVariable searchVar, String value) {
+        return new SearchCriteria(searchVar, value, SearchOperator.NONE);
     }
 
     static SearchCriteria simpleSearch(String value) {
@@ -18,7 +18,7 @@ record SearchCriteria(SearchVariable key, String value, SearchOperator operator)
 
     @Override
     public String toString() {
-        String stringified = String.join(":", key().getSearchVariable(), value());
+        String stringified = String.join(":", searchVar().getSearchVariable(), value());
 
         return SearchOperator.NONE.equals(this.operator()) ?
                 stringified :
