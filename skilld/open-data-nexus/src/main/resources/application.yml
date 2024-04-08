@@ -1,0 +1,22 @@
+micronaut:
+  application:
+    name: open-data-nexus
+  http:
+    services:
+      insee:
+        url: https://api.insee.fr
+    wildcard: /**
+
+insee:
+  api:
+    token: /token
+  consumer-key: l20m5bog7Vo4VRFYy55SLv5685wa
+  consumer-secret: b1FqyKenafwZIEiEevl4BUSb_8Ma
+
+siren:
+  api:
+    prefix: /entreprises/sirene
+    version-3: /V3
+    version-3-11: /V3.11
+    info: /informations
+    siren-search: /siren
