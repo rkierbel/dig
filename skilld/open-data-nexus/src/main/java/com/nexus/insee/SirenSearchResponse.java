@@ -14,7 +14,7 @@ import java.util.List;
 public record SirenSearchResponse(@JsonProperty("header") SirenHeader header,
                                   @JsonProperty("unitesLegales") List<SireneUnit> units) {
 
-    void logSirenNumbers() {
+    void logSirenResponseInfo() {
         units.forEach(
                 unit -> {
                     log.info("{ Siren number {}, for natural person with first name {}:", unit.siren, unit.firstName);

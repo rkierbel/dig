@@ -70,7 +70,7 @@ class InseeHttpClientTest {
                 client.search(
                         sirenSearch.historicized(Set.of(criteria))))
                 )
-                .consumeNextWith(SirenSearchResponse::logSirenNumbers)
+                .consumeNextWith(SirenSearchResponse::logSirenResponseInfo)
                 .verifyComplete();
 
     }
