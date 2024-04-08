@@ -22,7 +22,6 @@ class InseeHttpFilter {
         this.inseeHttpClient = inseeHttpClient;
     }
 
-    //TODO -> configure number of retries + handle errors
     @RequestFilter("${insee.api.token}${micronaut.http.wildcard}")
     public void doFilterInseeToken(MutableHttpRequest<?> request) {
         request.basicAuth(config.consumerKey(), config.consumerSecret());

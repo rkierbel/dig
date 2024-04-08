@@ -17,9 +17,8 @@ public record SirenSearchResponse(@JsonProperty("header") SirenHeader header,
     void logSirenResponseInfo() {
         units.forEach(
                 unit -> {
-                    log.info("{ Siren number {}, for natural person with first name {}:", unit.siren, unit.firstName);
+                    log.info("-> Siren number {}, for natural person with first name {}:", unit.siren, unit.firstName);
                     unit.unitChanges.forEach(Period::logPeriodInfo);
-                    log.info("}\n");
                 }
         );
     }
@@ -85,16 +84,13 @@ public record SirenSearchResponse(@JsonProperty("header") SirenHeader header,
                   @JsonProperty("activitePrincipaleUniteLegale") String mainActivity) {
 
         void logPeriodInfo() {
-            log.info("[Period started on {};", startDate);
-            if (endDate != null) {
-                log.info("Period ended on {};", endDate);
-            }
-            log.info("Sirene unit has a main activity of {} and is:", mainActivity);
-            if (companyName != null) {
-                log.info("a legal entity with name {}.]", companyName);
-            } else {
-                log.info("a natural person with surname {}.]", naturalPersonName);
-            }
+            log.info("[Period started on {} and {}.", startDate,
+                    (endDate != null ? "ended on " + endDate : "is ongoing"));
+            log.info("Sirene unit has a main activity code of {} and is {}.]", mainActivity,
+                    (companyName != null ?
+                            "a legal entity with name " + companyName :
+                            "a natural person with surname " + naturalPersonName));
+
         }
     }
 
