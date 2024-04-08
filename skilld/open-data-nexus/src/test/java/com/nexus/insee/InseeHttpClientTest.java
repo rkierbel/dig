@@ -66,11 +66,12 @@ class InseeHttpClientTest {
     @Test
     void givenValidSimpleSearch_returnSirenSearchResult() {
         var criteria = SearchCriteria.from(SearchVariable.BUSINESS_UNIT_NAME, "grzeszezak");
-
         StepVerifier.create(Mono.from(
-                        client.search(
-                                sirenSearch.historicized(Set.of(criteria)))
-                ))
-                .expectNextCount(1).verifyComplete();
+                client.search(
+                        sirenSearch.historicized(Set.of(criteria))))
+                )
+                .consumeNextWith(SirenSearchResponse::logSirenNumbers)
+                .verifyComplete();
+
     }
 }
