@@ -7,6 +7,14 @@ public class SirenSearchException extends InseeHttpException {
     }
 
     public static SirenSearchException administrativeStatusNotFound(String name) {
-        throw new SirenSearchException("Cannot find administrative status " + name + " for a Siren unit.");
+        throw new SirenSearchException(
+                String.format("Cannot find administrative status %s for a Siren unit.", name)
+        );
+    }
+
+    public static RuntimeException changeReasonNotFound(String reason) {
+        throw new SirenSearchException(
+                String.format("The provided period change reason for a Sirene unit is not valid: %s.", reason)
+        );
     }
 }

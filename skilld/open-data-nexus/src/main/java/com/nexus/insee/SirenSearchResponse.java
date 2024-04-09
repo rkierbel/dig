@@ -6,13 +6,16 @@ import io.micronaut.serde.annotation.Serdeable;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Serdeable
 @Slf4j
-public record SirenSearchResponse(@JsonProperty("header") SirenHeader header,
-                                  @JsonProperty("unitesLegales") List<SireneUnit> units) {
+record SirenSearchResponse(@JsonProperty("header") SirenHeader header,
+                           @JsonProperty("unitesLegales") List<SireneUnit> units) {
 
     void logSirenResponseInfo() {
         units.forEach(
@@ -61,18 +64,26 @@ public record SirenSearchResponse(@JsonProperty("header") SirenHeader header,
      * @param startDate
      * @param endDate
      * @param administrativeStatus
-     * @param naturalPersonName    Birth name of the natural person.
-     *                             This variable is set to null for legal entities.
-     *                             The Sirene directory only handles non-accented capital letters.
-     *                             Only the special characters hyphen (-) and apostrophe.
-     *                             The name may be set to null for a natural person (case of purged units).
-     * @param legalCategory        The legal category is an attribute of Sirene units.
-     *                             For a natural person, it is always 1000, whether the person is a
-     *                             craftsman, trader, self-employed person, farmer or other, and cannot change.
-     *                             For legal entities, the legal category may change during the life of the company.
-     * @param companyName          Name under which the legal unit is declared.
-     *                             This variable is set to null for individuals.
-     *                             The name may sometimes contain a reference to the form of the company.
+     * @param naturalPersonName          Birth name of the natural person.
+     *                                   This variable is set to null for legal entities.
+     *                                   The Sirene directory only handles non-accented capital letters.
+     *                                   Only the special characters hyphen (-) and apostrophe.
+     *                                   The name may be set to null for a natural person (case of purged units).
+     * @param legalCategory              The legal category is an attribute of Sirene units.
+     *                                   For a natural person, it is always 1000, whether the person is a
+     *                                   craftsman, trader, self-employed person, farmer or other, and cannot change.
+     *                                   For legal entities, the legal category may change during the life of the company.
+     * @param companyName                Name under which the legal unit is declared.
+     *                                   This variable is set to null for individuals.
+     *                                   The name may sometimes contain a reference to the form of the company.
+     * @param administrativeStatusChange For each period, each historicized variable is accompanied by another one indicating whether it has been modified or not.
+     *                                   In other words, this indicates whether a given variable or set of variables is the reason for the creation of the period.
+     *                                   These change indicators are prefixed by "changement" in the JSON response.
+     *                                   They are suffixed by "Change" in the Period record.
+     * @param naturalPersonNameChange
+     * @param mainActivityChange
+     * @param companyNameChange
+     * @param legalCategoryChange
      */
     @Serdeable
     record Period(@JsonProperty("dateDebut") String startDate,
@@ -81,16 +92,45 @@ public record SirenSearchResponse(@JsonProperty("header") SirenHeader header,
                   @JsonProperty("nomUniteLegale") String naturalPersonName,
                   @JsonProperty("denominationUniteLegale") String companyName,
                   @JsonProperty("categorieJuridiqueUniteLegale") String legalCategory,
-                  @JsonProperty("activitePrincipaleUniteLegale") String mainActivity) {
+                  @JsonProperty("activitePrincipaleUniteLegale") String mainActivity,
+                  @JsonProperty("changementEtatAdministratifUniteLegale") boolean administrativeStatusChange,
+                  @JsonProperty("changementNomUniteLegale") boolean naturalPersonNameChange,
+                  @JsonProperty("changementDenominationUniteLegale") boolean mainActivityChange,
+                  @JsonProperty("changementCategorieJuridiqueUniteLegale") boolean companyNameChange,
+                  @JsonProperty("changementActivitePrincipaleUniteLegale") boolean legalCategoryChange,
+                  Map<String, Boolean> jsonToValue) {
+
+        Period {
+            jsonToValue = new HashMap<>();
+            jsonToValue.put("administrativeStatusChange", administrativeStatusChange);
+            jsonToValue.put("naturalPersonNameChange", naturalPersonNameChange);
+            jsonToValue.put("mainActivityChange", mainActivityChange);
+            jsonToValue.put("companyNameChange", companyNameChange);
+            jsonToValue.put("legalCategoryChange", legalCategoryChange);
+        }
+
+        private String logChangeReasons() {
+            String changeReasons = jsonToValue.entrySet()
+                    .stream()
+                    .filter(Map.Entry::getValue)
+                    .map(Map.Entry::getKey)
+                    .collect(Collectors.joining(", "));
+            return changeReasons.isEmpty() ?
+                    "This is the first period for the Sirene unit." :
+                    String.format("Reason the period was created: %s", changeReasons);
+        }
 
         void logPeriodInfo() {
             log.info("[Period started on {} and {}.", startDate,
-                    (endDate != null ? "ended on " + endDate : "is ongoing"));
-            log.info("Sirene unit has a main activity code of {} and is {}.]", mainActivity,
+                    (endDate != null ? String.format("ended on %s", endDate) : "is ongoing")
+            );
+            log.info("Sirene unit has a main activity code of {} and is {}.",
+                    mainActivity,
                     (companyName != null ?
-                            "a legal entity with name " + companyName :
-                            "a natural person with surname " + naturalPersonName));
-
+                            String.format("a legal entity with name %s", companyName) :
+                            String.format("a natural person with surname %s", naturalPersonName))
+            );
+            log.info("{}]", logChangeReasons());
         }
     }
 

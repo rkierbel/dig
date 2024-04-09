@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.info.*;
 )
 public class Application {
 
+    //TODO -> CLI + event based frontend comm after call received by BFF
     public static void main(String[] args) {
         Micronaut.run(Application.class, args);
     }
