@@ -1,4 +1,4 @@
-package com.nexus.insee;
+package com.nexus.insee.sirensearch;
 
 enum SearchOperator {
     AND,

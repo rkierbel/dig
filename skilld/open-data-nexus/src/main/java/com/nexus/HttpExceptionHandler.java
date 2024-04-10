@@ -1,7 +1,7 @@
 package com.nexus;
 
-import com.nexus.insee.InseeHttpError;
-import com.nexus.insee.InseeHttpException;
+import com.nexus.insee.httpclient.InseeHttpError;
+import com.nexus.insee.httpclient.InseeHttpException;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpResponse;

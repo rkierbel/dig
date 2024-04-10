@@ -1,4 +1,4 @@
-package com.nexus.insee;
+package com.nexus.insee.httpclient;
 
 import io.micronaut.context.annotation.ConfigurationProperties;
 import io.micronaut.context.annotation.Requires;
@@ -10,7 +10,4 @@ record InseeHttpConfig(String consumerKey,
 
 
     static final String PREFIX = "insee";
-    static final String CLIENT_CREDENTIALS = "client_credentials";
-    static final String GRANT_TYPE = "grant_type";
-    static final String QUERY = "q";
 }

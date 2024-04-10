@@ -1,6 +1,6 @@
-package com.nexus.insee;
+package com.nexus.insee.sirensearch;
 
-import static com.nexus.insee.SirenSearchFactory.WHITESPACE;
+import static com.nexus.insee.sirensearch.SirenSearchFactory.WHITESPACE;
 
 record SearchCriteria(SearchVariable searchVar, String value, SearchOperator operator) {
 

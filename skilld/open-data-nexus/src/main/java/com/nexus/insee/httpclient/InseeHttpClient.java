@@ -1,7 +1,9 @@
-package com.nexus.insee;
+package com.nexus.insee.httpclient;
 
 import com.nexus.HttpServiceId;
 import com.nexus.SirenInfoResponse;
+import com.nexus.insee.InseeConstant;
+import com.nexus.insee.sirensearch.SirenSearchResponse;
 import io.micronaut.core.async.annotation.SingleResult;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Consumes;
@@ -14,13 +16,13 @@ import org.reactivestreams.Publisher;
 
 @Client(id = HttpServiceId.INSEE,
         errorType = InseeHttpError.class)
-interface InseeHttpClient {
+public interface InseeHttpClient {
 
     @Post("${insee.api.token}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
-    Publisher<InseeTokenResponse> token(@QueryValue(value = InseeHttpConfig.GRANT_TYPE) String grantType);
+    Publisher<InseeTokenResponse> token(@QueryValue(value = InseeConstant.GRANT_TYPE) String grantType);
 
     @Get("${siren.api.prefix}${siren.api.version-3}${siren.api.info}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -33,5 +35,5 @@ interface InseeHttpClient {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
-    Publisher<SirenSearchResponse> search(@QueryValue(value = InseeHttpConfig.QUERY) String sirenSearch);
+    Publisher<SirenSearchResponse> search(@QueryValue(value = InseeConstant.QUERY) String sirenSearch);
 }

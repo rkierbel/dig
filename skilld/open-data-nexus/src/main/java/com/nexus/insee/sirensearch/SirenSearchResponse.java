@@ -1,4 +1,4 @@
-package com.nexus.insee;
+package com.nexus.insee.sirensearch;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 
 @Serdeable
 @Slf4j
-record SirenSearchResponse(@JsonProperty("header") SirenHeader header,
-                           @JsonProperty("unitesLegales") List<SireneUnit> units) {
+public record SirenSearchResponse(@JsonProperty("header") SirenHeader header,
+                                  @JsonProperty("unitesLegales") List<SireneUnit> units) {
 
     void logSirenResponseInfo() {
         units.forEach(

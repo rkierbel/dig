@@ -1,4 +1,6 @@
-package com.nexus.insee;
+package com.nexus.insee.sirensearch;
+
+import com.nexus.insee.httpclient.InseeHttpException;
 
 public class SirenSearchException extends InseeHttpException {
 

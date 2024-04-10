@@ -1,6 +1,7 @@
-package com.nexus.insee;
+package com.nexus.insee.httpclient;
 
 import com.nexus.HttpServiceId;
+import com.nexus.insee.InseeConstant;
 import io.micronaut.context.BeanProvider;
 import io.micronaut.http.MutableHttpRequest;
 import io.micronaut.http.annotation.ClientFilter;
@@ -31,7 +32,7 @@ class InseeHttpFilter {
     void doFilterSiren(MutableHttpRequest<?> request) {
         //TODO -> mechanism to fetch token every week - on each request, filter checks if token exists, then uses it
         //TODO -> save token + creation date in mem store -> only fetch new when now > creationDate + six days
-        Mono.from(inseeHttpClient.get().token(InseeHttpConfig.CLIENT_CREDENTIALS))
+        Mono.from(inseeHttpClient.get().token(InseeConstant.CLIENT_CREDENTIALS))
                 .doOnError(InseeHttpException::logTokenGenerationFailure)
                 .retry(MAX_RETRY)
                 .blockOptional()
