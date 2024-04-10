@@ -6,7 +6,7 @@ import reactor.core.publisher.Mono;
 
 @Serdeable
 public record InseeTokenResponse(@JsonProperty("access_token") String accessToken,
-                          @JsonProperty("token_type") String tokenType) {
+                                 @JsonProperty("token_type") String tokenType) {
 
     public static final String BEARER = "Bearer";
 
