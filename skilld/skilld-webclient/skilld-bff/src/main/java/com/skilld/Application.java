@@ -1,4 +1,4 @@
-package com.nexus;
+package com.skilld;
 
 import io.micronaut.runtime.Micronaut;
 import io.swagger.v3.oas.annotations.*;
@@ -6,13 +6,12 @@ import io.swagger.v3.oas.annotations.info.*;
 
 @OpenAPIDefinition(
         info = @Info(
-                title = "open-data-nexus",
+                title = "skilld-bff",
                 version = "0.0"
         )
 )
 public class Application {
 
-    //TODO -> CLI + event based comm from BFF
     public static void main(String[] args) {
         Micronaut.run(Application.class, args);
     }

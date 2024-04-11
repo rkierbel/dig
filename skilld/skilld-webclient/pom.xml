@@ -9,6 +9,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+    <packaging>pom</packaging>
     <artifactId>skilld-webclient</artifactId>
 
+    <modules>
+        <module>skilld-bff</module>
+    </modules>
 </project>

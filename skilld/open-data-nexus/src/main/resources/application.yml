@@ -7,6 +7,10 @@ micronaut:
         url: https://api.insee.fr
     wildcard: /**
 
+rabbitmq:
+  queue:
+    insee: insee
+
 insee:
   api:
     token: /token

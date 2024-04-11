@@ -33,6 +33,7 @@
         <micronaut.http.version>4.3.12</micronaut.http.version>
         <micronaut.client.core.version>4.3.12</micronaut.client.core.version>
         <micronaut.serde.api.version>2.8.2</micronaut.serde.api.version>
+        <micronaut.rabbit.version>4.3.0</micronaut.rabbit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <reactor.core.version>3.6.4</reactor.core.version>
         <reactor.test.version>3.6.4</reactor.test.version>
@@ -81,6 +82,11 @@
             <groupId>io.micronaut.openapi</groupId>
             <artifactId>micronaut-openapi-annotations</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut.rabbitmq</groupId>
+            <artifactId>micronaut-rabbitmq</artifactId>
+            <version>${micronaut.rabbit.version}</version>
         </dependency>
 
         <!-- TOOLING -->
