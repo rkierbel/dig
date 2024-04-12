@@ -8,8 +8,14 @@ micronaut:
     wildcard: /**
 
 rabbitmq:
-  queue:
+  exchange:
     insee: insee
+  queue:
+    insee:
+      siren-search: siren-search-q
+  binding:
+    insee:
+      siren-search: siren-search-b
 
 insee:
   api:

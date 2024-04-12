@@ -9,3 +9,13 @@ micronaut:
       swagger-ui:
         paths: classpath:META-INF/swagger/views/swagger-ui
         mapping: /swagger-ui/**
+
+rabbitmq:
+  exchange:
+    insee: insee
+  queue:
+    insee:
+      siren-search: siren-search-q
+  binding:
+    insee:
+      siren-search: siren-search-b

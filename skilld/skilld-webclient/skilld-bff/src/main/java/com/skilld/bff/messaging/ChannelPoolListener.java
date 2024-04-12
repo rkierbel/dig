@@ -1,4 +1,4 @@
-package com.nexus.messaging;
+package com.skilld.bff.messaging;
 
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;

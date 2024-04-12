@@ -1,4 +1,4 @@
-package com.skilld;
+package com.skilld.bff;
 
 import io.micronaut.runtime.Micronaut;
 import io.swagger.v3.oas.annotations.*;

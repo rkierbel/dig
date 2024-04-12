@@ -1,4 +1,4 @@
-package com.skilld;
+package com.skilld.bff;
 
 import io.micronaut.http.annotation.*;
 

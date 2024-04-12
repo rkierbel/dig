@@ -22,7 +22,7 @@
         <micronaut.aot.enabled>false</micronaut.aot.enabled>
         <micronaut.aot.packageName>com.skilld.aot.generated</micronaut.aot.packageName>
         <micronaut.runtime>netty</micronaut.runtime>
-        <exec.mainClass>com.skilld.Application</exec.mainClass>
+        <exec.mainClass>com.skilld.bff.Application</exec.mainClass>
     </properties>
 
     <repositories>
