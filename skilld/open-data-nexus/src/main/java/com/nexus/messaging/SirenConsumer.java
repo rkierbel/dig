@@ -6,8 +6,8 @@ import io.micronaut.rabbitmq.annotation.RabbitListener;
 @RabbitListener
 public class SirenConsumer {
 
-    @Queue("${rabbitmq.queue.insee.siren-search-q}")
-    void onSirenSearchEvent(SirenSearchEvent sirenSearchEvent) {
-        System.out.println(sirenSearchEvent.toString());
+    @Queue("${rabbitmq.queue.insee.sirene-search}")
+    void onSireneSearchEvent(SireneSearchEvent sireneSearchEvent) {
+        System.out.println(sireneSearchEvent.toString());
     }
 }

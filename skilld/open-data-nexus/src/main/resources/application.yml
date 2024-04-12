@@ -12,10 +12,10 @@ rabbitmq:
     insee: insee
   queue:
     insee:
-      siren-search: siren-search-q
+      sirene-search: sirene-search-q
   binding:
     insee:
-      siren-search: siren-search-b
+      sirene-search: sirene-search-b
 
 insee:
   api:
@@ -29,4 +29,4 @@ siren:
     version-3: /V3
     version-3-11: /V3.11
     info: /informations
-    siren-search: /siren
+    sirene-search: /siren

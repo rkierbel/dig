@@ -15,7 +15,7 @@ rabbitmq:
     insee: insee
   queue:
     insee:
-      siren-search: siren-search-q
+      sirene-search: sirene-search-q
   binding:
     insee:
-      siren-search: siren-search-b
+      sirene-search: sirene-search-b

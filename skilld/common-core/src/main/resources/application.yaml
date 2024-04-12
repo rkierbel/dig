@@ -1,0 +1,14 @@
+#Fri Apr 12 08:33:56 UTC 2024
+micronaut:
+  application:
+    name: common-core
+
+rabbitmq:
+  exchange:
+    insee: insee
+  queue:
+    insee:
+      sirene-search: sirene-search-q
+  binding:
+    insee:
+      sirene-search: sirene-search-b

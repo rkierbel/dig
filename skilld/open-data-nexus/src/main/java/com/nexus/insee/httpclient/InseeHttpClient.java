@@ -3,7 +3,8 @@ package com.nexus.insee.httpclient;
 import com.nexus.HttpServiceId;
 import com.nexus.SirenInfoResponse;
 import com.nexus.insee.InseeConstant;
-import com.nexus.insee.sirensearch.SirenSearchResponse;
+import com.nexus.insee.sirenesearch.SireneSearchResponse;
+import com.skilld.core.exception.InseeHttpError;
 import io.micronaut.core.async.annotation.SingleResult;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Consumes;
@@ -35,5 +36,5 @@ public interface InseeHttpClient {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
-    Publisher<SirenSearchResponse> search(@QueryValue(value = InseeConstant.QUERY) String sirenSearch);
+    Publisher<SireneSearchResponse> search(@QueryValue(value = InseeConstant.QUERY) String sireneSearch);
 }
