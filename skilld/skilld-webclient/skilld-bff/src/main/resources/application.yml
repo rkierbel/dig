@@ -1,6 +1,8 @@
 micronaut:
+  server:
+    port: 7689
   application:
-    name: skilld-bff
+    name: bff-application
   router:
     static-resources:
       swagger:
@@ -12,10 +14,14 @@ micronaut:
 
 rabbitmq:
   exchange:
-    insee: insee
+    insee:
+      sirene: sirene
   queue:
     insee:
-      siren-search: siren-search-q
+      sirene-search: sirene.search.q
   binding:
     insee:
-      siren-search: siren-search-b
+      sirene-search: sirene.search.b
+  uri: amqp://localhost:5672
+  username: guest
+  password: guest

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ComposerSettings">
+    <execution />
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -11,13 +14,11 @@
         <option value="$PROJECT_DIR$/skilld/verification/pom.xml" />
         <option value="$PROJECT_DIR$/skilld/skilld-webclient/pom.xml" />
         <option value="$PROJECT_DIR$/skilld/skilld-webclient/skilld-bff/pom.xml" />
+        <option value="$PROJECT_DIR$/skilld/common-core/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="PWA">
-    <option name="wasEnabledAtLeastOnce" value="true" />
-  </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" project-jdk-name="graalvm-ce-21" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21_PREVIEW" project-jdk-name="graalvm-ce-21" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

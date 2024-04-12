@@ -1,0 +1,18 @@
+#Fri Apr 12 08:33:56 UTC 2024
+micronaut:
+  application:
+    name: core-application
+
+rabbitmq:
+  uri: amqp://localhost:5672
+  username: guest
+  password: guest
+  exchange:
+    insee:
+      sirene: sirene
+  queue:
+    insee:
+      sirene-search: sirene.search.q
+  binding:
+    insee:
+      sirene-search: sirene.search.b

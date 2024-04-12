@@ -3,7 +3,8 @@ package com.nexus.insee.httpclient;
 import com.nexus.HttpServiceId;
 import com.nexus.SirenInfoResponse;
 import com.nexus.insee.InseeConstant;
-import com.nexus.insee.sirensearch.SirenSearchResponse;
+import com.nexus.insee.sirenesearch.SireneSearchResponse;
+import com.skilld.core.exception.InseeHttpError;
 import io.micronaut.core.async.annotation.SingleResult;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Consumes;
@@ -30,10 +31,10 @@ public interface InseeHttpClient {
     @SingleResult
     Publisher<SirenInfoResponse> information();
 
-    @Get("${siren.api.prefix}${siren.api.version-3-11}${siren.api.siren-search}")
+    @Get("${siren.api.prefix}${siren.api.version-3-11}${siren.api.sirene-search}")
     //q=periode(nomUniteLegale:grzeszezak) or q=raisonSociale:blabla
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
-    Publisher<SirenSearchResponse> search(@QueryValue(value = InseeConstant.QUERY) String sirenSearch);
+    Publisher<SireneSearchResponse> search(@QueryValue(value = InseeConstant.QUERY) String sireneSearch);
 }
