@@ -15,7 +15,14 @@
         <option value="$PROJECT_DIR$/skilld/skilld-webclient/pom.xml" />
         <option value="$PROJECT_DIR$/skilld/skilld-webclient/skilld-bff/pom.xml" />
         <option value="$PROJECT_DIR$/skilld/common-core/pom.xml" />
+        <option value="$PROJECT_DIR$/open-data-nexus/pom.xml" />
+        <option value="$PROJECT_DIR$/common-core/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_21_PREVIEW" project-jdk-name="graalvm-ce-21" project-jdk-type="JavaSDK">

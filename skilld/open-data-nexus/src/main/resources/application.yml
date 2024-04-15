@@ -22,7 +22,6 @@ rabbitmq:
   uri: amqp://localhost:5672
   username: guest
   password: guest
-      sirene-search: sirene-search-b
 
 insee:
   api:
