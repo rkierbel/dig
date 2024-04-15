@@ -1,4 +1,4 @@
-package com.skilld.core.exception;
+package com.nexus.insee.exception;
 
 public class SireneSearchException extends InseeHttpException {
 
@@ -19,6 +19,12 @@ public class SireneSearchException extends InseeHttpException {
     }
 
     public static SireneSearchException searchOperatorNotFoundException(String name) {
+        throw new SireneSearchException(
+                String.format("Cannot find search operator %s for a Sirene search.", name)
+        );
+    }
+
+    public static SireneSearchException searchVariableNotFoundException(String name) {
         throw new SireneSearchException(
                 String.format("Cannot find search operator %s for a Sirene search.", name)
         );

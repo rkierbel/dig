@@ -9,8 +9,8 @@ services:
       - ~/.docker/rabbitmq/data/:/var/lib/rabbitmq/
       - ~/.docker/rabbitmq/log/:/var/log/rabbitmq
     networks:
-      - rabbitmq_java_net
+      - skilld_net
 
 networks:
-  rabbitmq_java_net:
+  skilld_net:
     driver: bridge

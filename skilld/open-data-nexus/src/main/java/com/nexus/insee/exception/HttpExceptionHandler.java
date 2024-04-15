@@ -1,4 +1,4 @@
-package com.skilld.core.exception;
+package com.nexus.insee.exception;
 
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.http.HttpRequest;

@@ -11,7 +11,9 @@ public class SireneSearchService {
     SireneProducer sireneProducer;
 
     void sireneSearch() {
-        sireneProducer.sendSireneSearchEvent(SireneSearchEvent.builder().build());
+        sireneProducer.sendSireneSearchEvent(SireneSearchEvent
+                .builder()
+                .build());
     }
 
 }
