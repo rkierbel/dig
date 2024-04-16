@@ -17,11 +17,6 @@ public enum SearchOperator {
     OR,
     NONE;
 
-    @JsonValue
-    public String operator() {
-        return this.name();
-    }
-
     @JsonCreator
     static SearchOperator fromName(String name) {
         try {

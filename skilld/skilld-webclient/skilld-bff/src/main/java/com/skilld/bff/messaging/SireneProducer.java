@@ -14,7 +14,4 @@ public interface SireneProducer {
 
     @Binding("${rabbitmq.binding.insee.sirene-search}")
     void sendSireneSearchEvent(SireneSearchEvent event);
-
-    @Binding("${rabbitmq.binding.insee.sirene-search}")
-    void sendSirenePingMessage(String message);
 }

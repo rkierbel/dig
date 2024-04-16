@@ -13,7 +13,7 @@ import java.util.UUID;
 @Singleton
 @Requires(notEnv = Environment.TEST)
 @Slf4j
-public class InseeService {
+public class SireneService {
 
     @Inject
     SireneProducer sireneProducer;

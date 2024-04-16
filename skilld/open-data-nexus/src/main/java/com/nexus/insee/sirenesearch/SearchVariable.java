@@ -23,11 +23,6 @@ enum SearchVariable {
         this.searchVariable = searchVariable;
     }
 
-    @JsonValue
-    public String searchVariable() {
-        return searchVariable;
-    }
-
     @JsonCreator
     static SearchVariable fromName(String name) {
         try {

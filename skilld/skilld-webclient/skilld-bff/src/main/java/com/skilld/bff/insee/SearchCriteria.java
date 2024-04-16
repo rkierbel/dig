@@ -23,13 +23,4 @@ public record SearchCriteria(@JsonProperty("search-var") SearchVariable searchVa
     static SearchCriteria simpleSearch(String value) {
         return new SearchCriteria(SearchVariable.COMPANY_NAME, value, SearchOperator.NONE);
     }
-
-    @Override
-    public String toString() {
-        String stringified = String.join(":", searchVar().getSearchVariable(), value());
-
-        return SearchOperator.NONE.equals(this.operator()) ?
-                stringified :
-                stringified + " " + operator();
-    }
 }
