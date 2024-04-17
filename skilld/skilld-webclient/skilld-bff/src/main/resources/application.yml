@@ -23,5 +23,5 @@ rabbitmq:
     insee:
       sirene-search: sirene.search.b
   uri: amqp://localhost:5672
-  username: guest
-  password: guest
+  username: ${RABBITMQ_USERNAME}:guest
+  password: ${RABBITMQ_PASSWORD}:guest

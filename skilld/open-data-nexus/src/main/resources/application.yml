@@ -20,14 +20,14 @@ rabbitmq:
     insee:
       sirene-search: sirene.search.b
   uri: amqp://localhost:5672
-  username: guest
-  password: guest
+  username: ${RABBITMQ_USERNAME}
+  password: ${RABBITMQ_PASSWORD}
 
 insee:
   api:
     token: /token
-  consumer-key: l20m5bog7Vo4VRFYy55SLv5685wa
-  consumer-secret: b1FqyKenafwZIEiEevl4BUSb_8Ma
+  consumer-key: ${SIRENE_CONSUMER_KEY}
+  consumer-secret: ${SIRENE_CONSUMER_SECRET}
 
 siren:
   api:

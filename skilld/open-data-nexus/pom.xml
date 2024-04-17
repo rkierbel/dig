@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
+    <groupId>com.skilld</groupId>
+    <artifactId>open-data-nexus</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>${packaging}</packaging>
 
     <parent>
         <groupId>io.micronaut.platform</groupId>
@@ -9,10 +14,6 @@
         <version>4.3.7</version>
         <relativePath/>
     </parent>
-
-    <artifactId>open-data-nexus</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
 
     <properties>
         <exec.mainClass>com.nexus.NexusApplication</exec.mainClass>
@@ -35,12 +36,37 @@
         <micronaut.client.core.version>4.3.12</micronaut.client.core.version>
         <micronaut.serde.api.version>2.8.2</micronaut.serde.api.version>
         <micronaut.rabbit.version>4.3.0</micronaut.rabbit.version>
+        <micronaut.maven.plugin.version>4.5.2</micronaut.maven.plugin.version>
+        <native.maven.plugin.version>0.10.1</native.maven.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <reactor.core.version>3.6.4</reactor.core.version>
         <reactor.test.version>3.6.4</reactor.test.version>
         <release.version>21</release.version>
         <swagger.annotations.version>2.2.20</swagger.annotations.version>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>native</id>
+            <properties>
+                <packaging>docker-native</packaging>
+                <micronaut.importfactory.enabled>true</micronaut.importfactory.enabled>
+            </properties>
+        </profile>
+        <profile>
+            <id>local-docker</id>
+            <properties>
+                <packaging>docker</packaging>
+                <micronaut.importfactory.enabled>true</micronaut.importfactory.enabled>
+            </properties>
+        </profile>
+        <profile>
+            <id>local-jar</id>
+            <properties>
+                <packaging>jar</packaging>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
@@ -167,17 +193,36 @@
             <version>5.3.1</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.10.1</version>
-            <scope>compile</scope>
-        </dependency>
 
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Jib - Dockerization -->
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.4.2</version>
+                <configuration>
+                    <skip>true</skip>
+                    <to>
+                        <image>open-data-nexus</image>
+                        <tags>
+                            <tag>latest</tag>
+                        </tags>
+                    </to>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- APACHE MAVEN - shade, surefire, compiler, enforcer -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -198,13 +243,6 @@
                 </dependencies>
             </plugin>
             <plugin>
-                <groupId>io.micronaut.maven</groupId>
-                <artifactId>micronaut-maven-plugin</artifactId>
-                <configuration>
-                    <configFile>../../verification/aot-jar.properties</configFile>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
             </plugin>
@@ -214,7 +252,6 @@
                 <configuration>
                     <!-- Uncomment to enable incremental compilation -->
                     <!-- <useIncrementalCompilation>false</useIncrementalCompilation> -->
-
                     <annotationProcessorPaths combine.children="append">
                         <path>
                             <groupId>io.micronaut</groupId>
@@ -265,7 +302,41 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
+
+            <!-- MICRONAUT MAVEN & GRAAL - native, maven-plugin, -->
+            <plugin>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>native-maven-plugin</artifactId>
+                <configuration>
+                    <buildArgs combine.children="append">
+                        <buildArg>--verbose</buildArg>
+                    </buildArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.micronaut.maven</groupId>
+                <artifactId>micronaut-maven-plugin</artifactId>
+                <version>${micronaut.maven.plugin.version}</version>
+                <configuration>
+                    <shared>true</shared>
+                    <configFile>aot-${packaging}.properties</configFile>
+                    <nativeImageBuildArgs>
+                        <nativeImageBuildArg>--verbose</nativeImageBuildArg>
+                    </nativeImageBuildArgs>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>

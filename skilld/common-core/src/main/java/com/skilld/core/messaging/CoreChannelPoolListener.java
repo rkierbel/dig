@@ -1,4 +1,4 @@
-package com.nexus.messaging;
+package com.skilld.core.messaging;
 
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @Singleton
 @Requires(notEnv = Environment.TEST)
-public class ChannelPoolListener extends ChannelInitializer {
+public class CoreChannelPoolListener extends ChannelInitializer {
 
     @Value("${rabbitmq.exchange.insee.sirene}")
     String sireneExc;

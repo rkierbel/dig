@@ -2,6 +2,8 @@ version: "3"
 services:
   rabbitmq:
     image: rabbitmq:management-alpine
+    env_file:
+      - ~/.docker/rabbitmq/rabbitmq.env
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -10,7 +12,24 @@ services:
       - ~/.docker/rabbitmq/log/:/var/log/rabbitmq
     networks:
       - skilld_net
-
+  open-data-nexus:
+    image: open-data-nexus:latest
+    env_file:
+      - ~/.docker/nexus.env
+    volumes:
+      - ~/.docker/od-nexus/data/:/var/lib/open-data-nexus/
+      - ~/.docker/od-nexus/log/:/var/log/open-data-nexus
+    networks:
+      - skilled_net
+  skilld-bff:
+    image: skilld-bff:latest
+    env_file:
+      - ~/.docker/bff.env
+    volumes:
+      - ~/.docker/bff/data/:/var/lib/bff/
+      - ~/.docker/bff/log/:/var/log/bff
+    networks:
+      - skilled_net
 networks:
   skilld_net:
     driver: bridge
