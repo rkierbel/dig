@@ -5,8 +5,8 @@ micronaut:
 
 rabbitmq:
   uri: amqp://localhost:5672
-  username: ${RABBITMQ_USERNAME}:guest
-  password: ${RABBITMQ_PASSWORD}:guest
+  username: ${RABBITMQ_USERNAME:guest}
+  password: ${RABBITMQ_PASSWORD:guest}
   exchange:
     insee:
       sirene: sirene
