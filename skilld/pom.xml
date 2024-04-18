@@ -9,7 +9,7 @@
 
     <modules>
         <module>common-core</module>
-        <module>open-data-nexus</module>
+        <module>insee-nexus</module>
         <module>skilld-webclient</module>
     </modules>
 

@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.skilld</groupId>
-    <artifactId>open-data-nexus</artifactId>
+    <artifactId>insee-nexus</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>${packaging}</packaging>
 
