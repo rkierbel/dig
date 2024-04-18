@@ -3,7 +3,6 @@ package com.nexus.messaging;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nexus.insee.sirenesearch.SearchCriteria;
-import io.micronaut.core.annotation.Creator;
 import io.micronaut.core.annotation.Introspected;
 import io.micronaut.serde.annotation.Serdeable;
 import lombok.Builder;

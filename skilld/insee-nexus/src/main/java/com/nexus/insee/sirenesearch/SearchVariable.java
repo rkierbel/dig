@@ -1,7 +1,6 @@
 package com.nexus.insee.sirenesearch;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.nexus.insee.exception.SireneSearchException;
 import com.skilld.core.exception.EnumValueNotFoundException;
 import com.skilld.core.util.EnumHelper;

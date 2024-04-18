@@ -5,7 +5,6 @@ import com.nexus.insee.httpclient.InseeHttpClient;
 import com.nexus.insee.sirenesearch.SireneSearchFactory;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.context.env.Environment;
-import io.micronaut.core.annotation.Introspected;
 import io.micronaut.rabbitmq.annotation.Queue;
 import io.micronaut.rabbitmq.annotation.RabbitListener;
 import jakarta.inject.Inject;
