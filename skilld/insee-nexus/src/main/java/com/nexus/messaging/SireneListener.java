@@ -1,6 +1,5 @@
 package com.nexus.messaging;
 
-import com.google.gson.Gson;
 import com.nexus.insee.httpclient.InseeHttpClient;
 import com.nexus.insee.sirenesearch.SireneSearchFactory;
 import io.micronaut.context.annotation.Requires;
@@ -24,10 +23,9 @@ public class SireneListener {
 
     @Queue("${rabbitmq.queue.insee.sirene-search}")
     void onSireneSearchEvent(SireneSearchEvent sireneSearchEvent) {
-        log.info("[open-data-nexus.Insee.HttpClient::onSireneSearchEvent] Received sirene search event!");
-        log.info(new Gson().toJson(sireneSearchEvent));
-        Mono.from(httpClient.search(searchFactory.historicized(sireneSearchEvent.getSearchCriteria())))
+        log.info("Received sirene search event!");
+        Mono.from(httpClient.search(
+                searchFactory.historicized(sireneSearchEvent.getSearchCriteria())))
                 .subscribe(response -> log.info("Received sirene search response ! {}", response));
-
     }
 }

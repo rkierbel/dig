@@ -9,11 +9,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static com.nexus.insee.sirenesearch.SireneConstants.*;
+
 
 @Serdeable
 @Slf4j
-public record SireneSearchResponse(@JsonProperty("header") SirenHeader header,
-                                   @JsonProperty("unitesLegales") List<SireneUnit> units) {
+public record SireneSearchResponse(SirenHeader header,
+                                   @JsonProperty(SIRENE_UNITS) List<SireneUnit> units) {
 
     void logSirenResponseInfo() {
         units.forEach(
@@ -30,6 +32,10 @@ public record SireneSearchResponse(@JsonProperty("header") SirenHeader header,
     }
 
     /**
+     * The legal (Sirene) unit is a legal entity under public or private law.
+     * This legal entity may be a legal person, whose existence is recognised by law independently of the persons or institutions that own it or are members of it ;
+     * or a natural person, who, as a self-employed person, may carry on an economic activity.
+     *
      * @param siren                  Sole entrepreneurs, or natural persons, retain the same Siren number until they die.
      *                               Legal entities lose their legal personality when they cease their business activity.
      *                               If the business is resumed at a later date, a new Siren number will be assigned.
@@ -45,18 +51,18 @@ public record SireneSearchResponse(@JsonProperty("header") SirenHeader header,
      */
     @Serdeable
     record SireneUnit(String siren,
-                      @JsonProperty("dateCreationUniteLegale") String sireneUnitCreationDate,
-                      @JsonProperty("prenom1UniteLegale") String firstName,
-                      @JsonProperty("prenom2UniteLegale") String middleName,
-                      @JsonProperty("prenom3UniteLegale") String thirdName,
-                      @JsonProperty("prenom4UniteLegale") String fourthName,
-                      @JsonProperty("dateDernierTraitementUniteLegale") String lastModifiedDate,
-                      @JsonProperty("periodesUniteLegale") List<Period> unitChanges) {
+                      @JsonProperty(SIRENE_UNIT_CREATION_DATE) String sireneUnitCreationDate,
+                      @JsonProperty(FIRST_NAME) String firstName,
+                      @JsonProperty(MIDDLE_NAME) String middleName,
+                      @JsonProperty(THIRD_NAME) String thirdName,
+                      @JsonProperty(FOURTH_NAME) String fourthName,
+                      @JsonProperty(LAST_MODIFIED_DATE) String lastModifiedDate,
+                      @JsonProperty(UNIT_CHANGES) List<Period> unitChanges) {
 
     }
 
     /**
-     * Each period corresponds to a time interval
+     * Each period corresponds to a time interval.
      * During this time interval, none of the Sirene unit's historical variables are modified.
      *
      * @param startDate
@@ -84,18 +90,18 @@ public record SireneSearchResponse(@JsonProperty("header") SirenHeader header,
      * @param legalCategoryChange
      */
     @Serdeable
-    record Period(@JsonProperty("dateDebut") String startDate,
-                  @JsonProperty("dateFin") String endDate,
-                  @JsonProperty("etatAdministratifUniteLegale") AdministrativeStatus administrativeStatus,
-                  @JsonProperty("nomUniteLegale") String naturalPersonName,
-                  @JsonProperty("denominationUniteLegale") String companyName,
-                  @JsonProperty("categorieJuridiqueUniteLegale") String legalCategory,
-                  @JsonProperty("activitePrincipaleUniteLegale") String mainActivity,
-                  @JsonProperty("changementEtatAdministratifUniteLegale") boolean administrativeStatusChange,
-                  @JsonProperty("changementNomUniteLegale") boolean naturalPersonNameChange,
-                  @JsonProperty("changementDenominationUniteLegale") boolean mainActivityChange,
-                  @JsonProperty("changementCategorieJuridiqueUniteLegale") boolean companyNameChange,
-                  @JsonProperty("changementActivitePrincipaleUniteLegale") boolean legalCategoryChange,
+    record Period(@JsonProperty(START_DATE) String startDate,
+                  @JsonProperty(END_DATE) String endDate,
+                  @JsonProperty(ADMIN_STATUS) AdministrativeStatus administrativeStatus,
+                  @JsonProperty(NATURAL_PERSON_NAME) String naturalPersonName,
+                  @JsonProperty(COMPANY_NAME) String companyName,
+                  @JsonProperty(LEGAL_CATEGORY) String legalCategory,
+                  @JsonProperty(MAIN_ACTIVITY) String mainActivity,
+                  @JsonProperty(ADMIN_STATUS_CHANGE) boolean administrativeStatusChange,
+                  @JsonProperty(NATURAL_PERSON_NAME_CHANGE) boolean naturalPersonNameChange,
+                  @JsonProperty(MAIN_ACTIVITY_CHANGE) boolean mainActivityChange,
+                  @JsonProperty(COMPANY_NAME_CHANGE) boolean companyNameChange,
+                  @JsonProperty(LEGAL_CATEGORY_CHANGE) boolean legalCategoryChange,
                   Map<String, Boolean> jsonToValue) {
 
         Period {

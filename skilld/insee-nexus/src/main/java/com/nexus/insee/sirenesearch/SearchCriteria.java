@@ -24,7 +24,7 @@ public record SearchCriteria(@JsonProperty("search-var") SearchVariable searchVa
 
     @Override
     public String toString() {
-        String stringified = String.join(":", searchVar().getSearchVariable(), value());
+        String stringified = String.join(":", searchVar().getFr(), value());
 
         return SearchOperator.NONE.equals(this.operator()) ?
                 stringified :

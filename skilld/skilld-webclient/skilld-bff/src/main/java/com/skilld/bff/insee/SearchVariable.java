@@ -8,7 +8,7 @@ import io.micronaut.serde.annotation.Serdeable;
 @Introspected
 enum SearchVariable {
 
-    BUSINESS_UNIT_NAME,
+    NATURAL_PERSON_NAME,
     COMPANY_NAME;
 
     @JsonValue

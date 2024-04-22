@@ -1,4 +1,4 @@
-package com.nexus;
+package com.nexus.insee;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.serde.annotation.Serdeable;

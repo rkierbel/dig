@@ -1,6 +1,5 @@
 package com.nexus.insee;
 
-import com.nexus.SirenInfoResponse;
 import com.nexus.insee.httpclient.InseeHttpClient;
 import com.nexus.insee.httpclient.InseeTokenResponse;
 import io.micronaut.context.annotation.Property;

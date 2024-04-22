@@ -13,13 +13,17 @@ import lombok.Getter;
 @Introspected
 enum SearchVariable {
 
-    BUSINESS_UNIT_NAME("nomUniteLegale"),
-    COMPANY_NAME("raisonSociale");
+    NATURAL_PERSON_NAME(SireneConstants.NATURAL_PERSON_NAME),
+    COMPANY_NAME(SireneConstants.COMPANY_NAME);
 
-    final String searchVariable;
+    final String fr;
 
-    SearchVariable(String searchVariable) {
-        this.searchVariable = searchVariable;
+    SearchVariable(String fr) {
+        this.fr = fr;
+    }
+
+    public String fr() {
+        return this.fr;
     }
 
     @JsonCreator

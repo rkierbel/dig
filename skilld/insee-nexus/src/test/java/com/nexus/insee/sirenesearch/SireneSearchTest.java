@@ -20,7 +20,7 @@ public class SireneSearchTest {
 
     @Test
     void givenValidSimpleSearch_returnSireneSearchResult() {
-        var criteria = SearchCriteria.from(SearchVariable.BUSINESS_UNIT_NAME, "grzeszezak");
+        var criteria = SearchCriteria.from(SearchVariable.NATURAL_PERSON_NAME, "grzeszezak");
         StepVerifier.create(Mono.from(
                         client.search(
                                 sireneSearch.historicized(Set.of(criteria))))

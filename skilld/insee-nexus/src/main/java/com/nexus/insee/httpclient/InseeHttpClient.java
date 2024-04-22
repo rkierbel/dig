@@ -1,7 +1,7 @@
 package com.nexus.insee.httpclient;
 
 import com.nexus.HttpServiceId;
-import com.nexus.SirenInfoResponse;
+import com.nexus.insee.SirenInfoResponse;
 import com.nexus.insee.InseeConstant;
 import com.nexus.insee.exception.InseeHttpError;
 import com.nexus.insee.sirenesearch.SireneSearchResponse;

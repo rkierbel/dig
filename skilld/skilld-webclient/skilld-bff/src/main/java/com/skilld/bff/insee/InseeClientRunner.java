@@ -22,7 +22,7 @@ public class InseeClientRunner {
     public void onStartUp(ServerStartupEvent event) {
         log.info("[skilld-bff.InseeClientRunner::onStartUp] Starting sirene search async flow!");
         sireneService.sireneSearch(
-                Set.of(SearchCriteria.from(SearchVariable.BUSINESS_UNIT_NAME, "grzeszezak"))
+                Set.of(SearchCriteria.from(SearchVariable.NATURAL_PERSON_NAME, "grzeszezak"))
         );
     }
 }
