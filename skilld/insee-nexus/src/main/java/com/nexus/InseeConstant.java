@@ -1,4 +1,4 @@
-package com.nexus.insee;
+package com.nexus;
 
 public class InseeConstant {
 

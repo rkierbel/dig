@@ -1,4 +1,4 @@
-package com.nexus.insee.sirenesearch;
+package com.nexus.sirene;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.serde.annotation.Serdeable;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.nexus.insee.sirenesearch.SireneConstants.*;
+import static com.nexus.sirene.SireneConstants.*;
 
 
 @Serdeable

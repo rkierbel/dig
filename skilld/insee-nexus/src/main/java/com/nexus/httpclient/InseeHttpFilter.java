@@ -1,8 +1,7 @@
-package com.nexus.insee.httpclient;
+package com.nexus.httpclient;
 
-import com.nexus.HttpServiceId;
-import com.nexus.insee.InseeConstant;
-import com.nexus.insee.exception.InseeHttpException;
+import com.nexus.InseeConstant;
+import com.nexus.exception.InseeHttpException;
 import io.micronaut.context.BeanProvider;
 import io.micronaut.http.MutableHttpRequest;
 import io.micronaut.http.annotation.ClientFilter;

@@ -1,6 +1,6 @@
-package com.nexus.insee.sirenesearch;
+package com.nexus.sirene;
 
-import com.nexus.insee.httpclient.InseeHttpClient;
+import com.nexus.httpclient.InseeHttpClient;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;

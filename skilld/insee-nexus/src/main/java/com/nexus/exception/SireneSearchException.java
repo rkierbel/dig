@@ -1,4 +1,4 @@
-package com.nexus.insee.exception;
+package com.nexus.exception;
 
 public class SireneSearchException extends InseeHttpException {
 

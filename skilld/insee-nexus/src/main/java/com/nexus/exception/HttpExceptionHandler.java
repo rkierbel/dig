@@ -1,4 +1,4 @@
-package com.nexus.insee.exception;
+package com.nexus.exception;
 
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.http.HttpRequest;

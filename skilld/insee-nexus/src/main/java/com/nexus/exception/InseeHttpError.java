@@ -1,4 +1,4 @@
-package com.nexus.insee.exception;
+package com.nexus.exception;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.serde.annotation.Serdeable;

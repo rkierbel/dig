@@ -1,7 +1,7 @@
 package com.nexus.messaging;
 
-import com.nexus.insee.httpclient.InseeHttpClient;
-import com.nexus.insee.sirenesearch.SireneSearchFactory;
+import com.nexus.httpclient.InseeHttpClient;
+import com.nexus.sirene.SireneSearchFactory;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.context.env.Environment;
 import io.micronaut.rabbitmq.annotation.Queue;

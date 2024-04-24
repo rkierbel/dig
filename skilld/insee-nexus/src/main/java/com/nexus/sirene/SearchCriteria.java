@@ -1,9 +1,9 @@
-package com.nexus.insee.sirenesearch;
+package com.nexus.sirene;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.serde.annotation.Serdeable;
 
-import static com.nexus.insee.sirenesearch.SireneSearchFactory.WHITESPACE;
+import static com.nexus.sirene.SireneSearchFactory.WHITESPACE;
 
 @Serdeable
 public record SearchCriteria(@JsonProperty("search-var") SearchVariable searchVar,

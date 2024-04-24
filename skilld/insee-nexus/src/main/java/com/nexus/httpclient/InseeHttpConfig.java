@@ -1,4 +1,4 @@
-package com.nexus.insee.httpclient;
+package com.nexus.httpclient;
 
 import io.micronaut.context.annotation.ConfigurationProperties;
 import io.micronaut.context.annotation.Requires;

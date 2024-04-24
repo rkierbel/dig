@@ -1,4 +1,4 @@
-package com.nexus;
+package com.nexus.httpclient;
 
 public class HttpServiceId {
 

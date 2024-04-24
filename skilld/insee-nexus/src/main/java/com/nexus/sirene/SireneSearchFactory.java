@@ -1,4 +1,4 @@
-package com.nexus.insee.sirenesearch;
+package com.nexus.sirene;
 
 import jakarta.inject.Singleton;
 

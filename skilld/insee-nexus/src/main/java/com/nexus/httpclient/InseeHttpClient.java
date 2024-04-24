@@ -1,10 +1,9 @@
-package com.nexus.insee.httpclient;
+package com.nexus.httpclient;
 
-import com.nexus.HttpServiceId;
-import com.nexus.insee.SirenInfoResponse;
-import com.nexus.insee.InseeConstant;
-import com.nexus.insee.exception.InseeHttpError;
-import com.nexus.insee.sirenesearch.SireneSearchResponse;
+import com.nexus.sirene.SirenInfoResponse;
+import com.nexus.InseeConstant;
+import com.nexus.exception.InseeHttpError;
+import com.nexus.sirene.SireneSearchResponse;
 import io.micronaut.core.async.annotation.SingleResult;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Consumes;

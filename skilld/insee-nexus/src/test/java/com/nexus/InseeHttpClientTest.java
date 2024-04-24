@@ -1,7 +1,8 @@
-package com.nexus.insee;
+package com.nexus;
 
-import com.nexus.insee.httpclient.InseeHttpClient;
-import com.nexus.insee.httpclient.InseeTokenResponse;
+import com.nexus.httpclient.InseeHttpClient;
+import com.nexus.httpclient.InseeTokenResponse;
+import com.nexus.sirene.SirenInfoResponse;
 import io.micronaut.context.annotation.Property;
 import io.micronaut.http.client.exceptions.HttpClientException;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
