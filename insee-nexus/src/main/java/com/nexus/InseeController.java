@@ -2,6 +2,7 @@ package com.nexus;
 
 import com.nexus.sirene.SireneSearchResponse;
 import com.nexus.sirene.SireneSearchService;
+import io.micronaut.core.annotation.Nullable;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
@@ -18,7 +19,7 @@ public class InseeController { //TODO -> sirene + package
 
     @Get("/sirene/natural-person{?name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public HttpResponse<SireneSearchResponse> naturalPersonSearch(@QueryValue String name) {
+    public HttpResponse<SireneSearchResponse> naturalPersonSearch(@Nullable @QueryValue String name) {
         return HttpResponse.ok(sireneSearchService.naturalPersonSearch(name));
     }
 }
