@@ -11,7 +11,7 @@ import io.micronaut.http.annotation.QueryValue;
 import jakarta.inject.Inject;
 
 @Controller("/insee")
-public class InseeController {
+public class InseeController { //TODO -> sirene + package
 
     @Inject
     SireneSearchService sireneSearchService;
