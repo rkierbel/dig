@@ -6,7 +6,7 @@
     <groupId>com.dig</groupId>
     <artifactId>dig-backend</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>${packaging}</packaging>
+    <packaging>${packaging.type}</packaging>
 
     <parent>
         <groupId>io.micronaut.platform</groupId>
@@ -49,21 +49,21 @@
         <profile>
             <id>native</id>
             <properties>
-                <packaging>docker-native</packaging>
+                <packaging.type>docker-native</packaging.type>
                 <micronaut.importfactory.enabled>true</micronaut.importfactory.enabled>
             </properties>
         </profile>
         <profile>
             <id>local-docker</id>
             <properties>
-                <packaging>docker</packaging>
+                <packaging.type>docker</packaging.type>
                 <micronaut.importfactory.enabled>true</micronaut.importfactory.enabled>
             </properties>
         </profile>
         <profile>
             <id>local-jar</id>
             <properties>
-                <packaging>jar</packaging>
+                <packaging.type>jar</packaging.type>
             </properties>
         </profile>
     </profiles>
