@@ -1,0 +1,25 @@
+package insee;
+
+import insee.sirene.SireneSearchResponse;
+import insee.sirene.SireneSearchService;
+import io.micronaut.core.annotation.Nullable;
+import io.micronaut.http.HttpResponse;
+import io.micronaut.http.MediaType;
+import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Get;
+import io.micronaut.http.annotation.Produces;
+import io.micronaut.http.annotation.QueryValue;
+import jakarta.inject.Inject;
+
+@Controller("/insee")
+public class InseeController { //TODO -> sirene + package
+
+    @Inject
+    SireneSearchService sireneSearchService;
+
+    @Get("/sirene/natural-person{?name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public HttpResponse<SireneSearchResponse> naturalPersonSearch(@Nullable @QueryValue String name) {
+        return HttpResponse.ok(sireneSearchService.naturalPersonSearch(name));
+    }
+}

@@ -1,2 +1,2 @@
-# skilld
+# dig
 Verified providers, local solutions
