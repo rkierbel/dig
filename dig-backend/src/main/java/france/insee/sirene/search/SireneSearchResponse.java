@@ -122,18 +122,18 @@ public record SireneSearchResponse(SirenHeader header,
                     .collect(Collectors.joining(", "));
             return changeReasons.isEmpty() ?
                     "This is the first period for the Sirene unit." :
-                    String.format("Reason the period was created: %s", changeReasons);
+                    "Reason the period was created: %s".formatted(changeReasons);
         }
 
         void logPeriodInfo() {
             log.info("[Period started on {} and {}.", startDate,
-                    (endDate != null ? String.format("ended on %s", endDate) : "is ongoing")
+                    (endDate != null ? "ended on %s".formatted(endDate) : "is ongoing")
             );
             log.info("Sirene unit has a main activity code of {} and is {}.",
                     mainActivity,
                     (companyName != null ?
-                            String.format("a legal entity with name %s", companyName) :
-                            String.format("a natural person with surname %s", naturalPersonName))
+                            "a legal entity with name %s".formatted(companyName) :
+                            "a natural person with surname %s".formatted(naturalPersonName))
             );
             log.info("{}]", logChangeReasons());
         }
