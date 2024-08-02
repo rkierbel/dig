@@ -5,51 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="clean pom">
-      <change afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/placeholder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/bff/BffApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/bff/DigBffController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/bff/insee/InseeClientRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/InseeClientRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/bff/insee/SearchCriteria.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/bff/insee/SearchOperator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/bff/insee/SearchVariable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/bff/insee/SireneSearchEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/messaging/SireneSearchEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/bff/insee/SireneService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/SireneService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/bff/insee/exception/SireneSearchException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/bff/messaging/SireneProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/messaging/SireneProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/InseeConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/InseeConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/InseeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/InseeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/NexusApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/NexusApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/exception/EnumValueNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/common/exception/EnumValueNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/exception/HttpExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/common/exception/HttpExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/exception/InseeHttpError.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/exception/InseeHttpError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/exception/InseeHttpException.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/exception/InseeHttpException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/exception/SireneSearchException.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/exception/SireneSearchException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/httpclient/HttpServiceId.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/common/http/HttpServiceId.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/httpclient/InseeHttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/httpclient/InseeHttpClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/httpclient/InseeHttpConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/httpclient/InseeHttpConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/httpclient/InseeHttpFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/httpclient/InseeHttpFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/httpclient/InseeTokenResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/httpclient/InseeTokenResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/messaging/CoreChannelPoolListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/common/messaging/CoreChannelPoolListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/messaging/SireneListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/messaging/SireneListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/messaging/SireneSearchEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/sirene/AdministrativeStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/AdministrativeStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/sirene/SearchCriteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SearchCriteria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/sirene/SearchOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SearchOperator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/sirene/SearchVariable.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SearchVariable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/sirene/SirenInfoResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/SirenInfoResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/sirene/SireneConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/SireneConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/sirene/SireneSearchFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SireneSearchFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/sirene/SireneSearchResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SireneSearchResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/sirene/SireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SireneSearchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/sirene/ValidSiren.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/validation/ValidSiren.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/insee/sirene/ValidSireneSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/validation/ValidSireneSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/util/EnumHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/common/util/EnumHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/resources/logback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/test/java/insee/InseeHttpClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/test/java/france/insee/InseeHttpClientTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/test/java/insee/NexusTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/test/java/france/insee/NexusTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/test/java/insee/sirene/SireneSearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/test/java/france/insee/sirene/search/SireneSearchTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.npmrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eslint.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/svelte.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,32 +68,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.InseeHttpClientTest.executor": "Run",
-    "JUnit.InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk.executor": "Run",
-    "JUnit.SireneSearchTest.executor": "Run",
-    "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (1).executor": "Run",
-    "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (2).executor": "Run",
-    "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult.executor": "Run",
-    "Maven.dig [clean,install].executor": "Run",
-    "Maven.skilld [clean,install].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/rkierbel/IdeaProjects/dig",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.InseeHttpClientTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SireneSearchTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (2).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.dig [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.skilld [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/rkierbel/IdeaProjects/dig&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="france.insee.sirene.search" />
@@ -254,7 +229,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.SireneSearchTest" />
-        <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (2)" />
         <item itemvalue="JUnit.InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk" />
         <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (1)" />
         <item itemvalue="JUnit.InseeHttpClientTest" />
@@ -287,6 +261,8 @@
       <workItem from="1722429409300" duration="2443000" />
       <workItem from="1722432651034" duration="5911000" />
       <workItem from="1722524388997" duration="1462000" />
+      <workItem from="1722583177756" duration="35000" />
+      <workItem from="1722603678706" duration="384000" />
     </task>
     <task id="LOCAL-00001" summary="renaming + clean structure">
       <option name="closed" value="true" />
