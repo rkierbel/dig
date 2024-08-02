@@ -1,6 +1,6 @@
 micronaut:
   application:
-    name: nexus-application
+    name: dig-application
   server:
     port: 6788
   http:

@@ -6,14 +6,14 @@ import io.swagger.v3.oas.annotations.info.*;
 
 @OpenAPIDefinition(
         info = @Info(
-                title = "nexus-application",
+                title = "dig-application",
                 version = "0.0"
         )
 )
-public class NexusApplication {
+public class DigApplication {
 
-    //TODO -> CLI + event based comm from BFF
+    //TODO -> CLI
     public static void main(String[] args) {
-        Micronaut.run(NexusApplication.class, args);
+        Micronaut.run(DigApplication.class, args);
     }
 }
