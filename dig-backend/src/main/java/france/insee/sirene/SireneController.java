@@ -22,7 +22,7 @@ public class SireneController {
     @Inject
     DigProducer digProducer;
 
-    @Get("/sirene/natural-person{?name}")
+    @Get("/natural-person{?name}")
     @Produces(MediaType.APPLICATION_JSON)
     public HttpResponse<Void> naturalPersonSearch(@Nullable @QueryValue @ValidSireneSearch String name) {
         // TODO -> validate request
