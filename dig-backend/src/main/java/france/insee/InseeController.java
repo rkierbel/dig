@@ -25,13 +25,11 @@ public class InseeController { //TODO -> sirene + package
 
     @Get("/sirene/natural-person{?name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public HttpResponse<SireneSearchResponse> naturalPersonSearch(@Nullable @QueryValue @ValidSireneSearch String name) {
+    public HttpResponse<Void> naturalPersonSearch(@Nullable @QueryValue @ValidSireneSearch String name) {
         // TODO -> validate request
-        // TODO -> ack validation + forwarding to business layer
+        // TODO -> forwarding to business layer
         // TODO async -> perform business logic
-/*        InseeValidator.validate(name);
-        InseeService.search();*/
         digProducer.sendSireneSearchEvent(SireneSearchEvent.builder().build());
-        return HttpResponse.ok(sireneSearchService.naturalPersonSearch(name));
+        return HttpResponse.ok();
     }
 }

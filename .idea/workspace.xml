@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="added DigProducer + minor refactor">
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/common/messaging/event/SireneSearchEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/common/messaging/event/SireneSearchEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/InseeConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/InseeConstant.java" afterDir="false" />
+    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="search encapsulation + messaging rework">
       <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/InseeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/InseeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/AdministrativeStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/AdministrativeStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SearchCriteria.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SearchCriteria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SearchOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SearchOperator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SearchVariable.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SearchVariable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SireneSearchFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SireneSearchFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -264,7 +257,7 @@
       <workItem from="1722603678706" duration="1468000" />
       <workItem from="1722840651673" duration="17000" />
       <workItem from="1722859922674" duration="247000" />
-      <workItem from="1722860326771" duration="4851000" />
+      <workItem from="1722860326771" duration="5296000" />
     </task>
     <task id="LOCAL-00001" summary="renaming + clean structure">
       <option name="closed" value="true" />
@@ -298,7 +291,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722861123594</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="search encapsulation + messaging rework">
+      <option name="closed" value="true" />
+      <created>1722865872774</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1722865872774</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,6 +323,7 @@
     <MESSAGE value="clean pom" />
     <MESSAGE value="clean up" />
     <MESSAGE value="added DigProducer + minor refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="added DigProducer + minor refactor" />
+    <MESSAGE value="search encapsulation + messaging rework" />
+    <option name="LAST_COMMIT_MESSAGE" value="search encapsulation + messaging rework" />
   </component>
 </project>
