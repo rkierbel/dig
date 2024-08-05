@@ -3,6 +3,7 @@ package france.insee.sirene.messaging;
 import common.messaging.event.SireneSearchEvent;
 import france.insee.sirene.search.SireneSearchFactory;
 import france.insee.httpclient.InseeHttpClient;
+import france.insee.sirene.search.SireneSearchService;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.context.env.Environment;
 import io.micronaut.rabbitmq.annotation.Queue;
@@ -17,12 +18,11 @@ import reactor.core.publisher.Mono;
 public class SireneListener {
 
     @Inject
-    InseeHttpClient httpClient;
+    SireneSearchService searchService;
 
-    @Queue("${rabbitmq.queue.insee.sirene-search}")
+    @Queue("${rabbitmq.queue.insee.sirene.search-request}")
     void onSireneSearchEvent(SireneSearchEvent sireneSearchEvent) {
         log.info("Received sirene search event with id {}", sireneSearchEvent.getId());
-        Mono.from(httpClient.search(SireneSearchFactory.historicized(sireneSearchEvent.getSearchCriteria())))
-                .subscribe(response -> log.info("Received sirene search response: {}", response));
+        searchService.search(sireneSearchEvent.getSearchCriteria());
     }
 }

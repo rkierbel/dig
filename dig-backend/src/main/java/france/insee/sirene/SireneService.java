@@ -21,6 +21,6 @@ public class SireneService {
                 .searchCriteria(searchCriteria)
                 .build();
         log.info(event.criteria()); //TODO -> error here -> rework encapsulation
-        digProducer.sendSireneSearchEvent(event);
+        digProducer.sendSireneSearchRequestEvent(event);
     }*/
 }

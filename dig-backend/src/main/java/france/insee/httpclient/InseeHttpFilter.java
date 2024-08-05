@@ -16,7 +16,6 @@ class InseeHttpFilter {
 
     private final InseeHttpConfig config;
     private final BeanProvider<InseeHttpClient> inseeHttpClient;
-    private final int MAX_RETRY = 5;
 
     InseeHttpFilter(InseeHttpConfig config,
                     BeanProvider<InseeHttpClient> inseeHttpClient) {
@@ -35,7 +34,7 @@ class InseeHttpFilter {
         //TODO -> save token + creation date in mem store -> only fetch new when now > creationDate + six days
         Mono.from(inseeHttpClient.get().token(InseeConstant.CLIENT_CREDENTIALS))
                 .doOnError(InseeHttpException::logTokenGenerationFailure)
-                .retry(MAX_RETRY)
+                .retry(InseeConstant.MAX_RETRY)
                 .blockOptional()
                 .orElseThrow(InseeHttpException::invalidTokenResponse)
                 .asyncToken()

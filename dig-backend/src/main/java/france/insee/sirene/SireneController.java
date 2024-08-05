@@ -28,7 +28,7 @@ public class SireneController {
         // TODO -> validate request
         // TODO -> forwarding to business layer
         // TODO async -> perform business logic
-        digProducer.sendSireneSearchEvent(SireneSearchEvent.builder().build());
+        digProducer.sendSireneSearchRequestEvent(SireneSearchEvent.builder().build());
         return HttpResponse.ok();
     }
 }
