@@ -1,6 +1,6 @@
 package france.insee.sirene;
 
-import france.insee.sirene.messaging.SireneProducer;
+import common.messaging.DigProducer;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.context.env.Environment;
 import jakarta.inject.Inject;
@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SireneService {
 
     @Inject
-    SireneProducer sireneProducer;
+    DigProducer digProducer;
 
     /*public void sireneSearch(Set<SearchCriteria> searchCriteria) {
         SireneSearchEvent event = SireneSearchEvent.builder()
@@ -21,6 +21,6 @@ public class SireneService {
                 .searchCriteria(searchCriteria)
                 .build();
         log.info(event.criteria()); //TODO -> error here -> rework encapsulation
-        sireneProducer.sendSireneSearchEvent(event);
+        digProducer.sendSireneSearchEvent(event);
     }*/
 }

@@ -11,8 +11,7 @@ micronaut:
 
 rabbitmq:
   exchange:
-    insee:
-      sirene: sirene
+    dig: dig-exc
   queue:
     insee:
       sirene-search: sirene.search.q

@@ -14,19 +14,19 @@ import java.io.IOException;
 @Requires(notEnv = Environment.TEST)
 public class CoreChannelPoolListener extends ChannelInitializer {
 
-    @Value("${rabbitmq.exchange.insee.sirene}")
-    String sireneExc;
+    @Value("${rabbitmq.exchange.dig}")
+    String digExc;
 
     @Value("${rabbitmq.queue.insee.sirene-search}")
     String sireneSearchQ;
 
     @Value("${rabbitmq.binding.insee.sirene-search}")
-    String sireneSearchB;
+    String sireneSearchBinding;
 
     @Override
     public void initialize(Channel channel, String name) throws IOException {
-        channel.exchangeDeclare(sireneExc, BuiltinExchangeType.DIRECT, true);
+        channel.exchangeDeclare(digExc, BuiltinExchangeType.DIRECT, true);
         channel.queueDeclare(sireneSearchQ, true, false, false, null);
-        channel.queueBind(sireneSearchQ, sireneExc, sireneSearchB);
+        channel.queueBind(sireneSearchQ, digExc, sireneSearchBinding);
     }
 }

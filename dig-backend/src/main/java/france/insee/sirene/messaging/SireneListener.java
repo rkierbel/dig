@@ -1,5 +1,6 @@
 package france.insee.sirene.messaging;
 
+import common.messaging.event.SireneSearchEvent;
 import france.insee.sirene.search.SireneSearchFactory;
 import france.insee.httpclient.InseeHttpClient;
 import io.micronaut.context.annotation.Requires;
