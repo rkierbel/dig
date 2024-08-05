@@ -14,10 +14,14 @@ rabbitmq:
     dig: dig-exc
   queue:
     insee:
-      sirene-search: sirene.search.q
+      sirene:
+        search-request: sirene.search-request.queue
+        search-response: sirene.search-response.queue
   binding:
     insee:
-      sirene-search: sirene.search.b
+      sirene:
+        search-request: sirene.search-request.binding
+        search-response: sirene.search-response.binding
   uri: amqp://localhost:5672
   username: ${RABBITMQ_USERNAME:guest}
   password: ${RABBITMQ_PASSWORD:guest}

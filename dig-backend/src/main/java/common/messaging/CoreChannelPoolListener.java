@@ -17,16 +17,27 @@ public class CoreChannelPoolListener extends ChannelInitializer {
     @Value("${rabbitmq.exchange.dig}")
     String digExc;
 
-    @Value("${rabbitmq.queue.insee.sirene-search}")
-    String sireneSearchQ;
+    @Value("${rabbitmq.queue.insee.sirene.search-request}")
+    String sireneSearchRequestQ;
 
-    @Value("${rabbitmq.binding.insee.sirene-search}")
-    String sireneSearchBinding;
+    @Value("${rabbitmq.binding.insee.sirene.search-request}")
+    String sireneSearchRequestBinding;
+
+    @Value("${rabbitmq.queue.insee.sirene.search-response}")
+    String sireneSearchResponseQ;
+
+    @Value("${rabbitmq.binding.insee.sirene.search-response}")
+    String sireneSearchResponseBinding;
+
 
     @Override
     public void initialize(Channel channel, String name) throws IOException {
         channel.exchangeDeclare(digExc, BuiltinExchangeType.DIRECT, true);
-        channel.queueDeclare(sireneSearchQ, true, false, false, null);
-        channel.queueBind(sireneSearchQ, digExc, sireneSearchBinding);
+
+        channel.queueDeclare(sireneSearchRequestQ, true, false, false, null);
+        channel.queueDeclare(sireneSearchResponseQ, true, false, false, null);
+
+        channel.queueBind(sireneSearchRequestQ, digExc, sireneSearchRequestBinding);
+        channel.queueBind(sireneSearchResponseQ, digExc, sireneSearchResponseBinding);
     }
 }
