@@ -17,21 +17,21 @@ public enum SearchVariable {
     NATURAL_PERSON_NAME(SireneConstants.NATURAL_PERSON_NAME),
     COMPANY_NAME(SireneConstants.COMPANY_NAME);
 
-    final String fr;
+    final String frenchVariableName;
 
-    SearchVariable(String fr) {
-        this.fr = fr;
+    SearchVariable(String frenchVariableName) {
+        this.frenchVariableName = frenchVariableName;
     }
 
-    public String fr() {
-        return this.fr;
+    public String frenchVariableName() {
+        return this.frenchVariableName;
     }
 
     @JsonCreator
     static SearchVariable fromName(String name) {
         try {
             return EnumHelper.helper().deSerEnum(name, SearchVariable.values());
-        } catch (EnumValueNotFoundException evfex) {
+        } catch (EnumValueNotFoundException notFoundEx) {
             throw SireneSearchException.searchVariableNotFoundException(name);
         }
     }

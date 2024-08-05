@@ -19,7 +19,7 @@ public enum AdministrativeStatus {
     static AdministrativeStatus fromName(String name) {
         try {
             return EnumHelper.helper().deSerEnum(name, AdministrativeStatus.values());
-        } catch (EnumValueNotFoundException evfex) {
+        } catch (EnumValueNotFoundException notFoundEx) {
             throw SireneSearchException.administrativeStatusNotFound(name);
         }
     }

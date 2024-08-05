@@ -1,9 +1,12 @@
 package france.insee.sirene.search;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import france.insee.InseeConstant;
 import io.micronaut.serde.annotation.Serdeable;
+import lombok.Builder;
 
 @Serdeable
+@Builder(toBuilder = true)
 public record SearchCriteria(@JsonProperty("search-var") SearchVariable searchVar,
                              @JsonProperty("value") String value,
                              @JsonProperty("search-op") SearchOperator operator) {
@@ -16,16 +19,12 @@ public record SearchCriteria(@JsonProperty("search-var") SearchVariable searchVa
         return new SearchCriteria(searchVar, value, SearchOperator.NONE);
     }
 
-    static SearchCriteria simpleSearch(String value) {
-        return new SearchCriteria(SearchVariable.COMPANY_NAME, value, SearchOperator.NONE);
-    }
-
     @Override
     public String toString() {
-        String stringified = String.join(":", searchVar().getFr(), value());
+        String stringified = String.join(":", searchVar().getFrenchVariableName(), value());
 
         return SearchOperator.NONE.equals(this.operator()) ?
                 stringified :
-                stringified + SireneSearchFactory.WHITESPACE + operator();
+                stringified + InseeConstant.WHITESPACE + operator();
     }
 }

@@ -1,5 +1,7 @@
 package france.insee;
 
+import common.messaging.DigProducer;
+import common.messaging.event.SireneSearchEvent;
 import france.insee.sirene.validation.ValidSireneSearch;
 import france.insee.sirene.search.SireneSearchResponse;
 import france.insee.sirene.search.SireneSearchService;
@@ -18,6 +20,9 @@ public class InseeController { //TODO -> sirene + package
     @Inject
     SireneSearchService sireneSearchService;
 
+    @Inject
+    DigProducer digProducer;
+
     @Get("/sirene/natural-person{?name}")
     @Produces(MediaType.APPLICATION_JSON)
     public HttpResponse<SireneSearchResponse> naturalPersonSearch(@Nullable @QueryValue @ValidSireneSearch String name) {
@@ -26,6 +31,7 @@ public class InseeController { //TODO -> sirene + package
         // TODO async -> perform business logic
 /*        InseeValidator.validate(name);
         InseeService.search();*/
+        digProducer.sendSireneSearchEvent(SireneSearchEvent.builder().build());
         return HttpResponse.ok(sireneSearchService.naturalPersonSearch(name));
     }
 }

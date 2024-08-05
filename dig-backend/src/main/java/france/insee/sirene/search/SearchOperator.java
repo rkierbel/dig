@@ -20,7 +20,7 @@ public enum SearchOperator {
     static SearchOperator fromName(String name) {
         try {
             return EnumHelper.helper().deSerEnum(name, SearchOperator.values());
-        } catch (EnumValueNotFoundException evfex) {
+        } catch (EnumValueNotFoundException notFoundEx) {
             throw SireneSearchException.searchOperatorNotFoundException(name);
         }
     }
