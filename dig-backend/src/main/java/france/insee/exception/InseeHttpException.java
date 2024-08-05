@@ -10,7 +10,7 @@ public class InseeHttpException extends RuntimeException {
     }
 
     public static InseeHttpException invalidTokenResponse() {
-        throw new InseeHttpException("Could not generate token for the current client credentials.");
+        throw new InseeHttpException("Could not generate token for the current client credentials");
     }
 
     public static void logTokenGenerationFailure(Throwable ex) {

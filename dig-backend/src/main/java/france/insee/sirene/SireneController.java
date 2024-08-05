@@ -1,10 +1,9 @@
-package france.insee;
+package france.insee.sirene;
 
 import common.messaging.DigProducer;
 import common.messaging.event.SireneSearchEvent;
-import france.insee.sirene.validation.ValidSireneSearch;
-import france.insee.sirene.search.SireneSearchResponse;
 import france.insee.sirene.search.SireneSearchService;
+import france.insee.sirene.validation.ValidSireneSearch;
 import io.micronaut.core.annotation.Nullable;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
@@ -14,8 +13,8 @@ import io.micronaut.http.annotation.Produces;
 import io.micronaut.http.annotation.QueryValue;
 import jakarta.inject.Inject;
 
-@Controller("/insee")
-public class InseeController { //TODO -> sirene + package
+@Controller("/insee/sirene")
+public class SireneController {
 
     @Inject
     SireneSearchService sireneSearchService;

@@ -121,15 +121,15 @@ public record SireneSearchResponse(SirenHeader header,
                     .map(Map.Entry::getKey)
                     .collect(Collectors.joining(", "));
             return changeReasons.isEmpty() ?
-                    "This is the first period for the Sirene unit." :
+                    "This is the first period for the Sirene unit" :
                     "Reason the period was created: %s".formatted(changeReasons);
         }
 
         void logPeriodInfo() {
-            log.info("[Period started on {} and {}.", startDate,
+            log.info("[Period started on {} and {}", startDate,
                     (endDate != null ? "ended on %s".formatted(endDate) : "is ongoing")
             );
-            log.info("Sirene unit has a main activity code of {} and is {}.",
+            log.info("Sirene unit has a main activity code of {} and is {}",
                     mainActivity,
                     (companyName != null ?
                             "a legal entity with name %s".formatted(companyName) :

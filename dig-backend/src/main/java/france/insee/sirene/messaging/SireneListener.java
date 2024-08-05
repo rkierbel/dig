@@ -19,14 +19,10 @@ public class SireneListener {
     @Inject
     InseeHttpClient httpClient;
 
-    @Inject
-    SireneSearchFactory searchFactory;
-
     @Queue("${rabbitmq.queue.insee.sirene-search}")
     void onSireneSearchEvent(SireneSearchEvent sireneSearchEvent) {
-        log.info("Received sirene search event!");
-        Mono.from(httpClient.search(
-                searchFactory.historicized(sireneSearchEvent.getSearchCriteria())))
-                .subscribe(response -> log.info("Received sirene search response ! {}", response));
+        log.info("Received sirene search event with id {}", sireneSearchEvent.getId());
+        Mono.from(httpClient.search(SireneSearchFactory.historicized(sireneSearchEvent.getSearchCriteria())))
+                .subscribe(response -> log.info("Received sirene search response: {}", response));
     }
 }
