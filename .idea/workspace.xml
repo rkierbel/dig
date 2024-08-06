@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="adapt namings">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dig-backend/src/main/java/common/messaging/event/SireneHistoricizedSearchEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/validation/ValidSireneSimpleSearch.java" afterDir="false" />
+    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="ready endpoint for sirene search on natural person name (historicized)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/common/messaging/DigProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/common/messaging/DigProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/common/messaging/event/SireneSearchEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/exception/SireneSearchException.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/exception/SireneSearchException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/SireneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/SireneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/SireneService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/SireneService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/messaging/SireneListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/messaging/SireneListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SireneSearchFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SireneSearchFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SireneSearchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/test/java/france/insee/sirene/search/SireneSearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/test/java/france/insee/sirene/search/SireneSearchTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +21,7 @@
       <list>
         <option value="AnnotationType" />
         <option value="Class" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -83,6 +73,8 @@
     &quot;JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (2).executor&quot;: &quot;Run&quot;,
     &quot;JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult.executor&quot;: &quot;Run&quot;,
     &quot;Maven.dig [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.dig-backend [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.dig-backend [package,-Dpackaging=docker].executor&quot;: &quot;Run&quot;,
     &quot;Maven.skilld [clean,install].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
@@ -282,7 +274,8 @@
       <workItem from="1722860326771" duration="7522000" />
       <workItem from="1722931226587" duration="1194000" />
       <workItem from="1722951814210" duration="1196000" />
-      <workItem from="1722953568797" duration="1106000" />
+      <workItem from="1722953568797" duration="1872000" />
+      <workItem from="1722955551629" duration="285000" />
     </task>
     <task id="LOCAL-00001" summary="renaming + clean structure">
       <option name="closed" value="true" />
@@ -380,7 +373,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722932322212</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="ready endpoint for sirene search on natural person name (historicized)">
+      <option name="closed" value="true" />
+      <created>1722954931718</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1722954931718</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -411,6 +412,7 @@
     <MESSAGE value="correct url naturalPersonSearch" />
     <MESSAGE value="structure clean with dig as parent" />
     <MESSAGE value="adapt namings" />
-    <option name="LAST_COMMIT_MESSAGE" value="adapt namings" />
+    <MESSAGE value="ready endpoint for sirene search on natural person name (historicized)" />
+    <option name="LAST_COMMIT_MESSAGE" value="ready endpoint for sirene search on natural person name (historicized)" />
   </component>
 </project>

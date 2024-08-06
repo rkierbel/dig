@@ -200,7 +200,7 @@
                 <configuration>
                     <skip>true</skip>
                     <to>
-                        <image>open-data-nexus</image>
+                        <image>dig-backend</image>
                         <tags>
                             <tag>latest</tag>
                         </tags>
