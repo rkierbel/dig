@@ -21,18 +21,26 @@ public class SireneSearchService {
     @Inject
     DigProducer digProducer;
 
-    public SireneSearchResponse naturalPersonSearch(String term) {
-        SearchCriteria criteria = SearchCriteria.from(SearchVariable.NATURAL_PERSON_NAME, term);
-        String query = SireneSearchFactory.historicized(Set.of(criteria));
+    // TODO -> AOP logging
 
-        return Mono.from(this.httpClient.search(query)).block();
+
+    public SireneSearchResponse historicizedNaturalPersonName(String term) {
+        String queryString =  SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
+                .searchVar(SearchVariable.NATURAL_PERSON_NAME)
+                .value(term)
+                .operator(SearchOperator.NONE)
+                .build()));
+
+        return Mono.from(httpClient.search(queryString))
+                .doOnError(InseeHttpException::logSireneSearchFailure)
+                .retry(InseeConstant.MAX_RETRY)
+                .block();
     }
 
     public void historicizedSearch(Set<SearchCriteria> searchCriteria) {
         Mono.from(httpClient.search(SireneSearchFactory.historicized(searchCriteria)))
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retry(InseeConstant.MAX_RETRY)
-                .doOnSuccess(response -> log.info("Received sirene historicizedSearch response: {}", response)) //TODO->investigate diff with subscribe()
                 .subscribe(digProducer::onSireneSearchResponse);
     }
 }

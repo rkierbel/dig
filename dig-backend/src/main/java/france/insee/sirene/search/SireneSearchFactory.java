@@ -13,6 +13,7 @@ public class SireneSearchFactory {
         return new SearchCriteria(SearchVariable.COMPANY_NAME, value, SearchOperator.NONE).toString();
     }
 
+
     public static String historicized(Set<SearchCriteria> searchCriteria) {
         final String PERIOD = "periode(";
         final String CLOSING_BRACKET = ")";

@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="structure clean with dig as parent" />
+    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="adapt namings">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dig-backend/src/main/java/common/messaging/event/SireneHistoricizedSearchEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/validation/ValidSireneSimpleSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/common/messaging/DigProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/common/messaging/DigProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/common/messaging/event/SireneSearchEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/exception/SireneSearchException.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/exception/SireneSearchException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/SireneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/SireneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/SireneService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/SireneService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/messaging/SireneListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/messaging/SireneListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SireneSearchFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SireneSearchFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SireneSearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/test/java/france/insee/sirene/search/SireneSearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/test/java/france/insee/sirene/search/SireneSearchTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +30,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -59,34 +74,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.InseeHttpClientTest.executor": "Run",
-    "JUnit.InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk.executor": "Run",
-    "JUnit.SireneSearchTest.executor": "Run",
-    "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (1).executor": "Run",
-    "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (2).executor": "Run",
-    "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult.executor": "Run",
-    "Maven.dig [clean,install].executor": "Run",
-    "Maven.skilld [clean,install].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/rkierbel/IdeaProjects/dig/dig-webclient",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.InseeHttpClientTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SireneSearchTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (2).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.dig [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.skilld [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/rkierbel/IdeaProjects/dig/dig-backend/src/main/java/france/insee/sirene&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/rkierbel/IdeaProjects/dig/dig-webclient&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="france.insee.sirene.validation" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
       <recent name="france.insee.sirene.search" />
@@ -222,9 +242,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult" />
+        <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (1)" />
         <item itemvalue="JUnit.SireneSearchTest" />
         <item itemvalue="JUnit.InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk" />
-        <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (1)" />
         <item itemvalue="JUnit.InseeHttpClientTest" />
       </list>
     </recent_temporary>
@@ -260,7 +280,9 @@
       <workItem from="1722840651673" duration="17000" />
       <workItem from="1722859922674" duration="247000" />
       <workItem from="1722860326771" duration="7522000" />
-      <workItem from="1722931226587" duration="795000" />
+      <workItem from="1722931226587" duration="1194000" />
+      <workItem from="1722951814210" duration="1196000" />
+      <workItem from="1722953568797" duration="1106000" />
     </task>
     <task id="LOCAL-00001" summary="renaming + clean structure">
       <option name="closed" value="true" />
@@ -350,7 +372,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722931876595</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="adapt namings">
+      <option name="closed" value="true" />
+      <created>1722932322211</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1722932322212</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -380,6 +410,7 @@
     <MESSAGE value="uniformization on logging syntax" />
     <MESSAGE value="correct url naturalPersonSearch" />
     <MESSAGE value="structure clean with dig as parent" />
-    <option name="LAST_COMMIT_MESSAGE" value="structure clean with dig as parent" />
+    <MESSAGE value="adapt namings" />
+    <option name="LAST_COMMIT_MESSAGE" value="adapt namings" />
   </component>
 </project>

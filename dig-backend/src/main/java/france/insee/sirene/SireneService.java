@@ -16,7 +16,7 @@ public class SireneService {
     DigProducer digProducer;
 
     /*public void sireneSearch(Set<SearchCriteria> searchCriteria) {
-        SireneSearchEvent event = SireneSearchEvent.builder()
+        SireneSimpleSearchEvent event = SireneSimpleSearchEvent.builder()
                 .id(UUID.randomUUID().toString())
                 .searchCriteria(searchCriteria)
                 .build();
