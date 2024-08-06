@@ -28,11 +28,11 @@ public class SireneSearchService {
         return Mono.from(this.httpClient.search(query)).block();
     }
 
-    public void search(Set<SearchCriteria> searchCriteria) {
+    public void historicizedSearch(Set<SearchCriteria> searchCriteria) {
         Mono.from(httpClient.search(SireneSearchFactory.historicized(searchCriteria)))
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retry(InseeConstant.MAX_RETRY)
-                .doOnSuccess(response -> log.info("Received sirene search response: {}", response)) //TODO->investigate diff with subscribe()
+                .doOnSuccess(response -> log.info("Received sirene historicizedSearch response: {}", response)) //TODO->investigate diff with subscribe()
                 .subscribe(digProducer::onSireneSearchResponse);
     }
 }

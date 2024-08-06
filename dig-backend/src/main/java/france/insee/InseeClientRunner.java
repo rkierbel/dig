@@ -18,7 +18,7 @@ public class InseeClientRunner {
     // TODO -> rework encapsulation of SearchCriteria
 /*    @EventListener
     public void onStartUp(ServerStartupEvent event) {
-        log.info("[dig-bff.InseeClientRunner::onStartUp] Starting sirene search async flow!");
+        log.info("[dig-bff.InseeClientRunner::onStartUp] Starting sirene historicizedSearch async flow!");
         sireneService.sireneSearch(
                 Set.of(SearchCriteria.from(SearchVariable.NATURAL_PERSON_NAME, "grzeszezak"))
         );

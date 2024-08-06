@@ -18,7 +18,7 @@ public class InseeHttpException extends RuntimeException {
     }
 
     public static void logSireneSearchFailure(Throwable ex) { //TODO
-        log.warn("An error occurred while performing a Sirene search with cause {}\nand message {}", ex.getCause(), ex.getMessage());
+        log.warn("An error occurred while performing a Sirene historicizedSearch with cause {}\nand message {}", ex.getCause(), ex.getMessage());
 
     }
 }

@@ -7,9 +7,9 @@ import lombok.Builder;
 
 @Serdeable
 @Builder(toBuilder = true)
-public record SearchCriteria(@JsonProperty("search-var") SearchVariable searchVar,
+public record SearchCriteria(@JsonProperty("historicizedSearch-var") SearchVariable searchVar,
                              @JsonProperty("value") String value,
-                             @JsonProperty("search-op") SearchOperator operator) {
+                             @JsonProperty("historicizedSearch-op") SearchOperator operator) {
 
     static SearchCriteria from(SearchVariable searchVar, String value, SearchOperator operator) {
         return new SearchCriteria(searchVar, value, operator);

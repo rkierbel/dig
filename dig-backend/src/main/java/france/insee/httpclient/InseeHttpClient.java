@@ -25,13 +25,13 @@ public interface InseeHttpClient {
     @SingleResult
     Publisher<InseeTokenResponse> token(@QueryValue(value = InseeConstant.GRANT_TYPE) String grantType);
 
-    @Get("${siren.api.prefix}${siren.api.version-3}${siren.api.info}")
+    @Get("${sirene.api.prefix}${sirene.api.version-3}${sirene.api.info}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
     Publisher<SirenInfoResponse> information();
 
-    @Get("${siren.api.prefix}${siren.api.version-3-11}${siren.api.sirene-search}")
+    @Get("${sirene.api.prefix}${sirene.api.version-3-11}${sirene.api.sirene-search}")
     //q=periode(nomUniteLegale:grzeszezak) or q=raisonSociale:blabla
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

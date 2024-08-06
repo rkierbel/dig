@@ -20,8 +20,8 @@ import java.util.UUID;
 @Introspected
 public class SireneSearchEvent {
 
-    private final @JsonProperty("search-event-id") String id = UUID.randomUUID().toString();
-    private final @JsonProperty("search-criteria") Set<SearchCriteria> searchCriteria;
+    private final @JsonProperty("historicizedSearch-event-id") String id = UUID.randomUUID().toString();
+    private final @JsonProperty("historicizedSearch-criteria") Set<SearchCriteria> searchCriteria;
 
     @JsonCreator
     public SireneSearchEvent(Set<SearchCriteria> searchCriteria) {

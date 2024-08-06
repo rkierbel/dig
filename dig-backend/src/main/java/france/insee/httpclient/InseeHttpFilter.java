@@ -28,7 +28,7 @@ class InseeHttpFilter {
         request.basicAuth(config.consumerKey(), config.consumerSecret());
     }
 
-    @RequestFilter("${siren.api.prefix}${micronaut.http.wildcard}")
+    @RequestFilter("${sirene.api.prefix}${micronaut.http.wildcard}")
     void doFilterSiren(MutableHttpRequest<?> request) {
         //TODO -> mechanism to fetch token every week - on each request, filter checks if token exists, then uses it
         //TODO -> save token + creation date in mem store -> only fetch new when now > creationDate + six days

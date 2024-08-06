@@ -15,10 +15,10 @@ public class SireneSearchException extends InseeHttpException {
     }
 
     public static SireneSearchException searchOperatorNotFoundException(String name) {
-        throw new SireneSearchException("Cannot find search operator %s for a Sirene search".formatted(name));
+        throw new SireneSearchException("Cannot find historicizedSearch operator %s for a Sirene historicizedSearch".formatted(name));
     }
 
     public static SireneSearchException searchVariableNotFoundException(String name) {
-        throw new SireneSearchException("Cannot find search operator %s for a Sirene search".formatted(name));
+        throw new SireneSearchException("Cannot find historicizedSearch operator %s for a Sirene historicizedSearch".formatted(name));
     }
 }

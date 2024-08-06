@@ -15,13 +15,13 @@ rabbitmq:
   queue:
     insee:
       sirene:
-        search-request: sirene.search-request.queue
-        search-response: sirene.search-response.queue
+        search-request: sirene.historicizedSearch-request.queue
+        search-response: sirene.historicizedSearch-response.queue
   binding:
     insee:
       sirene:
-        search-request: sirene.search-request.binding
-        search-response: sirene.search-response.binding
+        search-request: sirene.historicizedSearch-request.binding
+        search-response: sirene.historicizedSearch-response.binding
   uri: amqp://localhost:5672
   username: ${RABBITMQ_USERNAME:guest}
   password: ${RABBITMQ_PASSWORD:guest}
@@ -32,7 +32,7 @@ insee:
   consumer-key: ${SIRENE_CONSUMER_KEY}
   consumer-secret: ${SIRENE_CONSUMER_SECRET}
 
-siren:
+sirene:
   api:
     prefix: /entreprises/sirene
     version-3: /V3

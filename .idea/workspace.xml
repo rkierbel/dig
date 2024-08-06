@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="correct url naturalPersonSearch">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="structure clean with dig as parent" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,7 +92,7 @@
       <recent name="france.insee.sirene.search" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SireneSearchTest">
+  <component name="RunManager" selected="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult">
     <configuration name="InseeHttpClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dig-backend" />
       <extension name="coverage">
@@ -228,6 +221,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult" />
         <item itemvalue="JUnit.SireneSearchTest" />
         <item itemvalue="JUnit.InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk" />
         <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (1)" />
@@ -266,7 +260,7 @@
       <workItem from="1722840651673" duration="17000" />
       <workItem from="1722859922674" duration="247000" />
       <workItem from="1722860326771" duration="7522000" />
-      <workItem from="1722931226587" duration="491000" />
+      <workItem from="1722931226587" duration="795000" />
     </task>
     <task id="LOCAL-00001" summary="renaming + clean structure">
       <option name="closed" value="true" />
@@ -348,7 +342,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722867504199</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="structure clean with dig as parent">
+      <option name="closed" value="true" />
+      <created>1722931876595</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1722931876595</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -377,6 +379,7 @@
     <MESSAGE value="add rabbit config for sirene search request vs response queues + bindings" />
     <MESSAGE value="uniformization on logging syntax" />
     <MESSAGE value="correct url naturalPersonSearch" />
-    <option name="LAST_COMMIT_MESSAGE" value="correct url naturalPersonSearch" />
+    <MESSAGE value="structure clean with dig as parent" />
+    <option name="LAST_COMMIT_MESSAGE" value="structure clean with dig as parent" />
   </component>
 </project>
