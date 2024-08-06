@@ -14,11 +14,16 @@
         <option value="$PROJECT_DIR$/skilld/common-core/pom.xml" />
         <option value="$PROJECT_DIR$/open-data-nexus/pom.xml" />
         <option value="$PROJECT_DIR$/common-core/pom.xml" />
+        <option value="$PROJECT_DIR$/dig-backend/pom.xml" />
+        <option value="$PROJECT_DIR$/dig-webclient/pom.xml" />
+        <option value="$PROJECT_DIR$/dig-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/dig/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/common-core/pom.xml" />
+        <option value="$PROJECT_DIR$/dig/pom.xml" />
         <option value="$PROJECT_DIR$/skilld-webclient/skilld-bff/pom.xml" />
       </set>
     </option>
