@@ -2,7 +2,7 @@ micronaut:
   application:
     name: dig-application
   server:
-    port: 6788
+    port: 6666
   http:
     services:
       insee:
