@@ -54,14 +54,14 @@
             </properties>
         </profile>
         <profile>
-            <id>local-docker</id>
+            <id>docker</id>
             <properties>
                 <packaging.type>docker</packaging.type>
                 <micronaut.importfactory.enabled>true</micronaut.importfactory.enabled>
             </properties>
         </profile>
         <profile>
-            <id>local-jar</id>
+            <id>jar</id>
             <properties>
                 <packaging.type>jar</packaging.type>
             </properties>
@@ -192,30 +192,6 @@
 
     <build>
         <plugins>
-            <!-- Jib - Dockerization -->
-            <plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>jib-maven-plugin</artifactId>
-                <version>3.4.2</version>
-                <configuration>
-                    <skip>true</skip>
-                    <to>
-                        <image>dig-backend</image>
-                        <tags>
-                            <tag>latest</tag>
-                        </tags>
-                    </to>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
             <!-- APACHE MAVEN - shade, surefire, compiler, enforcer -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

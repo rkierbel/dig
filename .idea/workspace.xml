@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="ready endpoint for sirene search on natural person name (historicized)">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dig-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/pom.xml" afterDir="false" />
     </list>
@@ -36,7 +38,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/rkierbel/skilld.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/rkierbel/dig.git&quot;,
     &quot;accountId&quot;: &quot;69d4ad2d-403c-4577-a3d4-1ceea0277582&quot;
   }
 }</component>
@@ -64,62 +66,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.InseeHttpClientTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (2).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dig [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dig-backend [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dig-backend [package,-Dpackaging=docker].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.skilld [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/rkierbel/IdeaProjects/dig/dig-backend/src/main/java/france/insee/sirene&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/rkierbel/IdeaProjects/dig/dig-webclient&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.docker-compose.yaml.dig-backend: Compose Deployment.executor": "Run",
+    "JUnit.InseeHttpClientTest.executor": "Run",
+    "JUnit.InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk.executor": "Run",
+    "JUnit.SireneSearchTest.executor": "Run",
+    "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (1).executor": "Run",
+    "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (2).executor": "Run",
+    "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult.executor": "Run",
+    "Maven.dig [clean,install].executor": "Run",
+    "Maven.dig-backend [clean,install].executor": "Run",
+    "Maven.dig-backend [package,-Dpackaging=docker].executor": "Run",
+    "Maven.skilld [clean,install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.preview.features.used": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/rkierbel/IdeaProjects/dig/dig-backend/src/main/java/france/insee/sirene",
+    "last_opened_file_path": "C:/Users/rkierbel/IdeaProjects/dig/dig-webclient",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="france.insee.sirene.validation" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\rkierbel\IdeaProjects\dig\dig-backend\src\main\java" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
       <recent name="france.insee.sirene.search" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult">
-    <configuration name="InseeHttpClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dig-backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="insee.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="insee" />
-      <option name="MAIN_CLASS_NAME" value="insee.InseeHttpClientTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Docker.docker-compose.yaml.dig-backend: Compose Deployment">
     <configuration name="InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dig-backend" />
       <extension name="coverage">
@@ -190,6 +181,7 @@
       <option name="alternativeJrePathEnabled" value="false" />
       <option name="mainClass" value="com.skilld.core.CoreApplication" />
       <option name="passParentEnvs" value="true" />
+      <option name="programParameters" />
       <option name="vmParameters" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -202,6 +194,7 @@
       <option name="alternativeJrePathEnabled" value="false" />
       <option name="mainClass" value="insee.NexusApplication" />
       <option name="passParentEnvs" value="true" />
+      <option name="programParameters" />
       <option name="vmParameters" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -214,6 +207,7 @@
       <option name="alternativeJrePathEnabled" value="false" />
       <option name="mainClass" value="france.insee.NexusApplication" />
       <option name="passParentEnvs" value="true" />
+      <option name="programParameters" />
       <option name="vmParameters" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -226,26 +220,44 @@
       <option name="alternativeJrePathEnabled" value="false" />
       <option name="mainClass" value="com.nexus.NexusApplication" />
       <option name="passParentEnvs" value="true" />
+      <option name="programParameters" />
       <option name="vmParameters" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml.dig-backend: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="dig-backend" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yaml.dig-backend: Compose Deployment" />
         <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult" />
         <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (1)" />
         <item itemvalue="JUnit.SireneSearchTest" />
         <item itemvalue="JUnit.InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk" />
-        <item itemvalue="JUnit.InseeHttpClientTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18968.26" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18968.26" />
       </set>
     </attachedChunks>
   </component>
@@ -276,6 +288,9 @@
       <workItem from="1722951814210" duration="1196000" />
       <workItem from="1722953568797" duration="1872000" />
       <workItem from="1722955551629" duration="285000" />
+      <workItem from="1723013836308" duration="53000" />
+      <workItem from="1723016525162" duration="847000" />
+      <workItem from="1723042310747" duration="1151000" />
     </task>
     <task id="LOCAL-00001" summary="renaming + clean structure">
       <option name="closed" value="true" />
@@ -386,6 +401,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

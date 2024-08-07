@@ -1,0 +1,5 @@
+services:
+  dig-backend:
+    image: dig-backend:latest
+    env_file:
+      - .docker/dig/backend.env
