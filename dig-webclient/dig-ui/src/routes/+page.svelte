@@ -18,7 +18,7 @@
 	}
 </script>
 
-<h1>Dig like a modafaka</h1>
+<h1>Dig</h1>
 <form on:submit={handleSubmit}>
 	<div>
 		<label for="input">Input:</label>
@@ -28,6 +28,10 @@
 </form>
 
 <style>
+	h1 {
+		text-align: center;
+	}
+
 	form {
 		max-width: 400px;
 		margin: 0 auto;
