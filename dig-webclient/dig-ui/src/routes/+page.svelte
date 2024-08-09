@@ -19,10 +19,10 @@
 </script>
 
 <h1>Dig</h1>
-<h2>Every fraudster's worst nightmare</h2>
+<h2>Every Fraudster's Worst Nightmare</h2>
 <form on:submit={handleSubmit}>
 	<div>
-		<input type="text" id="input" bind:value={inputValue} placeholder="Enter a search value"/>
+		<input type="text" id="input" bind:value={inputValue} placeholder="Enter a search value" />
 	</div>
 	<button type="submit">Dig Deep</button>
 </form>
@@ -32,10 +32,10 @@
 		text-align: center;
 	}
 
-    h2 {
-        text-align: center;
-        color: #666;
-    }
+	h2 {
+		text-align: center;
+		color: #666;
+	}
 
 	form {
 		max-width: 400px;
