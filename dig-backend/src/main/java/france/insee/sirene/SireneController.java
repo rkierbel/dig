@@ -13,23 +13,27 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Produces;
 import io.micronaut.http.annotation.QueryValue;
 import jakarta.inject.Inject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller("/insee/sirene")
 public class SireneController {
 
+    private static final Logger log = LoggerFactory.getLogger(SireneController.class);
     @Inject
     SireneSearchService sireneSearchService;
 
     @Inject
     DigProducer digProducer;
 
-    @Get("/natural-person{?term}")
+    @Get("/natural-person")
     @Produces(MediaType.APPLICATION_JSON)
-    public HttpResponse<SireneSearchResponse> naturalPersonHistoricizedSearch(@Nullable @QueryValue @ValidSireneSimpleSearch String term) {
+    public HttpResponse<SireneSearchResponse> naturalPersonHistoricizedSearch(@Nullable @QueryValue String term) {
+        log.info("Sending HTTP request to Sirene for natural person with name {}", term);
         return HttpResponse.ok(sireneSearchService.historicizedNaturalPersonName(term));
     }
 
-    @Get("/natural-person-async{?term}")
+    @Get("/natural-person-async")
     @Produces(MediaType.APPLICATION_JSON)
     public HttpResponse<Void> naturalPersonHistoricizedSearchAsync(@Nullable @QueryValue @ValidSireneSimpleSearch String term) {
 

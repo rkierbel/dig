@@ -30,11 +30,11 @@ public class SireneSearchService {
                 .value(term)
                 .operator(SearchOperator.NONE)
                 .build()));
-
+        log.info("Built query string for natural person name search: {}", queryString);
         return Mono.from(httpClient.search(queryString))
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retry(InseeConstant.MAX_RETRY)
-                .block();
+                .block(); // TODO handle complete empty (Mono returns null)
     }
 
     public void historicizedSearch(Set<SearchCriteria> searchCriteria) {

@@ -1,5 +1,6 @@
 package france.insee.sirene.search;
 
+import france.insee.sirene.SireneController;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
@@ -8,13 +9,13 @@ import org.junit.jupiter.api.Test;
 public class SireneSearchTest {
 
     @Inject
-    SireneSearchService searchService;
+    SireneController sireneController;
 
 
     @Test
     void givenValidSimpleSearch_returnSireneSearchResult() {
         var naturalPersonName =  "grzeszezak";
 
-        searchService.historicizedNaturalPersonName(naturalPersonName);
+        sireneController.naturalPersonHistoricizedSearch(naturalPersonName);
     }
 }
