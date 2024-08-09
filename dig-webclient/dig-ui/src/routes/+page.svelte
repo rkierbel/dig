@@ -19,18 +19,23 @@
 </script>
 
 <h1>Dig</h1>
+<h2>Every fraudster's worst nightmare</h2>
 <form on:submit={handleSubmit}>
 	<div>
-		<label for="input">Input:</label>
-		<input type="text" id="input" bind:value={inputValue} />
+		<input type="text" id="input" bind:value={inputValue} placeholder="Enter a search value"/>
 	</div>
-	<button type="submit">Submit</button>
+	<button type="submit">Dig Deep</button>
 </form>
 
 <style>
 	h1 {
 		text-align: center;
 	}
+
+    h2 {
+        text-align: center;
+        color: #666;
+    }
 
 	form {
 		max-width: 400px;
