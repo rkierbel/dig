@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="ready endpoint for sirene search on natural person name (historicized)">
+    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="ready controller one string endpoint">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/SireneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/SireneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/france/insee/sirene/search/SireneSearchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/test/java/france/insee/sirene/search/SireneSearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/test/java/france/insee/sirene/search/SireneSearchTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-webclient/dig-ui/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/dig-webclient/dig-ui/src/routes/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,10 +92,12 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "MavenSettings",
+    "ts.external.directory.path": "C:\\Users\\rkierbel\\IdeaProjects\\dig\\dig-webclient\\dig-ui\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -115,21 +117,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Docker.docker-compose.yaml.dig-backend: Compose Deployment">
-    <configuration name="SireneSearchTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dig-backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="france.insee.sirene.search.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="france.insee.sirene.search" />
-      <option name="MAIN_CLASS_NAME" value="france.insee.sirene.search.SireneSearchTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dig-backend" />
       <extension name="coverage">
@@ -241,13 +228,23 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/dig-webclient/dig-ui/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yaml.dig-backend: Compose Deployment" />
+        <item itemvalue="npm.dev" />
         <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult" />
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
         <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (1)" />
-        <item itemvalue="JUnit.SireneSearchTest" />
       </list>
     </recent_temporary>
   </component>
@@ -290,7 +287,8 @@
       <workItem from="1723016525162" duration="847000" />
       <workItem from="1723042310747" duration="1151000" />
       <workItem from="1723191010731" duration="1406000" />
-      <workItem from="1723206740753" duration="2605000" />
+      <workItem from="1723206740753" duration="4000000" />
+      <workItem from="1723214475331" duration="1884000" />
     </task>
     <task id="LOCAL-00001" summary="renaming + clean structure">
       <option name="closed" value="true" />
@@ -396,7 +394,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722954931718</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="ready controller one string endpoint">
+      <option name="closed" value="true" />
+      <created>1723212908492</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1723212908492</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -431,6 +437,7 @@
     <MESSAGE value="structure clean with dig as parent" />
     <MESSAGE value="adapt namings" />
     <MESSAGE value="ready endpoint for sirene search on natural person name (historicized)" />
-    <option name="LAST_COMMIT_MESSAGE" value="ready endpoint for sirene search on natural person name (historicized)" />
+    <MESSAGE value="ready controller one string endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="ready controller one string endpoint" />
   </component>
 </project>

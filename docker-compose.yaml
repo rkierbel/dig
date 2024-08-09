@@ -4,4 +4,4 @@ services:
     env_file:
       - .docker/dig/backend.env
     ports:
-      - "6666:6666"
+      - "5666:5666"

@@ -3,7 +3,7 @@
 
 	async function handleSubmit(event: Event): Promise<void> {
 		event.preventDefault();
-		const url = `http://localhost:6666/insee/sirene/natural-person?term=${encodeURIComponent(inputValue)}`;
+		const url = `http://localhost:5666/insee/sirene/natural-person?term=${encodeURIComponent(inputValue)}`;
 		console.log('url:', url);
 		try {
 			const response = await fetch(url);
