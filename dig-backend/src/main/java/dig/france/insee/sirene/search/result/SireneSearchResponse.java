@@ -59,6 +59,7 @@ public record SireneSearchResponse(SirenHeader header,
                       @JsonProperty(MIDDLE_NAME) String middleName,
                       @JsonProperty(THIRD_NAME) String thirdName,
                       @JsonProperty(FOURTH_NAME) String fourthName,
+                      @JsonProperty(COMMON_FIRST_NAME) String commonFirstName,
                       @JsonProperty(LAST_MODIFIED_DATE) String lastModifiedDate,
                       @JsonProperty(UNIT_CHANGES) List<Period> periods) {
 

@@ -9,14 +9,15 @@ import java.util.List;
 @Serdeable
 public record SireneSearchResultDto(List<SireneUnitDto> sireneUnits) {
 
-    record SireneUnitDto(Instant creationDate,
+    record SireneUnitDto(LocalDate creationDate,
                          Instant lastModifiedDate,
-                         String firstName,
+                         String commonFirstName,
                          List<PeriodDto> periods) {
+
         @Override
         public String toString() {
-            return "[\nSirene Unit %s: created on %s and last modified on %s. History: %s\n]"
-                    .formatted(firstName, creationDate, lastModifiedDate, periods);
+            return "\nSirene Unit %s: created on %s and last modified on %s. \nHistory: %s"
+                    .formatted(creationDate, creationDate, lastModifiedDate, periods);
         }
     }
 
@@ -28,8 +29,8 @@ public record SireneSearchResultDto(List<SireneUnitDto> sireneUnits) {
         public String toString() {
             boolean isCurrent = endDate == null;
             return isCurrent ?
-                    "\n\t{Period created on %s}".formatted(startDate) :
-                    "\n\t{Period created on %s and ended on %s. Change reasons: %s}".formatted(startDate, endDate, changes);
+                    "\n\t- Current period, started on %s".formatted(startDate) :
+                    "\n\t- Period started on %s and ended on %s \n\tChange reasons: %s".formatted(startDate, endDate, changes);
         }
     }
 }
