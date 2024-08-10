@@ -11,10 +11,16 @@ public record SireneSearchResultDto(List<SireneUnitDto> sireneUnits) {
     record SireneUnitDto(LocalDate creationDate,
                          LocalDate lastModifiedDate,
                          String firstName,
-                         List<PeriodDto> periods) {}
+                         List<PeriodDto> periods) {
+    }
 
-    record PeriodDto(String changeReason,
-                     String changeValue,
+    record PeriodDto(List<PeriodChange> changes,
                      LocalDate startDate,
-                     LocalDate endDate) {}
+                     LocalDate endDate) {
+    }
+
+    record PeriodChange(String reason,
+                        String value) {
+
+    }
 }

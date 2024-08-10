@@ -2,8 +2,8 @@ package dig.france.insee.sirene;
 
 import dig.common.messaging.DigProducer;
 import dig.common.messaging.event.SireneHistoricizedSearchEvent;
-import dig.france.insee.sirene.search.result.SireneSearchResponse;
 import dig.france.insee.sirene.search.SireneSearchService;
+import dig.france.insee.sirene.search.result.SireneSearchResultDto;
 import dig.france.insee.sirene.validation.ValidSireneSimpleSearch;
 import io.micronaut.core.annotation.Nullable;
 import io.micronaut.http.HttpResponse;
@@ -26,9 +26,10 @@ public class SireneController {
     @Inject
     DigProducer digProducer;
 
+
     @Get("/natural-person")
     @Produces(MediaType.APPLICATION_JSON)
-    public HttpResponse<SireneSearchResponse> naturalPersonHistoricizedSearch(@Nullable @QueryValue String term) {
+    public HttpResponse<SireneSearchResultDto> naturalPersonHistoricizedSearch(@Nullable @QueryValue String term) {
         log.info("Sending HTTP request to Sirene for natural person with name {}", term);
         return HttpResponse.ok(sireneSearchService.historicizedNaturalPersonName(term));
     }
@@ -36,7 +37,6 @@ public class SireneController {
     @Get("/natural-person-async")
     @Produces(MediaType.APPLICATION_JSON)
     public HttpResponse<Void> naturalPersonHistoricizedSearchAsync(@Nullable @QueryValue @ValidSireneSimpleSearch String term) {
-
         // TODO -> validate request
         // TODO -> forwarding to business layer
         // TODO async -> perform business logic
