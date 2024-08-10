@@ -6,14 +6,17 @@
       "firstName": "Takis",
       "periods": [
         {
-          "changeReason": "legalActivityChange",
-          "changeValue": "legalServices",
+          "changes": [
+            {
+              "changeReason": "legalActivityChange",
+              "changeValue" : "legalServices"
+            }
+          ],
           "startDate": "DD-MM-YYYY",
           "endDate": "DD-MM-YYYY"
         },
         {
-          "changeReason": "legalActivityChange",
-          "changeValue": "legalServices",
+          "changes":[],
           "startDate": "DD-MM-YYYY",
           "endDate": "DD-MM-YYYY"
         }
@@ -25,8 +28,7 @@
       "firstName": "Robogolem",
       "periods": [
         {
-          "changeReason": "legalActivityChange",
-          "changeValue": "legalServices",
+          "changes":[],
           "startDate": "DD-MM-YYYY",
           "endDate": "DD-MM-YYYY"
         }

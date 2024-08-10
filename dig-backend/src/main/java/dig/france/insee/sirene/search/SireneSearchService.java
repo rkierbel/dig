@@ -4,11 +4,13 @@ import dig.common.messaging.DigProducer;
 import dig.france.insee.InseeConstant;
 import dig.france.insee.exception.InseeHttpException;
 import dig.france.insee.httpclient.InseeHttpClient;
+import dig.france.insee.sirene.SireneMapper;
 import dig.france.insee.sirene.search.request.SearchCriteria;
 import dig.france.insee.sirene.search.request.SearchOperator;
 import dig.france.insee.sirene.search.request.SearchVariable;
 import dig.france.insee.sirene.search.request.SireneSearchFactory;
 import dig.france.insee.sirene.search.result.SireneSearchResponse;
+import dig.france.insee.sirene.search.result.SireneSearchResultDto;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
@@ -26,20 +28,26 @@ public class SireneSearchService {
     @Inject
     DigProducer digProducer;
 
+    @Inject
+    SireneMapper mapper;
     // TODO -> AOP logging
 
 
-    public SireneSearchResponse historicizedNaturalPersonName(String term) {
-        String queryString =  SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
+    public SireneSearchResultDto historicizedNaturalPersonName(String term) {
+        String queryString = SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
                 .searchVar(SearchVariable.NATURAL_PERSON_NAME)
                 .value(term)
                 .operator(SearchOperator.NONE)
                 .build()));
+
         log.info("Built query string for natural person name search: {}", queryString);
-        return Mono.from(httpClient.search(queryString))
+
+        SireneSearchResponse apiResponse = Mono.from(httpClient.search(queryString))
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retry(InseeConstant.MAX_RETRY)
                 .block(); // TODO handle complete empty (Mono returns null)
+
+        return mapper.apiResponseToDto(apiResponse);
     }
 
     public void historicizedSearch(Set<SearchCriteria> searchCriteria) {

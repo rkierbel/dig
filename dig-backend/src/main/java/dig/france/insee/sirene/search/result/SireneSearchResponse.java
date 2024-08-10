@@ -16,13 +16,13 @@ import static dig.france.insee.sirene.SireneConstants.*;
 @Serdeable
 @Slf4j
 public record SireneSearchResponse(SirenHeader header,
-                                   @JsonProperty(SIRENE_UNITS) List<SireneUnit> units) {
+                                   @JsonProperty(SIRENE_UNITS) List<SireneUnit> sireneUnits) {
 
     void logSirenResponseInfo() {
-        units.forEach(
+        sireneUnits.forEach(
                 unit -> {
                     log.info("-> Siren number {}, for natural person with first name {}:", unit.siren, unit.firstName);
-                    unit.unitChanges.forEach(Period::logPeriodInfo);
+                    unit.periods.forEach(Period::logPeriodInfo);
                 }
         );
     }
@@ -37,18 +37,18 @@ public record SireneSearchResponse(SirenHeader header,
      * This legal entity may be a legal person, whose existence is recognised by law independently of the persons or institutions that own it or are members of it ;
      * or a natural person, who, as a self-employed person, may carry on an economic activity.
      *
-     * @param siren                  Sole entrepreneurs, or natural persons, retain the same Siren number until they die.
-     *                               Legal entities lose their legal personality when they cease their business activity.
-     *                               If the business is resumed at a later date, a new Siren number will be assigned.
-     *                               Identification numbers are unique: once a Siren number has been allocated,
-     *                               it cannot be reused and allocated to a new Sirene unit, even if the business has ceased its activity.
+     * @param siren            Sole entrepreneurs, or natural persons, retain the same Siren number until they die.
+     *                         Legal entities lose their legal personality when they cease their business activity.
+     *                         If the business is resumed at a later date, a new Siren number will be assigned.
+     *                         Identification numbers are unique: once a Siren number has been allocated,
+     *                         it cannot be reused and allocated to a new Sirene unit, even if the business has ceased its activity.
      * @param creationDate
      * @param firstName
      * @param middleName
      * @param thirdName
      * @param fourthName
      * @param lastModifiedDate
-     * @param unitChanges
+     * @param periods
      */
     @Serdeable
     record SireneUnit(String siren,
@@ -58,7 +58,7 @@ public record SireneSearchResponse(SirenHeader header,
                       @JsonProperty(THIRD_NAME) String thirdName,
                       @JsonProperty(FOURTH_NAME) String fourthName,
                       @JsonProperty(LAST_MODIFIED_DATE) String lastModifiedDate,
-                      @JsonProperty(UNIT_CHANGES) List<Period> unitChanges) {
+                      @JsonProperty(UNIT_CHANGES) List<Period> periods) {
 
     }
 
@@ -94,8 +94,8 @@ public record SireneSearchResponse(SirenHeader header,
      *                                   This variable is set to null for legal entities.
      *                                   The Sirene directory only handles non-accented capital letters.
      *                                   Only the special characters hyphen (-) and apostrophe.
-     *                                   The name may be set to null for a natural person (case of purged units).
-     * @param legalCategory              The legal category is an attribute of Sirene units.
+     *                                   The name may be set to null for a natural person (case of purged sireneUnits).
+     * @param legalCategory              The legal category is an attribute of Sirene sireneUnits.
      *                                   For a natural person, it is always 1000, whether the person is a
      *                                   craftsman, trader, self-employed person, farmer or other, and cannot change.
      *                                   For legal entities, the legal category may change during the life of the company.
