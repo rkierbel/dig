@@ -1,6 +1,6 @@
 services:
   dig-backend:
-    image: dirk-digger:latest
+    image: dig-backend:latest
     env_file:
       - .docker/dig/backend.env
     ports:

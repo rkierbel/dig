@@ -1,5 +1,8 @@
 package dig.france.insee.sirene.search.result;
 
+import io.micronaut.serde.annotation.Serdeable;
+
+@Serdeable
 record PeriodChange(String reason,
                     String value) {
 

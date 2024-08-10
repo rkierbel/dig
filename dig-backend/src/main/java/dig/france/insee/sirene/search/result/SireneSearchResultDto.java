@@ -9,6 +9,7 @@ import java.util.List;
 @Serdeable
 public record SireneSearchResultDto(List<SireneUnitDto> sireneUnits) {
 
+    @Serdeable
     record SireneUnitDto(LocalDate creationDate,
                          Instant lastModifiedDate,
                          String commonFirstName,
@@ -21,6 +22,7 @@ public record SireneSearchResultDto(List<SireneUnitDto> sireneUnits) {
         }
     }
 
+    @Serdeable
     record PeriodDto(List<PeriodChange> changes,
                      LocalDate startDate,
                      LocalDate endDate) {

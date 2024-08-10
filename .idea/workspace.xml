@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="mapping works - except one localdate parse exception">
+    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="clear logging + mapper works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/SireneConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/SireneConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchResultDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchResultDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/SireneSearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/SireneSearchTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-webclient/dig-ui/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/dig-webclient/dig-ui/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +57,9 @@
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
   </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/dig-webclient/dig-ui/package.json" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -72,6 +71,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Docker.dig-backend/Dockerfile builder.executor&quot;: &quot;Run&quot;,
     &quot;Docker.dig-backend/Dockerfile.executor&quot;: &quot;Run&quot;,
     &quot;Docker.docker-compose.yaml.dig-backend: Compose Deployment.executor&quot;: &quot;Run&quot;,
     &quot;Docker.docker-compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
@@ -125,7 +125,7 @@
       <recent name="france.insee.sirene.search" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult">
+  <component name="RunManager" selected="Docker.docker-compose.yaml.dig-backend: Compose Deployment">
     <configuration name="SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dig-backend" />
       <extension name="coverage">
@@ -141,10 +141,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="dig-backend-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/dig-backend/target/dig-backend-1.0-SNAPSHOT.jar" />
-      <method v="2" />
     </configuration>
     <configuration name="CoreApplication" type="MicronautRunConfigurationType" factoryName="Micronaut" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.skilld.core.CoreApplication" />
@@ -249,9 +245,21 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="dig-backend/Dockerfile builder" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="eclipse-temurin21-jdk_builder" />
+          <option name="buildCliOptions" value="--target builder" />
+          <option name="buildOnly" value="true" />
+          <option name="sourceFilePath" value="dig-backend/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <configuration name="dig-backend/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
       <deployment type="dockerfile">
         <settings>
+          <option name="buildOnly" value="true" />
           <option name="sourceFilePath" value="dig-backend/Dockerfile" />
         </settings>
       </deployment>
@@ -280,11 +288,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult" />
         <item itemvalue="Docker.docker-compose.yaml.dig-backend: Compose Deployment" />
         <item itemvalue="Docker.dig-backend/Dockerfile" />
-        <item itemvalue="JAR Application.dig-backend-1.0-SNAPSHOT.jar" />
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
+        <item itemvalue="Docker.dig-backend/Dockerfile builder" />
+        <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult" />
       </list>
     </recent_temporary>
   </component>
@@ -329,7 +337,8 @@
       <workItem from="1723191010731" duration="1406000" />
       <workItem from="1723206740753" duration="4000000" />
       <workItem from="1723214475331" duration="10074000" />
-      <workItem from="1723295551074" duration="8657000" />
+      <workItem from="1723295551074" duration="13023000" />
+      <workItem from="1723309953378" duration="976000" />
     </task>
     <task id="LOCAL-00001" summary="renaming + clean structure">
       <option name="closed" value="true" />
@@ -491,7 +500,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723302481682</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="clear logging + mapper works">
+      <option name="closed" value="true" />
+      <created>1723305644920</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1723305644920</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -533,6 +550,7 @@
     <MESSAGE value="add example json sirenesearchresult + create DTO" />
     <MESSAGE value="refine dto" />
     <MESSAGE value="mapping works - except one localdate parse exception" />
-    <option name="LAST_COMMIT_MESSAGE" value="mapping works - except one localdate parse exception" />
+    <MESSAGE value="clear logging + mapper works" />
+    <option name="LAST_COMMIT_MESSAGE" value="clear logging + mapper works" />
   </component>
 </project>
