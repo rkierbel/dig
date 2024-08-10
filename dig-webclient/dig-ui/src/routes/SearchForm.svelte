@@ -7,14 +7,15 @@
 
 	async function handleSubmit(event: Event): Promise<void> {
 		event.preventDefault();
-		const url = 'http://localhost:3000/sireneUnits';
+		const url = `http://localhost:5666/insee/sirene/natural-person?term=${inputValue}`;
 		console.log('url:', url);
 		try {
 			const response = await fetch(url);
 			if (!response.ok) {
 				throw new Error('Network response was not ok');
 			}
-			const searchResults: Entity[] = await response.json();
+            const data = await response.json();
+			const searchResults: Entity[] = data.sireneUnits
 			console.log('Form submitted with:', searchResults);
 			dispatch('results', { searchResults });
 		} catch (error) {

@@ -29,7 +29,7 @@
 							<div><strong>Start Date:</strong> {period.startDate}</div>
 							<div><strong>End Date:</strong> {period.endDate}</div>
 							<div><strong>Changes:</strong></div>
-							{#each period.changes as change}
+							{#each period?.changes ?? [] as change}
 								<div class="change">
 									<div><strong>Change Reason:</strong> {change.changeReason}</div>
 									<div><strong>Change Value:</strong> {change.changeValue}</div>
