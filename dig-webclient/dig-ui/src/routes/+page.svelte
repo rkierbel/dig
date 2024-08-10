@@ -1,17 +1,22 @@
 <script lang="ts">
+	import SearchResults from '$lib/SearchResults.svelte';
+	import type { SearchResultData } from '$lib/types.ts';
+
 	let inputValue: string = '';
+	let searchResults: SearchResultData[] = [];
 
 	async function handleSubmit(event: Event): Promise<void> {
 		event.preventDefault();
-		const url = `http://localhost:5666/insee/sirene/natural-person?term=${encodeURIComponent(inputValue)}`;
+		// const url = `http://localhost:5666/insee/sirene/natural-person?term=${encodeURIComponent(inputValue)}`;
+		const url = 'http://localhost:3000/sireneUnits';
 		console.log('url:', url);
 		try {
 			const response = await fetch(url);
 			if (!response.ok) {
 				throw new Error('Network response was not ok');
 			}
-			const data = await response.json();
-			console.log('Form submitted with:', data);
+			searchResults = await response.json();
+			console.log('Form submitted with:', searchResults);
 		} catch (error) {
 			console.error('There was a problem with the fetch operation:', error);
 		}
@@ -26,6 +31,8 @@
 	</div>
 	<button type="submit">Dig Deep</button>
 </form>
+
+<SearchResults results={searchResults} />
 
 <style>
 	h1 {
@@ -48,12 +55,6 @@
 
 	div {
 		margin-bottom: 1rem;
-	}
-
-	label {
-		display: block;
-		margin-bottom: 0.5rem;
-		font-weight: bold;
 	}
 
 	input[type='text'] {
