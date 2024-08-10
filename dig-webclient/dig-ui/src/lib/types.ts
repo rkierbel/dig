@@ -1,17 +1,17 @@
-export interface Change {
+export type Change {
 	changeReason: string;
 	changeValue: string;
 }
 
-export interface Period {
+export type Period {
 	changes: Change[];
 	startDate: string;
 	endDate: string;
 }
 
-export interface SearchResultData {
+export type Entity {
 	creationDate: string;
 	lastModifiedDate: string;
-	firstName: string;
+	commonFirstName: string;
 	periods: Period[];
 }

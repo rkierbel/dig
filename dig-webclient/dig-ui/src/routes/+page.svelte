@@ -1,9 +1,9 @@
 <script lang="ts">
 	import SearchResults from '$lib/SearchResults.svelte';
 	import SearchForm from './SearchForm.svelte'
-	import type { SearchResultData } from '$lib/types.ts';
+	import type { Entity } from '$lib/types.ts';
 
-	let searchResults: SearchResultData[] = [];
+	let searchResults: Entity[] = [];
 
 	function handleResults(event: CustomEvent) {
     searchResults = event.detail.searchResults;

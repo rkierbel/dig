@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import type { SearchResultData } from '$lib/types';
+	import type { Entity } from '$lib/types';
 
 	let inputValue: string = '';
 	const dispatch = createEventDispatcher();
@@ -14,7 +14,7 @@
 			if (!response.ok) {
 				throw new Error('Network response was not ok');
 			}
-			const searchResults: SearchResultData[] = await response.json();
+			const searchResults: Entity[] = await response.json();
 			console.log('Form submitted with:', searchResults);
 			dispatch('results', { searchResults });
 		} catch (error) {
