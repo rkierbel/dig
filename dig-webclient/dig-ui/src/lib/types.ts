@@ -1,17 +1,17 @@
-export type Change {
+export type Change = {
 	changeReason: string;
 	changeValue: string;
-}
+};
 
-export type Period {
+export type Period = {
 	changes: Change[];
 	startDate: string;
 	endDate: string;
-}
+};
 
-export type Entity {
+export type Entity = {
 	creationDate: string;
 	lastModifiedDate: string;
 	commonFirstName: string;
 	periods: Period[];
-}
+};

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { SearchResultData, Change } from '$lib/types.ts';
+	import type { Entity } from '$lib/types.ts';
 
-	export let results: SearchResultData[] = [];
+	export let results: Entity[] = [];
 	let showPeriods: boolean[] = results.map(() => false);
 
 	function togglePeriods(index: number) {
@@ -11,10 +11,12 @@
 
 <div class="results">
 	{#each results as result, index}
-		<div class="result">
-			<div><strong>First Name:</strong> {result.firstName}</div>
-			<div><strong>Creation Date:</strong> {result.creationDate}</div>
-			<div><strong>Last Modified Date:</strong> {result.lastModifiedDate}</div>
+		<div class="result-card">
+			<div class="result-header">
+				<div><strong>First Name:</strong> {result.commonFirstName}</div>
+				<div><strong>Creation Date:</strong> {result.creationDate}</div>
+				<div><strong>Last Modified Date:</strong> {result.lastModifiedDate}</div>
+			</div>
 			<button class="toggle-button" on:click={() => togglePeriods(index)}>
 				{showPeriods[index] ? 'Hide Periods' : 'Show Periods'}
 			</button>
@@ -22,7 +24,7 @@
 				<div class="periods">
 					<div><strong>Periods:</strong></div>
 					{#each result.periods as period}
-						<div class="period">
+						<div class="period-card">
 							<div class="period-header">Period:</div>
 							<div><strong>Start Date:</strong> {period.startDate}</div>
 							<div><strong>End Date:</strong> {period.endDate}</div>
@@ -46,67 +48,58 @@
 		max-width: 600px;
 		margin: 0 auto;
 		padding: 1rem;
-		border-radius: 8px;
-		background-color: #f5f5f5;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
 	}
-	.result {
-		padding: 1rem;
-		background-color: #ffffff;
-		border: 1px solid #e0e0e0;
+
+	.result-card {
+		background: #fff;
 		border-radius: 8px;
-		margin-bottom: 1rem;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-		transition: transform 0.2s;
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
 	}
-	.result:hover {
-		transform: translateY(-2px);
+
+	.result-header {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
 	}
+
 	.toggle-button {
-		padding: 0.5rem 1rem;
-		margin-top: 0.5rem;
-		background-color: #007bff;
-		color: #ffffff;
+		background: #007bff;
+		color: #fff;
 		border: none;
 		border-radius: 4px;
+		padding: 0.5rem 1rem;
 		cursor: pointer;
-		transition: background-color 0.2s;
+		align-self: flex-start;
 	}
+
 	.toggle-button:hover {
-		background-color: #0056b3;
+		background: #0056b3;
 	}
+
 	.periods {
 		margin-top: 1rem;
 	}
-	.period {
-		padding: 0.75rem;
-		background-color: #f9f9f9;
-		border: 1px solid #d0d0d0;
-		border-radius: 6px;
-		margin-top: 0.5rem;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-	}
-	.change {
+
+	.period-card {
+		background: #f9f9f9;
+		border-radius: 8px;
 		padding: 0.5rem;
-		background-color: #f1f1f1;
-		border: 1px solid #c0c0c0;
-		border-radius: 4px;
 		margin-top: 0.5rem;
 	}
+
 	.period-header {
 		font-weight: bold;
 		margin-bottom: 0.5rem;
 	}
-	.change div {
-		margin-bottom: 0.25rem;
-	}
-	.result div,
-	.period div,
-	.change div {
-		margin-bottom: 0.5rem;
-	}
-	.result div:last-child,
-	.period div:last-child,
-	.change div:last-child {
-		margin-bottom: 0;
+
+	.change {
+		margin-top: 0.5rem;
 	}
 </style>
