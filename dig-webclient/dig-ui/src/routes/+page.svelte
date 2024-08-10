@@ -10,22 +10,9 @@
   }
 </script>
 
-<h1>Dig</h1>
-<h2>Every Fraudster's Worst Nightmare</h2>
+
 
 <SearchForm on:results={handleResults} />
 <SearchResults results={searchResults} />
 
-<style>
-	h1 {
-		text-align: center;
-		font-family: "Sankofa Display", sans-serif;
-	}
 
-	h2 {
-		text-align: center;
-		color: #666;
-	}
-
-	
-</style>
