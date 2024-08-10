@@ -15,6 +15,7 @@ public class SireneConstants {
     public static final String MIDDLE_NAME = "prenom2UniteLegale";
     public static final String THIRD_NAME = "prenom3UniteLegale";
     public static final String FOURTH_NAME = "prenom4UniteLegale";
+    public static final String COMMON_FIRST_NAME = "prenomUsuelUniteLegale";
     public static final String LAST_MODIFIED_DATE = "dateDernierTraitementUniteLegale";
     public static final String UNIT_CHANGES = "periodesUniteLegale";
 

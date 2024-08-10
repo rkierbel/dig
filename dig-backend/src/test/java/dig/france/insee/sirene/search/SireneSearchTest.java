@@ -14,7 +14,7 @@ public class SireneSearchTest {
 
     @Test
     void givenValidSimpleSearch_returnSireneSearchResult() {
-        var naturalPersonName =  "grzeszezak";
+        var naturalPersonName = "grzeszezak";
 
         sireneController.naturalPersonHistoricizedSearch(naturalPersonName);
     }
