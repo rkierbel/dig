@@ -1,0 +1,36 @@
+{
+  "sireneUnits": [
+    {
+      "creationDate": "DD-MM-YYYY",
+      "lastModifiedDate": "DD-MM-YYYY",
+      "firstName": "",
+      "periods": [
+        {
+          "changeReason": "legalActivityChange",
+          "changeValue": "legalServices",
+          "startDate": "DD-MM-YYYY",
+          "endDate": "DD-MM-YYYY"
+        },
+        {
+          "changeReason": "legalActivityChange",
+          "changeValue": "legalServices",
+          "startDate": "DD-MM-YYYY",
+          "endDate": "DD-MM-YYYY"
+        }
+      ]
+    },
+    {
+      "creationDate": "DD-MM-YYYY",
+      "lastModifiedDate": "DD-MM-YYYY",
+      "firstName": "",
+      "periods": [
+        {
+          "changeReason": "legalActivityChange",
+          "changeValue": "legalServices",
+          "startDate": "DD-MM-YYYY",
+          "endDate": "DD-MM-YYYY"
+        }
+      ]
+    }
+  ]
+}

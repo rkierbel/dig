@@ -42,7 +42,7 @@ public record SireneSearchResponse(SirenHeader header,
      *                               If the business is resumed at a later date, a new Siren number will be assigned.
      *                               Identification numbers are unique: once a Siren number has been allocated,
      *                               it cannot be reused and allocated to a new Sirene unit, even if the business has ceased its activity.
-     * @param sireneUnitCreationDate
+     * @param creationDate
      * @param firstName
      * @param middleName
      * @param thirdName
@@ -52,7 +52,7 @@ public record SireneSearchResponse(SirenHeader header,
      */
     @Serdeable
     record SireneUnit(String siren,
-                      @JsonProperty(SIRENE_UNIT_CREATION_DATE) String sireneUnitCreationDate,
+                      @JsonProperty(SIRENE_UNIT_CREATION_DATE) String creationDate,
                       @JsonProperty(FIRST_NAME) String firstName,
                       @JsonProperty(MIDDLE_NAME) String middleName,
                       @JsonProperty(THIRD_NAME) String thirdName,
@@ -62,6 +62,27 @@ public record SireneSearchResponse(SirenHeader header,
 
     }
 
+    /**
+     * Interrogation unitaire du siren : résultat
+     * Le résultat est fourni au format Json.
+     * Le retour est structuré en 2 parties :
+     *
+     * • le header (à ne pas confondre avec l'en-tête http ni l'en-tête de réponse) qui contient le code retour et le message d'erreur ;
+     * • l'unité légale, qui comprend :
+     * ◦ Toutes les variables courantes
+     * ◦ La liste de toutes les périodes et, pour chaque période :
+     * ▪ La liste des variables historisées.
+     * Les résultats des valeurs non historisées (période courante) sont envoyés avant le tableau periodes.
+     * Le tableau periodes entre […] comprend un nombre de périodes (variable nombrePeriodesUniteLegale) entre {…} par ordre chronologique décroissant :
+     * • une période est définie par une date de début et une date de fin ;
+     * • les valeurs des variables historisées sont celles observées dans la période ;
+     * • une variable non connue sur une période sera à null ;
+     * • la dernière période de l'historique dans l'ordre chronologique correspond à la période courante et a une date de fin à null ;
+     * • un changement de valeur pour une variable historisée implique la création d'une période ;
+     * • des indicatrices de changement (true ou false) sont attachées à chaque variable historisée et indiquent si la variable correspondante a été modifiée par rapport à la période précédente ;
+     * • pour la première période de l'historique de l'entreprise dans l'ordre chronologique toutes les indicatrices sont à false ;
+     * • pour une entreprise dont les variables historisées n'ont jamais été modifiées, la réponse ne comportera qu'une seule période.
+     */
     /**
      * Each period corresponds to a time interval.
      * During this time interval, none of the Sirene unit's historical variables are modified.
