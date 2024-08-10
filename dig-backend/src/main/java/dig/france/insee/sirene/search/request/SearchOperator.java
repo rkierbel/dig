@@ -1,4 +1,4 @@
-package dig.france.insee.sirene.search;
+package dig.france.insee.sirene.search.request;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import dig.france.insee.exception.SireneSearchException;

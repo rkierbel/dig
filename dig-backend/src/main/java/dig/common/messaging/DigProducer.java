@@ -1,7 +1,7 @@
 package dig.common.messaging;
 
 import dig.common.messaging.event.SireneHistoricizedSearchEvent;
-import dig.france.insee.sirene.search.SireneSearchResponse;
+import dig.france.insee.sirene.search.result.SireneSearchResponse;
 import io.micronaut.rabbitmq.annotation.Binding;
 import io.micronaut.rabbitmq.annotation.RabbitClient;
 

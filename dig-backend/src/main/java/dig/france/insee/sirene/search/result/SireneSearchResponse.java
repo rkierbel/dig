@@ -1,4 +1,4 @@
-package dig.france.insee.sirene.search;
+package dig.france.insee.sirene.search.result;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dig.france.insee.sirene.AdministrativeStatus;
@@ -95,22 +95,30 @@ public record SireneSearchResponse(SirenHeader header,
                   @JsonProperty(END_DATE) String endDate,
                   @JsonProperty(ADMIN_STATUS) AdministrativeStatus administrativeStatus,
                   @JsonProperty(NATURAL_PERSON_NAME) String naturalPersonName,
+                  @JsonProperty(NATURAL_PERSON_COMMON_NAME) String naturalPersonCommonName,
                   @JsonProperty(COMPANY_NAME) String companyName,
+                  @JsonProperty(COMPANY_COMMON_NAME_1) String companyCommonName1,
+                  @JsonProperty(COMPANY_COMMON_NAME_2) String companyCommonName2,
+                  @JsonProperty(COMPANY_COMMON_NAME_3) String companyCommonName3,
                   @JsonProperty(LEGAL_CATEGORY) String legalCategory,
                   @JsonProperty(MAIN_ACTIVITY) String mainActivity,
                   @JsonProperty(ADMIN_STATUS_CHANGE) boolean administrativeStatusChange,
                   @JsonProperty(NATURAL_PERSON_NAME_CHANGE) boolean naturalPersonNameChange,
-                  @JsonProperty(MAIN_ACTIVITY_CHANGE) boolean mainActivityChange,
+                  @JsonProperty(NATURAL_PERSON_COMMON_NAME_CHANGE) boolean naturalPersonCommonNameChange,
                   @JsonProperty(COMPANY_NAME_CHANGE) boolean companyNameChange,
+                  @JsonProperty(COMPANY_COMMON_NAME_CHANGE) boolean companyCommonNameChange,
                   @JsonProperty(LEGAL_CATEGORY_CHANGE) boolean legalCategoryChange,
+                  @JsonProperty(MAIN_ACTIVITY_CHANGE) boolean mainActivityChange,
                   Map<String, Boolean> jsonToValue) {
 
         Period {
             jsonToValue = new HashMap<>();
             jsonToValue.put("administrativeStatusChange", administrativeStatusChange);
             jsonToValue.put("naturalPersonNameChange", naturalPersonNameChange);
-            jsonToValue.put("mainActivityChange", mainActivityChange);
+            jsonToValue.put("naturalPersonCommonNameChange", naturalPersonCommonNameChange);
             jsonToValue.put("companyNameChange", companyNameChange);
+            jsonToValue.put("companyCommonNameChange", companyCommonNameChange);
+            jsonToValue.put("mainActivityChange", mainActivityChange);
             jsonToValue.put("legalCategoryChange", legalCategoryChange);
         }
 

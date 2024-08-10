@@ -3,7 +3,7 @@ package dig.france.insee.httpclient;
 import dig.france.insee.InseeConstant;
 import dig.france.insee.exception.InseeHttpError;
 import dig.france.insee.sirene.SirenInfoResponse;
-import dig.france.insee.sirene.search.SireneSearchResponse;
+import dig.france.insee.sirene.search.result.SireneSearchResponse;
 import dig.common.http.HttpServiceId;
 import io.micronaut.core.async.annotation.SingleResult;
 import io.micronaut.http.MediaType;

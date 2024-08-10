@@ -26,12 +26,18 @@ public class SireneConstants {
     public static final String END_DATE  = "dateFin";
     public static final String ADMIN_STATUS  = "etatAdministratifUniteLegale";
     public static final String NATURAL_PERSON_NAME  = "nomUniteLegale";
+    public static final String NATURAL_PERSON_COMMON_NAME = "nomUsageUniteLegale";
     public static final String COMPANY_NAME  = "denominationUniteLegale";
+    public static final String COMPANY_COMMON_NAME_1  = "denominationUsuelle1UniteLegale";
+    public static final String COMPANY_COMMON_NAME_2  = "denominationUsuelle2UniteLegale";
+    public static final String COMPANY_COMMON_NAME_3  = "denominationUsuelle3UniteLegale";
     public static final String LEGAL_CATEGORY  = "categorieJuridiqueUniteLegale";
     public static final String MAIN_ACTIVITY = "activitePrincipaleUniteLegale";
     public static final String ADMIN_STATUS_CHANGE = "changementEtatAdministratifUniteLegale";
     public static final String NATURAL_PERSON_NAME_CHANGE = "changementNomUniteLegale";
-    public static final String MAIN_ACTIVITY_CHANGE = "changementDenominationUniteLegale";
-    public static final String COMPANY_NAME_CHANGE = "changementCategorieJuridiqueUniteLegale";
-    public static final String LEGAL_CATEGORY_CHANGE = "changementActivitePrincipaleUniteLegale";
+    public static final String NATURAL_PERSON_COMMON_NAME_CHANGE = "changementNomUsageUniteLegale";
+    public static final String COMPANY_NAME_CHANGE = "changementDenominationUniteLegale";
+    public static final String COMPANY_COMMON_NAME_CHANGE = "changementDenominationUsuelleUniteLegale";
+    public static final String LEGAL_CATEGORY_CHANGE = "changementCategorieJuridiqueUniteLegale";
+    public static final String MAIN_ACTIVITY_CHANGE = "changementActivitePrincipaleUniteLegale";
 }

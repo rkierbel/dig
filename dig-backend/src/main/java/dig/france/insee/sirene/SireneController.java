@@ -2,7 +2,7 @@ package dig.france.insee.sirene;
 
 import dig.common.messaging.DigProducer;
 import dig.common.messaging.event.SireneHistoricizedSearchEvent;
-import dig.france.insee.sirene.search.SireneSearchResponse;
+import dig.france.insee.sirene.search.result.SireneSearchResponse;
 import dig.france.insee.sirene.search.SireneSearchService;
 import dig.france.insee.sirene.validation.ValidSireneSimpleSearch;
 import io.micronaut.core.annotation.Nullable;
