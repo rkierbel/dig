@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="add example json sirenesearchresult + create DTO">
-      <change afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/SireneMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneResponseMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="refine dto">
+      <change afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/PeriodChange.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/SireneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/SireneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/SireneMapper.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/SireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/SireneSearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneResponseMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchResultDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchResultDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-webclient/sirene-search-result.json" beforeDir="false" afterPath="$PROJECT_DIR$/dig-webclient/sirene-search-result.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +125,23 @@
       <recent name="france.insee.sirene.search" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yaml.dig-backend: Compose Deployment">
+  <component name="RunManager" selected="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult">
+    <configuration name="SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dig-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dig.france.insee.sirene.search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dig.france.insee.sirene.search" />
+      <option name="MAIN_CLASS_NAME" value="dig.france.insee.sirene.search.SireneSearchTest" />
+      <option name="METHOD_NAME" value="givenValidSimpleSearch_returnSireneSearchResult" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="dig-backend-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/dig-backend/target/dig-backend-1.0-SNAPSHOT.jar" />
       <method v="2" />
@@ -265,23 +278,13 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/dig-webclient/dig-ui/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult" />
         <item itemvalue="Docker.docker-compose.yaml.dig-backend: Compose Deployment" />
         <item itemvalue="Docker.dig-backend/Dockerfile" />
         <item itemvalue="JAR Application.dig-backend-1.0-SNAPSHOT.jar" />
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
-        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -326,7 +329,7 @@
       <workItem from="1723191010731" duration="1406000" />
       <workItem from="1723206740753" duration="4000000" />
       <workItem from="1723214475331" duration="10074000" />
-      <workItem from="1723295551074" duration="3485000" />
+      <workItem from="1723295551074" duration="6684000" />
     </task>
     <task id="LOCAL-00001" summary="renaming + clean structure">
       <option name="closed" value="true" />
@@ -472,7 +475,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723297815619</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="refine dto">
+      <option name="closed" value="true" />
+      <created>1723299100385</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1723299100385</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,6 +523,7 @@
     <MESSAGE value="dockerize backend with dockerfile" />
     <MESSAGE value="refactor search + add missing fields to Period" />
     <MESSAGE value="add example json sirenesearchresult + create DTO" />
-    <option name="LAST_COMMIT_MESSAGE" value="add example json sirenesearchresult + create DTO" />
+    <MESSAGE value="refine dto" />
+    <option name="LAST_COMMIT_MESSAGE" value="refine dto" />
   </component>
 </project>

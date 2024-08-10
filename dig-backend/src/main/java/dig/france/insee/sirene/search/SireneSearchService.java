@@ -4,11 +4,11 @@ import dig.common.messaging.DigProducer;
 import dig.france.insee.InseeConstant;
 import dig.france.insee.exception.InseeHttpException;
 import dig.france.insee.httpclient.InseeHttpClient;
-import dig.france.insee.sirene.SireneMapper;
 import dig.france.insee.sirene.search.request.SearchCriteria;
 import dig.france.insee.sirene.search.request.SearchOperator;
 import dig.france.insee.sirene.search.request.SearchVariable;
 import dig.france.insee.sirene.search.request.SireneSearchFactory;
+import dig.france.insee.sirene.search.result.SireneSearchMapper;
 import dig.france.insee.sirene.search.result.SireneSearchResponse;
 import dig.france.insee.sirene.search.result.SireneSearchResultDto;
 import jakarta.inject.Inject;
@@ -29,9 +29,8 @@ public class SireneSearchService {
     DigProducer digProducer;
 
     @Inject
-    SireneMapper mapper;
+    SireneSearchMapper sireneSearchMapper;
     // TODO -> AOP logging
-
 
     public SireneSearchResultDto historicizedNaturalPersonName(String term) {
         String queryString = SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
@@ -46,8 +45,9 @@ public class SireneSearchService {
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retry(InseeConstant.MAX_RETRY)
                 .block(); // TODO handle complete empty (Mono returns null)
-
-        return mapper.apiResponseToDto(apiResponse);
+        SireneSearchResultDto result = sireneSearchMapper.apiResponseToDto(apiResponse);
+        log.info("Mapping API search response to SearchResultDto: {}", result);
+        return result;
     }
 
     public void historicizedSearch(Set<SearchCriteria> searchCriteria) {

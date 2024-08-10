@@ -8,7 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static dig.france.insee.sirene.SireneConstants.*;
 
@@ -141,6 +143,28 @@ public record SireneSearchResponse(SirenHeader header,
             jsonToValue.put("companyCommonNameChange", companyCommonNameChange);
             jsonToValue.put("mainActivityChange", mainActivityChange);
             jsonToValue.put("legalCategoryChange", legalCategoryChange);
+        }
+
+        public List<PeriodChange> getPeriodChanges() {
+            return changeMap().entrySet().stream()
+                    .filter(Map.Entry::getValue)
+                    .map(Map.Entry::getKey)
+                    .toList();
+        }
+
+        private Map<PeriodChange, Boolean> changeMap() {
+            String companyCommonName = Stream.of(companyCommonName1, companyCommonName2, companyCommonName3)
+                    .filter(Objects::nonNull).findFirst().orElse(null);
+
+            Map<PeriodChange, Boolean> changes = HashMap.newHashMap(7);
+            changes.put(PeriodChange.of(ADMIN_STATUS_CHANGE, administrativeStatus.name()), administrativeStatusChange);
+            changes.put(PeriodChange.of(NATURAL_PERSON_NAME_CHANGE, naturalPersonName), naturalPersonNameChange);
+            changes.put(PeriodChange.of(NATURAL_PERSON_COMMON_NAME_CHANGE, naturalPersonCommonName), naturalPersonCommonNameChange);
+            changes.put(PeriodChange.of(COMPANY_NAME_CHANGE, companyName), companyNameChange);
+            changes.put(PeriodChange.of(COMPANY_COMMON_NAME_CHANGE, companyCommonName), companyCommonNameChange);
+            changes.put(PeriodChange.of(LEGAL_CATEGORY_CHANGE, legalCategory), legalCategoryChange);
+            changes.put(PeriodChange.of(MAIN_ACTIVITY_CHANGE, mainActivity), mainActivityChange);
+            return changes;
         }
 
         private String logChangeReasons() {
