@@ -1,0 +1,93 @@
+
+{
+
+    "sireneUnits": [
+        {
+            "creationDate": "2023-07-31",
+            "lastModifiedDate": "2024-03-22T13:26:06Z",
+            "commonFirstName": "TIPHANIE",
+            "periods": [
+                    {
+                        "startDate": "2023-07-31"
+                    }
+            ]
+          },
+          {
+                "creationDate": "1993-06-02",
+                "lastModifiedDate": "2024-03-22T13:26:06Z",
+                "commonFirstName": "ISABELLE",
+                "periods": [
+                      {
+                            "changes": [
+                                  {
+                                        "reason": "changementEtatAdministratifUniteLegale",
+                                        "value": "C"
+                                  }
+                            ],
+                            "startDate": "1997-03-28"
+                      }
+                ]
+          },
+          {
+                "creationDate": "2022-01-01",
+                "lastModifiedDate": "2024-03-22T13:26:06Z",
+                "commonFirstName": "QUENTIN",
+                "periods": [
+                      {
+                            "startDate": "2022-01-01"
+                      }
+                ]
+          },
+          {
+                "creationDate": "2023-07-31",
+                "lastModifiedDate": "2024-03-22T13:26:06Z",
+                "commonFirstName": "PATRICE",
+                "periods": [
+                      {
+                            "startDate": "2023-07-31"
+                      }
+                ]
+          },
+          {
+                "creationDate": "1984-01-01",
+                "lastModifiedDate": "2024-03-22T13:26:06Z",
+                "commonFirstName": "BERNARD",
+                "periods": [
+                      {
+                            "changes": [
+                                  {
+                                        "reason": "changementActivitePrincipaleUniteLegale",
+                                        "value": "01.21Z"
+                                  }
+                            ],
+                            "startDate": "2008-01-01"
+                      },
+                      {
+                            "changes": [
+                                  {
+                                        "reason": "changementNomUniteLegale",
+                                        "value": "GRZESZEZAK"
+                                  }
+                            ],
+                            "startDate": "2003-01-01",
+                            "endDate": "2007-12-31"
+                      },
+                      {
+                            "changes": [
+                                  {
+                                        "reason": "changementActivitePrincipaleUniteLegale",
+                                        "value": "01.1G"
+                                  }
+                            ],
+                            "startDate": "1984-12-25",
+                            "endDate": "2002-12-31"
+                      },
+                      {
+                            "startDate": "1984-01-01",
+                            "endDate": "1984-12-24"
+                      }
+                ]
+          }
+    ]
+
+}

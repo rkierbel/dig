@@ -4,9 +4,9 @@ export type Change = {
 };
 
 export type Period = {
-	changes: Change[];
+	changes?: Change[];
 	startDate: string;
-	endDate: string;
+	endDate?: string;
 };
 
 export type Entity = {
