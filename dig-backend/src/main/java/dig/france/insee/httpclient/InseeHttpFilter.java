@@ -4,10 +4,6 @@ import dig.france.insee.InseeConstant;
 import dig.france.insee.exception.InseeHttpException;
 import dig.common.http.HttpServiceId;
 import io.micronaut.context.BeanProvider;
-import io.micronaut.context.annotation.Requires;
-import io.micronaut.context.env.Environment;
-import io.micronaut.context.event.ApplicationEventListener;
-import io.micronaut.context.event.StartupEvent;
 import io.micronaut.http.MutableHttpRequest;
 import io.micronaut.http.annotation.ClientFilter;
 import io.micronaut.http.annotation.RequestFilter;
@@ -40,7 +36,7 @@ class InseeHttpFilter {
     }
 
     @RequestFilter("${sirene.api.prefix}${micronaut.http.wildcard}")
-    void doFilterSiren(MutableHttpRequest<?> request) {
+    void doFilterSirene(MutableHttpRequest<?> request) {
         if (noValidTokenDate() || tokenData.isExpired()) {
             throw InseeHttpException.missingBearerToken();
         } else {
