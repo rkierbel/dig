@@ -1,4 +1,4 @@
-package dig.dig.france.insee.sirene.messaging;
+package dig.france.insee.sirene.messaging;
 
 import dig.common.messaging.event.SireneHistoricizedSearchEvent;
 import dig.france.insee.sirene.search.SireneSearchService;

@@ -1,6 +1,5 @@
-package france.insee;
+package dig.france.insee;
 
-import dig.france.insee.InseeConstant;
 import dig.france.insee.httpclient.InseeHttpClient;
 import dig.france.insee.httpclient.InseeTokenResponse;
 import dig.france.insee.sirene.SirenInfoResponse;

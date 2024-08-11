@@ -31,6 +31,7 @@ public class SireneController {
     @Produces(MediaType.APPLICATION_JSON)
     public HttpResponse<SireneSearchResultDto> naturalPersonHistoricizedSearch(@Nullable @QueryValue String term) {
         log.info("Sending HTTP request to Sirene for natural person with name {}", term);
+
         return HttpResponse.ok(sireneSearchService.historicizedNaturalPersonName(term));
     }
 

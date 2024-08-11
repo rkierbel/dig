@@ -9,8 +9,4 @@ public record InseeTokenResponse(@JsonProperty("access_token") String accessToke
                                  @JsonProperty("token_type") String tokenType) {
 
     public static final String BEARER = "Bearer";
-
-    Mono<String> asyncToken() {
-        return Mono.just(this.accessToken);
-    }
 }

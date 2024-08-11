@@ -1,10 +1,10 @@
 package dig.france.insee.httpclient;
 
+import dig.common.http.HttpServiceId;
 import dig.france.insee.InseeConstant;
 import dig.france.insee.exception.InseeHttpError;
 import dig.france.insee.sirene.SirenInfoResponse;
 import dig.france.insee.sirene.search.result.SireneSearchResponse;
-import dig.common.http.HttpServiceId;
 import io.micronaut.core.async.annotation.SingleResult;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Consumes;
@@ -36,5 +36,12 @@ public interface InseeHttpClient {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
-    Publisher<SireneSearchResponse> search(@QueryValue(value = InseeConstant.QUERY) String sireneSearch);
+    SireneSearchResponse search(@QueryValue(value = InseeConstant.QUERY) String sireneSearch);
+
+    @Get("${sirene.api.prefix}${sirene.api.version-3-11}${sirene.api.sirene-search}")
+    //q=periode(nomUniteLegale:grzeszezak) or q=raisonSociale:blabla
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @SingleResult
+    Publisher<SireneSearchResponse> searchAsync(@QueryValue(value = InseeConstant.QUERY) String sireneSearch);
 }

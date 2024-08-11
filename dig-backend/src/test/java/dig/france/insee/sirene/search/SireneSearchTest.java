@@ -11,11 +11,10 @@ public class SireneSearchTest {
     @Inject
     SireneController sireneController;
 
-
     @Test
-    void givenValidSimpleSearch_returnSireneSearchResult() {
+    void givenValidSimpleSearch_returnSireneSearchResult() throws InterruptedException {
         var naturalPersonName = "grzeszezak";
-
+        Thread.sleep(1000);
         sireneController.naturalPersonHistoricizedSearch(naturalPersonName);
     }
 }

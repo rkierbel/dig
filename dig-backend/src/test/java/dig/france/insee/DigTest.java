@@ -1,4 +1,4 @@
-package france.insee;
+package dig.france.insee;
 
 import io.micronaut.runtime.EmbeddedApplication;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
@@ -17,5 +17,4 @@ class DigTest {
     void testItWorks() {
         Assertions.assertTrue(application.isRunning());
     }
-
 }

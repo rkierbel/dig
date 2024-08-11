@@ -38,20 +38,16 @@ public class SireneSearchService {
                 .value(term)
                 .operator(SearchOperator.NONE)
                 .build()));
-
         log.info("Built query string for natural person name search: {}", queryString);
 
-        SireneSearchResponse apiResponse = Mono.from(httpClient.search(queryString))
-                .doOnError(InseeHttpException::logSireneSearchFailure)
-                .retry(InseeConstant.MAX_RETRY)
-                .block(); // TODO handle complete empty (Mono returns null)
-        SireneSearchResultDto result = sireneSearchMapper.apiResponseToDto(apiResponse);
+        SireneSearchResultDto result = sireneSearchMapper.apiResponseToDto(httpClient.search(queryString));
         log.info("Mapping API search response to SearchResultDto: {}", result);
-        return result;
+
+        return result; // TODO handle complete empty (Mono returns null)
     }
 
     public void historicizedSearch(Set<SearchCriteria> searchCriteria) {
-        Mono.from(httpClient.search(SireneSearchFactory.historicized(searchCriteria)))
+        Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(searchCriteria)))
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retry(InseeConstant.MAX_RETRY)
                 .subscribe(digProducer::onSireneSearchResponse);
