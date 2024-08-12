@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="correct typo">
+    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="minor improvements on searchservice exception handling + @primary on mapper">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/exception/SireneSearchException.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/exception/SireneSearchException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/SireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/SireneSearchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/SireneConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/SireneConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/request/SireneSearchFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/request/SireneSearchFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/SireneSearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/SireneSearchTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -341,7 +345,8 @@
       <workItem from="1723295551074" duration="13023000" />
       <workItem from="1723309953378" duration="2121000" />
       <workItem from="1723392732717" duration="4639000" />
-      <workItem from="1723460250924" duration="1430000" />
+      <workItem from="1723460250924" duration="2567000" />
+      <workItem from="1723470618865" duration="3841000" />
     </task>
     <task id="LOCAL-00001" summary="renaming + clean structure">
       <option name="closed" value="true" />
@@ -535,7 +540,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723397320522</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="minor improvements on searchservice exception handling + @primary on mapper">
+      <option name="closed" value="true" />
+      <created>1723464956589</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1723464956589</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -556,7 +569,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="clean insee controller" />
     <MESSAGE value="clean structure" />
     <MESSAGE value="renaming + clean structure" />
     <MESSAGE value="clean pom" />
@@ -581,6 +593,7 @@
     <MESSAGE value="ready to rumble" />
     <MESSAGE value="added token generation on server startup" />
     <MESSAGE value="correct typo" />
-    <option name="LAST_COMMIT_MESSAGE" value="correct typo" />
+    <MESSAGE value="minor improvements on searchservice exception handling + @primary on mapper" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor improvements on searchservice exception handling + @primary on mapper" />
   </component>
 </project>

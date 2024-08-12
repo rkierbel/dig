@@ -15,6 +15,13 @@ import java.util.stream.Stream;
 import static dig.france.insee.sirene.SireneConstants.*;
 
 
+/**
+ * The result of a Sirene query is provided in Json format, structured in 2 parts:<br>
+ * - the header (not to be confused with the http header or the response header) which contains the return code and potentially an error message ;<br>
+ * - the legal units, which include a list of unit-level variables; the list of all periods and, for each period, the list of current and historical variables.<br>
+ * The results of non-historical values (current period) are sent before the periods table.
+ * The periods array contains a number of periods in descending chronological order.
+ */
 @Serdeable
 @Slf4j
 public record SireneSearchResponse(SirenHeader header,
@@ -39,18 +46,18 @@ public record SireneSearchResponse(SirenHeader header,
      * This legal entity may be a legal person, whose existence is recognised by law independently of the persons or institutions that own it or are members of it ;
      * or a natural person, who, as a self-employed person, may carry on an economic activity.
      *
-     * @param siren            Sole entrepreneurs, or natural persons, retain the same Siren number until they die.
+     * @field siren            Sole entrepreneurs, or natural persons, retain the same Siren number until they die.
      *                         Legal entities lose their legal personality when they cease their business activity.
      *                         If the business is resumed at a later date, a new Siren number will be assigned.
      *                         Identification numbers are unique: once a Siren number has been allocated,
      *                         it cannot be reused and allocated to a new Sirene unit, even if the business has ceased its activity.
-     * @param creationDate
-     * @param firstName
-     * @param middleName
-     * @param thirdName
-     * @param fourthName
-     * @param lastModifiedDate
-     * @param periods
+     * @field creationDate
+     * @field firstName
+     * @field middleName
+     * @field thirdName
+     * @field fourthName
+     * @field lastModifiedDate
+     * @field periods
      */
     @Serdeable
     record SireneUnit(String siren,
@@ -66,53 +73,39 @@ public record SireneSearchResponse(SirenHeader header,
     }
 
     /**
-     * Interrogation unitaire du siren : résultat
-     * Le résultat est fourni au format Json.
-     * Le retour est structuré en 2 parties :
+     * Each period corresponds to a time interval defined by a start date and an end date.
+     * A variable that is not known during a period will be set to null.
+     * The last period in the history in chronological order corresponds to the current period and has an end date of null.
+     * A change of value for a variable in the history implies the creation of a new period.
+     * Change indicators (true or false) are attached to each historicized variable and indicate whether the corresponding variable has been modified with respect to the previous period.
+     * For the first period of the company's history, in chronological order, all indicators are set to false.
+     * For a company whose historical variables have never been modified, the response will only include one period.
      *
-     * • le header (à ne pas confondre avec l'en-tête http ni l'en-tête de réponse) qui contient le code retour et le message d'erreur ;
-     * • l'unité légale, qui comprend :
-     * ◦ Toutes les variables courantes
-     * ◦ La liste de toutes les périodes et, pour chaque période :
-     * ▪ La liste des variables historisées.
-     * Les résultats des valeurs non historisées (période courante) sont envoyés avant le tableau periodes.
-     * Le tableau periodes entre […] comprend un nombre de périodes (variable nombrePeriodesUniteLegale) entre {…} par ordre chronologique décroissant :
-     * • une période est définie par une date de début et une date de fin ;
-     * • les valeurs des variables historisées sont celles observées dans la période ;
-     * • une variable non connue sur une période sera à null ;
-     * • la dernière période de l'historique dans l'ordre chronologique correspond à la période courante et a une date de fin à null ;
-     * • un changement de valeur pour une variable historisée implique la création d'une période ;
-     * • des indicatrices de changement (true ou false) sont attachées à chaque variable historisée et indiquent si la variable correspondante a été modifiée par rapport à la période précédente ;
-     * • pour la première période de l'historique de l'entreprise dans l'ordre chronologique toutes les indicatrices sont à false ;
-     * • pour une entreprise dont les variables historisées n'ont jamais été modifiées, la réponse ne comportera qu'une seule période.
-     */
-    /**
-     * Each period corresponds to a time interval.
-     * During this time interval, none of the Sirene unit's historical variables are modified.
-     *
-     * @param startDate
-     * @param endDate
-     * @param administrativeStatus
-     * @param naturalPersonName          Birth name of the natural person.
+     * @field startDate
+     * @field endDate
+     * @field administrativeStatus
+     * @field naturalPersonName          Birth name of the natural person.
      *                                   This variable is set to null for legal entities.
      *                                   The Sirene directory only handles non-accented capital letters.
      *                                   Only the special characters hyphen (-) and apostrophe.
      *                                   The name may be set to null for a natural person (case of purged sireneUnits).
-     * @param legalCategory              The legal category is an attribute of Sirene sireneUnits.
+     * @field naturalPersonCommonName    Referred to in French as "nom d'usage", which might differ from the family name mentioned on the birth certificate.
+     * @field legalCategory              The legal category is an attribute of Sirene sireneUnits.
      *                                   For a natural person, it is always 1000, whether the person is a
      *                                   craftsman, trader, self-employed person, farmer or other, and cannot change.
      *                                   For legal entities, the legal category may change during the life of the company.
-     * @param companyName                Name under which the legal unit is declared.
+     * @field companyName                Name under which the legal unit is declared.
      *                                   This variable is set to null for individuals.
      *                                   The name may sometimes contain a reference to the form of the company.
-     * @param administrativeStatusChange For each period, each historicized variable is accompanied by another one indicating whether it has been modified or not.
+     * @field companyCommonName          Same idea as natural person common name.
+     * @field administrativeStatusChange For each period, each historicized variable is accompanied by another one indicating whether it has been modified or not.
      *                                   In other words, this indicates whether a given variable or set of variables is the reason for the creation of the period.
      *                                   These change indicators are prefixed by "changement" in the JSON response.
      *                                   They are suffixed by "Change" in the Period record.
-     * @param naturalPersonNameChange
-     * @param mainActivityChange
-     * @param companyNameChange
-     * @param legalCategoryChange
+     * @field naturalPersonNameChange
+     * @field companyNameChange
+     * @field legalCategoryChange
+     * @field mainActivityChange
      */
     @Serdeable
     record Period(@JsonProperty(START_DATE) String startDate,

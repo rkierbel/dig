@@ -22,6 +22,7 @@
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <lombok.version>1.18.32</lombok.version>
         <lombok.mapstruct.binding.version>0.2.0</lombok.mapstruct.binding.version>
+        <maven.javadoc.version>3.8.0</maven.javadoc.version>
         <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <maven.compiler.source>21</maven.compiler.source>
@@ -197,7 +198,7 @@
 
     <build>
         <plugins>
-            <!-- APACHE MAVEN - shade, surefire, compiler, enforcer -->
+            <!-- APACHE MAVEN - shade, surefire, compiler, enforcer, javadoc -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -272,6 +273,20 @@
                         <arg>-Amicronaut.processing.group=com.nexus</arg>
                         <arg>-Amicronaut.processing.module=verification</arg>
                     </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.javadoc.version}</version>
+                <configuration>
+                    <tags>
+                        <tag>
+                            <name>field</name>
+                            <placement>a</placement>
+                            <head>tag a record</head>
+                        </tag>
+                    </tags>
                 </configuration>
             </plugin>
 

@@ -1,18 +1,16 @@
 package dig.france.insee.sirene.search.request;
 
-import dig.france.insee.InseeConstant;
-
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static dig.france.insee.InseeConstant.WHITESPACE;
 
 
 public class SireneSearchFactory {
 
-
     public static String simpleSearch(String value) {
         return new SearchCriteria(SearchVariable.COMPANY_NAME, value, SearchOperator.NONE).toString();
     }
-
 
     public static String historicized(Set<SearchCriteria> searchCriteria) {
         final String PERIOD = "periode(";
@@ -24,6 +22,6 @@ public class SireneSearchFactory {
     private static String toQueryString(Set<SearchCriteria> searchCriteria) {
         return searchCriteria.stream()
                 .map(SearchCriteria::toString)
-                .collect(Collectors.joining(InseeConstant.WHITESPACE));
+                .collect(Collectors.joining(WHITESPACE));
     }
 }
