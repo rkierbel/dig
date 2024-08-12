@@ -33,7 +33,7 @@ The Siren number is quoted on employees' payslips, on all commercial documents a
 
 Assigning a Siren number automatically registers a company in the Sirene register. The Sirene register records the identity of all companies established in France, whatever their status. It is managed by INSEE.
 
-### What's the Siret used for ?
+### What is the Siret used for ?
 The Siret number is used to identify a company geographically and each of the establishments that make it up.
 
 It identifies the place(s) where the activity takes place.
