@@ -25,4 +25,8 @@ public class SireneSearchException extends InseeHttpException {
     public static SireneSearchException sireneSearchTypeNotFound(String searchTypeName) {
         throw new SireneSearchException("Cannot find provided search type %s".formatted(searchTypeName));
     }
+
+    public static SireneSearchException historicizedNaturalPersonNameSearchFailure(String name) {
+        throw new SireneSearchException("Failed to perform historicized natural person search based on the name %s".formatted(name));
+    }
 }

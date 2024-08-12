@@ -3,13 +3,13 @@ package dig.france.insee.sirene.search;
 import dig.common.messaging.DigProducer;
 import dig.france.insee.InseeConstant;
 import dig.france.insee.exception.InseeHttpException;
+import dig.france.insee.exception.SireneSearchException;
 import dig.france.insee.httpclient.InseeHttpClient;
 import dig.france.insee.sirene.search.request.SearchCriteria;
 import dig.france.insee.sirene.search.request.SearchOperator;
 import dig.france.insee.sirene.search.request.SearchVariable;
 import dig.france.insee.sirene.search.request.SireneSearchFactory;
 import dig.france.insee.sirene.search.result.SireneSearchMapper;
-import dig.france.insee.sirene.search.result.SireneSearchResponse;
 import dig.france.insee.sirene.search.result.SireneSearchResultDto;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
@@ -39,11 +39,13 @@ public class SireneSearchService {
                 .operator(SearchOperator.NONE)
                 .build()));
         log.info("Built query string for natural person name search: {}", queryString);
-
-        SireneSearchResultDto result = sireneSearchMapper.apiResponseToDto(httpClient.search(queryString));
-        log.info("Mapping API search response to SearchResultDto: {}", result);
-
-        return result; // TODO handle complete empty (Mono returns null)
+        try {
+            SireneSearchResultDto result = sireneSearchMapper.apiResponseToDto(httpClient.search(queryString));
+            log.info("Mapping API search response to SearchResultDto: {}", result);
+            return result;
+        } catch (SireneSearchException searchException) {
+            throw SireneSearchException.historicizedNaturalPersonNameSearchFailure(term);
+        }
     }
 
     public void historicizedSearch(Set<SearchCriteria> searchCriteria) {

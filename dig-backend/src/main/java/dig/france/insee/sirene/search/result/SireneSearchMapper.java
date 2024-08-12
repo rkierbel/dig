@@ -1,5 +1,6 @@
 package dig.france.insee.sirene.search.result;
 
+import io.micronaut.context.annotation.Primary;
 import jakarta.inject.Singleton;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -13,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 
 @Mapper(componentModel = "jsr330") //TODO -> explain
 @Singleton
+@Primary
 public abstract class SireneSearchMapper {
 
     public abstract SireneSearchResultDto apiResponseToDto(SireneSearchResponse apiResponse);
