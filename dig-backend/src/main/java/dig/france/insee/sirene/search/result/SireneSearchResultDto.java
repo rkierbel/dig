@@ -17,8 +17,8 @@ public record SireneSearchResultDto(List<SireneUnitDto> sireneUnits) {
 
         @Override
         public String toString() {
-            return "\nSirene Unit %s: created on %s and last modified on %s. \nHistory: %s"
-                    .formatted(creationDate, creationDate, lastModifiedDate, periods);
+            return "\nSirene Unit %s: created on %s and last modified on %s. \nHistory: %s".formatted(
+                    creationDate, creationDate, lastModifiedDate, periods);
         }
     }
 

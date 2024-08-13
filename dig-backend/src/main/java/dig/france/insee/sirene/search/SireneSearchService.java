@@ -48,8 +48,12 @@ public class SireneSearchService {
         }
     }
 
-    public void historicizedSearch(Set<SearchCriteria> searchCriteria) {
-        Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(searchCriteria)))
+    public void historicizedNaturalPersonNameAsync(String term) {
+        Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
+                        .searchVar(SearchVariable.NATURAL_PERSON_NAME)
+                        .value(term)
+                        .operator(SearchOperator.NONE)
+                        .build()))))
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retry(InseeConstant.MAX_RETRY)
                 .subscribe(digProducer::onSireneSearchResponse);

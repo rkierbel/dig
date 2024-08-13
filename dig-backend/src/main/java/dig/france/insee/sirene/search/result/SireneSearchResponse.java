@@ -27,15 +27,6 @@ import static dig.france.insee.sirene.SireneConstants.*;
 public record SireneSearchResponse(SirenHeader header,
                                    @JsonProperty(SIRENE_UNITS) List<SireneUnit> sireneUnits) {
 
-    void logSirenResponseInfo() {
-        sireneUnits.forEach(
-                unit -> {
-                    log.info("-> Siren number {}, for natural person with first name {}:", unit.siren, unit.firstName);
-                    unit.periods.forEach(Period::logPeriodInfo);
-                }
-        );
-    }
-
     @Serdeable
     record SirenHeader(String message,
                        Integer total) {
@@ -159,30 +150,6 @@ public record SireneSearchResponse(SirenHeader header,
             changes.put(PeriodChange.of(LEGAL_CATEGORY_CHANGE, legalCategory), legalCategoryChange);
             changes.put(PeriodChange.of(MAIN_ACTIVITY_CHANGE, mainActivity), mainActivityChange);
             return changes;
-        }
-
-        private String logChangeReasons() {
-            String changeReasons = jsonToValue.entrySet()
-                    .stream()
-                    .filter(Map.Entry::getValue)
-                    .map(Map.Entry::getKey)
-                    .collect(Collectors.joining(", "));
-            return changeReasons.isEmpty() ?
-                    "This is the first period for the Sirene unit" :
-                    "Reason the period was created: %s".formatted(changeReasons);
-        }
-
-        void logPeriodInfo() {
-            log.info("[Period started on {} and {}", startDate,
-                    (endDate != null ? "ended on %s".formatted(endDate) : "is ongoing")
-            );
-            log.info("Sirene unit has a main activity code of {} and is {}",
-                    mainActivity,
-                    (companyName != null ?
-                            "a legal entity with name %s".formatted(companyName) :
-                            "a natural person with surname %s".formatted(naturalPersonName))
-            );
-            log.info("{}]", logChangeReasons());
         }
     }
 }
