@@ -48,6 +48,18 @@ public class SireneSearchService {
         }
     }
 
+    public SireneSearchResultDto historicizedMultiCriteria(Set<SearchCriteria> criteria) {
+        String queryString = SireneSearchFactory.historicized(criteria);
+        log.info("Built query string for multi-criteria search: {}", queryString);
+        try {
+            SireneSearchResultDto result = sireneSearchMapper.apiResponseToDto(httpClient.search(queryString));
+            log.info("Mapping API search response to SearchResultDto: {}", result);
+            return result;
+        } catch (SireneSearchException searchException) {
+            throw SireneSearchException.historicizedSearchFailure(SireneSearchFactory.logCriteria(criteria));
+        }
+    }
+
     public void historicizedNaturalPersonNameAsync(String term) {
         Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
                         .searchVar(SearchVariable.NATURAL_PERSON_NAME)
