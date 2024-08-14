@@ -39,25 +39,14 @@ public class SireneSearchService {
                 .operator(SearchOperator.NONE)
                 .build()));
         log.info("Built query string for natural person name search: {}", queryString);
-        try {
-            SireneSearchResultDto result = sireneSearchMapper.apiResponseToDto(httpClient.search(queryString));
-            log.info("Mapping API search response to SearchResultDto: {}", result);
-            return result;
-        } catch (SireneSearchException searchException) {
-            throw SireneSearchException.historicizedNaturalPersonNameSearchFailure(term);
-        }
+        return resultFromHttp(queryString, term);
+
     }
 
     public SireneSearchResultDto historicizedMultiCriteria(Set<SearchCriteria> criteria) {
         String queryString = SireneSearchFactory.historicized(criteria);
         log.info("Built query string for multi-criteria search: {}", queryString);
-        try {
-            SireneSearchResultDto result = sireneSearchMapper.apiResponseToDto(httpClient.search(queryString));
-            log.info("Mapping API search response to SearchResultDto: {}", result);
-            return result;
-        } catch (SireneSearchException searchException) {
-            throw SireneSearchException.historicizedSearchFailure(SireneSearchFactory.logCriteria(criteria));
-        }
+        return resultFromHttp(queryString, SireneSearchFactory.logCriteria(criteria));
     }
 
     public void historicizedNaturalPersonNameAsync(String term) {
@@ -69,5 +58,15 @@ public class SireneSearchService {
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retry(InseeConstant.MAX_RETRY)
                 .subscribe(digProducer::onSireneSearchResponse);
+    }
+
+    private SireneSearchResultDto resultFromHttp(String query, String exceptionMessage) {
+        try {
+            SireneSearchResultDto result = sireneSearchMapper.apiResponseToDto(httpClient.search(query));
+            log.info("Mapping API search response to SearchResultDto: {}", result);
+            return result;
+        } catch (SireneSearchException searchException) {
+            throw SireneSearchException.historicizedSearchFailure(exceptionMessage);
+        }
     }
 }
