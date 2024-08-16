@@ -10,6 +10,7 @@ public class SireneConstants {
     /**
      * Non-historical variables
      */
+    public static final String SIREN = "siren";
     public static final String SIRENE_UNIT_CREATION_DATE = "dateCreationUniteLegale";
     public static final String FIRST_NAME = "prenom1UniteLegale";
     public static final String MIDDLE_NAME = "prenom2UniteLegale";
@@ -18,7 +19,6 @@ public class SireneConstants {
     public static final String COMMON_FIRST_NAME = "prenomUsuelUniteLegale";
     public static final String LAST_MODIFIED_DATE = "dateDernierTraitementUniteLegale";
     public static final String UNIT_CHANGES = "periodesUniteLegale";
-
 
     /**
      * Historicized variables

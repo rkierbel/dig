@@ -44,4 +44,11 @@ public interface InseeHttpClient {
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
     Publisher<SireneSearchResponse> searchAsync(@QueryValue(value = InseeConstant.QUERY) String sireneSearch);
+
+    @Get("${sirene.api.prefix}${sirene.api.version-3-11}${sirene.api.siret-search}")
+    //q=periode(nomUniteLegale:grzeszezak) or q=raisonSociale:blabla
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @SingleResult
+    void siretSearch(@QueryValue(value = InseeConstant.QUERY) String sireneSearch);
 }

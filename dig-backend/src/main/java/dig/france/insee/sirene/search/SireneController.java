@@ -1,6 +1,5 @@
-package dig.france.insee.sirene;
+package dig.france.insee.sirene.search;
 
-import dig.france.insee.sirene.search.SireneSearchService;
 import dig.france.insee.sirene.search.request.SearchCriteria;
 import dig.france.insee.sirene.search.request.SireneSearchFactory;
 import dig.france.insee.sirene.search.result.SireneSearchResultDto;
@@ -23,30 +22,46 @@ import java.util.Set;
 public class SireneController {
 
     private static final Logger log = LoggerFactory.getLogger(SireneController.class);
-    @Inject SireneSearchService sireneSearchService;
+
+    @Inject
+    SireneSearchService searchService;
+
+    @Inject
+    AsyncSireneSearchService asyncSearchService;
 
     @Get("/natural-person")
     @Produces(MediaType.APPLICATION_JSON)
     @ExecuteOn(TaskExecutors.BLOCKING)
-    public HttpResponse<SireneSearchResultDto> naturalPersonHistoricizedSearch(@QueryValue String term) {
+    public HttpResponse<SireneSearchResultDto> sireneSearchByNaturalNameHistoricized(@QueryValue String term) {
         log.info("Sending HTTP request to Sirene for natural person with name {}", term);
-        return HttpResponse.ok(sireneSearchService.historicizedNaturalPersonName(term));
+        return HttpResponse.ok(searchService.sireneSearchByNaturalNameHistoricized(term));
     }
 
-    @Get("/natural-person-async")
+    @Get("/natural-person-siret")
     @Produces(MediaType.APPLICATION_JSON)
-    public HttpResponse<Void> naturalPersonHistoricizedSearchAsync(@QueryValue @ValidSireneSimpleSearch String term) {
-        log.info("Sending non-blocking request to Sirene for natural person with name {}", term);
-        sireneSearchService.historicizedNaturalPersonNameAsync(term);
+    @ExecuteOn(TaskExecutors.BLOCKING)
+    public HttpResponse<SireneSearchResultDto> siretSearchByNaturalNameHistoricized(@QueryValue String term) {
+        log.info("Sending HTTP request to the Siret register for natural person with name {}", term);
+        searchService.siretSearchByNaturalNameHistoricized(term);
         return HttpResponse.ok();
     }
 
     @Get("/multi-criteria")
     @Produces(MediaType.APPLICATION_JSON)
     @ExecuteOn(TaskExecutors.BLOCKING)
-    public HttpResponse<SireneSearchResultDto> multiCriteriaSearch(@QueryValue Set<SearchCriteria> searchCriteria) {
+    public HttpResponse<SireneSearchResultDto> sireneSearchByMultiCriteriaHistoricized(
+            @QueryValue Set<SearchCriteria> searchCriteria) {
         log.info("Sending HTTP request to Sirene for multi-criteria search {}", SireneSearchFactory.logCriteria(searchCriteria));
-        return HttpResponse.ok(sireneSearchService.historicizedMultiCriteria(searchCriteria));
+        return HttpResponse.ok(searchService.sireneSearchByMultiCriteriaHistoricized(searchCriteria));
+    }
+
+    @Get("/natural-person-async")
+    @Produces(MediaType.APPLICATION_JSON)
+    public HttpResponse<Void> asyncSireneSearchByNaturalNameHistoricized(
+            @QueryValue @ValidSireneSimpleSearch String term) {
+        log.info("Sending non-blocking request to Sirene for natural person with name {}", term);
+        asyncSearchService.sireneSearchByNaturalNameHistoricized(term);
+        return HttpResponse.ok();
     }
 }
 

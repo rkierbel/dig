@@ -10,8 +10,8 @@ import static dig.france.insee.InseeConstant.WHITESPACE;
 
 public class SireneSearchFactory {
 
-    public static String simpleSearch(String value) {
-        return new SearchCriteria(SearchVariable.COMPANY_NAME, value, SearchOperator.NONE).toString();
+    public static String simpleSearch(SearchVariable variable, String value) {
+        return new SearchCriteria(variable, value, SearchOperator.NONE).toString();
     }
 
     public static String logCriteria(Set<SearchCriteria> searchCriteria) {

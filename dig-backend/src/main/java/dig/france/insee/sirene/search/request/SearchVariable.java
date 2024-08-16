@@ -15,7 +15,8 @@ import lombok.Getter;
 public enum SearchVariable {
 
     NATURAL_PERSON_NAME(SireneConstants.NATURAL_PERSON_NAME),
-    COMPANY_NAME(SireneConstants.COMPANY_NAME);
+    COMPANY_NAME(SireneConstants.COMPANY_NAME),
+    SIREN(SireneConstants.SIREN);
 
     final String frenchVariableName;
 

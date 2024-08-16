@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="logging for async natural person histo search">
+    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="minor refactor">
+      <change afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/AsyncSireneSearchService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/AdministrativeStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/AdministrativeStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/SireneService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/result/SireneSearchResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeHttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeHttpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/SireneConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/SireneConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/SireneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/SireneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/messaging/SireneListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/messaging/SireneListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/SireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/SireneSearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/request/SearchVariable.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/request/SearchVariable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/request/SireneSearchFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/request/SireneSearchFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/SireneSearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/SireneSearchTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,9 +30,9 @@
       <list>
         <option value="AnnotationType" />
         <option value="Dockerfile" />
-        <option value="Class" />
         <option value="Enum" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -81,9 +88,12 @@
     "JUnit.InseeHttpClientTest.executor": "Run",
     "JUnit.InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk.executor": "Run",
     "JUnit.SireneSearchTest.executor": "Run",
+    "JUnit.SireneSearchTest.givenValidSimpleSearchByNaturalPersonName_returnSireneSearchResult.executor": "Run",
+    "JUnit.SireneSearchTest.givenValidSimpleSearchByNaturalPersonName_returnSiretSearchResult.executor": "Run",
     "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (1).executor": "Run",
     "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (2).executor": "Run",
     "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult.executor": "Run",
+    "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSiretSearchResult.executor": "Run",
     "Maven.dig [clean,install].executor": "Run",
     "Maven.dig [clean].executor": "Run",
     "Maven.dig [install].executor": "Run",
@@ -124,11 +134,45 @@
       <recent name="C:\Users\rkierbel\IdeaProjects\dig\dig-backend\src\main\java" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dig.france.insee.sirene.search" />
+      <recent name="dig.france.insee.sirene.search.result" />
       <recent name="" />
       <recent name="france.insee.sirene.search" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yaml: Compose Deployment">
+  <component name="RunManager" selected="JUnit.SireneSearchTest.givenValidSimpleSearchByNaturalPersonName_returnSireneSearchResult">
+    <configuration name="SireneSearchTest.givenValidSimpleSearchByNaturalPersonName_returnSireneSearchResult" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dig-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dig.france.insee.sirene.search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dig.france.insee.sirene.search" />
+      <option name="MAIN_CLASS_NAME" value="dig.france.insee.sirene.search.SireneSearchTest" />
+      <option name="METHOD_NAME" value="givenValidSimpleSearchByNaturalPersonName_returnSireneSearchResult" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SireneSearchTest.givenValidSimpleSearchByNaturalPersonName_returnSiretSearchResult" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dig-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dig.france.insee.sirene.search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dig.france.insee.sirene.search" />
+      <option name="MAIN_CLASS_NAME" value="dig.france.insee.sirene.search.SireneSearchTest" />
+      <option name="METHOD_NAME" value="givenValidSimpleSearchByNaturalPersonName_returnSiretSearchResult" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dig-backend" />
       <extension name="coverage">
@@ -140,6 +184,22 @@
       <option name="PACKAGE_NAME" value="dig.france.insee.sirene.search" />
       <option name="MAIN_CLASS_NAME" value="dig.france.insee.sirene.search.SireneSearchTest" />
       <option name="METHOD_NAME" value="givenValidSimpleSearch_returnSireneSearchResult" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SireneSearchTest.givenValidSimpleSearch_returnSiretSearchResult" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dig-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dig.france.insee.sirene.search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dig.france.insee.sirene.search" />
+      <option name="MAIN_CLASS_NAME" value="dig.france.insee.sirene.search.SireneSearchTest" />
+      <option name="METHOD_NAME" value="givenValidSimpleSearch_returnSiretSearchResult" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -248,26 +308,6 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="dig-backend/Dockerfile builder" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
-      <deployment type="dockerfile">
-        <settings>
-          <option name="imageTag" value="eclipse-temurin21-jdk_builder" />
-          <option name="buildCliOptions" value="--target builder" />
-          <option name="buildOnly" value="true" />
-          <option name="sourceFilePath" value="dig-backend/Dockerfile" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="dig-backend/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
-      <deployment type="dockerfile">
-        <settings>
-          <option name="buildOnly" value="true" />
-          <option name="sourceFilePath" value="dig-backend/Dockerfile" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <configuration name="docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -276,26 +316,13 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yaml.dig-backend: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="dig-backend" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yaml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
+        <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearchByNaturalPersonName_returnSireneSearchResult" />
+        <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearchByNaturalPersonName_returnSiretSearchResult" />
+        <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSiretSearchResult" />
         <item itemvalue="JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult" />
-        <item itemvalue="Docker.docker-compose.yaml.dig-backend: Compose Deployment" />
-        <item itemvalue="Docker.dig-backend/Dockerfile" />
-        <item itemvalue="Docker.dig-backend/Dockerfile builder" />
+        <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -347,7 +374,7 @@
       <workItem from="1723470618865" duration="4576000" />
       <workItem from="1723552630073" duration="2325000" />
       <workItem from="1723615955894" duration="8531000" />
-      <workItem from="1723797039033" duration="5836000" />
+      <workItem from="1723797039033" duration="7552000" />
     </task>
     <task id="LOCAL-00001" summary="renaming + clean structure">
       <option name="closed" value="true" />
@@ -605,7 +632,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723803689112</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="minor refactor">
+      <option name="closed" value="true" />
+      <created>1723804003710</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1723804003710</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -626,7 +661,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="uniformization on logging syntax" />
     <MESSAGE value="correct url naturalPersonSearch" />
     <MESSAGE value="structure clean with dig as parent" />
     <MESSAGE value="adapt namings" />
@@ -651,6 +685,7 @@
     <MESSAGE value="develop search result -&gt; include several first names for natural person + several company names ; improved logging : provided new json" />
     <MESSAGE value="mark synchronous ops on SireneController as blocking" />
     <MESSAGE value="logging for async natural person histo search" />
-    <option name="LAST_COMMIT_MESSAGE" value="logging for async natural person histo search" />
+    <MESSAGE value="minor refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor refactor" />
   </component>
 </project>

@@ -1,8 +1,5 @@
 package dig.france.insee.sirene.search;
 
-import dig.common.messaging.DigProducer;
-import dig.france.insee.InseeConstant;
-import dig.france.insee.exception.InseeHttpException;
 import dig.france.insee.exception.SireneSearchException;
 import dig.france.insee.httpclient.InseeHttpClient;
 import dig.france.insee.sirene.search.request.SearchCriteria;
@@ -14,7 +11,6 @@ import dig.france.insee.sirene.search.result.SireneSearchResultDto;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
-import reactor.core.publisher.Mono;
 
 import java.util.Set;
 
@@ -26,13 +22,10 @@ public class SireneSearchService {
     InseeHttpClient httpClient;
 
     @Inject
-    DigProducer digProducer;
-
-    @Inject
     SireneSearchMapper sireneSearchMapper;
     // TODO -> AOP logging
 
-    public SireneSearchResultDto historicizedNaturalPersonName(String term) {
+    SireneSearchResultDto sireneSearchByNaturalNameHistoricized(String term) {
         String queryString = SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
                 .searchVar(SearchVariable.NATURAL_PERSON_NAME)
                 .value(term)
@@ -40,31 +33,27 @@ public class SireneSearchService {
                 .build()));
         log.info("Built query string for natural person name search: {}", queryString);
         return resultFromHttp(queryString, term);
-
     }
 
-    public SireneSearchResultDto historicizedMultiCriteria(Set<SearchCriteria> criteria) {
+    void siretSearchBySiren(String siren) {
+        String queryString = SireneSearchFactory.simpleSearch(SearchVariable.SIREN, siren);
+        log.info("Built query string for natural person name search on the Siret register: {}", queryString);
+        httpClient.siretSearch(queryString);
+    }
+
+    void siretSearchByNaturalNameHistoricized(String term) {
+        String queryString = SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
+                .searchVar(SearchVariable.NATURAL_PERSON_NAME)
+                .value(term)
+                .operator(SearchOperator.NONE)
+                .build()));
+        httpClient.siretSearch(queryString);
+    }
+
+    SireneSearchResultDto sireneSearchByMultiCriteriaHistoricized(Set<SearchCriteria> criteria) {
         String queryString = SireneSearchFactory.historicized(criteria);
         log.info("Built query string for multi-criteria search: {}", queryString);
         return resultFromHttp(queryString, SireneSearchFactory.logCriteria(criteria));
-    }
-
-    public void historicizedNaturalPersonNameAsync(String term) {
-        Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
-                        .searchVar(SearchVariable.NATURAL_PERSON_NAME)
-                        .value(term)
-                        .operator(SearchOperator.NONE)
-                        .build()))))
-                .doOnError(InseeHttpException::logSireneSearchFailure)
-                .retry(InseeConstant.MAX_RETRY)
-                .subscribe(digProducer::onSireneSearchResponse);
-    }
-
-    public void historicizedMultiCriteriaAsync(Set<SearchCriteria> criteria) {
-        Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(criteria)))
-                .doOnError(InseeHttpException::logSireneSearchFailure)
-                .retry(InseeConstant.MAX_RETRY)
-                .subscribe(digProducer::onSireneSearchResponse);
     }
 
     private SireneSearchResultDto resultFromHttp(String query, String exceptionMessage) {
