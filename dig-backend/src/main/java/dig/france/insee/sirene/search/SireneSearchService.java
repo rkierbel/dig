@@ -60,6 +60,13 @@ public class SireneSearchService {
                 .subscribe(digProducer::onSireneSearchResponse);
     }
 
+    public void historicizedMultiCriteriaAsync(Set<SearchCriteria> criteria) {
+        Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(criteria)))
+                .doOnError(InseeHttpException::logSireneSearchFailure)
+                .retry(InseeConstant.MAX_RETRY)
+                .subscribe(digProducer::onSireneSearchResponse);
+    }
+
     private SireneSearchResultDto resultFromHttp(String query, String exceptionMessage) {
         try {
             SireneSearchResultDto result = sireneSearchMapper.apiResponseToDto(httpClient.search(query));

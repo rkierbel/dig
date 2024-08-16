@@ -20,6 +20,6 @@ public class SireneListener {
     @Queue("${rabbitmq.queue.insee.sirene.search-request}")
     void onSireneHistoricizedSearchEvent(SireneHistoricizedSearchEvent event) {
         log.info("Received sirene historicizedSearch event with id {}", event.getId());
-        searchService.historicizedSearch(event.getSearchCriteria());
+        searchService.historicizedMultiCriteriaAsync(event.getSearchCriteria());
     }
 }

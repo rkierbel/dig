@@ -19,11 +19,16 @@ public abstract class SireneSearchMapper {
 
     public abstract SireneSearchResultDto apiResponseToDto(SireneSearchResponse apiResponse);
 
-    @Mapping(target="lastModifiedDate", source="lastModifiedDate", qualifiedByName = "toInstant")
+    @Mappings({
+            @Mapping(target = "lastModifiedDate", source = "lastModifiedDate", qualifiedByName = "toInstant"),
+            @Mapping(target = "firstNames", expression = "java(sireneUnit.firstNames())"),
+            @Mapping(target = "type", expression = "java(sireneUnit.inferUnitType())")
+    })
     abstract SireneSearchResultDto.SireneUnitDto toSireneUnitDto(SireneSearchResponse.SireneUnit sireneUnit);
 
     @Mappings({
-            @Mapping(target = "changes", expression = "java(unitPeriod.getPeriodChanges())")
+            @Mapping(target = "changes", expression = "java(unitPeriod.getPeriodChanges())"),
+            @Mapping(target = "companyNames", expression = "java(unitPeriod.companyNames())"),
     })
     abstract SireneSearchResultDto.PeriodDto toPeriodDto(SireneSearchResponse.Period unitPeriod);
 

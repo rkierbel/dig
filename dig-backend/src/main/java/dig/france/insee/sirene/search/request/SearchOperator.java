@@ -21,7 +21,7 @@ public enum SearchOperator {
         try {
             return EnumHelper.helper().deSerEnum(name, SearchOperator.values());
         } catch (EnumValueNotFoundException notFoundEx) {
-            throw SireneSearchException.searchOperatorNotFoundException(name);
+            throw SireneSearchException.searchOperatorNotFound(name);
         }
     }
 }

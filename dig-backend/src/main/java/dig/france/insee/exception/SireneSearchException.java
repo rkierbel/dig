@@ -16,12 +16,12 @@ public class SireneSearchException extends InseeHttpException {
                 "The provided period change reason for a Sirene unit is not valid: %s".formatted(reason));
     }
 
-    public static SireneSearchException searchOperatorNotFoundException(String opName) {
+    public static SireneSearchException searchOperatorNotFound(String opName) {
         throw new SireneSearchException(
                 "Cannot find historicizedSearch operator %s for a Sirene historicizedSearch".formatted(opName));
     }
 
-    public static SireneSearchException searchVariableNotFoundException(String searchVarName) {
+    public static SireneSearchException searchVariableNotFound(String searchVarName) {
         throw new SireneSearchException(
                 "Cannot find historicizedSearch operator %s for a Sirene historicizedSearch".formatted(searchVarName));
     }
@@ -34,5 +34,9 @@ public class SireneSearchException extends InseeHttpException {
         throw new SireneSearchException(
                 "Failed to perform historicized search based on the criteria %s".formatted(criteria));
 
+    }
+
+    public static SireneSearchException unitTypeNotFound(String type) {
+        throw new SireneSearchException("Cannot find unit type %s for a Sirene unit".formatted(type));
     }
 }

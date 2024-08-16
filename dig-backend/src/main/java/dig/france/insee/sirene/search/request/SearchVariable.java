@@ -32,7 +32,7 @@ public enum SearchVariable {
         try {
             return EnumHelper.helper().deSerEnum(name, SearchVariable.values());
         } catch (EnumValueNotFoundException notFoundEx) {
-            throw SireneSearchException.searchVariableNotFoundException(name);
+            throw SireneSearchException.searchVariableNotFound(name);
         }
     }
 }

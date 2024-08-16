@@ -43,24 +43,31 @@ public record SireneSearchResponse(SirenHeader header,
      *                         Identification numbers are unique: once a Siren number has been allocated,
      *                         it cannot be reused and allocated to a new Sirene unit, even if the business has ceased its activity.
      * @field creationDate
-     * @field firstName
-     * @field middleName
-     * @field thirdName
-     * @field fourthName
+     * @field names1, 2, 3, 4  Only for natural persons, null if Sirene Unit is a legal entity.
+     * @field commonFirstName  Only for natural persons, null if Sirene Unit is a legal entity.
      * @field lastModifiedDate
      * @field periods
      */
     @Serdeable
-    record SireneUnit(String siren,
-                      @JsonProperty(SIRENE_UNIT_CREATION_DATE) String creationDate,
-                      @JsonProperty(FIRST_NAME) String firstName,
-                      @JsonProperty(MIDDLE_NAME) String middleName,
-                      @JsonProperty(THIRD_NAME) String thirdName,
-                      @JsonProperty(FOURTH_NAME) String fourthName,
-                      @JsonProperty(COMMON_FIRST_NAME) String commonFirstName,
-                      @JsonProperty(LAST_MODIFIED_DATE) String lastModifiedDate,
-                      @JsonProperty(UNIT_CHANGES) List<Period> periods) {
+    protected record SireneUnit(String siren,
+                                @JsonProperty(SIRENE_UNIT_CREATION_DATE) String creationDate,
+                                @JsonProperty(FIRST_NAME) String firstName,
+                                @JsonProperty(MIDDLE_NAME) String middleName,
+                                @JsonProperty(THIRD_NAME) String thirdName,
+                                @JsonProperty(FOURTH_NAME) String fourthName,
+                                @JsonProperty(COMMON_FIRST_NAME) String commonFirstName,
+                                @JsonProperty(LAST_MODIFIED_DATE) String lastModifiedDate,
+                                @JsonProperty(UNIT_CHANGES) List<Period> periods) {
 
+        public String firstNames() {
+            return Stream.of(firstName, middleName, thirdName, fourthName)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.joining(", "));
+        }
+
+        public UnitType inferUnitType() {
+            return this.commonFirstName != null ? UnitType.NATURAL_PERSON : UnitType.LEGAL_ENTITY;
+        }
     }
 
     /**
@@ -74,21 +81,22 @@ public record SireneSearchResponse(SirenHeader header,
      *
      * @field startDate
      * @field endDate
-     * @field administrativeStatus
-     * @field naturalPersonName          Birth name of the natural person.
+     * @field administrativeStatus       Active or ceased activity.
+     * @field naturalPersonLastName      Birth name of the natural person.
      *                                   This variable is set to null for legal entities.
      *                                   The Sirene directory only handles non-accented capital letters.
      *                                   Only the special characters hyphen (-) and apostrophe.
      *                                   The name may be set to null for a natural person (case of purged sireneUnits).
-     * @field naturalPersonCommonName    Referred to in French as "nom d'usage", which might differ from the family name mentioned on the birth certificate.
+     * @field naturalPersonCommonName    Referred to in French as "nom d'usage".
+     *                                   It might differ from the family name mentioned on the birth certificate. Null for legal entities.
+     * @field companyName                Name under which the legal unit is declared.
+     *                                   This variable is set to null for individuals.
+     *                                   The name may sometimes contain a reference to the form of the company.
+     * @field companyCommonName1, 2, 3   Name under which the legal entity is known from the public.
      * @field legalCategory              The legal category is an attribute of Sirene sireneUnits.
      *                                   For a natural person, it is always 1000, whether the person is a
      *                                   craftsman, trader, self-employed person, farmer or other, and cannot change.
      *                                   For legal entities, the legal category may change during the life of the company.
-     * @field companyName                Name under which the legal unit is declared.
-     *                                   This variable is set to null for individuals.
-     *                                   The name may sometimes contain a reference to the form of the company.
-     * @field companyCommonName          Same idea as natural person common name.
      * @field administrativeStatusChange For each period, each historicized variable is accompanied by another one indicating whether it has been modified or not.
      *                                   In other words, this indicates whether a given variable or set of variables is the reason for the creation of the period.
      *                                   These change indicators are prefixed by "changement" in the JSON response.
@@ -102,7 +110,7 @@ public record SireneSearchResponse(SirenHeader header,
     record Period(@JsonProperty(START_DATE) String startDate,
                   @JsonProperty(END_DATE) String endDate,
                   @JsonProperty(ADMIN_STATUS) AdministrativeStatus administrativeStatus,
-                  @JsonProperty(NATURAL_PERSON_NAME) String naturalPersonName,
+                  @JsonProperty(NATURAL_PERSON_NAME) String naturalPersonLastName,
                   @JsonProperty(NATURAL_PERSON_COMMON_NAME) String naturalPersonCommonName,
                   @JsonProperty(COMPANY_NAME) String companyName,
                   @JsonProperty(COMPANY_COMMON_NAME_1) String companyCommonName1,
@@ -116,18 +124,12 @@ public record SireneSearchResponse(SirenHeader header,
                   @JsonProperty(COMPANY_NAME_CHANGE) boolean companyNameChange,
                   @JsonProperty(COMPANY_COMMON_NAME_CHANGE) boolean companyCommonNameChange,
                   @JsonProperty(LEGAL_CATEGORY_CHANGE) boolean legalCategoryChange,
-                  @JsonProperty(MAIN_ACTIVITY_CHANGE) boolean mainActivityChange,
-                  Map<String, Boolean> jsonToValue) {
+                  @JsonProperty(MAIN_ACTIVITY_CHANGE) boolean mainActivityChange) {
 
-        Period {
-            jsonToValue = new HashMap<>();
-            jsonToValue.put("administrativeStatusChange", administrativeStatusChange);
-            jsonToValue.put("naturalPersonNameChange", naturalPersonNameChange);
-            jsonToValue.put("naturalPersonCommonNameChange", naturalPersonCommonNameChange);
-            jsonToValue.put("companyNameChange", companyNameChange);
-            jsonToValue.put("companyCommonNameChange", companyCommonNameChange);
-            jsonToValue.put("mainActivityChange", mainActivityChange);
-            jsonToValue.put("legalCategoryChange", legalCategoryChange);
+        public String companyNames() {
+            return Stream.of(companyName, companyCommonName1, companyCommonName2, companyCommonName3)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.joining(", "));
         }
 
         public List<PeriodChange> getPeriodChanges() {
@@ -143,7 +145,7 @@ public record SireneSearchResponse(SirenHeader header,
 
             Map<PeriodChange, Boolean> changes = HashMap.newHashMap(7);
             changes.put(PeriodChange.of(ADMIN_STATUS_CHANGE, administrativeStatus.name()), administrativeStatusChange);
-            changes.put(PeriodChange.of(NATURAL_PERSON_NAME_CHANGE, naturalPersonName), naturalPersonNameChange);
+            changes.put(PeriodChange.of(NATURAL_PERSON_NAME_CHANGE, naturalPersonLastName), naturalPersonNameChange);
             changes.put(PeriodChange.of(NATURAL_PERSON_COMMON_NAME_CHANGE, naturalPersonCommonName), naturalPersonCommonNameChange);
             changes.put(PeriodChange.of(COMPANY_NAME_CHANGE, companyName), companyNameChange);
             changes.put(PeriodChange.of(COMPANY_COMMON_NAME_CHANGE, companyCommonName), companyCommonNameChange);

@@ -1,36 +1,55 @@
 {
   "sireneUnits": [
     {
-      "creationDate": "DD-MM-YYYY",
-      "lastModifiedDate": "DD-MM-YYYY",
-      "commonFirstName": "Takis",
+      "creationDate": "2023-01-15",
+      "lastModifiedDate": "2024-08-16T10:30:00Z",
+      "type": "COMPANY",
+      "commonFirstName": "John",
+      "firstNames": "John Michael",
       "periods": [
         {
           "changes": [
             {
-              "changeReason": "legalActivityChange",
-              "changeValue" : "legalServices"
+              "type": "ADDRESS_CHANGE",
+              "value": "123 New Street, City"
+            },
+            {
+              "type": "NAME_CHANGE",
+              "value": "New Company Name"
             }
           ],
-          "startDate": "DD-MM-YYYY",
-          "endDate": "DD-MM-YYYY"
+          "naturalPersonLastName": "Doe",
+          "companyNames": "Acme Corp",
+          "startDate": "2023-01-15",
+          "endDate": "2023-12-31"
         },
         {
-          "changes":[],
-          "startDate": "DD-MM-YYYY",
-          "endDate": "DD-MM-YYYY"
+          "changes": [
+            {
+              "type": "LEGAL_STATUS_CHANGE",
+              "value": "LLC"
+            }
+          ],
+          "naturalPersonLastName": "Doe",
+          "companyNames": "Acme LLC",
+          "startDate": "2024-01-01",
+          "endDate": null
         }
       ]
     },
     {
-      "creationDate": "DD-MM-YYYY",
-      "lastModifiedDate": "DD-MM-YYYY",
-      "commonFirstName": "Robogolem",
+      "creationDate": "2022-05-20",
+      "lastModifiedDate": "2024-08-15T14:45:00Z",
+      "type": "INDIVIDUAL",
+      "commonFirstName": "Jane",
+      "firstNames": "Jane Alice",
       "periods": [
         {
-          "changes":[],
-          "startDate": "DD-MM-YYYY",
-          "endDate": "DD-MM-YYYY"
+          "changes": [],
+          "naturalPersonLastName": "Smith",
+          "companyNames": null,
+          "startDate": "2022-05-20",
+          "endDate": null
         }
       ]
     }
