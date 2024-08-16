@@ -1,7 +1,6 @@
 package dig.france.insee.sirene.search.result;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import dig.france.insee.sirene.AdministrativeStatus;
 import io.micronaut.serde.annotation.Serdeable;
 import lombok.extern.slf4j.Slf4j;
 
