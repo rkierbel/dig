@@ -11,6 +11,8 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Produces;
 import io.micronaut.http.annotation.QueryValue;
+import io.micronaut.scheduling.TaskExecutors;
+import io.micronaut.scheduling.annotation.ExecuteOn;
 import jakarta.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,7 @@ public class SireneController {
 
     @Get("/natural-person")
     @Produces(MediaType.APPLICATION_JSON)
+    @ExecuteOn(TaskExecutors.BLOCKING)
     public HttpResponse<SireneSearchResultDto> naturalPersonHistoricizedSearch(@QueryValue String term) {
         log.info("Sending HTTP request to Sirene for natural person with name {}", term);
         return HttpResponse.ok(sireneSearchService.historicizedNaturalPersonName(term));
@@ -39,6 +42,7 @@ public class SireneController {
 
     @Get("/multi-criteria")
     @Produces(MediaType.APPLICATION_JSON)
+    @ExecuteOn(TaskExecutors.BLOCKING)
     public HttpResponse<SireneSearchResultDto> multiCriteriaSearch(@QueryValue Set<SearchCriteria> searchCriteria) {
         log.info("Sending HTTP request to Sirene for multi-criteria search {}", SireneSearchFactory.logCriteria(searchCriteria));
         return HttpResponse.ok(sireneSearchService.historicizedMultiCriteria(searchCriteria));
