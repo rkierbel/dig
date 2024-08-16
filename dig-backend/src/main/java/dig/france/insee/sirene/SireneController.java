@@ -36,6 +36,7 @@ public class SireneController {
     @Get("/natural-person-async")
     @Produces(MediaType.APPLICATION_JSON)
     public HttpResponse<Void> naturalPersonHistoricizedSearchAsync(@QueryValue @ValidSireneSimpleSearch String term) {
+        log.info("Sending non-blocking request to Sirene for natural person with name {}", term);
         sireneSearchService.historicizedNaturalPersonNameAsync(term);
         return HttpResponse.ok();
     }
