@@ -3,6 +3,7 @@ package dig.france.insee.sirene.search;
 import dig.common.messaging.DigProducer;
 import dig.france.insee.InseeConstant;
 import dig.france.insee.exception.InseeHttpException;
+import dig.france.insee.exception.SireneSearchException;
 import dig.france.insee.httpclient.InseeHttpClient;
 import dig.france.insee.sirene.search.request.SearchCriteria;
 import dig.france.insee.sirene.search.request.SearchOperator;
@@ -26,8 +27,8 @@ public class AsyncSireneSearchService {
     DigProducer digProducer;
 
     //TODO -> full test + weigh interest of fire and forget VS subscribe to result alternatives
-    public Mono<SireneSearchResponse> sireneSearchByNaturalNameHistoricized(String term) {
-        return Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
+    public void sireneSearchByNaturalNameHistoricized(String term) {
+        Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
                         .searchVar(SearchVariable.NATURAL_PERSON_NAME)
                         .value(term)
                         .operator(SearchOperator.NONE)
@@ -35,15 +36,15 @@ public class AsyncSireneSearchService {
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retry(InseeConstant.MAX_RETRY)
                 .flatMap(this::completeSearchWithSiret)
-                .doOnNext(digProducer::sendCompletedSearchEvent);
+                .subscribe(digProducer::sendCompletedSearchEvent, this::handleSearchError);
     }
 
-    public Mono<SireneSearchResponse> sireneSearchByMultiCriteriaHistoricized(Set<SearchCriteria> criteria) {
-        return Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(criteria)))
+    public void sireneSearchByMultiCriteriaHistoricized(Set<SearchCriteria> criteria) {
+        Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(criteria)))
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retry(InseeConstant.MAX_RETRY)
                 .flatMap(this::completeSearchWithSiret)
-                .doOnNext(digProducer::sendCompletedSearchEvent);
+                .subscribe(digProducer::sendCompletedSearchEvent, this::handleSearchError);
     }
 
     private Mono<SireneSearchResponse> completeSearchWithSiret(SireneSearchResponse apiResponse) {
@@ -56,5 +57,9 @@ public class AsyncSireneSearchService {
                     .then(Mono.just(apiResponse));
         }
         return Mono.just(apiResponse);
+    }
+
+
+    private void handleSearchError(Throwable ex) {
     }
 }
