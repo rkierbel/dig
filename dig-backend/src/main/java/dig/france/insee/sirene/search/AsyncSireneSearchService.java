@@ -43,7 +43,7 @@ public class AsyncSireneSearchService {
                         .operator(SearchOperator.NONE)
                         .build()))))
                 .doOnError(InseeHttpException::logSireneSearchFailure)
-                .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofSeconds(1)))
+                .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofSeconds(1))) // TODO -> best practice ?
                 .flatMap(this::completeSearchWithSiret)
                 .subscribe(digProducer::sendCompletedSearchEvent, this::handleSearchError);
     }
@@ -68,7 +68,7 @@ public class AsyncSireneSearchService {
 
     private Publisher<SearchReportDto.SireneUnitDto> completeSireneUnitDto(SireneSearchResponse.SireneUnit unit) {
         String query = SireneSearchFactory.simpleSearch(SearchVariable.SIREN, unit.sirenStr());
-        return Mono.from(httpClient.siretSearchAsync(query))
+        return Mono.from(httpClient.siretSearchAsync(query)) // TODO -> can we do it in one request ? gather all the siren, then one query for all the siren ?
                 .map(siretResponse -> sireneSearchMapper.toSireneUnitDto(unit, siretResponse))
                 .onErrorResume(this::emptyMonoOnError);
     }
