@@ -1,6 +1,6 @@
 package dig.france.insee.sirene.messaging;
 
-import dig.common.messaging.event.SireneHistoricizedSearchEvent;
+import dig.france.insee.sirene.messaging.event.SireneHistoricizedSearchEvent;
 import dig.france.insee.sirene.search.AsyncSireneSearchService;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.context.env.Environment;

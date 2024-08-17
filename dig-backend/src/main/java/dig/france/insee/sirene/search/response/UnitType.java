@@ -1,4 +1,4 @@
-package dig.france.insee.sirene.search.result;
+package dig.france.insee.sirene.search.response;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import dig.common.exception.EnumValueNotFoundException;

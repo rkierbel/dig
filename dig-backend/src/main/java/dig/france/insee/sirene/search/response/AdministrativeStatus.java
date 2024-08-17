@@ -1,4 +1,4 @@
-package dig.france.insee.sirene.search.result;
+package dig.france.insee.sirene.search.response;
 
 import dig.france.insee.exception.SireneSearchException;
 import dig.common.exception.EnumValueNotFoundException;

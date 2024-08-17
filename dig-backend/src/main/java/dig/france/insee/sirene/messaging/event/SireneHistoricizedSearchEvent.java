@@ -1,4 +1,4 @@
-package dig.common.messaging.event;
+package dig.france.insee.sirene.messaging.event;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

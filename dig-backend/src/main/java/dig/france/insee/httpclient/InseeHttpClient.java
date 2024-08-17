@@ -4,7 +4,8 @@ import dig.common.http.HttpServiceId;
 import dig.france.insee.InseeConstant;
 import dig.france.insee.exception.InseeHttpError;
 import dig.france.insee.sirene.SirenInfoResponse;
-import dig.france.insee.sirene.search.result.SireneSearchResponse;
+import dig.france.insee.sirene.search.response.SireneSearchResponse;
+import dig.france.insee.sirene.search.response.SiretSearchResponse;
 import io.micronaut.core.async.annotation.SingleResult;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Consumes;
@@ -48,5 +49,5 @@ public interface InseeHttpClient {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
-    void siretSearch(@QueryValue(value = InseeConstant.QUERY) String sireneSearch);
+    Publisher<SiretSearchResponse> siretSearch(@QueryValue(value = InseeConstant.QUERY) Integer sireneSearch);
 }

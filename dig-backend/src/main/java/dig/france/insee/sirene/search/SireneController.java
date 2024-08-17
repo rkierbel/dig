@@ -2,7 +2,7 @@ package dig.france.insee.sirene.search;
 
 import dig.france.insee.sirene.search.request.SearchCriteria;
 import dig.france.insee.sirene.search.request.SireneSearchFactory;
-import dig.france.insee.sirene.search.result.SearchReportDto;
+import dig.france.insee.sirene.search.response.SearchReportDto;
 import dig.france.insee.sirene.validation.ValidSireneSimpleSearch;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;

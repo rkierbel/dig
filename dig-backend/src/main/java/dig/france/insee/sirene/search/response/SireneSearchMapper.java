@@ -1,4 +1,4 @@
-package dig.france.insee.sirene.search.result;
+package dig.france.insee.sirene.search.response;
 
 import io.micronaut.context.annotation.Primary;
 import jakarta.inject.Singleton;

@@ -20,11 +20,15 @@ rabbitmq:
       sirene:
         search-request: sirene.historicizedSearch-request.queue
         search-response: sirene.historicizedSearch-response.queue
+      siret:
+        part-search: siret.part-search.queue
   binding:
     insee:
       sirene:
         search-request: sirene.historicizedSearch-request.binding
         search-response: sirene.historicizedSearch-response.binding
+      siret:
+        part-search: siret.part-search.binding
   uri: amqp://localhost:5672
   username: ${RABBITMQ_USERNAME:guest}
   password: ${RABBITMQ_PASSWORD:guest}

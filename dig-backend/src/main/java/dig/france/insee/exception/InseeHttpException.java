@@ -18,7 +18,7 @@ public class InseeHttpException extends RuntimeException {
     }
 
     public static void logTokenGenerationFailure(Throwable ex) {
-        log.warn("An error occurred while generating a token from Insee's API with cause {}\nand message {}", ex.getCause(), ex.getMessage());
+        log.warn("An error occurred while generating a token fromApiResponse Insee's API with cause {}\nand message {}", ex.getCause(), ex.getMessage());
     }
 
     public static void logSireneSearchFailure(Throwable ex) { //TODO

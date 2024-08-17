@@ -1,7 +1,7 @@
 package dig.common.messaging;
 
-import dig.common.messaging.event.SireneHistoricizedSearchEvent;
-import dig.france.insee.sirene.search.result.SireneSearchResponse;
+import dig.france.insee.sirene.messaging.event.SireneHistoricizedSearchEvent;
+import dig.france.insee.sirene.search.response.SireneSearchResponse;
 import io.micronaut.rabbitmq.annotation.Binding;
 import io.micronaut.rabbitmq.annotation.RabbitClient;
 
@@ -11,6 +11,5 @@ public interface DigProducer {
     @Binding("${rabbitmq.binding.insee.sirene.search-request}")
     void sendSireneHistoricizedSearchEvent(SireneHistoricizedSearchEvent event);
 
-    @Binding("${rabbitmq.binding.insee.sirene.search-response}")
-    void onSireneSearchResponse(SireneSearchResponse sireneSearchResponse);
+    void sendCompletedSearchEvent(SireneSearchResponse sireneSearchResponse);
 }

@@ -1,4 +1,4 @@
-package dig.france.insee.sirene.search.result;
+package dig.france.insee.sirene.search.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.serde.annotation.Serdeable;
@@ -11,7 +11,33 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static dig.france.insee.sirene.SireneConstants.*;
+import static dig.france.insee.sirene.SireneConstants.ADMIN_STATUS;
+import static dig.france.insee.sirene.SireneConstants.ADMIN_STATUS_CHANGE;
+import static dig.france.insee.sirene.SireneConstants.COMMON_FIRST_NAME;
+import static dig.france.insee.sirene.SireneConstants.COMPANY_COMMON_NAME_1;
+import static dig.france.insee.sirene.SireneConstants.COMPANY_COMMON_NAME_2;
+import static dig.france.insee.sirene.SireneConstants.COMPANY_COMMON_NAME_3;
+import static dig.france.insee.sirene.SireneConstants.COMPANY_COMMON_NAME_CHANGE;
+import static dig.france.insee.sirene.SireneConstants.COMPANY_NAME;
+import static dig.france.insee.sirene.SireneConstants.COMPANY_NAME_CHANGE;
+import static dig.france.insee.sirene.SireneConstants.END_DATE;
+import static dig.france.insee.sirene.SireneConstants.FIRST_NAME;
+import static dig.france.insee.sirene.SireneConstants.FOURTH_NAME;
+import static dig.france.insee.sirene.SireneConstants.LAST_MODIFIED_DATE;
+import static dig.france.insee.sirene.SireneConstants.LEGAL_CATEGORY;
+import static dig.france.insee.sirene.SireneConstants.LEGAL_CATEGORY_CHANGE;
+import static dig.france.insee.sirene.SireneConstants.MAIN_ACTIVITY;
+import static dig.france.insee.sirene.SireneConstants.MAIN_ACTIVITY_CHANGE;
+import static dig.france.insee.sirene.SireneConstants.MIDDLE_NAME;
+import static dig.france.insee.sirene.SireneConstants.NATURAL_PERSON_COMMON_NAME;
+import static dig.france.insee.sirene.SireneConstants.NATURAL_PERSON_COMMON_NAME_CHANGE;
+import static dig.france.insee.sirene.SireneConstants.NATURAL_PERSON_NAME;
+import static dig.france.insee.sirene.SireneConstants.NATURAL_PERSON_NAME_CHANGE;
+import static dig.france.insee.sirene.SireneConstants.SIRENE_UNITS;
+import static dig.france.insee.sirene.SireneConstants.SIRENE_UNIT_CREATION_DATE;
+import static dig.france.insee.sirene.SireneConstants.START_DATE;
+import static dig.france.insee.sirene.SireneConstants.THIRD_NAME;
+import static dig.france.insee.sirene.SireneConstants.UNIT_CHANGES;
 
 
 /**
@@ -25,6 +51,13 @@ import static dig.france.insee.sirene.SireneConstants.*;
 @Slf4j
 public record SireneSearchResponse(SirenHeader header,
                                    @JsonProperty(SIRENE_UNITS) List<SireneUnit> sireneUnits) {
+
+    public List<Integer> sirens() {
+        if (sireneUnits == null || sireneUnits.isEmpty()) {
+            return null;
+        }
+        return sireneUnits.stream().map(SireneUnit::siren).collect(Collectors.toList());
+    }
 
     @Serdeable
     record SirenHeader(String message,
@@ -48,15 +81,15 @@ public record SireneSearchResponse(SirenHeader header,
      * @field periods
      */
     @Serdeable
-    protected record SireneUnit(Integer siren,
-                                @JsonProperty(SIRENE_UNIT_CREATION_DATE) String creationDate,
-                                @JsonProperty(FIRST_NAME) String firstName,
-                                @JsonProperty(MIDDLE_NAME) String middleName,
-                                @JsonProperty(THIRD_NAME) String thirdName,
-                                @JsonProperty(FOURTH_NAME) String fourthName,
-                                @JsonProperty(COMMON_FIRST_NAME) String commonFirstName,
-                                @JsonProperty(LAST_MODIFIED_DATE) String lastModifiedDate,
-                                @JsonProperty(UNIT_CHANGES) List<Period> periods) {
+    public record SireneUnit(Integer siren,
+                             @JsonProperty(SIRENE_UNIT_CREATION_DATE) String creationDate,
+                             @JsonProperty(FIRST_NAME) String firstName,
+                             @JsonProperty(MIDDLE_NAME) String middleName,
+                             @JsonProperty(THIRD_NAME) String thirdName,
+                             @JsonProperty(FOURTH_NAME) String fourthName,
+                             @JsonProperty(COMMON_FIRST_NAME) String commonFirstName,
+                             @JsonProperty(LAST_MODIFIED_DATE) String lastModifiedDate,
+                             @JsonProperty(UNIT_CHANGES) List<Period> periods) {
 
         public String firstNames() {
             return Stream.of(firstName, middleName, thirdName, fourthName)
@@ -66,6 +99,10 @@ public record SireneSearchResponse(SirenHeader header,
 
         public UnitType inferUnitType() {
             return this.commonFirstName != null ? UnitType.NATURAL_PERSON : UnitType.LEGAL_ENTITY;
+        }
+
+        public void setEstablishments(SiretSearchResponse siretResponse) {
+
         }
     }
 
@@ -87,11 +124,11 @@ public record SireneSearchResponse(SirenHeader header,
      *                                   Only the special characters hyphen (-) and apostrophe.
      *                                   The name may be set to null for a natural person (case of purged sireneUnits).
      * @field naturalPersonCommonName    Referred to in French as "nom d'usage".
-     *                                   It might differ from the family name mentioned on the birth certificate. Null for legal entities.
+     *                                   It might differ fromApiResponse the family name mentioned on the birth certificate. Null for legal entities.
      * @field companyName                Name under which the legal unit is declared.
      *                                   This variable is set to null for individuals.
      *                                   The name may sometimes contain a reference to the form of the company.
-     * @field companyCommonName1, 2, 3   Name under which the legal entity is known from the public.
+     * @field companyCommonName1, 2, 3   Name under which the legal entity is known fromApiResponse the public.
      * @field legalCategory              The legal category is an attribute of Sirene sireneUnits.
      *                                   For a natural person, it is always 1000, whether the person is a
      *                                   craftsman, trader, self-employed person, farmer or other, and cannot change.

@@ -8,8 +8,10 @@ import dig.france.insee.sirene.search.request.SearchCriteria;
 import dig.france.insee.sirene.search.request.SearchOperator;
 import dig.france.insee.sirene.search.request.SearchVariable;
 import dig.france.insee.sirene.search.request.SireneSearchFactory;
+import dig.france.insee.sirene.search.response.SireneSearchResponse;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Set;
@@ -23,21 +25,33 @@ public class AsyncSireneSearchService {
     @Inject
     DigProducer digProducer;
 
-    void sireneSearchByNaturalNameHistoricized(String term) {
-        Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
+    //TODO -> full test
+    public Mono<SireneSearchResponse> sireneSearchByNaturalNameHistoricized(String term) {
+        return Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
                         .searchVar(SearchVariable.NATURAL_PERSON_NAME)
                         .value(term)
                         .operator(SearchOperator.NONE)
                         .build()))))
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retry(InseeConstant.MAX_RETRY)
-                .subscribe(digProducer::onSireneSearchResponse);
+                .flatMap(this::completeSearchWithSiret)
+                .doOnNext(digProducer::sendCompletedSearchEvent);
     }
 
-    public void sireneSearchByMultiCriteriaHistoricized(Set<SearchCriteria> criteria) {
-        Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(criteria)))
+    public Mono<SireneSearchResponse> sireneSearchByMultiCriteriaHistoricized(Set<SearchCriteria> criteria) {
+        return Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(criteria)))
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retry(InseeConstant.MAX_RETRY)
-                .subscribe(digProducer::onSireneSearchResponse);
+                .flatMap(this::completeSearchWithSiret)
+                .doOnNext(digProducer::sendCompletedSearchEvent);
+    }
+
+    private Mono<SireneSearchResponse> completeSearchWithSiret(SireneSearchResponse apiResponse) {
+        if (apiResponse.sirens() != null) {
+            return Flux.fromIterable(apiResponse.sireneUnits())
+                    .flatMap(unit -> Mono.from(httpClient.siretSearch(unit.siren())).doOnNext(unit::setEstablishments))
+                    .then(Mono.just(apiResponse));
+        }
+        return Mono.just(apiResponse);
     }
 }
