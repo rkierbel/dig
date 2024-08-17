@@ -91,6 +91,10 @@ public record SireneSearchResponse(SirenHeader header,
                              @JsonProperty(LAST_MODIFIED_DATE) String lastModifiedDate,
                              @JsonProperty(UNIT_CHANGES) List<Period> periods) {
 
+        public String sirenStr() {
+            return String.valueOf(siren);
+        }
+
         public String firstNames() {
             return Stream.of(firstName, middleName, thirdName, fourthName)
                     .filter(Objects::nonNull)

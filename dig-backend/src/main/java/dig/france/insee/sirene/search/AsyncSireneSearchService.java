@@ -25,7 +25,7 @@ public class AsyncSireneSearchService {
     @Inject
     DigProducer digProducer;
 
-    //TODO -> full test
+    //TODO -> full test + weigh interest of fire and forget VS subscribe to result alternatives
     public Mono<SireneSearchResponse> sireneSearchByNaturalNameHistoricized(String term) {
         return Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
                         .searchVar(SearchVariable.NATURAL_PERSON_NAME)
@@ -49,7 +49,10 @@ public class AsyncSireneSearchService {
     private Mono<SireneSearchResponse> completeSearchWithSiret(SireneSearchResponse apiResponse) {
         if (apiResponse.sirens() != null) {
             return Flux.fromIterable(apiResponse.sireneUnits())
-                    .flatMap(unit -> Mono.from(httpClient.siretSearch(unit.siren())).doOnNext(unit::setEstablishments))
+                    .flatMap(unit -> {
+                        String query = SireneSearchFactory.simpleSearch(SearchVariable.SIREN, unit.sirenStr());
+                        return Mono.from(httpClient.siretSearchAsync(query)).doOnNext(unit::setEstablishments);
+                    })
                     .then(Mono.just(apiResponse));
         }
         return Mono.just(apiResponse);
