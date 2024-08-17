@@ -20,11 +20,19 @@ public abstract class SireneSearchMapper {
     public abstract SearchReportDto apiResponseToDto(SireneSearchResponse apiResponse);
 
     @Mappings({
-            @Mapping(target = "lastModifiedDate", source = "lastModifiedDate", qualifiedByName = "toInstant"),
-            @Mapping(target = "firstNames", expression = "java(sireneUnit.firstNames())"),
-            @Mapping(target = "type", expression = "java(sireneUnit.inferUnitType())")
+            @Mapping(target = "lastModifiedDate", source = "unit.lastModifiedDate", qualifiedByName = "toInstant"),
+            @Mapping(target = "firstNames", expression = "java(unit.firstNames())"),
+            @Mapping(target = "type", expression = "java(unit.inferUnitType())")
     })
-    abstract SearchReportDto.SireneUnitDto toSireneUnitDto(SireneSearchResponse.SireneUnit sireneUnit);
+    public abstract SearchReportDto.SireneUnitDto toSireneUnitDto(SireneSearchResponse.SireneUnit unit,
+                                                                  SiretSearchResponse siretResponse); //TODO -> set establishments
+
+    @Mappings({
+            @Mapping(target = "lastModifiedDate", source = "lastModifiedDate", qualifiedByName = "toInstant"),
+            @Mapping(target = "firstNames", expression = "java(unit.firstNames())"),
+            @Mapping(target = "type", expression = "java(unit.inferUnitType())")
+    })
+    abstract SearchReportDto.SireneUnitDto toSireneUnitDto(SireneSearchResponse.SireneUnit unit);
 
     @Mappings({
             @Mapping(target = "changes", expression = "java(unitPeriod.getPeriodChanges())"),
@@ -40,4 +48,5 @@ public abstract class SireneSearchMapper {
         ZoneId brusselsZone = ZoneId.of("Europe/Brussels");
         return localDateTime.atZone(brusselsZone).toInstant();
     }
+
 }

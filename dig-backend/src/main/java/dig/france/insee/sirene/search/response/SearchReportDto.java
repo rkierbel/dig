@@ -1,6 +1,7 @@
 package dig.france.insee.sirene.search.response;
 
 import io.micronaut.serde.annotation.Serdeable;
+import lombok.Builder;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -8,9 +9,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Serdeable
+@Builder(toBuilder = true)
 public record SearchReportDto(List<SireneUnitDto> sireneUnits) {
 
     private static final String COMMA_BR = ",\n";
+
+    public static SearchReportDto emptyReport() {
+        return SearchReportDto.builder().build();
+    }
 
     @Override
     public String toString() {
@@ -23,13 +29,13 @@ public record SearchReportDto(List<SireneUnitDto> sireneUnits) {
     }
 
     @Serdeable
-    record SireneUnitDto(Integer siren,
-                         LocalDate creationDate,
-                         Instant lastModifiedDate,
-                         UnitType type,
-                         String commonFirstName,
-                         String firstNames,
-                         List<PeriodDto> periods) {
+    public record SireneUnitDto(Integer siren,
+                                LocalDate creationDate,
+                                Instant lastModifiedDate,
+                                UnitType type,
+                                String commonFirstName,
+                                String firstNames,
+                                List<PeriodDto> periods) {
 
         @Override
         public String toString() {
