@@ -12,6 +12,6 @@ record PeriodChange(String reason,
 
     @Override
     public String toString() {
-        return "\n\t\t<change reason: %s ; value: %s>".formatted(reason, value);
+        return "\n\t\t- change reason: %s ; value: %s".formatted(reason, value);
     }
 }

@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 @Serdeable
 public record SireneSearchResultDto(List<SireneUnitDto> sireneUnits) {
 
+    private static final String COMMA_BR = ",\n";
+
     @Override
     public String toString() {
         return "SireneSearchResultDto {\n" +
@@ -21,7 +23,8 @@ public record SireneSearchResultDto(List<SireneUnitDto> sireneUnits) {
     }
 
     @Serdeable
-    record SireneUnitDto(LocalDate creationDate,
+    record SireneUnitDto(Integer siren,
+                         LocalDate creationDate,
                          Instant lastModifiedDate,
                          UnitType type,
                          String commonFirstName,
@@ -31,11 +34,12 @@ public record SireneSearchResultDto(List<SireneUnitDto> sireneUnits) {
         @Override
         public String toString() {
             return "SireneUnitDto {\n" +
-                    "\tcreationDate: " + creationDate + ",\n" +
-                    "\tlastModifiedDate: " + lastModifiedDate + ",\n" +
-                    "\ttype: " + type + ",\n" +
-                    "\tcommonFirstName: " + (commonFirstName != null ? commonFirstName : "null - legal entity") + ",\n" +
-                    "\tfirstNames: " + (firstNames != null ? firstNames : "null - legal entity") + ",\n" +
+                    "\tsiren=%s%s" + siren + COMMA_BR +
+                    "\tcreationDate: " + creationDate + COMMA_BR +
+                    "\tlastModifiedDate: " + lastModifiedDate + COMMA_BR +
+                    "\ttype: " + type + COMMA_BR +
+                    "\tcommonFirstName: " + (commonFirstName != null ? commonFirstName : "null - legal entity") + COMMA_BR +
+                    "\tfirstNames: " + (firstNames != null ? firstNames : "null - legal entity") + COMMA_BR +
                     "\tperiods: " + (periods == null ? "null" :
                     periods.stream()
                             .map(period -> "\n\t\t" + period.toString().replace("\n", "\n\t\t"))
@@ -56,10 +60,10 @@ public record SireneSearchResultDto(List<SireneUnitDto> sireneUnits) {
                     "\t\tchanges: " + (changes == null ? "null" :
                     changes.stream()
                             .map(Object::toString)
-                            .collect(Collectors.joining(", ", "[", "]"))) + ",\n" +
-                    "\t\tnaturalPersonLastName: " + naturalPersonLastName + ",\n" +
-                    "\t\tcompanyNames: " + (companyNames != null ? companyNames : "null - natural person") + ",\n" +
-                    "\t\tstartDate: " + startDate + ",\n" +
+                            .collect(Collectors.joining(", ", "[", "]"))) + COMMA_BR +
+                    "\t\tnaturalPersonLastName: " + naturalPersonLastName + COMMA_BR +
+                    "\t\tcompanyNames: " + (companyNames != null ? companyNames : "null - natural person") + COMMA_BR +
+                    "\t\tstartDate: " + startDate + COMMA_BR +
                     "\t\tendDate: " + endDate + "\n" +
                     "}";
         }

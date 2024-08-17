@@ -8,6 +8,5 @@ import io.micronaut.context.annotation.Requires;
 record InseeHttpConfig(String consumerKey,
                        String consumerSecret) {
 
-
     static final String PREFIX = "insee";
 }

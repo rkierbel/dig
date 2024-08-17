@@ -48,7 +48,7 @@ public record SireneSearchResponse(SirenHeader header,
      * @field periods
      */
     @Serdeable
-    protected record SireneUnit(String siren,
+    protected record SireneUnit(Integer siren,
                                 @JsonProperty(SIRENE_UNIT_CREATION_DATE) String creationDate,
                                 @JsonProperty(FIRST_NAME) String firstName,
                                 @JsonProperty(MIDDLE_NAME) String middleName,

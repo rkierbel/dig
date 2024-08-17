@@ -31,22 +31,20 @@ public interface InseeHttpClient {
     @SingleResult
     Publisher<SirenInfoResponse> information();
 
-    @Get("${sirene.api.prefix}${sirene.api.version-3-11}${sirene.api.sirene-search}")
     //q=periode(nomUniteLegale:grzeszezak) or q=raisonSociale:blabla
+    @Get("${sirene.api.prefix}${sirene.api.version-3-11}${sirene.api.sirene-search}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
     SireneSearchResponse search(@QueryValue(value = InseeConstant.QUERY) String sireneSearch);
 
     @Get("${sirene.api.prefix}${sirene.api.version-3-11}${sirene.api.sirene-search}")
-    //q=periode(nomUniteLegale:grzeszezak) or q=raisonSociale:blabla
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
     Publisher<SireneSearchResponse> searchAsync(@QueryValue(value = InseeConstant.QUERY) String sireneSearch);
 
     @Get("${sirene.api.prefix}${sirene.api.version-3-11}${sirene.api.siret-search}")
-    //q=periode(nomUniteLegale:grzeszezak) or q=raisonSociale:blabla
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
