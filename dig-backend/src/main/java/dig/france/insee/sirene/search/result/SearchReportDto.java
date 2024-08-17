@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Serdeable
-public record SireneSearchResultDto(List<SireneUnitDto> sireneUnits) {
+public record SearchReportDto(List<SireneUnitDto> sireneUnits) {
 
     private static final String COMMA_BR = ",\n";
 
@@ -34,7 +34,7 @@ public record SireneSearchResultDto(List<SireneUnitDto> sireneUnits) {
         @Override
         public String toString() {
             return "SireneUnitDto {\n" +
-                    "\tsiren=%s%s" + siren + COMMA_BR +
+                    "\tsiren=" + siren + COMMA_BR +
                     "\tcreationDate: " + creationDate + COMMA_BR +
                     "\tlastModifiedDate: " + lastModifiedDate + COMMA_BR +
                     "\ttype: " + type + COMMA_BR +
@@ -52,6 +52,8 @@ public record SireneSearchResultDto(List<SireneUnitDto> sireneUnits) {
     record PeriodDto(List<PeriodChange> changes,
                      String naturalPersonLastName,
                      String companyNames,
+                     String legalCategory,
+                     String mainActivity,
                      LocalDate startDate,
                      LocalDate endDate) {
         @Override
@@ -62,7 +64,9 @@ public record SireneSearchResultDto(List<SireneUnitDto> sireneUnits) {
                             .map(Object::toString)
                             .collect(Collectors.joining(", ", "[", "]"))) + COMMA_BR +
                     "\t\tnaturalPersonLastName: " + naturalPersonLastName + COMMA_BR +
-                    "\t\tcompanyNames: " + (companyNames != null ? companyNames : "null - natural person") + COMMA_BR +
+                    "\t\tlegalCategory: " + legalCategory + COMMA_BR +
+                    "\t\tmainActivity: " + mainActivity + COMMA_BR +
+                    "\t\tcompanyNames: " + (companyNames != null && !companyNames.isEmpty() ? companyNames : "null - natural person") + COMMA_BR +
                     "\t\tstartDate: " + startDate + COMMA_BR +
                     "\t\tendDate: " + endDate + "\n" +
                     "}";

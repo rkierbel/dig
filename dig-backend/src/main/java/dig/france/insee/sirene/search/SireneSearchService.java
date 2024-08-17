@@ -7,7 +7,7 @@ import dig.france.insee.sirene.search.request.SearchOperator;
 import dig.france.insee.sirene.search.request.SearchVariable;
 import dig.france.insee.sirene.search.request.SireneSearchFactory;
 import dig.france.insee.sirene.search.result.SireneSearchMapper;
-import dig.france.insee.sirene.search.result.SireneSearchResultDto;
+import dig.france.insee.sirene.search.result.SearchReportDto;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ public class SireneSearchService {
     SireneSearchMapper sireneSearchMapper;
     // TODO -> AOP logging
 
-    SireneSearchResultDto sireneSearchByNaturalNameHistoricized(String term) {
+    SearchReportDto sireneSearchByNaturalNameHistoricized(String term) {
         String queryString = SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
                 .searchVar(SearchVariable.NATURAL_PERSON_NAME)
                 .value(term)
@@ -50,15 +50,15 @@ public class SireneSearchService {
         httpClient.siretSearch(queryString);
     }
 
-    SireneSearchResultDto sireneSearchByMultiCriteriaHistoricized(Set<SearchCriteria> criteria) {
+    SearchReportDto sireneSearchByMultiCriteriaHistoricized(Set<SearchCriteria> criteria) {
         String queryString = SireneSearchFactory.historicized(criteria);
         log.info("Built query string for multi-criteria search: {}", queryString);
         return resultFromHttp(queryString, SireneSearchFactory.logCriteria(criteria));
     }
 
-    private SireneSearchResultDto resultFromHttp(String query, String exceptionMessage) {
+    private SearchReportDto resultFromHttp(String query, String exceptionMessage) {
         try {
-            SireneSearchResultDto result = sireneSearchMapper.apiResponseToDto(httpClient.search(query));
+            SearchReportDto result = sireneSearchMapper.apiResponseToDto(httpClient.search(query));
             log.info("Mapping API search response to SearchResultDto: {}", result);
             return result;
         } catch (SireneSearchException searchException) {

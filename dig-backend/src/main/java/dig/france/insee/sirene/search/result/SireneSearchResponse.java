@@ -42,8 +42,8 @@ public record SireneSearchResponse(SirenHeader header,
      *                         Identification numbers are unique: once a Siren number has been allocated,
      *                         it cannot be reused and allocated to a new Sirene unit, even if the business has ceased its activity.
      * @field creationDate
-     * @field names1, 2, 3, 4  Only for natural persons, null if Sirene Unit is a legal entity.
-     * @field commonFirstName  Only for natural persons, null if Sirene Unit is a legal entity.
+     * @field names1, 2, 3, 4  Only for natural persons, null if the Sirene Unit is a legal entity.
+     * @field commonFirstName  Only for natural persons, null if the Sirene Unit is a legal entity.
      * @field lastModifiedDate
      * @field periods
      */

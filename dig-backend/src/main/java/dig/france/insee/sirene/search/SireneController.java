@@ -2,7 +2,7 @@ package dig.france.insee.sirene.search;
 
 import dig.france.insee.sirene.search.request.SearchCriteria;
 import dig.france.insee.sirene.search.request.SireneSearchFactory;
-import dig.france.insee.sirene.search.result.SireneSearchResultDto;
+import dig.france.insee.sirene.search.result.SearchReportDto;
 import dig.france.insee.sirene.validation.ValidSireneSimpleSearch;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.MediaType;
@@ -32,7 +32,7 @@ public class SireneController {
     @Get("/natural-person")
     @Produces(MediaType.APPLICATION_JSON)
     @ExecuteOn(TaskExecutors.BLOCKING)
-    public HttpResponse<SireneSearchResultDto> sireneSearchByNaturalNameHistoricized(@QueryValue String term) {
+    public HttpResponse<SearchReportDto> sireneSearchByNaturalNameHistoricized(@QueryValue String term) {
         log.info("Sending HTTP request to Sirene for natural person with name {}", term);
         return HttpResponse.ok(searchService.sireneSearchByNaturalNameHistoricized(term));
     }
@@ -40,7 +40,7 @@ public class SireneController {
     @Get("/natural-person-siret")
     @Produces(MediaType.APPLICATION_JSON)
     @ExecuteOn(TaskExecutors.BLOCKING)
-    public HttpResponse<SireneSearchResultDto> siretSearchByNaturalNameHistoricized(@QueryValue String term) {
+    public HttpResponse<SearchReportDto> siretSearchByNaturalNameHistoricized(@QueryValue String term) {
         log.info("Sending HTTP request to the Siret register for natural person with name {}", term);
         searchService.siretSearchByNaturalNameHistoricized(term);
         return HttpResponse.ok();
@@ -49,7 +49,7 @@ public class SireneController {
     @Get("/multi-criteria")
     @Produces(MediaType.APPLICATION_JSON)
     @ExecuteOn(TaskExecutors.BLOCKING)
-    public HttpResponse<SireneSearchResultDto> sireneSearchByMultiCriteriaHistoricized(
+    public HttpResponse<SearchReportDto> sireneSearchByMultiCriteriaHistoricized(
             @QueryValue Set<SearchCriteria> searchCriteria) {
         log.info("Sending HTTP request to Sirene for multi-criteria search {}", SireneSearchFactory.logCriteria(searchCriteria));
         return HttpResponse.ok(searchService.sireneSearchByMultiCriteriaHistoricized(searchCriteria));
