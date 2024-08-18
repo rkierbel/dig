@@ -44,18 +44,18 @@ public class SireneConstants {
     public static final String HIDE_NULL_VALUES = "&masquerValeursNulles=true";
 
     /**
-     * Siret response variables
+     * Siret - establishment variables
      */
-    public static String  ESTABLISHMENT_CREATION_DATE = "dateCreationEtablissement";
-    public static String  EMPLOYEE_HEADCOUNT = "trancheEffectifsEtablissement";
-    public static String  EMPLOYEE_HEADCOUNT_VALIDITY_YEAR = "anneeEffectifsEtablissement";
-    public static String  TRADE_REGISTER_MAIN_ACTIVITY = "activitePrincipaleRegistreMetiersEtablissement"; //only concerns establishments in the craft sector (craftsmen, craft traders and craft companies)
-    public static String  ESTABLISHMENT_LAST_MODIFIED_DATE = "dateDernierTraitementEtablissement";
-    public static String IS_HEAD = "etablissementSiege";
-    public static String NUMBER_ESTABLISHMENT_PERIODS = "nombrePeriodesEtablissement";
-    public static String ADDRESS = "adresseEtablissement";
-    public static String ADDRESS_2 = "adresse2Etablissement";
-    public static String ESTABLISHMENT_PERIODS = "periodesEtablissement";
+    public static final String ESTABLISHMENT_CREATION_DATE = "dateCreationEtablissement";
+    public static final String EMPLOYEE_HEADCOUNT_BAND = "trancheEffectifsEtablissement";
+    public static final String EMPLOYEE_HEADCOUNT_VALIDITY_YEAR = "anneeEffectifsEtablissement";
+    public static final String TRADE_REGISTER_MAIN_ACTIVITY = "activitePrincipaleRegistreMetiersEtablissement";
+    public static final String ESTABLISHMENT_LAST_MODIFIED_DATE = "dateDernierTraitementEtablissement";
+    public static final String IS_HEAD = "etablissementSiege";
+    public static final String NUMBER_ESTABLISHMENT_PERIODS = "nombrePeriodesEtablissement";
+    public static final String ADDRESS = "adresseEtablissement";
+    public static final String ADDRESS_2 = "adresse2Etablissement";
+    public static final String ESTABLISHMENT_PERIODS = "periodesEtablissement";
 
 
 

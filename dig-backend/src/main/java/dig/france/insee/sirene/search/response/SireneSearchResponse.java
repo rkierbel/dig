@@ -131,6 +131,9 @@ public record SireneSearchResponse(SirenHeader header,
      *                                   For a natural person, it is always 1000, whether the person is a
      *                                   craftsman, trader, self-employed person, farmer or other, and cannot change.
      *                                   For legal entities, the legal category may change during the life of the company.
+     * @field mainActivity               When a legal unit is entered in the register, INSEE assigns it a code based on the registrant's description of its main activity.
+     *                                   This code can be changed during the life of the legal unit, depending on the declarations made by the registrant.
+     *                                   For each legal unit, there is only one code at any given time.
      * @field administrativeStatusChange For each period, each historicized variable is accompanied by another one indicating whether it has been modified or not.
      *                                   In other words, this indicates whether a given variable or set of variables is the reason for the creation of the period.
      *                                   These change indicators are prefixed by "changement" in the JSON response.
