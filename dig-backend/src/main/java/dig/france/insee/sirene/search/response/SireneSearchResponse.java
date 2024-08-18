@@ -41,6 +41,7 @@ import static dig.france.insee.sirene.SireneConstants.THIRD_NAME;
 import static dig.france.insee.sirene.SireneConstants.UNIT_CHANGES;
 
 
+//TODO -> check if booleans can be null!
 /**
  * The result of a Sirene query is provided in Json format, structured in 2 parts:<br>
  * - the header (not to be confused with the http header or the response header) which contains the return code and potentially an error message ;<br>

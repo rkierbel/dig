@@ -23,16 +23,16 @@ public class SireneConstants {
     /**
      * Historicized variables
      */
-    public static final String START_DATE  = "dateDebut";
-    public static final String END_DATE  = "dateFin";
-    public static final String ADMIN_STATUS  = "etatAdministratifUniteLegale";
-    public static final String NATURAL_PERSON_NAME  = "nomUniteLegale";
+    public static final String START_DATE = "dateDebut";
+    public static final String END_DATE = "dateFin";
+    public static final String ADMIN_STATUS = "etatAdministratifUniteLegale";
+    public static final String NATURAL_PERSON_NAME = "nomUniteLegale";
     public static final String NATURAL_PERSON_COMMON_NAME = "nomUsageUniteLegale";
-    public static final String COMPANY_NAME  = "denominationUniteLegale";
-    public static final String COMPANY_COMMON_NAME_1  = "denominationUsuelle1UniteLegale";
-    public static final String COMPANY_COMMON_NAME_2  = "denominationUsuelle2UniteLegale";
-    public static final String COMPANY_COMMON_NAME_3  = "denominationUsuelle3UniteLegale";
-    public static final String LEGAL_CATEGORY  = "categorieJuridiqueUniteLegale";
+    public static final String COMPANY_NAME = "denominationUniteLegale";
+    public static final String COMPANY_COMMON_NAME_1 = "denominationUsuelle1UniteLegale";
+    public static final String COMPANY_COMMON_NAME_2 = "denominationUsuelle2UniteLegale";
+    public static final String COMPANY_COMMON_NAME_3 = "denominationUsuelle3UniteLegale";
+    public static final String LEGAL_CATEGORY = "categorieJuridiqueUniteLegale";
     public static final String MAIN_ACTIVITY = "activitePrincipaleUniteLegale";
     public static final String ADMIN_STATUS_CHANGE = "changementEtatAdministratifUniteLegale";
     public static final String NATURAL_PERSON_NAME_CHANGE = "changementNomUniteLegale";
@@ -42,4 +42,21 @@ public class SireneConstants {
     public static final String LEGAL_CATEGORY_CHANGE = "changementCategorieJuridiqueUniteLegale";
     public static final String MAIN_ACTIVITY_CHANGE = "changementActivitePrincipaleUniteLegale";
     public static final String HIDE_NULL_VALUES = "&masquerValeursNulles=true";
+
+    /**
+     * Siret response variables
+     */
+    public static String  ESTABLISHMENT_CREATION_DATE = "dateCreationEtablissement";
+    public static String  EMPLOYEE_HEADCOUNT = "trancheEffectifsEtablissement";
+    public static String  EMPLOYEE_HEADCOUNT_VALIDITY_YEAR = "anneeEffectifsEtablissement";
+    public static String  TRADE_REGISTER_MAIN_ACTIVITY = "activitePrincipaleRegistreMetiersEtablissement"; //only concerns establishments in the craft sector (craftsmen, craft traders and craft companies)
+    public static String  ESTABLISHMENT_LAST_MODIFIED_DATE = "dateDernierTraitementEtablissement";
+    public static String IS_HEAD = "etablissementSiege";
+    public static String NUMBER_ESTABLISHMENT_PERIODS = "nombrePeriodesEtablissement";
+    public static String ADDRESS = "adresseEtablissement";
+    public static String ADDRESS_2 = "adresse2Etablissement";
+    public static String ESTABLISHMENT_PERIODS = "periodesEtablissement";
+
+
+
 }
