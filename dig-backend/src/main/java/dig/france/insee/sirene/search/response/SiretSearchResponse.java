@@ -1,6 +1,7 @@
 package dig.france.insee.sirene.search.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dig.france.insee.sirene.search.response.enumerated.AdministrativeStatus;
 import io.micronaut.serde.annotation.Serdeable;
 
 import java.util.List;

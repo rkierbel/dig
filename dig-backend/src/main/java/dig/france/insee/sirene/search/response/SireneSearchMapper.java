@@ -24,8 +24,8 @@ public abstract class SireneSearchMapper {
             @Mapping(target = "firstNames", expression = "java(unit.firstNames())"),
             @Mapping(target = "type", expression = "java(unit.inferUnitType())")
     })
-    public abstract SearchReportDto.SireneUnitDto toSireneUnitDto(SireneSearchResponse.SireneUnit unit,
-                                                                  SiretSearchResponse siretResponse); //TODO -> set establishments
+    abstract SearchReportDto.SireneUnitDto toSireneUnitDto(SireneSearchResponse.SireneUnit unit,
+                                                           SiretSearchResponse siretResponse); //TODO -> set establishments
 
     @Mappings({
             @Mapping(target = "lastModifiedDate", source = "lastModifiedDate", qualifiedByName = "toInstant"),

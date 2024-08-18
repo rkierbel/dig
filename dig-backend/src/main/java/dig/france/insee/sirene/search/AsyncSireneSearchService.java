@@ -18,7 +18,7 @@ import reactor.core.publisher.Mono;
 import reactor.util.retry.Retry;
 
 import java.time.Duration;
-import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Singleton
@@ -57,9 +57,7 @@ public class AsyncSireneSearchService {
 
     //TODO -> multiple siren single request works => link establishments to siren in the report
     private Mono<SearchReportDto> completeSearchWithSiret(SireneSearchResponse apiResponse) {
-        List<SireneSearchResponse.SireneUnit> sireneUnits = apiResponse.sireneUnits();
-
-        if (sireneUnits == null || sireneUnits.isEmpty()) {
+        if (Objects.isNull(apiResponse.sirens())) {
             return Mono.just(SearchReportDto.emptyReport());
         }
         return Mono.from(httpClient.siretSearchAsync(SireneSearchFactory.multipleSiren(apiResponse.sirens())))

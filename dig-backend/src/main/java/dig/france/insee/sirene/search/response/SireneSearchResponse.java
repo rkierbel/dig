@@ -1,7 +1,10 @@
 package dig.france.insee.sirene.search.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dig.france.insee.sirene.search.response.enumerated.AdministrativeStatus;
+import dig.france.insee.sirene.search.response.enumerated.UnitType;
 import io.micronaut.serde.annotation.Serdeable;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
@@ -42,6 +45,7 @@ import static dig.france.insee.sirene.SireneConstants.UNIT_CHANGES;
 
 
 //TODO -> check if booleans can be null!
+
 /**
  * The result of a Sirene query is provided in Json format, structured in 2 parts:<br>
  * - the header (not to be confused with the http header or the response header) which contains the return code and potentially an error message ;<br>
@@ -52,7 +56,7 @@ import static dig.france.insee.sirene.SireneConstants.UNIT_CHANGES;
 @Serdeable
 @Slf4j
 public record SireneSearchResponse(SirenHeader header,
-                                   @JsonProperty(SIRENE_UNITS) List<SireneUnit> sireneUnits) {
+                                   @Getter @JsonProperty(SIRENE_UNITS) List<SireneUnit> sireneUnits) {
 
     public Set<Integer> sirens() {
         if (sireneUnits == null || sireneUnits.isEmpty()) {
@@ -83,15 +87,15 @@ public record SireneSearchResponse(SirenHeader header,
      * @field periods
      */
     @Serdeable
-    public record SireneUnit(Integer siren,
-                             @JsonProperty(SIRENE_UNIT_CREATION_DATE) String creationDate,
-                             @JsonProperty(FIRST_NAME) String firstName,
-                             @JsonProperty(MIDDLE_NAME) String middleName,
-                             @JsonProperty(THIRD_NAME) String thirdName,
-                             @JsonProperty(FOURTH_NAME) String fourthName,
-                             @JsonProperty(COMMON_FIRST_NAME) String commonFirstName,
-                             @JsonProperty(LAST_MODIFIED_DATE) String lastModifiedDate,
-                             @JsonProperty(UNIT_CHANGES) List<Period> periods) {
+    record SireneUnit(Integer siren,
+                      @JsonProperty(SIRENE_UNIT_CREATION_DATE) String creationDate,
+                      @JsonProperty(FIRST_NAME) String firstName,
+                      @JsonProperty(MIDDLE_NAME) String middleName,
+                      @JsonProperty(THIRD_NAME) String thirdName,
+                      @JsonProperty(FOURTH_NAME) String fourthName,
+                      @JsonProperty(COMMON_FIRST_NAME) String commonFirstName,
+                      @JsonProperty(LAST_MODIFIED_DATE) String lastModifiedDate,
+                      @JsonProperty(UNIT_CHANGES) List<Period> periods) {
 
         public String firstNames() {
             return Stream.of(firstName, middleName, thirdName, fourthName)

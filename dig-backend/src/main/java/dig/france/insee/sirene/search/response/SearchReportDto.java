@@ -1,5 +1,6 @@
 package dig.france.insee.sirene.search.response;
 
+import dig.france.insee.sirene.search.response.enumerated.UnitType;
 import io.micronaut.serde.annotation.Serdeable;
 import lombok.Builder;
 
@@ -29,13 +30,13 @@ public record SearchReportDto(List<SireneUnitDto> sireneUnits) {
     }
 
     @Serdeable
-    public record SireneUnitDto(Integer siren,
-                                LocalDate creationDate,
-                                Instant lastModifiedDate,
-                                UnitType type,
-                                String commonFirstName,
-                                String firstNames,
-                                List<PeriodDto> periods) {
+    record SireneUnitDto(Integer siren,
+                         LocalDate creationDate,
+                         Instant lastModifiedDate,
+                         UnitType type,
+                         String commonFirstName,
+                         String firstNames,
+                         List<PeriodDto> periods) {
 
         @Override
         public String toString() {
