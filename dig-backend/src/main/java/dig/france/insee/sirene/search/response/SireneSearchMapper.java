@@ -49,4 +49,7 @@ public abstract class SireneSearchMapper {
         return localDateTime.atZone(brusselsZone).toInstant();
     }
 
+    public SearchReportDto toReportDto(SireneSearchResponse apiResponse, SiretSearchResponse siretResponse) {
+        return SearchReportDto.builder().build();
+    }
 }

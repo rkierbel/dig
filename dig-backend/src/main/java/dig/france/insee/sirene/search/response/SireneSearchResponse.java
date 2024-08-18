@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -43,20 +44,20 @@ import static dig.france.insee.sirene.SireneConstants.UNIT_CHANGES;
 /**
  * The result of a Sirene query is provided in Json format, structured in 2 parts:<br>
  * - the header (not to be confused with the http header or the response header) which contains the return code and potentially an error message ;<br>
- * - the legal units, which include a list of unit-level variables; the list of all periods and, for each period, the list of current and historical variables.<br>
- * The results of non-historical values (current period) are sent before the periods table.
- * The periods array contains a number of periods in descending chronological order.
+ * - the legal units, which include a list of unit-level variables; a list of all periods per unit and, for each period, a list of current and historical variables.<br>
+ * The results of non-historical values (current period) are sent before the periods list.
+ * The periods list contains a number of periods in descending chronological order.
  */
 @Serdeable
 @Slf4j
 public record SireneSearchResponse(SirenHeader header,
                                    @JsonProperty(SIRENE_UNITS) List<SireneUnit> sireneUnits) {
 
-    public List<Integer> sirens() {
+    public Set<Integer> sirens() {
         if (sireneUnits == null || sireneUnits.isEmpty()) {
             return null;
         }
-        return sireneUnits.stream().map(SireneUnit::siren).collect(Collectors.toList());
+        return sireneUnits.stream().map(SireneUnit::siren).collect(Collectors.toSet());
     }
 
     @Serdeable
@@ -91,10 +92,6 @@ public record SireneSearchResponse(SirenHeader header,
                              @JsonProperty(LAST_MODIFIED_DATE) String lastModifiedDate,
                              @JsonProperty(UNIT_CHANGES) List<Period> periods) {
 
-        public String sirenStr() {
-            return String.valueOf(siren);
-        }
-
         public String firstNames() {
             return Stream.of(firstName, middleName, thirdName, fourthName)
                     .filter(Objects::nonNull)
@@ -103,10 +100,6 @@ public record SireneSearchResponse(SirenHeader header,
 
         public UnitType inferUnitType() {
             return this.commonFirstName != null ? UnitType.NATURAL_PERSON : UnitType.LEGAL_ENTITY;
-        }
-
-        public void setEstablishments(SiretSearchResponse siretResponse) {
-
         }
     }
 

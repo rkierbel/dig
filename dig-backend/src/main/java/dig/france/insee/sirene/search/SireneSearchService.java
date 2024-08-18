@@ -37,7 +37,13 @@ public class SireneSearchService {
 
     void siretSearchBySiren(String siren) {
         String queryString = SireneSearchFactory.simpleSearch(SearchVariable.SIREN, siren);
-        log.info("Built query string for natural person name search on the Siret register: {}", queryString);
+        log.info("Built query string for single siren search on the Siret register: {}", queryString);
+        httpClient.siretSearch(queryString);
+    }
+
+    void siretSearchByMultipleSiren(Set<Integer> sirenNumbers) {
+        String queryString = SireneSearchFactory.multipleSiren(sirenNumbers);
+        log.info("Built query string for multiple siren search on the Siret register: {}", queryString);
         httpClient.siretSearch(queryString);
     }
 

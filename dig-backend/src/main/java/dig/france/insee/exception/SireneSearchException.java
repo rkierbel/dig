@@ -39,4 +39,8 @@ public class SireneSearchException extends InseeHttpException {
     public static SireneSearchException unitTypeNotFound(String type) {
         throw new SireneSearchException("Cannot find unit type %s for a Sirene unit".formatted(type));
     }
+
+    public static SireneSearchException nullParameterForSiretSearch() {
+        throw new SireneSearchException("Cannot perform search on Siret register: null Siren number set");
+    }
 }

@@ -14,12 +14,11 @@ import dig.france.insee.sirene.search.response.SireneSearchResponse;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
-import org.reactivestreams.Publisher;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.util.retry.Retry;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Set;
 
 @Singleton
@@ -56,20 +55,15 @@ public class AsyncSireneSearchService {
                 .subscribe(digProducer::sendCompletedSearchEvent, this::handleSearchError);
     }
 
+    //TODO -> multiple siren single request works => link establishments to siren in the report
     private Mono<SearchReportDto> completeSearchWithSiret(SireneSearchResponse apiResponse) {
-        if (apiResponse.sireneUnits() == null || apiResponse.sireneUnits().isEmpty()) {
+        List<SireneSearchResponse.SireneUnit> sireneUnits = apiResponse.sireneUnits();
+
+        if (sireneUnits == null || sireneUnits.isEmpty()) {
             return Mono.just(SearchReportDto.emptyReport());
         }
-        return Flux.fromIterable(apiResponse.sireneUnits())
-                .flatMap(this::completeSireneUnitDto)
-                .collectList()
-                .map(unitDtos -> SearchReportDto.builder().sireneUnits(unitDtos).build());
-    }
-
-    private Publisher<SearchReportDto.SireneUnitDto> completeSireneUnitDto(SireneSearchResponse.SireneUnit unit) {
-        String query = SireneSearchFactory.simpleSearch(SearchVariable.SIREN, unit.sirenStr());
-        return Mono.from(httpClient.siretSearchAsync(query)) // TODO -> can we do it in one request ? gather all the siren, then one query for all the siren ?
-                .map(siretResponse -> sireneSearchMapper.toSireneUnitDto(unit, siretResponse))
+        return Mono.from(httpClient.siretSearchAsync(SireneSearchFactory.multipleSiren(apiResponse.sirens())))
+                .map(siretResponse -> sireneSearchMapper.toReportDto(apiResponse, siretResponse))
                 .onErrorResume(this::emptyMonoOnError);
     }
 
@@ -77,7 +71,7 @@ public class AsyncSireneSearchService {
         // TODO -> handle error
     }
 
-    private Mono<SearchReportDto.SireneUnitDto> emptyMonoOnError(Throwable ex) {
+    private Mono<SearchReportDto> emptyMonoOnError(Throwable ex) {
         log.error("Error fetching Siret information: {}", ex.getMessage());
         return Mono.empty();
     }

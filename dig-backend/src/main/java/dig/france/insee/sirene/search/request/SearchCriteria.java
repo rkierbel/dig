@@ -1,9 +1,11 @@
 package dig.france.insee.sirene.search.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import dig.france.insee.InseeConstant;
 import io.micronaut.serde.annotation.Serdeable;
 import lombok.Builder;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Serdeable
 @Builder(toBuilder = true)
@@ -11,20 +13,17 @@ public record SearchCriteria(@JsonProperty("historicizedSearch-var") SearchVaria
                              @JsonProperty("value") String value,
                              @JsonProperty("historicizedSearch-op") SearchOperator operator) {
 
-    static SearchCriteria from(SearchVariable searchVar, String value, SearchOperator operator) {
-        return new SearchCriteria(searchVar, value, operator);
+    private SearchCriteria(SearchVariable searchVar, String value) {
+        this(searchVar, value, SearchOperator.NONE);
     }
 
-    static SearchCriteria from(SearchVariable searchVar, String value) {
-        return new SearchCriteria(searchVar, value, SearchOperator.NONE);
+    static Set<SearchCriteria> sirenSet(Set<Integer> sirenNumbers) {
+        return sirenNumbers.stream()
+                .map(SearchCriteria::siren)
+                .collect(Collectors.toSet());
     }
 
-    @Override
-    public String toString() {
-        String stringified = String.join(":", searchVar().getFrenchVariableName(), value());
-
-        return SearchOperator.NONE.equals(this.operator()) ?
-                stringified :
-                stringified + InseeConstant.WHITESPACE + operator();
+    private static SearchCriteria siren(Integer integer) {
+        return new SearchCriteria(SearchVariable.SIREN, String.valueOf(integer));
     }
 }
