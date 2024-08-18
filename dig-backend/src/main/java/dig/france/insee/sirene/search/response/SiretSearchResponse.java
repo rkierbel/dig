@@ -140,5 +140,3 @@ public record SiretSearchResponse(Header header,
                                @JsonProperty(EMPLOYER_TYPE_CHANGE) boolean employerTypeChange) {
     }
 }
-
-

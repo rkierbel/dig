@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="sirene controller uses slf4j">
+    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="encapsulation improved in search package">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/common/messaging/DigProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/common/messaging/DigProducer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/AsyncSireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/AsyncSireneSearchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/AdministrativeStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/enumerated/AdministrativeStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SearchReportDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SearchReportDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/request/SireneSearchFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/request/SireneSearchFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SiretSearchResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SiretSearchResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/UnitType.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/enumerated/UnitType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +93,7 @@
     "Maven.dig [clean].executor": "Run",
     "Maven.dig [install].executor": "Run",
     "Maven.dig-backend [clean,install].executor": "Run",
+    "Maven.dig-backend [mvn,idea:idea].executor": "Run",
     "Maven.dig-backend [package,-Dpackaging=docker].executor": "Run",
     "Maven.skilld [clean,install].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -375,7 +372,7 @@
       <workItem from="1723552630073" duration="2325000" />
       <workItem from="1723615955894" duration="8531000" />
       <workItem from="1723797039033" duration="19864000" />
-      <workItem from="1723970869353" duration="9234000" />
+      <workItem from="1723970869353" duration="10484000" />
     </task>
     <task id="LOCAL-00001" summary="renaming + clean structure">
       <option name="closed" value="true" />
@@ -745,7 +742,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723995689867</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="encapsulation improved in search package">
+      <option name="closed" value="true" />
+      <created>1723996536379</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1723996536379</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -766,7 +771,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ready to rumble" />
     <MESSAGE value="added token generation on server startup" />
     <MESSAGE value="correct typo" />
     <MESSAGE value="minor improvements on searchservice exception handling + @primary on mapper" />
@@ -791,6 +795,7 @@
     <MESSAGE value="documentation siret response" />
     <MESSAGE value="siret response ready" />
     <MESSAGE value="sirene controller uses slf4j" />
-    <option name="LAST_COMMIT_MESSAGE" value="sirene controller uses slf4j" />
+    <MESSAGE value="encapsulation improved in search package" />
+    <option name="LAST_COMMIT_MESSAGE" value="encapsulation improved in search package" />
   </component>
 </project>

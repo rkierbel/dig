@@ -10,8 +10,9 @@ import java.util.stream.Collectors;
 import static dig.france.insee.InseeConstant.OR;
 import static dig.france.insee.InseeConstant.WHITESPACE;
 
-
 public class SireneSearchFactory {
+
+    private static final SireneSearchFactory INSTANCE = new SireneSearchFactory();
 
     public static String simpleSearch(SearchVariable variable, String value) {
         return new SearchCriteria(variable, value, SearchOperator.NONE).toString();
@@ -25,33 +26,33 @@ public class SireneSearchFactory {
         final String PERIOD = "periode(";
         final String CLOSING_BRACKET = ")";
 
-        return PERIOD + toQueryString(searchCriteria) + CLOSING_BRACKET;
+        return PERIOD + INSTANCE.toQueryString(searchCriteria) + CLOSING_BRACKET;
     }
 
     public static String multipleSiren(Set<Integer> sirenNumbers) {
         return Optional.ofNullable(sirenNumbers)
                 .map(SearchCriteria::sirenSet)
-                .map(criteria -> toQueryString(criteria, OR))
+                .map(criteria -> INSTANCE.toQueryString(criteria, OR))
                 .orElseThrow(SireneSearchException::nullParameterForSiretSearch);
     }
 
-    private static String toQueryString(Set<SearchCriteria> searchCriteria) {
+    private String toQueryString(Set<SearchCriteria> searchCriteria) {
         return searchCriteria.stream()
-                .map(SireneSearchFactory::stringCriteria)
+                .map(INSTANCE::stringCriteria)
                 .collect(Collectors.joining(WHITESPACE));
     }
 
-    private static String toQueryString(Set<SearchCriteria> searchCriteria, String delimiter) {
+    private String toQueryString(Set<SearchCriteria> searchCriteria, String delimiter) {
         return searchCriteria.stream()
-                .map(SireneSearchFactory::stringCriteria)
+                .map(INSTANCE::stringCriteria)
                 .collect(Collectors.joining(delimiter));
     }
 
-    private static String stringCriteria(SearchCriteria criteria) {
+    private String stringCriteria(SearchCriteria criteria) {
         String stringified = String.join(":", criteria.searchVar().getFrenchVariableName(), criteria.value());
-
-        return SearchOperator.NONE.equals(criteria.operator()) ?
-                stringified :
-                stringified + InseeConstant.WHITESPACE + criteria.operator();
+        if (criteria.operator() != SearchOperator.NONE) {
+            stringified += InseeConstant.WHITESPACE + criteria.operator();
+        }
+        return stringified;
     }
 }

@@ -57,10 +57,10 @@ public class AsyncSireneSearchService {
 
     //TODO -> multiple siren single request works => link establishments to siren in the report
     private Mono<SearchReportDto> completeSearchWithSiret(SireneSearchResponse apiResponse) {
-        if (Objects.isNull(apiResponse.sirens())) {
+        if (Objects.isNull(apiResponse.sirenNumbers())) {
             return Mono.just(SearchReportDto.emptyReport());
         }
-        return Mono.from(httpClient.siretSearchAsync(SireneSearchFactory.multipleSiren(apiResponse.sirens())))
+        return Mono.from(httpClient.siretSearchAsync(SireneSearchFactory.multipleSiren(apiResponse.sirenNumbers())))
                 .map(siretResponse -> sireneSearchMapper.toReportDto(apiResponse, siretResponse))
                 .onErrorResume(this::emptyMonoOnError);
     }

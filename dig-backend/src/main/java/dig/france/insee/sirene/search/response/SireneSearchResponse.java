@@ -58,7 +58,7 @@ import static dig.france.insee.sirene.SireneConstants.UNIT_CHANGES;
 public record SireneSearchResponse(SirenHeader header,
                                    @Getter @JsonProperty(SIRENE_UNITS) List<SireneUnit> sireneUnits) {
 
-    public Set<Integer> sirens() {
+    public Set<Integer> sirenNumbers() {
         if (sireneUnits == null || sireneUnits.isEmpty()) {
             return null;
         }
