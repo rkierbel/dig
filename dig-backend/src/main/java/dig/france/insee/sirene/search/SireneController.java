@@ -13,15 +13,13 @@ import io.micronaut.http.annotation.QueryValue;
 import io.micronaut.scheduling.TaskExecutors;
 import io.micronaut.scheduling.annotation.ExecuteOn;
 import jakarta.inject.Inject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Set;
 
 @Controller("/insee/sirene")
+@Slf4j
 public class SireneController {
-
-    private static final Logger log = LoggerFactory.getLogger(SireneController.class);
 
     @Inject
     SireneSearchService searchService;
