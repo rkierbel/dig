@@ -8,12 +8,14 @@ import io.micronaut.serde.annotation.Serdeable;
 
 /**
  * A -> active
- * C -> ceased business activity
+ * C -> ceased business activity (Sirene unit level)
+ * F -> "Fermé" -> concerns closed establishments
  */
 @Serdeable
 public enum AdministrativeStatus {
     A,
-    C;
+    C,
+    F;
 
     @JsonCreator
     static AdministrativeStatus fromName(String name) {

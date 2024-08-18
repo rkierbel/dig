@@ -57,6 +57,44 @@ public class SireneConstants {
     public static final String ADDRESS_2 = "adresse2Etablissement";
     public static final String ESTABLISHMENT_PERIODS = "periodesEtablissement";
 
+    /**
+     * Siret - establishment address
+     */
+    public static final String ADDRESS_SUPPLEMENT = "complementAdresseEtablissement";
+    public static final String ROAD_NUMBER = "numeroVoieEtablissement";
+    public static final String REPETITION_INDEX = "indiceRepetitionEtablissement";
+    public static final String LAST_ROAD_NUMBER = "dernierNumeroVoieEtablissement";
+    public static final String REPETITION_INDEX_LAST_ROAD_NUMBER = "indiceRepetitionDernierNumeroVoieEtablissement";
+    public static final String ROAD_TYPE = "typeVoieEtablissement";
+    public static final String ROAD_NAME = "libelleVoieEtablissement";
+    public static final String POSTAL_CODE = "codePostalEtablissement";
+    public static final String MUNICIPALITY_NAME = "libelleCommuneEtablissement";
+    public static final String FOREIGN_MUNICIPALITY_NAME = "libelleCommuneEtrangerEtablissement";
+    public static final String SPECIAL_DISTRIBUTION = "distributionSpecialeEtablissement";
+    public static final String MUNICIPALITY_CODE = "codeCommuneEtablissement";
+    public static final String CODE_CEDEX = "codeCedexEtablissement";
+    public static final String WORDED_CEDEX = "libelleCedexEtablissement";
+    public static final String FOREIGN_COUNTRY_CODE = "codePaysEtrangerEtablissement";
+    public static final String FOREIGN_COUNTRY_NAME = "libellePaysEtrangerEtablissement";
+    public static final String ADDRESS_IDENTIFIER = "identifiantAdresseEtablissement";
+    public static final String COORDINATE_ABSCISSA = "coordonneeLambertAbscisseEtablissement";
+    public static final String COORDINATE_ORDINATE = "coordonneeLambertOrdonneeEtablissement";
 
 
+    /**
+     * Historicized variables - establishment
+     */
+    public static final String ESTABLISHMENT_ADMIN_STATUS = "etatAdministratifEtablissement";
+    public static final String ESTABLISHMENT_SIGN_1 = "enseigne1Etablissement";
+    public static final String ESTABLISHMENT_SIGN_2 = "enseigne2Etablissement";
+    public static final String ESTABLISHMENT_SIGN_3 = "enseigne3Etablissement";
+    public static final String ESTABLISHMENT_COMMON_NAME = "denominationUsuelleEtablissement";
+    public static final String ESTABLISHMENT_MAIN_ACTIVITY = "activitePrincipaleEtablissement";
+    public static final String ESTABLISHMENT_MAIN_ACTIVITY_NOMENCLATURE = "nomenclatureActivitePrincipaleEtablissement";
+    public static final String EMPLOYER_TYPE = "caractereEmployeurEtablissement";
+    public static final String ESTABLISHMENT_ADMIN_STATUS_CHANGE = "changementEtatAdministratifEtablissement";
+    public static final String ESTABLISHMENT_NAME_CHANGE = "changementEnseigneEtablissement";
+    public static final String ESTABLISHMENT_COMMON_NAME_CHANGE = "changementDenominationUsuelleEtablissement";
+    public static final String ESTABLISHMENT_MAIN_ACTIVITY_CHANGE = "changementActivitePrincipaleEtablissement";
+    public static final String EMPLOYER_TYPE_CHANGE = "changementCaractereEmployeurEtablissement";
 }
