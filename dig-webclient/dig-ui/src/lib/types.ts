@@ -4,14 +4,25 @@ export type Change = {
 };
 
 export type Period = {
-	changes?: Change[];
+	changes: Change[];
+	naturalPersonLastName?: string;
+	companyNames?: string;
+	legalCategory: string;
+	mainActivity: string;
 	startDate: string;
-	endDate?: string;
+	endDate: string | null;
 };
 
-export type Entity = {
+export type SirenUnit = {
+	siren: number;
 	creationDate: string;
 	lastModifiedDate: string;
-	commonFirstName: string;
+	type: 'NATURAL_PERSON' | 'LEGAL_ENTITY';
+	commonFirstName?: string;
+	firstNames?: string;
 	periods: Period[];
+};
+
+export type SearchResponse = {
+	sireneUnits: SirenUnit[];
 };
