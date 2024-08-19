@@ -1,13 +1,12 @@
 package dig.france.insee.sirene.search;
 
-import dig.france.insee.exception.SireneSearchException;
 import dig.france.insee.httpclient.InseeHttpClient;
 import dig.france.insee.sirene.search.request.SearchCriteria;
 import dig.france.insee.sirene.search.request.SearchOperator;
 import dig.france.insee.sirene.search.request.SearchVariable;
 import dig.france.insee.sirene.search.request.SireneSearchFactory;
-import dig.france.insee.sirene.search.response.SireneSearchMapper;
 import dig.france.insee.sirene.search.response.SearchReportDto;
+import dig.france.insee.sirene.search.response.SireneSearchMapper;
 import dig.france.insee.sirene.search.response.SireneSearchResponse;
 import dig.france.insee.sirene.search.response.SiretSearchResponse;
 import jakarta.inject.Inject;
@@ -62,6 +61,8 @@ public class SireneSearchService {
         SiretSearchResponse siretResponse = httpClient.siretSearch(
                 SireneSearchFactory.multipleSiren(sireneResponse.sirenNumbers()));
         log.info("Successfully retrieved Siret register data");
-        return sireneSearchMapper.toReport(sireneResponse, siretResponse);
+        SearchReportDto report = sireneSearchMapper.toReport(sireneResponse, siretResponse);
+        log.info("Successfully generated a search report ! {}", report);
+        return report;
     }
 }

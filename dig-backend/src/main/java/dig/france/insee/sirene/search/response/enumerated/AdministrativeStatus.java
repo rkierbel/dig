@@ -12,7 +12,7 @@ import io.micronaut.serde.annotation.Serdeable;
  * F -> "Fermé" -> concerns closed establishments
  */
 @Serdeable
-public enum AdministrativeStatus { //TODO -> can be null ! handle
+public enum AdministrativeStatus {
     A,
     C,
     F;

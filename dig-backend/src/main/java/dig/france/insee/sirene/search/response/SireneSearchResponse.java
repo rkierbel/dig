@@ -183,9 +183,10 @@ public record SireneSearchResponse(SirenHeader header,
         private Map<PeriodChange, Boolean> changeMap() {
             String companyCommonName = Stream.of(companyCommonName1, companyCommonName2, companyCommonName3)
                     .filter(Objects::nonNull).findFirst().orElse(null);
+            String adminStatus = administrativeStatus != null ? administrativeStatus.name() : null;
 
             Map<PeriodChange, Boolean> changes = HashMap.newHashMap(7);
-            changes.put(PeriodChange.of(ADMIN_STATUS_CHANGE, administrativeStatus.name()), administrativeStatusChange);
+            changes.put(PeriodChange.of(ADMIN_STATUS_CHANGE, adminStatus), administrativeStatusChange);
             changes.put(PeriodChange.of(NATURAL_PERSON_NAME_CHANGE, naturalPersonLastName), naturalPersonNameChange);
             changes.put(PeriodChange.of(NATURAL_PERSON_COMMON_NAME_CHANGE, naturalPersonCommonName), naturalPersonCommonNameChange);
             changes.put(PeriodChange.of(COMPANY_NAME_CHANGE, companyName), companyNameChange);

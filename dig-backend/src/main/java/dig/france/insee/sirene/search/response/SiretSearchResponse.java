@@ -158,9 +158,10 @@ public record SiretSearchResponse(Header header,
 
         private Map<PeriodChange, Boolean> changeMap() {
             String sign = sign();
+            String adminStatus = administrativeStatus != null ? administrativeStatus.name() : null;
 
             Map<PeriodChange, Boolean> changes = HashMap.newHashMap(7);
-            changes.put(PeriodChange.of(ESTABLISHMENT_ADMIN_STATUS_CHANGE, administrativeStatus.name()), administrativeStatusChange);
+            changes.put(PeriodChange.of(ESTABLISHMENT_ADMIN_STATUS_CHANGE, adminStatus), administrativeStatusChange);
             changes.put(PeriodChange.of(ESTABLISHMENT_NAME_CHANGE, sign), signChange);
             changes.put(PeriodChange.of(ESTABLISHMENT_COMMON_NAME_CHANGE, commonName), commonNameChange);
             changes.put(PeriodChange.of(ESTABLISHMENT_MAIN_ACTIVITY_CHANGE, mainActivity), mainActivityChange);
