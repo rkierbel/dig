@@ -1,82 +1,48 @@
-<div class="container">
-    <header>
-        <h1>Dig</h1>
-        <h2>Every Fraudster's Worst Nightmare</h2>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
-        </nav>
-    </header>
+<script>
+	import '../global.css';
+</script>
 
-    <main>
-        <slot></slot>
-    </main>
+<div class="app">
+	<header>
+		<h1>Dig - Every Fraudster's Worst Nightmare</h1>
+	</header>
+
+	<main>
+		<slot />
+	</main>
+
+	<footer>
+		<p>&copy; 2024 Dig. All rights reserved.</p>
+	</footer>
 </div>
 
 <style>
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
+	.app {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
 
-    header {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
+	header,
+	footer {
+		padding: 1rem;
+		background-color: #f3f4f6;
+	}
 
-    h1 {
-        font-family: 'Sankofa Display', sans-serif;
-        font-size: 2.5rem;
-        margin-bottom: 0.5rem;
-    }
+	main {
+		flex: 1;
+		padding: 2rem;
+	}
 
-    h2 {
-        color: #666;
-        font-size: 1.25rem;
-        margin-bottom: 1rem;
-    }
+	h1 {
+		font-size: 2rem;
+		font-weight: 700;
+		text-align: center;
+		color: #1f2937;
+	}
 
-    nav {
-        margin-top: 1rem;
-    }
-
-    nav a {
-        margin: 0 1rem;
-        color: #0070f3;
-        text-decoration: none;
-        font-size: 1rem;
-    }
-
-    nav a:hover {
-        text-decoration: underline;
-    }
-
-    main {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            padding: 1rem;
-        }
-
-        h1 {
-            font-size: 2rem;
-        }
-
-        h2 {
-            font-size: 1rem;
-        }
-
-        nav a {
-            margin: 0 0.5rem;
-            font-size: 0.875rem;
-        }
-    }
+	footer {
+		text-align: center;
+		color: #6b7280;
+	}
 </style>
