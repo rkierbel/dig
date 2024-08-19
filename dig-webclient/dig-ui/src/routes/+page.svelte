@@ -3,9 +3,9 @@
 	import SearchResults from './SearchResults.svelte';
 	import LoadingSpinner from '$lib/components/LoadingSpinner.svelte';
 	import ErrorMessage from '$lib/components/ErrorMessage.svelte';
-	import type { Entity } from '$lib/types';
+	import type { SirenUnit } from '$lib/types';
 
-	let searchResults: Entity[] = [];
+	let searchResults: SirenUnit[] = [];
 	let isLoading = false;
 	let error = '';
 

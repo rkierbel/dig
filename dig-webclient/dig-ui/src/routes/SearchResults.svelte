@@ -1,13 +1,13 @@
 <script lang="ts">
-	import type { Entity } from '$lib/types';
-	import EntityCard from '$lib/components/EntityCard.svelte';
+	import type { SirenUnit } from '$lib/types';
+	import SireneUnit from '$lib/components/SireneUnit.svelte';
 
-	export let results: Entity[] = [];
+	export let results: SirenUnit[] = [];
 </script>
 
 <div class="results-container">
-	{#each results as entity (entity.siren)}
-		<EntityCard {entity} />
+	{#each results as sireneUnit (sireneUnit.siren)}
+		<SireneUnit {sireneUnit} />
 	{/each}
 </div>
 
