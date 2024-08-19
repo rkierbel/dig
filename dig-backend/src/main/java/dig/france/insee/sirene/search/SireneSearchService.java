@@ -8,6 +8,8 @@ import dig.france.insee.sirene.search.request.SearchVariable;
 import dig.france.insee.sirene.search.request.SireneSearchFactory;
 import dig.france.insee.sirene.search.response.SireneSearchMapper;
 import dig.france.insee.sirene.search.response.SearchReportDto;
+import dig.france.insee.sirene.search.response.SireneSearchResponse;
+import dig.france.insee.sirene.search.response.SiretSearchResponse;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +34,7 @@ public class SireneSearchService {
                 .operator(SearchOperator.NONE)
                 .build()));
         log.info("Built query string for natural person name search: {}", queryString);
-        return resultFromHttp(queryString, term);
+        return fullResultFromHttp(queryString);
     }
 
     void siretSearchBySiren(String siren) {
@@ -47,28 +49,19 @@ public class SireneSearchService {
         httpClient.siretSearch(queryString);
     }
 
-    void siretSearchByNaturalNameHistoricized(String term) {
-        String queryString = SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
-                .searchVar(SearchVariable.NATURAL_PERSON_NAME)
-                .value(term)
-                .operator(SearchOperator.NONE)
-                .build()));
-        httpClient.siretSearch(queryString);
-    }
-
     SearchReportDto sireneSearchByMultiCriteriaHistoricized(Set<SearchCriteria> criteria) {
         String queryString = SireneSearchFactory.historicized(criteria);
         log.info("Built query string for multi-criteria search: {}", queryString);
-        return resultFromHttp(queryString, SireneSearchFactory.logCriteria(criteria));
+        return fullResultFromHttp(queryString);
     }
 
-    private SearchReportDto resultFromHttp(String query, String exceptionMessage) {
-        try {
-            SearchReportDto result = sireneSearchMapper.apiResponseToDto(httpClient.search(query));
-            log.info("Mapping API search response to SearchResultDto: {}", result);
-            return result;
-        } catch (SireneSearchException searchException) {
-            throw SireneSearchException.historicizedSearchFailure(exceptionMessage);
-        }
+
+    private SearchReportDto fullResultFromHttp(String query) {
+        SireneSearchResponse sireneResponse = httpClient.search(query);
+        log.info("Successfully retrieved Sirene data");
+        SiretSearchResponse siretResponse = httpClient.siretSearch(
+                SireneSearchFactory.multipleSiren(sireneResponse.sirenNumbers()));
+        log.info("Successfully retrieved Siret register data");
+        return sireneSearchMapper.toReport(sireneResponse, siretResponse);
     }
 }

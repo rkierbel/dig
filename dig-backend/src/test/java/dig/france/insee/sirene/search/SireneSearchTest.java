@@ -35,11 +35,4 @@ public class SireneSearchTest {
         Thread.sleep(3000);
         sireneSearchService.siretSearchByMultipleSiren(multiSiren);
     }
-
-    @Test //TODO -> FAILS - investigate why / parameter malformed ??
-    void givenValidSimpleSearchByNaturalPersonName_returnSiretSearchResult() throws InterruptedException {
-        var naturalPersonName = "grzeszezak";
-        Thread.sleep(3000);
-        sireneSearchService.siretSearchByNaturalNameHistoricized(naturalPersonName);
-    }
 }

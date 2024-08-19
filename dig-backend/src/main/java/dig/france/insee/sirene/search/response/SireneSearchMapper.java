@@ -2,8 +2,10 @@ package dig.france.insee.sirene.search.response;
 
 import io.micronaut.context.annotation.Primary;
 import jakarta.inject.Singleton;
+import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 import org.mapstruct.Named;
 
@@ -11,13 +13,24 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Mapper(componentModel = "jsr330") //TODO -> explain
 @Singleton
 @Primary
 public abstract class SireneSearchMapper {
 
-    public abstract SearchReportDto apiResponseToDto(SireneSearchResponse apiResponse);
+    public SearchReportDto toReport(SireneSearchResponse sireneResponse,
+                                    SiretSearchResponse siretResponse) {
+        return SearchReportDto.builder()
+                .sireneUnits(
+                        sireneResponse.sireneUnits()
+                                .stream()
+                                .map(unit -> toSireneUnitDto(unit, siretResponse))
+                                .toList())
+                .build();
+    }
 
     @Mappings({
             @Mapping(target = "lastModifiedDate", source = "unit.lastModifiedDate", qualifiedByName = "toInstant"),
@@ -28,11 +41,17 @@ public abstract class SireneSearchMapper {
                                                            SiretSearchResponse siretResponse); //TODO -> set establishments
 
     @Mappings({
-            @Mapping(target = "lastModifiedDate", source = "lastModifiedDate", qualifiedByName = "toInstant"),
-            @Mapping(target = "firstNames", expression = "java(unit.firstNames())"),
-            @Mapping(target = "type", expression = "java(unit.inferUnitType())")
+            @Mapping(target = "establishmentCreationDate", qualifiedByName = "toInstant"),
+            @Mapping(target = "establishmentLastModifiedDate", qualifiedByName = "toInstant")
     })
-    abstract SearchReportDto.SireneUnitDto toSireneUnitDto(SireneSearchResponse.SireneUnit unit);
+    abstract SearchReportDto.EstablishmentDto toEstablishmentDto(SiretSearchResponse.Establishment establishment);
+
+    @Mappings({
+            @Mapping(target = "changes", expression = "java(establishmentPeriod.getPeriodChanges())"),
+            @Mapping(target = "sign", expression = "java(establishmentPeriod.sign())"),
+    })
+    abstract SearchReportDto.EstablishmentDto.EstablishmentPeriodDto toEstablishmentPeriodDto(
+            SiretSearchResponse.EstablishmentPeriod establishmentPeriod);
 
     @Mappings({
             @Mapping(target = "changes", expression = "java(unitPeriod.getPeriodChanges())"),
@@ -49,7 +68,17 @@ public abstract class SireneSearchMapper {
         return localDateTime.atZone(brusselsZone).toInstant();
     }
 
-    public SearchReportDto toReportDto(SireneSearchResponse apiResponse, SiretSearchResponse siretResponse) {
-        return SearchReportDto.builder().build();
+    @AfterMapping
+    void addEstablishments(@MappingTarget SearchReportDto.SireneUnitDto unitDto,
+                           SiretSearchResponse siretResponse) {
+        Integer siren = unitDto.siren();
+        siretResponse.establishments()
+                .stream()
+                .filter(e -> sirenMatch(e, siren))
+                .forEach(e -> unitDto.addEstablishment(this.toEstablishmentDto(e)));
+    }
+
+    private static boolean sirenMatch(SiretSearchResponse.Establishment establishment, Integer unitSiren) {
+        return Integer.parseInt(establishment.siren()) == unitSiren;
     }
 }

@@ -1,5 +1,6 @@
 package dig.france.insee.sirene.search.response;
 
+import dig.france.insee.sirene.search.response.enumerated.AdministrativeStatus;
 import dig.france.insee.sirene.search.response.enumerated.UnitType;
 import io.micronaut.serde.annotation.Serdeable;
 import lombok.Builder;
@@ -36,7 +37,12 @@ public record SearchReportDto(List<SireneUnitDto> sireneUnits) {
                          UnitType type,
                          String commonFirstName,
                          String firstNames,
-                         List<PeriodDto> periods) {
+                         List<PeriodDto> periods,
+                         List<EstablishmentDto> establishments) {
+
+        public void addEstablishment(EstablishmentDto dto) {
+            establishments.add(dto);
+        }
 
         @Override
         public String toString() {
@@ -77,6 +83,49 @@ public record SearchReportDto(List<SireneUnitDto> sireneUnits) {
                     "\t\tstartDate: " + startDate + COMMA_BR +
                     "\t\tendDate: " + endDate + "\n" +
                     "}";
+        }
+    }
+
+    @Serdeable
+    record EstablishmentDto(Integer siret,
+                            Instant establishmentCreationDate,
+                            String employeeHeadcountBand,
+                            String employeeHeadcountValidityYear,
+                            String tradeRegisterMainActivity,
+                            Instant establishmentLastModifiedDate,
+                            boolean isHead,
+                            EstablishmentAddressDto address,
+                            EstablishmentAddressDto address2,
+                            List<EstablishmentPeriodDto> establishmentPeriods) {
+
+
+        @Serdeable
+        record EstablishmentAddressDto(String addressSupplement,
+                                       String roadNumber,
+                                       String repetitionIndex,
+                                       String roadType,
+                                       String roadName,
+                                       String postalCode,
+                                       String municipalityName,
+                                       String foreignMunicipalityName,
+                                       String municipalityCode,
+                                       String codeCedex,
+                                       String wordedCedex,
+                                       String foreignCountryCode,
+                                       String foreignCountryName) {
+
+        }
+
+        @Serdeable
+        record EstablishmentPeriodDto(List<PeriodChange> changes,
+                                      LocalDate startDate,
+                                      LocalDate endDate,
+                                      AdministrativeStatus administrativeStatus,
+                                      String sign,
+                                      String commonName,
+                                      String mainActivity,
+                                      String employerType) {
+
         }
     }
 }

@@ -10,7 +10,9 @@ import lombok.AccessLevel;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
+import reactor.util.retry.Retry;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
@@ -41,9 +43,11 @@ class InseeTokenMaintainer {
         Mono.from(inseeHttpClient.get().token(InseeConstant.CLIENT_CREDENTIALS))
                 .doOnError(InseeHttpException::logTokenGenerationFailure)
                 .doOnNext(resp -> log.info("[InseeClientRunner::onStartUp] Successfully retrieved token"))
-                .retry(InseeConstant.MAX_RETRY)
+                .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofMillis(300L)))
                 .subscribe(tokenResponse -> this.setTokenData(TokenData.of(tokenResponse.accessToken())));
     }
+
+    //TODO -> add scheduled job every six days from startup to update token -> remember startup
 
     private record TokenData(String accessToken, Instant tokenCreation) {
 

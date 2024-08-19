@@ -42,7 +42,7 @@ public class AsyncSireneSearchService {
                         .operator(SearchOperator.NONE)
                         .build()))))
                 .doOnError(InseeHttpException::logSireneSearchFailure)
-                .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofSeconds(1))) // TODO -> best practice ?
+                .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofMillis(500L))) // TODO -> best practice ?
                 .flatMap(this::completeSearchWithSiret)
                 .subscribe(digProducer::sendCompletedSearchEvent, this::handleSearchError);
     }
@@ -50,7 +50,7 @@ public class AsyncSireneSearchService {
     public void sireneSearchByMultiCriteriaHistoricized(Set<SearchCriteria> criteria) {
         Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(criteria)))
                 .doOnError(InseeHttpException::logSireneSearchFailure)
-                .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofSeconds(1)))
+                .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofMillis(500L)))
                 .flatMap(this::completeSearchWithSiret)
                 .subscribe(digProducer::sendCompletedSearchEvent, this::handleSearchError);
     }
@@ -61,7 +61,7 @@ public class AsyncSireneSearchService {
             return Mono.just(SearchReportDto.emptyReport());
         }
         return Mono.from(httpClient.siretSearchAsync(SireneSearchFactory.multipleSiren(apiResponse.sirenNumbers())))
-                .map(siretResponse -> sireneSearchMapper.toReportDto(apiResponse, siretResponse))
+                .map(siretResponse -> sireneSearchMapper.toReport(apiResponse, siretResponse))
                 .onErrorResume(this::emptyMonoOnError);
     }
 

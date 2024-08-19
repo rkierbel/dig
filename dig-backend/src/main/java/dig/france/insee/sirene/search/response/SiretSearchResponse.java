@@ -4,13 +4,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dig.france.insee.sirene.search.response.enumerated.AdministrativeStatus;
 import io.micronaut.serde.annotation.Serdeable;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 import static dig.france.insee.sirene.SireneConstants.*;
 
 @Serdeable
 public record SiretSearchResponse(Header header,
-                                  List<Establishment> etablissements) {
+                                  List<Establishment> establishments) {
 
     @Serdeable
     record Header(int statut,
@@ -138,5 +142,30 @@ public record SiretSearchResponse(Header header,
                                @JsonProperty(ESTABLISHMENT_COMMON_NAME_CHANGE) boolean commonNameChange,
                                @JsonProperty(ESTABLISHMENT_MAIN_ACTIVITY_CHANGE) boolean mainActivityChange,
                                @JsonProperty(EMPLOYER_TYPE_CHANGE) boolean employerTypeChange) {
+
+        public String sign() {
+            return Stream.of(sign1, sign2, sign3)
+                    .filter(Objects::nonNull).findFirst().orElse(null);
+        }
+
+        //TODO -> abstract
+        public List<PeriodChange> getPeriodChanges() {
+            return changeMap().entrySet().stream()
+                    .filter(Map.Entry::getValue)
+                    .map(Map.Entry::getKey)
+                    .toList();
+        }
+
+        private Map<PeriodChange, Boolean> changeMap() {
+            String sign = sign();
+
+            Map<PeriodChange, Boolean> changes = HashMap.newHashMap(7);
+            changes.put(PeriodChange.of(ESTABLISHMENT_ADMIN_STATUS_CHANGE, administrativeStatus.name()), administrativeStatusChange);
+            changes.put(PeriodChange.of(ESTABLISHMENT_NAME_CHANGE, sign), signChange);
+            changes.put(PeriodChange.of(ESTABLISHMENT_COMMON_NAME_CHANGE, commonName), commonNameChange);
+            changes.put(PeriodChange.of(ESTABLISHMENT_MAIN_ACTIVITY_CHANGE, mainActivity), mainActivityChange);
+            changes.put(PeriodChange.of(EMPLOYER_TYPE_CHANGE, employerType), employerTypeChange);
+            return changes;
+        }
     }
 }

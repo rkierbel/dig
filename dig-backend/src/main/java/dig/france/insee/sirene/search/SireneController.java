@@ -35,15 +35,6 @@ public class SireneController {
         return HttpResponse.ok(searchService.sireneSearchByNaturalNameHistoricized(term));
     }
 
-    @Get("/natural-person-siret")
-    @Produces(MediaType.APPLICATION_JSON)
-    @ExecuteOn(TaskExecutors.BLOCKING)
-    public HttpResponse<SearchReportDto> siretSearchByNaturalNameHistoricized(@QueryValue String term) {
-        log.info("Sending HTTP request to the Siret register for natural person with name {}", term);
-        searchService.siretSearchByNaturalNameHistoricized(term);
-        return HttpResponse.ok();
-    }
-
     @Get("/multi-criteria")
     @Produces(MediaType.APPLICATION_JSON)
     @ExecuteOn(TaskExecutors.BLOCKING)
