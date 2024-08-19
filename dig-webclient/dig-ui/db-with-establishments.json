@@ -1,0 +1,72 @@
+{
+  "sireneUnits": [
+    {
+      "siren": 123456789,
+      "creationDate": "2020-01-01",
+      "lastModifiedDate": "2023-08-19T12:34:56Z",
+      "type": "ENTERPRISE",
+      "commonFirstName": "John",
+      "firstNames": "John, Paul",
+      "periods": [
+        {
+          "changes": [
+            {
+              "changeType": "NAME_CHANGE",
+              "changeDate": "2021-01-01"
+            }
+          ],
+          "naturalPersonLastName": "Doe",
+          "companyNames": "Doe Corp",
+          "legalCategory": "SA",
+          "mainActivity": "Software Development",
+          "startDate": "2020-01-01",
+          "endDate": "2021-12-31"
+        }
+      ],
+      "establishments": [
+        {
+          "siret": 987654321,
+          "establishmentCreationDate": "2020-01-01T10:00:00Z",
+          "employeeHeadcountBand": "10-19",
+          "employeeHeadcountValidityYear": "2023",
+          "tradeRegisterMainActivity": "6201Z",
+          "establishmentLastModifiedDate": "2023-08-19T10:00:00Z",
+          "isHead": true,
+          "address": {
+            "addressSupplement": "Building A",
+            "roadNumber": "12",
+            "repetitionIndex": "B",
+            "roadType": "Street",
+            "roadName": "Main Street",
+            "postalCode": "75001",
+            "municipalityName": "Paris",
+            "foreignMunicipalityName": null,
+            "municipalityCode": "75001",
+            "codeCedex": "12345",
+            "wordedCedex": "Cedex 1",
+            "foreignCountryCode": null,
+            "foreignCountryName": null
+          },
+          "address2": null,
+          "establishmentPeriods": [
+            {
+              "changes": [
+                {
+                  "changeType": "ACTIVITY_CHANGE",
+                  "changeDate": "2022-01-01"
+                }
+              ],
+              "startDate": "2020-01-01",
+              "endDate": "2023-12-31",
+              "administrativeStatus": "ACTIVE",
+              "sign": "Doe Ltd",
+              "commonName": "Doe Software",
+              "mainActivity": "6201Z",
+              "employerType": "YES"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
