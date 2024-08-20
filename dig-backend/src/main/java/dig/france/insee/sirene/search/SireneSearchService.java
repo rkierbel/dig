@@ -24,7 +24,6 @@ public class SireneSearchService {
 
     @Inject
     SireneSearchMapper sireneSearchMapper;
-    // TODO -> AOP logging
 
     SearchReportDto sireneSearchByNaturalNameHistoricized(String term) {
         String queryString = SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
@@ -34,12 +33,6 @@ public class SireneSearchService {
                 .build()));
         log.info("Built query string for natural person name search: {}", queryString);
         return fullResultFromHttp(queryString);
-    }
-
-    SiretSearchResponse siretSearchBySiren(String siren) {
-        String queryString = SireneSearchFactory.simpleSearch(SearchVariable.SIREN, siren);
-        log.info("Built query string for single siren search on the Siret register: {}", queryString);
-        return httpClient.siretSearch(queryString);
     }
 
     void siretSearchByMultipleSiren(Set<Integer> sirenNumbers) {
@@ -53,7 +46,6 @@ public class SireneSearchService {
         log.info("Built query string for multi-criteria search: {}", queryString);
         return fullResultFromHttp(queryString);
     }
-
 
     private SearchReportDto fullResultFromHttp(String query) {
         SireneSearchResponse sireneResponse = httpClient.search(query);
