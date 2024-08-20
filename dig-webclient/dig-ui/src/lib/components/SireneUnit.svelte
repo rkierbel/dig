@@ -15,7 +15,7 @@
 	}
 </script>
 
-<div class="entity-card">
+<div class="siren-unit-card">
 	<div class="card-content">
 		<div class="grid">
 			<div><span class="label">SIREN:</span> {sireneUnit.siren}</div>
@@ -49,7 +49,7 @@
 </div>
 
 <style>
-	.entity-card {
+	.siren-unit-card {
 		background-color: white;
 		border-radius: 8px;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
