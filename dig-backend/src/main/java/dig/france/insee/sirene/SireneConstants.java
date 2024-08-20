@@ -46,6 +46,7 @@ public class SireneConstants {
     /**
      * Siret - establishment variables
      */
+    public static final String ESTABLISHMENTS = "etablissements";
     public static final String ESTABLISHMENT_CREATION_DATE = "dateCreationEtablissement";
     public static final String EMPLOYEE_HEADCOUNT_BAND = "trancheEffectifsEtablissement";
     public static final String EMPLOYEE_HEADCOUNT_VALIDITY_YEAR = "anneeEffectifsEtablissement";

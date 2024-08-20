@@ -10,8 +10,7 @@ record PeriodChange(String reason,
         return new PeriodChange(reason, value);
     }
 
-    @Override
-    public String toString() {
-        return "\n\t\t- change reason: %s ; value: %s".formatted(reason, value);
+    public String toChangeString(String tab) {
+        return "\n" + tab + "- change reason: %s ; value: %s".formatted(reason, value);
     }
 }

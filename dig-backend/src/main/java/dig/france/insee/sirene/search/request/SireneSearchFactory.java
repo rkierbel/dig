@@ -15,7 +15,7 @@ public class SireneSearchFactory {
     private static final SireneSearchFactory INSTANCE = new SireneSearchFactory();
 
     public static String simpleSearch(SearchVariable variable, String value) {
-        return new SearchCriteria(variable, value, SearchOperator.NONE).toString();
+        return INSTANCE.toQueryString(Set.of(new SearchCriteria(variable, value, SearchOperator.NONE)));
     }
 
     public static String logCriteria(Set<SearchCriteria> searchCriteria) {
@@ -42,7 +42,7 @@ public class SireneSearchFactory {
                 .collect(Collectors.joining(WHITESPACE));
     }
 
-    private String toQueryString(Set<SearchCriteria> searchCriteria, String delimiter) {
+    private String toQueryString(Set<SearchCriteria> searchCriteria, String delimiter) { // TODO -> test only one siren
         return searchCriteria.stream()
                 .map(INSTANCE::stringCriteria)
                 .collect(Collectors.joining(delimiter));

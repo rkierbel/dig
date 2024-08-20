@@ -14,7 +14,7 @@ import static dig.france.insee.sirene.SireneConstants.*;
 
 @Serdeable
 public record SiretSearchResponse(Header header,
-                                  List<Establishment> establishments) {
+                                  @JsonProperty(ESTABLISHMENTS) List<Establishment> establishments) {
 
     @Serdeable
     record Header(int statut,

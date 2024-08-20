@@ -1,5 +1,6 @@
 package dig.france.insee.sirene.search;
 
+import dig.france.insee.sirene.search.response.SiretSearchResponse;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ public class SireneSearchTest {
     void givenValidSimpleSearchBySiren_returnSiretSearchResult() throws InterruptedException {
         var siren = "923449979";
         Thread.sleep(3000);
-        sireneSearchService.siretSearchBySiren(siren);
+        SiretSearchResponse response = sireneSearchService.siretSearchBySiren(siren);
     }
 
     @Test

@@ -36,10 +36,10 @@ public class SireneSearchService {
         return fullResultFromHttp(queryString);
     }
 
-    void siretSearchBySiren(String siren) {
+    SiretSearchResponse siretSearchBySiren(String siren) {
         String queryString = SireneSearchFactory.simpleSearch(SearchVariable.SIREN, siren);
         log.info("Built query string for single siren search on the Siret register: {}", queryString);
-        httpClient.siretSearch(queryString);
+        return httpClient.siretSearch(queryString);
     }
 
     void siretSearchByMultipleSiren(Set<Integer> sirenNumbers) {

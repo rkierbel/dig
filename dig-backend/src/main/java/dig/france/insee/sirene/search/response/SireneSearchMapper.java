@@ -14,7 +14,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Mapper(componentModel = "jsr330") //TODO -> explain
 @Singleton
@@ -35,13 +37,18 @@ public abstract class SireneSearchMapper {
     @Mappings({
             @Mapping(target = "lastModifiedDate", source = "unit.lastModifiedDate", qualifiedByName = "toInstant"),
             @Mapping(target = "firstNames", expression = "java(unit.firstNames())"),
-            @Mapping(target = "type", expression = "java(unit.inferUnitType())")
+            @Mapping(target = "type", expression = "java(unit.inferUnitType())"),
+            @Mapping(target = "establishments", qualifiedByName = "initEstablishments")
     })
     abstract SearchReportDto.SireneUnitDto toSireneUnitDto(SireneSearchResponse.SireneUnit unit,
-                                                           SiretSearchResponse siretResponse); //TODO -> set establishments
+                                                           SiretSearchResponse siretResponse);
+
+    @Named("initEstablishments")
+    ArrayList<SearchReportDto.EstablishmentDto> initEstablishments(List<SiretSearchResponse.Establishment> establishments) {
+        return new ArrayList<>(establishments.size());
+    }
 
     @Mappings({
-            @Mapping(target = "establishmentCreationDate", qualifiedByName = "toInstant"),
             @Mapping(target = "establishmentLastModifiedDate", qualifiedByName = "toInstant")
     })
     abstract SearchReportDto.EstablishmentDto toEstablishmentDto(SiretSearchResponse.Establishment establishment);
@@ -72,7 +79,8 @@ public abstract class SireneSearchMapper {
     void addEstablishments(@MappingTarget SearchReportDto.SireneUnitDto unitDto,
                            SiretSearchResponse siretResponse) {
         Integer siren = unitDto.siren();
-        siretResponse.establishments()
+        Optional.ofNullable(siretResponse.establishments())
+                .orElse(Collections.emptyList())
                 .stream()
                 .filter(e -> sirenMatch(e, siren))
                 .forEach(e -> unitDto.addEstablishment(this.toEstablishmentDto(e)));
