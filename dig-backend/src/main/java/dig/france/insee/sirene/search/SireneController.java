@@ -38,16 +38,14 @@ public class SireneController {
     @Get("/multi-criteria")
     @Produces(MediaType.APPLICATION_JSON)
     @ExecuteOn(TaskExecutors.BLOCKING)
-    public HttpResponse<SearchReportDto> sireneSearchByMultiCriteriaHistoricized(
-            @QueryValue Set<SearchCriteria> searchCriteria) {
+    public HttpResponse<SearchReportDto> sireneSearchByMultiCriteriaHistoricized(@QueryValue Set<SearchCriteria> searchCriteria) {
         log.info("Sending HTTP request to Sirene for multi-criteria search {}", SireneSearchFactory.logCriteria(searchCriteria));
         return HttpResponse.ok(searchService.sireneSearchByMultiCriteriaHistoricized(searchCriteria));
     }
 
     @Get("/natural-person-async")
     @Produces(MediaType.APPLICATION_JSON)
-    public HttpResponse<Void> asyncSireneSearchByNaturalNameHistoricized(
-            @QueryValue @ValidSireneSimpleSearch String term) {
+    public HttpResponse<Void> asyncSireneSearchByNaturalNameHistoricized(@QueryValue @ValidSireneSimpleSearch String term) {
         log.info("Sending non-blocking request to Sirene for natural person with name {}", term);
         asyncSearchService.sireneSearchByNaturalNameHistoricized(term);
         return HttpResponse.ok();

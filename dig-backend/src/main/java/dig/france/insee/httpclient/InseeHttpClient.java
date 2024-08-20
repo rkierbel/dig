@@ -26,7 +26,7 @@ public interface InseeHttpClient {
     @SingleResult
     Publisher<InseeTokenResponse> token(@QueryValue(value = InseeConstant.GRANT_TYPE) String grantType);
 
-    @Get("${sirene.api.prefix}${sirene.api.version-3}${sirene.api.info}")
+    @Get("${sirene.api.prefix}${sirene.api.version-3-11}${sirene.api.info}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
