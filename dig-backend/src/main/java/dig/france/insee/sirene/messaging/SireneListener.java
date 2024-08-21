@@ -1,16 +1,12 @@
 package dig.france.insee.sirene.messaging;
 
-import dig.common.messaging.HealthCheckEvent;
 import dig.france.insee.sirene.messaging.event.SireneHistoricizedSearchEvent;
 import dig.france.insee.sirene.search.AsyncSireneSearchService;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.context.env.Environment;
-import io.micronaut.http.MediaType;
-import io.micronaut.http.annotation.Consumes;
 import io.micronaut.rabbitmq.annotation.Queue;
 import io.micronaut.rabbitmq.annotation.RabbitListener;
 import jakarta.inject.Inject;
-import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 
 @RabbitListener
@@ -27,8 +23,8 @@ public class SireneListener {
         asyncSireneSearchService.sireneSearchByMultiCriteriaHistoricized(event.getSearchCriteria());
     }
 
-    //@Queue("queue-newping")
-    public void onPing(HealthCheckEvent event) {
-        log.info("[SireneListener] Received Sirene ping:\n {}", event.toString());
+    @Queue("${rabbitmq.queue.insee.sirene.ping}")
+    public void onPing(byte[] data) {
+        log.info("[SireneListener] Received Sirene ping:\n {}", new String(data));
     }
 }

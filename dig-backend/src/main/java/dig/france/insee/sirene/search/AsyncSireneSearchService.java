@@ -80,6 +80,6 @@ public class AsyncSireneSearchService {
         log.info("[AsyncSearchService::onPing] Forwarding ping with message {}", message);
         HealthCheckEvent event  = new HealthCheckEvent(UUID.randomUUID().toString(), message);
         log.info("[AsyncSearchService::onPing] Sending healthcheck event with id {} and message {}", event.getId(), event.getMessage());
-        digProducer.sendPing(event);
+        digProducer.sendPing(message.getBytes());
     }
 }

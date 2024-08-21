@@ -4,21 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="started on testing">
-      <change afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/common/messaging/HealthCheckEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/messaging/event/CompletedSireneSearchEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/SireneSearchServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/response/SireneSearchMapperTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/common/messaging/CoreChannelPoolListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/common/messaging/ChannelPoolListener.java" afterDir="false" />
+    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="more on rabbitmq - still fails on producing message -&gt; null values, prob issue in ser/de">
       <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/common/messaging/DigProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/common/messaging/DigProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeTokenMaintainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeTokenMaintainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/messaging/SireneListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/messaging/SireneListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/AsyncSireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/AsyncSireneSearchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/SireneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/SireneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SearchReportDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SearchReportDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -400,15 +389,7 @@
       <workItem from="1724154163419" duration="11056000" />
       <workItem from="1724224395194" duration="7463000" />
       <workItem from="1724235230420" duration="6321000" />
-      <workItem from="1724250047781" duration="5993000" />
-    </task>
-    <task id="LOCAL-00005" summary="search encapsulation + messaging rework">
-      <option name="closed" value="true" />
-      <created>1722865872774</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1722865872774</updated>
+      <workItem from="1724250047781" duration="7119000" />
     </task>
     <task id="LOCAL-00006" summary="adapt controller logic">
       <option name="closed" value="true" />
@@ -794,7 +775,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724159976473</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="more on rabbitmq - still fails on producing message -&gt; null values, prob issue in ser/de">
+      <option name="closed" value="true" />
+      <created>1724256462983</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1724256462985</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -827,7 +816,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="multicriteria search ready" />
     <MESSAGE value="search service refactor" />
     <MESSAGE value="develop search result -&gt; include several first names for natural person + several company names ; improved logging : provided new json" />
     <MESSAGE value="mark synchronous ops on SireneController as blocking" />
@@ -852,7 +840,8 @@
     <MESSAGE value="add json with estabs" />
     <MESSAGE value="establishments mapped correctly" />
     <MESSAGE value="swagger ui works" />
-    <option name="LAST_COMMIT_MESSAGE" value="swagger ui works" />
+    <MESSAGE value="more on rabbitmq - still fails on producing message -&gt; null values, prob issue in ser/de" />
+    <option name="LAST_COMMIT_MESSAGE" value="more on rabbitmq - still fails on producing message -&gt; null values, prob issue in ser/de" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
