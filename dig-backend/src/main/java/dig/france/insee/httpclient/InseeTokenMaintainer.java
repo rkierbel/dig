@@ -45,10 +45,10 @@ class InseeTokenMaintainer {
     }
 
     public boolean isExpired() {
-        return tokenData.tokenCreation().isBefore(Instant.now().minus(6, ChronoUnit.DAYS));
+        return tokenData.tokenCreation.isBefore(Instant.now().minus(6, ChronoUnit.DAYS));
     }
 
-    @Scheduled(condition = "#{this.tokenNotNull() && this.isExpired()}")
+    @Scheduled(fixedDelay = "P6DT1H")
     public void updateToken() {
         log.info("[TestTokenMaintainer::token] Begin update Sirene access token");
         if (hasValidTokenData()) {
@@ -72,8 +72,6 @@ class InseeTokenMaintainer {
                 .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofMillis(300L)))
                 .subscribe(tokenResponse -> this.setTokenData(TokenData.of(tokenResponse.accessToken())));
     }
-
-    //TODO -> add scheduled job every six days from startup to update token -> remember startup
 
     private record TokenData(String accessToken, Instant tokenCreation) {
 

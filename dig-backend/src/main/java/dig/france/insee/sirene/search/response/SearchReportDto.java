@@ -3,13 +3,10 @@ package dig.france.insee.sirene.search.response;
 import dig.france.insee.sirene.search.response.enumerated.AdministrativeStatus;
 import dig.france.insee.sirene.search.response.enumerated.UnitType;
 import io.micronaut.serde.annotation.Serdeable;
-import lombok.AccessLevel;
 import lombok.Builder;
-import lombok.Setter;
 
 import java.time.Instant;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

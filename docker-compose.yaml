@@ -1,7 +1,29 @@
 services:
+  rabbitmq:
+    image: rabbitmq:4.0-rc-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - dig-network
+    healthcheck:
+      test: [ "CMD", "rabbitmqctl", "status" ]
+      interval: 5s
+      timeout: 15s
+      retries: 5
+
   dig-backend:
     image: dig-backend:latest
     env_file:
       - .docker/dig/backend.env
     ports:
       - "5666:5666"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - dig-network
+
+networks:
+  dig-network:
+    driver: bridge

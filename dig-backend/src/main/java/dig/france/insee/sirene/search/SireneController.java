@@ -50,5 +50,13 @@ public class SireneController {
         asyncSearchService.sireneSearchByNaturalNameHistoricized(term);
         return HttpResponse.ok();
     }
+
+    @Get("/ping")
+    @Produces(MediaType.APPLICATION_JSON)
+    public HttpResponse<Void> ping(@QueryValue String message) {
+        log.info("Received ping request with message: {}", message);
+        asyncSearchService.ping(message);
+        return HttpResponse.ok();
+    }
 }
 

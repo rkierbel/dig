@@ -4,15 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="swagger ui works">
-      <change afterPath="$PROJECT_DIR$/dig-backend/dig-backend.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/httpclient/HttpClientWrongPropertyTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dig-backend/src/test/resources/application-test.yaml" afterDir="false" />
+    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="started on testing">
+      <change afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/common/messaging/HealthCheckEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/messaging/event/CompletedSireneSearchEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/SireneSearchServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/response/SireneSearchMapperTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeHttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeHttpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/common/messaging/CoreChannelPoolListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/common/messaging/ChannelPoolListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/common/messaging/DigProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/common/messaging/DigProducer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeTokenMaintainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeTokenMaintainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/messaging/SireneListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/messaging/SireneListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/AsyncSireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/AsyncSireneSearchService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/SireneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/SireneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/InseeHttpClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/httpclient/InseeHttpClientTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SearchReportDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SearchReportDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +35,7 @@
         <option value="Dockerfile" />
         <option value="Enum" />
         <option value="Interface" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -80,6 +87,7 @@
     "Docker.dig-backend/Dockerfile builder.executor": "Run",
     "Docker.dig-backend/Dockerfile.executor": "Run",
     "Docker.docker-compose.yaml.dig-backend: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.rabbitmq: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yaml: Compose Deployment.executor": "Run",
     "JAR Application.dig-backend-1.0-SNAPSHOT.jar.executor": "Run",
     "JUnit.HttpClientWrongPropertyTest.executor": "Run",
@@ -105,9 +113,12 @@
     "Maven.dig-backend [package,-Dpackaging=docker].executor": "Run",
     "Maven.dig-backend [run].executor": "Run",
     "Maven.skilld [clean,install].executor": "Run",
+    "Micronaut.DigApplication (2).executor": "Run",
     "OpenAPI/Swagger Code Generator.dig-application-1.0.yml.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "main",
     "ignore.preview.features.used": "true",
     "kotlin-language-version-configured": "true",
@@ -140,6 +151,9 @@
       <recent name="C:\Users\rkierbel\IdeaProjects\dig\dig-webclient" />
       <recent name="C:\Users\rkierbel\IdeaProjects\dig\dig-backend\src\main\java" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="dig.france.insee.httpclient" />
       <recent name="dig.france.insee.sirene.search.response" />
@@ -147,8 +161,12 @@
       <recent name="dig.france.insee.sirene.search.result" />
       <recent name="" />
     </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="dig.france.insee.sirene.search" />
+      <recent name="dig.france.insee.sirene.search.response" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.InseeHttpClientTest">
+  <component name="RunManager" selected="Micronaut.DigApplication (2)">
     <configuration name="HttpClientWrongPropertyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dig-backend" />
       <extension name="coverage">
@@ -175,38 +193,6 @@
       <option name="PACKAGE_NAME" value="dig.france.insee.httpclient" />
       <option name="MAIN_CLASS_NAME" value="dig.france.insee.httpclient.InseeHttpClientTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InseeHttpClientTest.givenInvalidCredentials_whenGetInfo_isBadRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dig-backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dig.france.insee.httpclient.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="dig.france.insee.httpclient" />
-      <option name="MAIN_CLASS_NAME" value="dig.france.insee.httpclient.InseeHttpClientTest" />
-      <option name="METHOD_NAME" value="givenInvalidCredentials_whenGetInfo_isBadRequest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InseeHttpClientTest.givenInvalidCredentials_whenPostToken_isBadRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dig-backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dig.france.insee.httpclient.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="dig.france.insee.httpclient" />
-      <option name="MAIN_CLASS_NAME" value="dig.france.insee.httpclient.InseeHttpClientTest" />
-      <option name="METHOD_NAME" value="givenInvalidCredentials_whenPostToken_isBadRequest" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -314,6 +300,14 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <configuration name="docker-compose.yaml.dig-backend: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -327,13 +321,26 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="docker-compose.yaml.rabbitmq: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="rabbitmq" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.dig-backend: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.rabbitmq: Compose Deployment" />
         <item itemvalue="JUnit.InseeHttpClientTest" />
         <item itemvalue="JUnit.HttpClientWrongPropertyTest" />
-        <item itemvalue="JUnit.InseeHttpClientTest.givenInvalidCredentials_whenGetInfo_isBadRequest" />
-        <item itemvalue="JUnit.InseeHttpClientTest.givenInvalidCredentials_whenPostToken_isBadRequest" />
-        <item itemvalue="Docker.docker-compose.yaml.dig-backend: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -391,6 +398,9 @@
       <workItem from="1724081132840" duration="8562000" />
       <workItem from="1724142141146" duration="147000" />
       <workItem from="1724154163419" duration="11056000" />
+      <workItem from="1724224395194" duration="7463000" />
+      <workItem from="1724235230420" duration="6321000" />
+      <workItem from="1724250047781" duration="5993000" />
     </task>
     <task id="LOCAL-00005" summary="search encapsulation + messaging rework">
       <option name="closed" value="true" />
@@ -793,6 +803,18 @@
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+        <option value="GitHub.CommitStatus" />
+      </list>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -836,17 +858,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchMapper.java</url>
-          <line>89</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchMapper.java</url>
-          <line>85</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="7" />
+          <url>file://$PROJECT_DIR$/dig-backend/target/classes/dig/common/messaging/DigProducer$Intercepted.class</url>
+          <line>26</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

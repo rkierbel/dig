@@ -1,6 +1,7 @@
 package dig.france.insee.sirene.search;
 
 import dig.common.messaging.DigProducer;
+import dig.common.messaging.HealthCheckEvent;
 import dig.france.insee.InseeConstant;
 import dig.france.insee.exception.InseeHttpException;
 import dig.france.insee.httpclient.InseeHttpClient;
@@ -20,6 +21,7 @@ import reactor.util.retry.Retry;
 import java.time.Duration;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Singleton
 @Slf4j
@@ -44,7 +46,7 @@ public class AsyncSireneSearchService {
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofMillis(500L))) // TODO -> best practice ?
                 .flatMap(this::completeSearchWithSiret)
-                .subscribe(digProducer::sendCompletedSearchEvent, this::handleSearchError);
+                .subscribe(digProducer::sendCompletedSireneSearchEvent, this::handleSearchError);
     }
 
     public void sireneSearchByMultiCriteriaHistoricized(Set<SearchCriteria> criteria) {
@@ -52,7 +54,7 @@ public class AsyncSireneSearchService {
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofMillis(500L)))
                 .flatMap(this::completeSearchWithSiret)
-                .subscribe(digProducer::sendCompletedSearchEvent, this::handleSearchError);
+                .subscribe(digProducer::sendCompletedSireneSearchEvent, this::handleSearchError);
     }
 
     //TODO -> multiple siren single request works => link establishments to siren in the report
@@ -74,4 +76,10 @@ public class AsyncSireneSearchService {
         return Mono.empty();
     }
 
+    public void ping(String message) {
+        log.info("[AsyncSearchService::onPing] Forwarding ping with message {}", message);
+        HealthCheckEvent event  = new HealthCheckEvent(UUID.randomUUID().toString(), message);
+        log.info("[AsyncSearchService::onPing] Sending healthcheck event with id {} and message {}", event.getId(), event.getMessage());
+        digProducer.sendPing(event);
+    }
 }

@@ -28,6 +28,7 @@ rabbitmq:
       sirene:
         search-request: sirene.historicizedSearch-request.queue
         search-response: sirene.historicizedSearch-response.queue
+        ping: sirene.ping.queue
       siret:
         part-search: siret.part-search.queue
   binding:
@@ -35,9 +36,10 @@ rabbitmq:
       sirene:
         search-request: sirene.historicizedSearch-request.binding
         search-response: sirene.historicizedSearch-response.binding
+        ping: sirene.ping.binding
       siret:
         part-search: siret.part-search.binding
-  uri: amqp://localhost:5672
+  uri: amqp://${RABBITMQ_USER:guest}:${RABBITMQ_PASS:guest}@${RABBITMQ_HOST:localhost}:${RABBITMQ_PORT:5672}
   username: ${RABBITMQ_USERNAME:guest}
   password: ${RABBITMQ_PASSWORD:guest}
 
