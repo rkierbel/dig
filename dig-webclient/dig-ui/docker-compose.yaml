@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  dig-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:80"
+    environment:
+      - BACKEND_URL=http://dig-backend:5666
+    networks:
+      - dig-network
+
+networks:
+  dig-network:
+    external: true
