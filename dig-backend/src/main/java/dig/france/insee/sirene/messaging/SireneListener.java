@@ -1,5 +1,6 @@
 package dig.france.insee.sirene.messaging;
 
+import dig.common.messaging.HealthCheckEvent;
 import dig.france.insee.sirene.messaging.event.SireneHistoricizedSearchEvent;
 import dig.france.insee.sirene.search.AsyncSireneSearchService;
 import io.micronaut.context.annotation.Requires;
@@ -24,7 +25,7 @@ public class SireneListener {
     }
 
     @Queue("${rabbitmq.queue.insee.sirene.ping}")
-    public void onPing(byte[] data) {
-        log.info("[SireneListener] Received Sirene ping:\n {}", new String(data));
+    public void onPing(HealthCheckEvent event) {
+        log.info("[SireneListener] Received Sirene ping:\n {}", event.toString());
     }
 }

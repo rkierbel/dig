@@ -77,9 +77,9 @@ public class AsyncSireneSearchService {
     }
 
     public void ping(String message) {
-        log.info("[AsyncSearchService::onPing] Forwarding ping with message {}", message);
+        log.info("[AsyncSearchService::onPing] Forwarding ping with message {}, transforming to recordO", message);
         HealthCheckEvent event  = new HealthCheckEvent(UUID.randomUUID().toString(), message);
-        log.info("[AsyncSearchService::onPing] Sending healthcheck event with id {} and message {}", event.getId(), event.getMessage());
-        digProducer.sendPing(message.getBytes());
+        log.info("[AsyncSearchService::onPing] Sending healthcheck event with id {} and message {}", event.id(), event.message());
+        digProducer.sendPing(event);
     }
 }

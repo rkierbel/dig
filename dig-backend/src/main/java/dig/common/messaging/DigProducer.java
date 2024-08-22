@@ -17,5 +17,5 @@ public interface DigProducer {
 
     @Binding("${rabbitmq.binding.insee.sirene.ping}")
     @RabbitProperty(name = "contentType", value = "application/json")
-    void sendPing(byte[] data);
+    void sendPing(HealthCheckEvent event);
 }
