@@ -1,7 +1,6 @@
 package dig.common.messaging;
 
-import dig.france.insee.sirene.messaging.event.SireneHistoricizedSearchEvent;
-import dig.france.insee.sirene.search.response.SearchReportDto;
+import dig.france.insee.sirene.messaging.event.SireneSearchCompletedEvent;
 import io.micronaut.rabbitmq.annotation.Binding;
 import io.micronaut.rabbitmq.annotation.RabbitClient;
 import io.micronaut.rabbitmq.annotation.RabbitProperty;
@@ -9,11 +8,8 @@ import io.micronaut.rabbitmq.annotation.RabbitProperty;
 @RabbitClient("${rabbitmq.exchange.dig}")
 public interface DigProducer {
 
-    @Binding("${rabbitmq.binding.insee.sirene.search-request}")
-    void sendSireneHistoricizedSearchEvent(SireneHistoricizedSearchEvent event);
-
     @Binding("${rabbitmq.binding.insee.sirene.search-response}")
-    void sendCompletedSireneSearchEvent(SearchReportDto reportDto);
+    void sendCompletedSireneSearchEvent(SireneSearchCompletedEvent event);
 
     @Binding("${rabbitmq.binding.insee.sirene.ping}")
     @RabbitProperty(name = "contentType", value = "application/json")

@@ -1,7 +1,7 @@
 package dig.france.insee.sirene.messaging;
 
 import dig.common.messaging.HealthCheckEvent;
-import dig.france.insee.sirene.messaging.event.SireneHistoricizedSearchEvent;
+import dig.france.insee.sirene.messaging.event.SireneSearchCompletedEvent;
 import dig.france.insee.sirene.search.AsyncSireneSearchService;
 import io.micronaut.context.annotation.Requires;
 import io.micronaut.context.env.Environment;
@@ -18,10 +18,9 @@ public class SireneListener {
     @Inject
     AsyncSireneSearchService asyncSireneSearchService;
 
-    @Queue("${rabbitmq.queue.insee.sirene.search-request}")
-    void onSireneHistoricizedSearchEvent(SireneHistoricizedSearchEvent event) {
-        log.info("Received sirene historicizedSearch event with id {}", event.getId());
-        asyncSireneSearchService.sireneSearchByMultiCriteriaHistoricized(event.getSearchCriteria());
+    @Queue("${rabbitmq.queue.insee.sirene.search-response}")
+    void onSireneSearchCompletedEvent(SireneSearchCompletedEvent event) {
+        log.info("Received sirene search completed event with id {} and report:\n{}", event.id(), event.reportDto().toString());
     }
 
     @Queue("${rabbitmq.queue.insee.sirene.ping}")

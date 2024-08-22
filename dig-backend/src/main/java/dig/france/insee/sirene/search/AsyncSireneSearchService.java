@@ -5,11 +5,11 @@ import dig.common.messaging.HealthCheckEvent;
 import dig.france.insee.InseeConstant;
 import dig.france.insee.exception.InseeHttpException;
 import dig.france.insee.httpclient.InseeHttpClient;
+import dig.france.insee.sirene.messaging.event.SireneSearchCompletedEvent;
 import dig.france.insee.sirene.search.request.SearchCriteria;
 import dig.france.insee.sirene.search.request.SearchOperator;
 import dig.france.insee.sirene.search.request.SearchVariable;
 import dig.france.insee.sirene.search.request.SireneSearchFactory;
-import dig.france.insee.sirene.search.response.SearchReportDto;
 import dig.france.insee.sirene.search.response.SireneSearchMapper;
 import dig.france.insee.sirene.search.response.SireneSearchResponse;
 import jakarta.inject.Inject;
@@ -57,13 +57,13 @@ public class AsyncSireneSearchService {
                 .subscribe(digProducer::sendCompletedSireneSearchEvent, this::handleSearchError);
     }
 
-    //TODO -> multiple siren single request works => link establishments to siren in the report
-    private Mono<SearchReportDto> completeSearchWithSiret(SireneSearchResponse apiResponse) {
+    private Mono<SireneSearchCompletedEvent> completeSearchWithSiret(SireneSearchResponse apiResponse) {
         if (Objects.isNull(apiResponse.sirenNumbers())) {
-            return Mono.just(SearchReportDto.emptyReport());
+            return Mono.just(SireneSearchCompletedEvent.emptyWithId());
         }
         return Mono.from(httpClient.siretSearchAsync(SireneSearchFactory.multipleSiren(apiResponse.sirenNumbers())))
                 .map(siretResponse -> sireneSearchMapper.toReport(apiResponse, siretResponse))
+                .map(SireneSearchCompletedEvent::withReport)
                 .onErrorResume(this::emptyMonoOnError);
     }
 
@@ -71,14 +71,14 @@ public class AsyncSireneSearchService {
         // TODO -> handle error
     }
 
-    private Mono<SearchReportDto> emptyMonoOnError(Throwable ex) {
+    private Mono<SireneSearchCompletedEvent> emptyMonoOnError(Throwable ex) {
         log.error("Error fetching Siret information: {}", ex.getMessage());
         return Mono.empty();
     }
 
     public void ping(String message) {
         log.info("[AsyncSearchService::onPing] Forwarding ping with message {}, transforming to recordO", message);
-        HealthCheckEvent event  = new HealthCheckEvent(UUID.randomUUID().toString(), message);
+        HealthCheckEvent event = new HealthCheckEvent(UUID.randomUUID().toString(), message);
         log.info("[AsyncSearchService::onPing] Sending healthcheck event with id {} and message {}", event.id(), event.message());
         digProducer.sendPing(event);
     }
