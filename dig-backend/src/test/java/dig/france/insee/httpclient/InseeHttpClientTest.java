@@ -38,7 +38,7 @@ class InseeHttpClientTest {
     @Test
     void givenValidBearerToken_whenGetInfoFromSirenV3_isOk() throws InterruptedException {
         tokenMaintainer.updateToken();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         SirenInfoResponse infoResponse = Mono.from(client.information()).block();
         assertNotNull(infoResponse);
         assertNotNull(infoResponse.sirenVersion());

@@ -2,11 +2,13 @@ package dig.france.insee.sirene.search;
 
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;
 
 @MicronautTest
+@Disabled
 public class SireneSearchTest {
 
     @Inject

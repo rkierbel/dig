@@ -1,7 +1,7 @@
 package dig.france.insee.httpclient;
 
-import dig.france.insee.exception.InseeHttpException;
 import dig.common.http.HttpServiceId;
+import dig.france.insee.exception.InseeHttpException;
 import io.micronaut.http.MutableHttpRequest;
 import io.micronaut.http.annotation.ClientFilter;
 import io.micronaut.http.annotation.RequestFilter;
@@ -26,8 +26,11 @@ class InseeHttpFilter {
     @RequestFilter("${sirene.api.prefix}${micronaut.http.wildcard}")
     void doFilterSirene(MutableHttpRequest<?> request) {
         if (!tokenMaintainer.hasValidTokenData()) {
+            log.info("[InseeHttpFilter::doFilterSirene] Invalid bearer token - an token refresh will be performed");
+            tokenMaintainer.updateToken();
             throw InseeHttpException.missingBearerToken();
         } else {
+            log.info("[InseeHttpFilter::doFilterSirene] Valid token - setting bearer");
             request.bearerAuth(tokenMaintainer.bearer());
         }
     }

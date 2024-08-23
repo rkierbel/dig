@@ -28,49 +28,51 @@ class InseeTokenMaintainer {
 
     private final BeanProvider<InseeHttpClient> inseeHttpClient;
 
-    public InseeTokenMaintainer(BeanProvider<InseeHttpClient> inseeHttpClient) {
+    InseeTokenMaintainer(BeanProvider<InseeHttpClient> inseeHttpClient) {
         this.inseeHttpClient = inseeHttpClient;
     }
 
-    public String bearer() {
+    String bearer() {
         return this.tokenData.accessToken();
     }
 
-    public boolean hasValidTokenData() {
-        return  tokenNotNull() && !isExpired();
+    boolean hasValidTokenData() {
+        return tokenNotNull() && !isExpired();
     }
 
-    public boolean tokenNotNull() {
+    boolean tokenNotNull() {
         return tokenData != null && tokenData.accessToken != null;
     }
 
-    public boolean isExpired() {
+    boolean isExpired() {
         return tokenData.tokenCreation.isBefore(Instant.now().minus(6, ChronoUnit.DAYS));
     }
 
-    @Scheduled(fixedDelay = "P6DT1H")
-    public void updateToken() {
-        log.info("[TestTokenMaintainer::token] Begin update Sirene access token");
+    @Scheduled(fixedDelay = "P6DT1H", initialDelay = "PT10m")
+    void updateToken() {
+        log.info("[TestTokenMaintainer::updateTokenJob] Begin update Sirene access token");
         if (hasValidTokenData()) {
-            log.info("[TestTokenMaintainer::token] Sirene access token already valid");
-            return;
+            log.info("[TestTokenMaintainer::updateTokenJob] Sirene access token already valid");
+        } else {
+            log.info("[TestTokenMaintainer::updateTokenJob] Sirene access token is invalid, fetching token");
+            executeTokenFetchPipeline()
+                    .subscribe(tokenResponse -> this.setTokenData(TokenData.of(tokenResponse.accessToken())));
         }
-        fetchToken();
     }
-    
+
     @EventListener
     @Requires(notEnv = Environment.TEST)
     void onStartUp(ServerStartupEvent event) {
         log.info("[InseeClientRunner::onStartup] Begin fetching Sirene access token");
-        fetchToken();
+        executeTokenFetchPipeline()
+                .subscribe(tokenResponse -> this.setTokenData(TokenData.of(tokenResponse.accessToken())));
     }
 
-    private void fetchToken() {
-        Mono.from(inseeHttpClient.get().token(InseeConstant.CLIENT_CREDENTIALS))
+    private Mono<InseeTokenResponse> executeTokenFetchPipeline() {
+        return Mono.from(inseeHttpClient.get().token(InseeConstant.CLIENT_CREDENTIALS))
                 .doOnError(InseeHttpException::logTokenGenerationFailure)
-                .doOnNext(resp -> log.info("[InseeClientRunner::onStartup] Sirene access token successfully retrieved"))
-                .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofMillis(300L)))
-                .subscribe(tokenResponse -> this.setTokenData(TokenData.of(tokenResponse.accessToken())));
+                .doOnNext(response -> log.info("[InseeClientRunner::onStartup] Sirene access token successfully retrieved"))
+                .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofMillis(300L)));
     }
 
     private record TokenData(String accessToken, Instant tokenCreation) {

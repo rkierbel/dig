@@ -2,7 +2,6 @@ package dig.france.insee.httpclient;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.serde.annotation.Serdeable;
-import reactor.core.publisher.Mono;
 
 @Serdeable
 public record InseeTokenResponse(@JsonProperty("access_token") String accessToken,
