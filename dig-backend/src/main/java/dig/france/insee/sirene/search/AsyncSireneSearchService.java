@@ -38,18 +38,18 @@ public class AsyncSireneSearchService {
 
     //TODO -> full test
     public void sireneSearchByNaturalNameHistoricized(String term) {
-        Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
-                        .searchVar(SearchVariable.NATURAL_PERSON_NAME)
-                        .value(term)
-                        .operator(SearchOperator.NONE)
-                        .build()))))
-                .doOnError(InseeHttpException::logSireneSearchFailure)
-                .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofMillis(500L))) // TODO -> best practice ?
-                .flatMap(this::completeSearchWithSiret)
-                .subscribe(digProducer::sendCompletedSireneSearchEvent, this::handleSearchError);
+        executeSearchPipeline(Set.of(SearchCriteria.builder()
+                .searchVar(SearchVariable.NATURAL_PERSON_NAME)
+                .value(term)
+                .operator(SearchOperator.NONE)
+                .build()));
     }
 
     public void sireneSearchByMultiCriteriaHistoricized(Set<SearchCriteria> criteria) {
+        executeSearchPipeline(criteria);
+    }
+
+    private void executeSearchPipeline(Set<SearchCriteria> criteria) {
         Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(criteria)))
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofMillis(500L)))

@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="messaging works + async search sirene &amp; siret works">
+    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="report log level debug">
+      <change afterPath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/AsyncSireneSearchServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/SireneControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/SireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/SireneSearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/AsyncSireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/AsyncSireneSearchService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +25,8 @@
         <option value="Dockerfile" />
         <option value="Enum" />
         <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -155,7 +157,7 @@
       <recent name="dig.france.insee.sirene.search.response" />
     </key>
   </component>
-  <component name="RunManager" selected="Micronaut.DigApplication (2)">
+  <component name="RunManager" selected="JUnit.HttpClientWrongPropertyTest">
     <configuration name="HttpClientWrongPropertyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dig-backend" />
       <extension name="coverage">
@@ -325,11 +327,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.HttpClientWrongPropertyTest" />
+        <item itemvalue="JUnit.InseeHttpClientTest" />
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml.dig-backend: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml.rabbitmq: Compose Deployment" />
-        <item itemvalue="JUnit.InseeHttpClientTest" />
-        <item itemvalue="JUnit.HttpClientWrongPropertyTest" />
       </list>
     </recent_temporary>
   </component>
@@ -392,15 +394,7 @@
       <workItem from="1724250047781" duration="7119000" />
       <workItem from="1724309524749" duration="2573000" />
       <workItem from="1724325514405" duration="13439000" />
-      <workItem from="1724402821211" duration="949000" />
-    </task>
-    <task id="LOCAL-00008" summary="add rabbit config for sirene search request vs response queues + bindings">
-      <option name="closed" value="true" />
-      <created>1722866631573</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1722866631573</updated>
+      <workItem from="1724402821211" duration="4489000" />
     </task>
     <task id="LOCAL-00009" summary="uniformization on logging syntax">
       <option name="closed" value="true" />
@@ -786,7 +780,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724311941746</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="report log level debug">
+      <option name="closed" value="true" />
+      <created>1724403792439</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1724403792439</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -819,7 +821,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="mark synchronous ops on SireneController as blocking" />
     <MESSAGE value="logging for async natural person histo search" />
     <MESSAGE value="include siret search + refactor sync/async services" />
     <MESSAGE value="refactor token maintenance outside of httpclientfilter" />
@@ -844,6 +845,7 @@
     <MESSAGE value="more on rabbitmq - still fails on producing message -&gt; null values, prob issue in ser/de" />
     <MESSAGE value="messaging works" />
     <MESSAGE value="messaging works + async search sirene &amp; siret works" />
-    <option name="LAST_COMMIT_MESSAGE" value="messaging works + async search sirene &amp; siret works" />
+    <MESSAGE value="report log level debug" />
+    <option name="LAST_COMMIT_MESSAGE" value="report log level debug" />
   </component>
 </project>
