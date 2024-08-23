@@ -54,7 +54,9 @@ public class SireneSearchService {
                 SireneSearchFactory.multipleSiren(sireneResponse.sirenNumbers()));
         log.info("Successfully retrieved Siret register data");
         SearchReportDto report = sireneSearchMapper.toReport(sireneResponse, siretResponse);
-        log.info("Successfully generated a search report ! {}", report);
+        if (log.isDebugEnabled()) {
+            log.debug("Successfully generated a search report ! {}", report);
+        }
         return report;
     }
 }
