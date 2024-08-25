@@ -36,6 +36,14 @@ public class AsyncSireneSearchService {
     @Inject
     SireneSearchMapper sireneSearchMapper;
 
+
+    public void healthCheck(String message) {
+        log.info("[AsyncSearchService::onPing] Forwarding ping with message {}, transforming to recordO", message);
+        HealthCheckEvent event = new HealthCheckEvent(UUID.randomUUID().toString(), message);
+        log.info("[AsyncSearchService::onPing] Sending healthcheck event with id {} and message {}", event.id(), event.message());
+        digProducer.sendPing(event);
+    }
+
     //TODO -> full test
     public void sireneSearchByNaturalNameHistoricized(String term) {
         executeSearchPipeline(Set.of(SearchCriteria.builder()
@@ -53,11 +61,11 @@ public class AsyncSireneSearchService {
         Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(criteria)))
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofMillis(500L)))
-                .flatMap(this::completeSearchWithSiret)
+                .flatMap(this::executeSiretSearch)
                 .subscribe(digProducer::sendCompletedSireneSearchEvent, this::handleSearchError);
     }
 
-    private Mono<SireneSearchCompletedEvent> completeSearchWithSiret(SireneSearchResponse apiResponse) {
+    private Mono<SireneSearchCompletedEvent> executeSiretSearch(SireneSearchResponse apiResponse) {
         if (Objects.isNull(apiResponse.sirenNumbers())) {
             return Mono.just(SireneSearchCompletedEvent.emptyWithId());
         }
@@ -74,12 +82,5 @@ public class AsyncSireneSearchService {
     private Mono<SireneSearchCompletedEvent> emptyMonoOnError(Throwable ex) {
         log.error("Error fetching Siret information: {}", ex.getMessage());
         return Mono.empty();
-    }
-
-    public void ping(String message) {
-        log.info("[AsyncSearchService::onPing] Forwarding ping with message {}, transforming to recordO", message);
-        HealthCheckEvent event = new HealthCheckEvent(UUID.randomUUID().toString(), message);
-        log.info("[AsyncSearchService::onPing] Sending healthcheck event with id {} and message {}", event.id(), event.message());
-        digProducer.sendPing(event);
     }
 }
