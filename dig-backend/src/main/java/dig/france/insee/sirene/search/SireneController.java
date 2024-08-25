@@ -31,7 +31,7 @@ public class SireneController {
     @Produces(MediaType.APPLICATION_JSON)
     @ExecuteOn(TaskExecutors.BLOCKING)
     public HttpResponse<SearchReportDto> sireneSearchByNaturalNameHistoricized(@QueryValue String term) {
-        log.info("Sending HTTP request to Sirene for natural person with name {}", term);
+        log.info("Sending HTTP request to Sirene for natural person with name {}", term); //TODO _> adapt search -> denom OR surnames / firstnames etc
         return HttpResponse.ok(searchService.sireneSearchByNaturalNameHistoricized(term));
     }
 

@@ -18,7 +18,7 @@ public class RabbitMQContainer extends GenericContainer<RabbitMQContainer> {
 
     public RabbitMQContainer(DockerImageName dockerImage) {
         super(dockerImage);
-        this.logger().info("Starting RabbitMQ container using [{}]", dockerImage);
+        log.info("Starting RabbitMQ testcontainer using [{}]", dockerImage);
         this.withExposedPorts(5672, 15672);
         this.withExtraHost("localhost", "127.0.0.1");
         this.waitingFor(Wait.forLogMessage(".*Server startup complete.*", 1));
