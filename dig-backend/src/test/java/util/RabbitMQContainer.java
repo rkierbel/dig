@@ -5,8 +5,6 @@ import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.utility.DockerImageName;
 
-import java.io.IOException;
-
 @Slf4j
 public class RabbitMQContainer extends GenericContainer<RabbitMQContainer> {
 
@@ -36,8 +34,5 @@ public class RabbitMQContainer extends GenericContainer<RabbitMQContainer> {
     @Override
     public void start() {
         super.start();
-    }
-
-    private void setProperties(String host) {
     }
 }
