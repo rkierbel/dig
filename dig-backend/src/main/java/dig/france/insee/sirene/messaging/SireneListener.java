@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @RabbitListener
 @Slf4j
-@Requires(notEnv = Environment.TEST)
 public class SireneListener {
 
     @Inject

@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 
 @Singleton
-@Requires(notEnv = Environment.TEST)
 @Slf4j
 public class ChannelPoolListener extends ChannelInitializer {
 

@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="introduced test classes + refactor sirene search async service">
+    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="refactor token maintenance">
+      <change afterPath="$PROJECT_DIR$/dig-backend/src/test/java/util/RabbitMQContainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/exception/InseeHttpError.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/exception/InseeHttpError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeHttpFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeHttpFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeTokenMaintainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeTokenMaintainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeTokenResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeTokenResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/httpclient/InseeHttpClientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/httpclient/InseeHttpClientTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/SireneSearchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/SireneSearchTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/common/messaging/ChannelPoolListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/common/messaging/ChannelPoolListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/messaging/SireneListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/messaging/SireneListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/SireneControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/SireneControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/test/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/test/resources/application-test.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +28,8 @@
         <option value="Dockerfile" />
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -88,6 +88,9 @@
     "JUnit.InseeHttpClientTest.givenInvalidCredentials_whenGetInfo_isBadRequest.executor": "Run",
     "JUnit.InseeHttpClientTest.givenInvalidCredentials_whenPostToken_isBadRequest.executor": "Run",
     "JUnit.InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk.executor": "Run",
+    "JUnit.SireneControllerTest.containerRuns.executor": "Run",
+    "JUnit.SireneControllerTest.executor": "Run",
+    "JUnit.SireneControllerTest.testPing.executor": "Run",
     "JUnit.SireneSearchTest.executor": "Run",
     "JUnit.SireneSearchTest.givenValidSimpleSearchByMultipleSiren_returnSiretSearchResult.executor": "Run",
     "JUnit.SireneSearchTest.givenValidSimpleSearchByNaturalPersonName_returnSireneSearchResult.executor": "Run",
@@ -161,22 +164,7 @@
       <recent name="dig.france.insee.sirene.search.response" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yaml: Compose Deployment">
-    <configuration name="HttpClientWrongPropertyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dig-backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="dig.france.insee.httpclient.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="dig.france.insee.httpclient" />
-      <option name="MAIN_CLASS_NAME" value="dig.france.insee.httpclient.HttpClientWrongPropertyTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.SireneControllerTest">
     <configuration name="InseeHttpClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dig-backend" />
       <extension name="coverage">
@@ -192,26 +180,49 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SireneControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dig-backend" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dig.france.insee.httpclient.*" />
+          <option name="PATTERN" value="dig.france.insee.sirene.search.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="dig.france.insee.httpclient" />
-      <option name="MAIN_CLASS_NAME" value="dig.france.insee.httpclient.InseeHttpClientTest" />
-      <option name="METHOD_NAME" value="givenValidBearerToken_whenGetInfoFromSirenV3_isOk" />
+      <option name="PACKAGE_NAME" value="dig.france.insee.sirene.search" />
+      <option name="MAIN_CLASS_NAME" value="dig.france.insee.sirene.search.SireneControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SireneControllerTest.containerRuns" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dig-backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dig.france.insee.sirene.search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dig.france.insee.sirene.search" />
+      <option name="MAIN_CLASS_NAME" value="dig.france.insee.sirene.search.SireneControllerTest" />
+      <option name="METHOD_NAME" value="containerRuns" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="java in dig-backend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SireneControllerTest.testPing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dig-backend" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/dig-backend/src/test/java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dig.france.insee.sirene.search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dig.france.insee.sirene.search" />
+      <option name="MAIN_CLASS_NAME" value="dig.france.insee.sirene.search.SireneControllerTest" />
+      <option name="METHOD_NAME" value="testPing" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -329,11 +340,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
-        <item itemvalue="JUnit.java in dig-backend" />
-        <item itemvalue="JUnit.InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk" />
+        <item itemvalue="JUnit.SireneControllerTest" />
         <item itemvalue="JUnit.InseeHttpClientTest" />
-        <item itemvalue="JUnit.HttpClientWrongPropertyTest" />
+        <item itemvalue="JUnit.SireneControllerTest.testPing" />
+        <item itemvalue="JUnit.SireneControllerTest.containerRuns" />
+        <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -396,15 +407,7 @@
       <workItem from="1724250047781" duration="7119000" />
       <workItem from="1724309524749" duration="2573000" />
       <workItem from="1724325514405" duration="13439000" />
-      <workItem from="1724402821211" duration="9114000" />
-    </task>
-    <task id="LOCAL-00010" summary="correct url naturalPersonSearch">
-      <option name="closed" value="true" />
-      <created>1722867504199</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1722867504199</updated>
+      <workItem from="1724402821211" duration="15846000" />
     </task>
     <task id="LOCAL-00011" summary="structure clean with dig as parent">
       <option name="closed" value="true" />
@@ -790,7 +793,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724418634469</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="refactor token maintenance">
+      <option name="closed" value="true" />
+      <created>1724424455501</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1724424455501</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -823,7 +834,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="include siret search + refactor sync/async services" />
     <MESSAGE value="refactor token maintenance outside of httpclientfilter" />
     <MESSAGE value="minor refactor" />
     <MESSAGE value="created base async pipelines including siret search results" />
@@ -848,6 +858,7 @@
     <MESSAGE value="messaging works + async search sirene &amp; siret works" />
     <MESSAGE value="report log level debug" />
     <MESSAGE value="introduced test classes + refactor sirene search async service" />
-    <option name="LAST_COMMIT_MESSAGE" value="introduced test classes + refactor sirene search async service" />
+    <MESSAGE value="refactor token maintenance" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor token maintenance" />
   </component>
 </project>

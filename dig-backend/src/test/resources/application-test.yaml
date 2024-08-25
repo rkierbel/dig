@@ -1,5 +1,7 @@
 micronaut:
   application:
     name: dig-application
-  server:
-    port: 5667
+rabbitmq:
+  uri: amqp://guest:guest@$localhost:5672
+  username: guest
+  password: guest
