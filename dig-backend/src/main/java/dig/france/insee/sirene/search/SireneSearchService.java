@@ -2,8 +2,6 @@ package dig.france.insee.sirene.search;
 
 import dig.france.insee.httpclient.InseeHttpClient;
 import dig.france.insee.sirene.search.request.SearchCriteria;
-import dig.france.insee.sirene.search.request.SearchOperator;
-import dig.france.insee.sirene.search.request.SearchVariable;
 import dig.france.insee.sirene.search.request.SireneSearchFactory;
 import dig.france.insee.sirene.search.response.SearchReportDto;
 import dig.france.insee.sirene.search.response.SireneSearchMapper;
@@ -26,12 +24,14 @@ public class SireneSearchService {
     SireneSearchMapper sireneSearchMapper;
 
     SearchReportDto sireneSearchByNaturalNameHistoricized(String term) {
-        String queryString = SireneSearchFactory.historicized(Set.of(SearchCriteria.builder()
-                .searchVar(SearchVariable.NATURAL_PERSON_NAME)
-                .value(term)
-                .operator(SearchOperator.NONE)
-                .build()));
+        String queryString = SireneSearchFactory.naturalPersonName(term);
         log.info("Built query string for natural person name search: {}", queryString);
+        return fullResultFromHttp(queryString);
+    }
+
+    SearchReportDto sireneSearchByCompanyNameHistoricized(String term) {
+        String queryString = SireneSearchFactory.companyName(term);
+        log.info("Built query string for company name search: {}", queryString);
         return fullResultFromHttp(queryString);
     }
 

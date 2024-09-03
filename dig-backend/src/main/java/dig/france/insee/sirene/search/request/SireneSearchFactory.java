@@ -14,12 +14,20 @@ public class SireneSearchFactory {
 
     private static final SireneSearchFactory INSTANCE = new SireneSearchFactory();
 
-    public static String simpleSearch(SearchVariable variable, String value) {
-        return INSTANCE.stringCriteria(SearchCriteria.builder()
-                .searchVar(variable)
-                .value(value)
+    public static String naturalPersonName(String term) {
+        return historicized(Set.of(SearchCriteria.builder()
+                .searchVar(SearchVariable.NATURAL_PERSON_NAME)
+                .value(term)
                 .operator(SearchOperator.NONE)
-                .build());
+                .build()));
+    }
+
+    public static String companyName(String term) {
+        return historicized(Set.of(SearchCriteria.builder()
+                .searchVar(SearchVariable.COMPANY_NAME)
+                .value(term)
+                .operator(SearchOperator.NONE)
+                .build()));
     }
 
     public static String historicized(Set<SearchCriteria> searchCriteria) {
@@ -34,10 +42,6 @@ public class SireneSearchFactory {
                 .map(SearchCriteria::sirenSet)
                 .map(criteria -> INSTANCE.toQueryString(criteria, OR))
                 .orElseThrow(SireneSearchException::nullParameterForSiretSearch);
-    }
-
-    public static String logCriteria(Set<SearchCriteria> searchCriteria) {
-        return searchCriteria.stream().map(SearchCriteria::toString).collect(Collectors.joining(InseeConstant.WHITESPACE));
     }
 
     private String toQueryString(Set<SearchCriteria> searchCriteria) {

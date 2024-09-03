@@ -72,7 +72,10 @@ public class AsyncSireneSearchService {
         if (Objects.isNull(apiResponse.sirenNumbers())) {
             return Mono.just(SireneSearchCompletedEvent.emptyWithId());
         }
-        return Mono.from(httpClient.siretSearchAsync(SireneSearchFactory.multipleSiren(apiResponse.sirenNumbers())))
+        return Mono.from(
+                        httpClient.siretSearchAsync(
+                                SireneSearchFactory.multipleSiren(apiResponse.sirenNumbers()))
+                )
                 .map(siretResponse -> sireneSearchMapper.toReport(apiResponse, siretResponse))
                 .map(SireneSearchCompletedEvent::withReport)
                 .onErrorResume(this::emptyMonoOnError);

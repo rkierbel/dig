@@ -22,7 +22,7 @@ import static dig.france.insee.sirene.SireneConstants.COMPANY_COMMON_NAME_1;
 import static dig.france.insee.sirene.SireneConstants.COMPANY_COMMON_NAME_2;
 import static dig.france.insee.sirene.SireneConstants.COMPANY_COMMON_NAME_3;
 import static dig.france.insee.sirene.SireneConstants.COMPANY_COMMON_NAME_CHANGE;
-import static dig.france.insee.sirene.SireneConstants.COMPANY_NAME;
+import static dig.france.insee.sirene.SireneConstants.LEGAL_UNIT_NAME;
 import static dig.france.insee.sirene.SireneConstants.COMPANY_NAME_CHANGE;
 import static dig.france.insee.sirene.SireneConstants.END_DATE;
 import static dig.france.insee.sirene.SireneConstants.FIRST_NAME;
@@ -146,7 +146,7 @@ public record SireneSearchResponse(SirenHeader header,
                   @JsonProperty(ADMIN_STATUS) AdministrativeStatus administrativeStatus,
                   @JsonProperty(NATURAL_PERSON_NAME) String naturalPersonLastName,
                   @JsonProperty(NATURAL_PERSON_COMMON_NAME) String naturalPersonCommonName,
-                  @JsonProperty(COMPANY_NAME) String companyName,
+                  @JsonProperty(LEGAL_UNIT_NAME) String companyName,
                   @JsonProperty(COMPANY_COMMON_NAME_1) String companyCommonName1,
                   @JsonProperty(COMPANY_COMMON_NAME_2) String companyCommonName2,
                   @JsonProperty(COMPANY_COMMON_NAME_3) String companyCommonName3,

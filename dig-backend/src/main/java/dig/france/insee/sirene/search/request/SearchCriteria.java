@@ -26,4 +26,8 @@ public record SearchCriteria(@JsonProperty("historicizedSearch-var") SearchVaria
     private static SearchCriteria siren(Integer integer) {
         return new SearchCriteria(SearchVariable.SIREN, String.valueOf(integer));
     }
+
+    public String log() {
+        return "%s : %s".formatted(searchVar.getFrenchVariableName(), value);
+    }
 }

@@ -1,7 +1,7 @@
 package dig.france.insee.sirene.search;
 
+import dig.france.insee.InseeConstant;
 import dig.france.insee.sirene.search.request.SearchCriteria;
-import dig.france.insee.sirene.search.request.SireneSearchFactory;
 import dig.france.insee.sirene.search.response.SearchReportDto;
 import dig.france.insee.sirene.validation.ValidSireneSimpleSearch;
 import io.micronaut.http.HttpResponse;
@@ -16,6 +16,7 @@ import jakarta.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller("/insee/sirene")
 @Slf4j
@@ -31,7 +32,7 @@ public class SireneController {
     @Produces(MediaType.APPLICATION_JSON)
     @ExecuteOn(TaskExecutors.BLOCKING)
     public HttpResponse<SearchReportDto> sireneSearchByNaturalNameHistoricized(@QueryValue String term) {
-        log.info("Sending HTTP request to Sirene for natural person with name {}", term); //TODO _> adapt search -> denom OR surnames / firstnames etc
+        log.info("Sending HTTP request to Sirene for natural person with name {}", term);
         return HttpResponse.ok(searchService.sireneSearchByNaturalNameHistoricized(term));
     }
 
@@ -39,7 +40,8 @@ public class SireneController {
     @Produces(MediaType.APPLICATION_JSON)
     @ExecuteOn(TaskExecutors.BLOCKING)
     public HttpResponse<SearchReportDto> sireneSearchByMultiCriteriaHistoricized(@QueryValue Set<SearchCriteria> searchCriteria) {
-        log.info("Sending HTTP request to Sirene for multi-criteria search {}", SireneSearchFactory.logCriteria(searchCriteria));
+        log.info("Sending HTTP request to Sirene for multi-criteria search {}",
+                searchCriteria.stream().map(SearchCriteria::toString).collect(Collectors.joining(InseeConstant.WHITESPACE)));
         return HttpResponse.ok(searchService.sireneSearchByMultiCriteriaHistoricized(searchCriteria));
     }
 
@@ -48,6 +50,15 @@ public class SireneController {
     public HttpResponse<Void> asyncSireneSearchByNaturalNameHistoricized(@QueryValue @ValidSireneSimpleSearch String term) {
         log.info("Sending non-blocking request to Sirene for natural person with name {}", term);
         asyncSearchService.sireneSearchByNaturalNameHistoricized(term);
+        return HttpResponse.ok();
+    }
+
+    @Get("/multi-criteria")
+    @Produces(MediaType.APPLICATION_JSON)
+    public HttpResponse<SearchReportDto> asyncSireneSearchByMultiCriteriaHistoricized(@QueryValue Set<SearchCriteria> searchCriteria) {
+        log.info("Sending non-blocking request to Sirene for multi-criteria search {}",
+                searchCriteria.stream().map(SearchCriteria::log).collect(Collectors.joining(", ")));
+        asyncSearchService.sireneSearchByMultiCriteriaHistoricized(searchCriteria);
         return HttpResponse.ok();
     }
 
