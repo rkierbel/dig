@@ -2,9 +2,7 @@ package dig.common.messaging;
 
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
-import io.micronaut.context.annotation.Requires;
 import io.micronaut.context.annotation.Value;
-import io.micronaut.context.env.Environment;
 import io.micronaut.rabbitmq.connect.ChannelInitializer;
 import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;

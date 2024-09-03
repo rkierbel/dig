@@ -25,7 +25,6 @@ public record SiretSearchResponse(Header header,
 
     /**
      *
-     * @field siren
      * @field nic
      * @field siret
      * @field establishmentCreationDate
@@ -35,8 +34,6 @@ public record SiretSearchResponse(Header header,
      * @field tradeRegisterMainActivity         Only concerns establishments in the craft sector (craftsmen, craft traders and craft companies).
      * @field establishmentLastModifiedDate
      * @field isHead                            Determines whether the establishment is the legal unit head or not.
-     * @field numberEstablishmentPeriods
-     * @field address
      * @field address2
      * @field establishmentPeriods
      */
@@ -58,25 +55,7 @@ public record SiretSearchResponse(Header header,
 
     /**
      *
-     * @field addressSupplement
-     * @field roadNumber
      * @field repetitionIndex                  B -> bis, T -> ter, etc.
-     * @field lastRoadNumber
-     * @field repetitionIndexLastRoadNumber
-     * @field roadType
-     * @field roadName
-     * @field postalCode
-     * @field municipalityName
-     * @field foreignMunicipalityName
-     * @field specialDistribution
-     * @field municipalityCode
-     * @field codeCedex
-     * @field wordedCedex
-     * @field foreignCountryCode
-     * @field foreignCountryName
-     * @field addressIdentifier
-     * @field coordinateAbscissa
-     * @field coordinateOrdinate
      */
     @Serdeable
     record Address(@JsonProperty(ADDRESS_SUPPLEMENT) String addressSupplement,
@@ -102,9 +81,6 @@ public record SiretSearchResponse(Header header,
 
     /**
      *
-     * @field startDate
-     * @field endDate
-     * @field administrativeStatus
      * @field sign1                         The sign identifies the location or premises where the activity is carried out.
      *                                      An establishment may have one sign, several signs or none at all.
      *                                      If sign 1 is set to null, the other two are also set to null; if sign 2 is set to null, sign 3 is also set to null.
@@ -120,11 +96,6 @@ public record SiretSearchResponse(Header header,
      *                                      For each establishment, there is only one  code at any given time.
      * @field mainActivityNomenclature
      * @field employerType
-     * @field administrativeStatusChange
-     * @field signChange
-     * @field commonNameChange
-     * @field mainActivityChange
-     * @field employerTypeChange
      */
     @Serdeable
     record EstablishmentPeriod(@JsonProperty(START_DATE) String startDate,

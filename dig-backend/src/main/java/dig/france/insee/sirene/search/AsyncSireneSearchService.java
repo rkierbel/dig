@@ -36,6 +36,7 @@ public class AsyncSireneSearchService {
     @Inject
     SireneSearchMapper sireneSearchMapper;
 
+    private static final long RETRY_DELAY = 500L;
 
     public void healthCheck(String message) {
         log.info("[AsyncSearchService::onPing] Forwarding ping with message {}, transforming to recordO", message);
@@ -46,11 +47,13 @@ public class AsyncSireneSearchService {
 
     //TODO -> full test
     public void sireneSearchByNaturalNameHistoricized(String term) {
-        executeSearchPipeline(Set.of(SearchCriteria.builder()
-                .searchVar(SearchVariable.NATURAL_PERSON_NAME)
-                .value(term)
-                .operator(SearchOperator.NONE)
-                .build()));
+        executeSearchPipeline(
+                Set.of(SearchCriteria.builder()
+                        .searchVar(SearchVariable.NATURAL_PERSON_NAME)
+                        .value(term)
+                        .operator(SearchOperator.NONE)
+                        .build())
+        );
     }
 
     public void sireneSearchByMultiCriteriaHistoricized(Set<SearchCriteria> criteria) {
@@ -60,7 +63,7 @@ public class AsyncSireneSearchService {
     private void executeSearchPipeline(Set<SearchCriteria> criteria) {
         Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(criteria)))
                 .doOnError(InseeHttpException::logSireneSearchFailure)
-                .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofMillis(500L)))
+                .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofMillis(RETRY_DELAY)))
                 .flatMap(this::executeSiretSearch)
                 .subscribe(digProducer::sendCompletedSireneSearchEvent, this::handleSearchError);
     }
@@ -81,6 +84,6 @@ public class AsyncSireneSearchService {
 
     private Mono<SireneSearchCompletedEvent> emptyMonoOnError(Throwable ex) {
         log.error("Error fetching Siret information: {}", ex.getMessage());
-        return Mono.empty();
+        return Mono.just(SireneSearchCompletedEvent.emptyWithId());
     }
 }

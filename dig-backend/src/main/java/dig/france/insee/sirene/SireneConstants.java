@@ -2,6 +2,8 @@ package dig.france.insee.sirene;
 
 public class SireneConstants {
 
+    public static final String HIDE_NULL_VALUES = "&masquerValeursNulles=true";
+
     /**
      * Main sirene response components
      */
@@ -41,7 +43,6 @@ public class SireneConstants {
     public static final String COMPANY_COMMON_NAME_CHANGE = "changementDenominationUsuelleUniteLegale";
     public static final String LEGAL_CATEGORY_CHANGE = "changementCategorieJuridiqueUniteLegale";
     public static final String MAIN_ACTIVITY_CHANGE = "changementActivitePrincipaleUniteLegale";
-    public static final String HIDE_NULL_VALUES = "&masquerValeursNulles=true";
 
     /**
      * Siret - establishment variables
@@ -80,7 +81,6 @@ public class SireneConstants {
     public static final String ADDRESS_IDENTIFIER = "identifiantAdresseEtablissement";
     public static final String COORDINATE_ABSCISSA = "coordonneeLambertAbscisseEtablissement";
     public static final String COORDINATE_ORDINATE = "coordonneeLambertOrdonneeEtablissement";
-
 
     /**
      * Historicized variables - establishment

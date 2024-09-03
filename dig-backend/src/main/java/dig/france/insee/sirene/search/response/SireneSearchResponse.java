@@ -83,7 +83,6 @@ public record SireneSearchResponse(SirenHeader header,
      * @field creationDate
      * @field names1, 2, 3, 4  Only for natural persons, null if the Sirene Unit is a legal entity.
      * @field commonFirstName  Only for natural persons, null if the Sirene Unit is a legal entity.
-     * @field lastModifiedDate
      * @field periods
      */
     @Serdeable
@@ -117,8 +116,6 @@ public record SireneSearchResponse(SirenHeader header,
      * For the first period of the company's history, in chronological order, all indicators are set to false.
      * For a company whose historical variables have never been modified, the response will only include one period.
      *
-     * @field startDate
-     * @field endDate
      * @field administrativeStatus       Active or ceased activity.
      * @field naturalPersonLastName      Birth name of the natural person.
      *                                   This variable is set to null for legal entities.
@@ -142,10 +139,6 @@ public record SireneSearchResponse(SirenHeader header,
      *                                   In other words, this indicates whether a given variable or set of variables is the reason for the creation of the period.
      *                                   These change indicators are prefixed by "changement" in the JSON response.
      *                                   They are suffixed by "Change" in the Period record.
-     * @field naturalPersonNameChange
-     * @field companyNameChange
-     * @field legalCategoryChange
-     * @field mainActivityChange
      */
     @Serdeable
     record Period(@JsonProperty(START_DATE) String startDate,
