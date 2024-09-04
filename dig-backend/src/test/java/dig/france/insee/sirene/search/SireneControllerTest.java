@@ -48,12 +48,12 @@ class SireneControllerTest implements TestPropertyProvider {
     }
 
     @Test
-    void givenRabbitMQContainer_whenContainerStarted_thenContainerIsRunning() {
+    void startingRabbitMqContainer_shouldRunContainer() {
         assertTrue(rabbitMQContainer.isRunning());
     }
 
     @Test
-    void givenPing_WhenSendBasicMessage_thenIsOk() {
+    void callingPing_shouldSendMessageAndResponseOk() {
         RestAssured
                 .given().param("message", "hello")
                 .when().get("/ping")
@@ -61,7 +61,7 @@ class SireneControllerTest implements TestPropertyProvider {
     }
 
     @Test
-    void givenValidNaturalPersonSearch_whenExecute_thenIsOk() { //TODO -> mock insee API
+    void validNaturalPersonSearch_shouldReturnOk() { //TODO -> mock insee API
 
     }
 

@@ -18,14 +18,14 @@ public class SireneSearchTest {
     SireneSearchService sireneSearchService;
 
     @Test
-    void givenValidSimpleSearchByNaturalPersonName_returnSireneSearchResult() throws InterruptedException {
+    void validSimpleSearchByNaturalPersonName_ShouldReturnSireneSearchResult() throws InterruptedException {
         var naturalPersonName = "grzeszezak";
         Thread.sleep(3000);
         sireneController.sireneSearchByNaturalNameHistoricized(naturalPersonName);
     }
 
     @Test
-    void givenValidSimpleSearchByMultipleSiren_returnSiretSearchResult() throws InterruptedException {
+    void validSimpleSearchByMultipleSiren_shouldReturnSiretSearchResult() throws InterruptedException {
         var multiSiren = Set.of(923449979, 907971246, 391647690);
         Thread.sleep(3000);
         sireneSearchService.siretSearchByMultipleSiren(multiSiren);

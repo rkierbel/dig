@@ -23,7 +23,7 @@ class InseeHttpClientTest {
     InseeTokenMaintainer tokenMaintainer;
 
     @Test
-    void givenValidCredentials_whenPostToken_validTokenGenerated() {
+    void validCredentials_shouldGenerateValidTokenGenerated() {
         InseeTokenResponse resp = Mono.from(client.token(InseeConstant.CLIENT_CREDENTIALS)).block();
         assertNotNull(resp);
         assertNotNull(resp.accessToken());
@@ -31,12 +31,12 @@ class InseeHttpClientTest {
     }
 
     @Test
-    void givenInvalidGrantType_whenPostToken_isBadRequest() {
+    void invalidGrantType_shouldBeBadRequest() {
         assertThrows(HttpClientException.class, () -> Mono.from(client.token("bad")).block());
     }
 
     @Test
-    void givenValidBearerToken_whenGetInfoFromSirenV3_isOk() throws InterruptedException {
+    void validBearerToken_shouldGetInfoFromSirenV3() throws InterruptedException {
         tokenMaintainer.updateToken();
         Thread.sleep(3000);
         SirenInfoResponse infoResponse = Mono.from(client.information()).block();

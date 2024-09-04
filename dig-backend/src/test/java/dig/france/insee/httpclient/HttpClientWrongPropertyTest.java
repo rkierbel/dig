@@ -19,14 +19,14 @@ public class HttpClientWrongPropertyTest {
     InseeHttpClient client;
 
     @Test
-    void givenInvalidCredentials_whenPostToken_isBadRequest() {
+    void invalidCredentials_whenGetToken_shouldBeBadRequest() {
         StepVerifier.create(Mono.from(client.token(InseeConstant.CLIENT_CREDENTIALS)))
                 .expectError(HttpClientException.class)
                 .verifyThenAssertThat().hasNotDroppedErrors();
     }
 
     @Test
-    void givenInvalidCredentials_whenGetInfo_isBadRequest() throws InterruptedException {
+    void invalidCredentials_whenGetInfo_shouldBeBadRequest() throws InterruptedException {
         StepVerifier.create(Flux.from(client.information()))
                 .expectError(InseeHttpException.class)
                 .verifyThenAssertThat()
