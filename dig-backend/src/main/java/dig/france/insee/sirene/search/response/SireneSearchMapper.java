@@ -1,5 +1,6 @@
 package dig.france.insee.sirene.search.response;
 
+import dig.common.util.DateTimeUtil;
 import io.micronaut.context.annotation.Primary;
 import jakarta.inject.Singleton;
 import org.mapstruct.AfterMapping;
@@ -8,6 +9,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 import org.mapstruct.Named;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -16,7 +18,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Function;
+
+import static dig.common.util.DateTimeUtil.ZONE_BRUSSELS;
 
 @Mapper(componentModel = "jsr330") //TODO -> explain
 @Singleton
@@ -25,9 +31,13 @@ public abstract class SireneSearchMapper {
 
     public SearchReportDto toReport(SireneSearchResponse sireneResponse,
                                     SiretSearchResponse siretResponse) {
+        if (sireneResponse == null || siretResponse == null) {
+            return SearchReportDto.emptyReport();
+        }
         return SearchReportDto.builder()
                 .sireneUnits(
-                        sireneResponse.sireneUnits()
+                        Optional.ofNullable(sireneResponse.sireneUnits())
+                                .orElse(Collections.emptyList())
                                 .stream()
                                 .map(unit -> toSireneUnitDto(unit, siretResponse))
                                 .toList())
@@ -36,8 +46,8 @@ public abstract class SireneSearchMapper {
 
     @Mappings({
             @Mapping(target = "lastModifiedDate", source = "unit.lastModifiedDate", qualifiedByName = "toInstant"),
-            @Mapping(target = "firstNames", expression = "java(unit.firstNames())"),
-            @Mapping(target = "type", expression = "java(unit.inferUnitType())"),
+            @Mapping(target = "firstNames", expression = "java(unit != null ? unit.firstNames() : null)"),
+            @Mapping(target = "type", expression = "java(unit != null ? unit.inferUnitType() : null)"),
             @Mapping(target = "establishments", qualifiedByName = "initEstablishments")
     })
     abstract SearchReportDto.SireneUnitDto toSireneUnitDto(SireneSearchResponse.SireneUnit unit,
@@ -68,16 +78,16 @@ public abstract class SireneSearchMapper {
 
     @Named("toInstant")
     protected Instant toInstant(String input) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
-        LocalDateTime localDateTime = LocalDateTime.parse(input, formatter);
-
-        ZoneId brusselsZone = ZoneId.of("Europe/Brussels");
-        return localDateTime.atZone(brusselsZone).toInstant();
+        return Optional.ofNullable(input)
+                .map(str -> LocalDateTime.parse(str, DateTimeUtil.FORMATTER).atZone(ZONE_BRUSSELS).toInstant())
+                .orElse(null);
     }
 
     @AfterMapping
     void addEstablishments(@MappingTarget SearchReportDto.SireneUnitDto unitDto,
                            SiretSearchResponse siretResponse) {
+        if (siretResponse == null || unitDto == null || unitDto.siren() == null) return;
+
         Integer siren = unitDto.siren();
         Optional.ofNullable(siretResponse.establishments())
                 .orElse(Collections.emptyList())
@@ -87,6 +97,6 @@ public abstract class SireneSearchMapper {
     }
 
     private static boolean sirenMatch(SiretSearchResponse.Establishment establishment, Integer unitSiren) {
-        return Integer.parseInt(establishment.siren()) == unitSiren;
+        return Integer.parseInt(establishment.siren()) == unitSiren; // TODO -> handle NumberFormatException
     }
 }

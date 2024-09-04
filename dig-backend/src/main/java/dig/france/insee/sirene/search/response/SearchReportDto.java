@@ -72,6 +72,7 @@ public record SearchReportDto(List<SireneUnitDto> sireneUnits) {
     @Serdeable
     record PeriodDto(List<PeriodChange> changes,
                      String naturalPersonLastName,
+                     String naturalPersonCommonName,
                      String companyNames,
                      String legalCategory,
                      String mainActivity,

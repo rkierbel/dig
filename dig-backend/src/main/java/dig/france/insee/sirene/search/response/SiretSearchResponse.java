@@ -8,9 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static dig.france.insee.sirene.SireneConstants.*;
+import dig.france.insee.sirene.search.response.PeriodChange.Reason;
 
 @Serdeable
 public record SiretSearchResponse(Header header,
@@ -116,7 +118,8 @@ public record SiretSearchResponse(Header header,
 
         public String sign() {
             return Stream.of(sign1, sign2, sign3)
-                    .filter(Objects::nonNull).findFirst().orElse(null);
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.joining(", "));
         }
 
         //TODO -> abstract
@@ -132,11 +135,11 @@ public record SiretSearchResponse(Header header,
             String adminStatus = administrativeStatus != null ? administrativeStatus.name() : null;
 
             Map<PeriodChange, Boolean> changes = HashMap.newHashMap(7);
-            changes.put(PeriodChange.of(ESTABLISHMENT_ADMIN_STATUS_CHANGE, adminStatus), administrativeStatusChange);
-            changes.put(PeriodChange.of(ESTABLISHMENT_NAME_CHANGE, sign), signChange);
-            changes.put(PeriodChange.of(ESTABLISHMENT_COMMON_NAME_CHANGE, commonName), commonNameChange);
-            changes.put(PeriodChange.of(ESTABLISHMENT_MAIN_ACTIVITY_CHANGE, mainActivity), mainActivityChange);
-            changes.put(PeriodChange.of(EMPLOYER_TYPE_CHANGE, employerType), employerTypeChange);
+            changes.put(PeriodChange.of(Reason.ESTABLISHMENT_ADMIN_STATUS_CHANGE, adminStatus), administrativeStatusChange);
+            changes.put(PeriodChange.of(Reason.ESTABLISHMENT_NAME_CHANGE, sign), signChange);
+            changes.put(PeriodChange.of(Reason.ESTABLISHMENT_COMMON_NAME_CHANGE, commonName), commonNameChange);
+            changes.put(PeriodChange.of(Reason.ESTABLISHMENT_MAIN_ACTIVITY_CHANGE, mainActivity), mainActivityChange);
+            changes.put(PeriodChange.of(Reason.EMPLOYER_TYPE_CHANGE, employerType), employerTypeChange);
             return changes;
         }
     }

@@ -1,6 +1,7 @@
 package dig.france.insee.sirene.search.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dig.france.insee.sirene.search.response.PeriodChange.Reason;
 import dig.france.insee.sirene.search.response.enumerated.AdministrativeStatus;
 import dig.france.insee.sirene.search.response.enumerated.UnitType;
 import io.micronaut.serde.annotation.Serdeable;
@@ -22,7 +23,6 @@ import static dig.france.insee.sirene.SireneConstants.COMPANY_COMMON_NAME_1;
 import static dig.france.insee.sirene.SireneConstants.COMPANY_COMMON_NAME_2;
 import static dig.france.insee.sirene.SireneConstants.COMPANY_COMMON_NAME_3;
 import static dig.france.insee.sirene.SireneConstants.COMPANY_COMMON_NAME_CHANGE;
-import static dig.france.insee.sirene.SireneConstants.LEGAL_UNIT_NAME;
 import static dig.france.insee.sirene.SireneConstants.COMPANY_NAME_CHANGE;
 import static dig.france.insee.sirene.SireneConstants.END_DATE;
 import static dig.france.insee.sirene.SireneConstants.FIRST_NAME;
@@ -30,6 +30,7 @@ import static dig.france.insee.sirene.SireneConstants.FOURTH_NAME;
 import static dig.france.insee.sirene.SireneConstants.LAST_MODIFIED_DATE;
 import static dig.france.insee.sirene.SireneConstants.LEGAL_CATEGORY;
 import static dig.france.insee.sirene.SireneConstants.LEGAL_CATEGORY_CHANGE;
+import static dig.france.insee.sirene.SireneConstants.LEGAL_UNIT_NAME;
 import static dig.france.insee.sirene.SireneConstants.MAIN_ACTIVITY;
 import static dig.france.insee.sirene.SireneConstants.MAIN_ACTIVITY_CHANGE;
 import static dig.france.insee.sirene.SireneConstants.MIDDLE_NAME;
@@ -55,7 +56,7 @@ import static dig.france.insee.sirene.SireneConstants.UNIT_CHANGES;
  */
 @Serdeable
 @Slf4j
-public record SireneSearchResponse(SirenHeader header,
+public record SireneSearchResponse(SireneHeader header,
                                    @Getter @JsonProperty(SIRENE_UNITS) List<SireneUnit> sireneUnits) {
 
     public Set<Integer> sirenNumbers() {
@@ -66,7 +67,7 @@ public record SireneSearchResponse(SirenHeader header,
     }
 
     @Serdeable
-    record SirenHeader(String message,
+    record SireneHeader(String message,
                        Integer total) {
     }
 
@@ -123,7 +124,7 @@ public record SireneSearchResponse(SirenHeader header,
      *                                   Only the special characters hyphen (-) and apostrophe.
      *                                   The name may be set to null for a natural person (case of purged sireneUnits).
      * @field naturalPersonCommonName    Referred to in French as "nom d'usage".
-     *                                   It might differ fromApiResponse the family name mentioned on the birth certificate. Null for legal entities.
+     *                                   It might differ from the family name mentioned on the birth certificate. Null for legal entities.
      * @field companyName                Name under which the legal unit is declared.
      *                                   This variable is set to null for individuals.
      *                                   The name may sometimes contain a reference to the form of the company.
@@ -179,13 +180,13 @@ public record SireneSearchResponse(SirenHeader header,
             String adminStatus = administrativeStatus != null ? administrativeStatus.name() : null;
 
             Map<PeriodChange, Boolean> changes = HashMap.newHashMap(7);
-            changes.put(PeriodChange.of(ADMIN_STATUS_CHANGE, adminStatus), administrativeStatusChange);
-            changes.put(PeriodChange.of(NATURAL_PERSON_NAME_CHANGE, naturalPersonLastName), naturalPersonNameChange);
-            changes.put(PeriodChange.of(NATURAL_PERSON_COMMON_NAME_CHANGE, naturalPersonCommonName), naturalPersonCommonNameChange);
-            changes.put(PeriodChange.of(COMPANY_NAME_CHANGE, companyName), companyNameChange);
-            changes.put(PeriodChange.of(COMPANY_COMMON_NAME_CHANGE, companyCommonName), companyCommonNameChange);
-            changes.put(PeriodChange.of(LEGAL_CATEGORY_CHANGE, legalCategory), legalCategoryChange);
-            changes.put(PeriodChange.of(MAIN_ACTIVITY_CHANGE, mainActivity), mainActivityChange);
+            changes.put(PeriodChange.of(Reason.ADMIN_STATUS_CHANGE, adminStatus), administrativeStatusChange);
+            changes.put(PeriodChange.of(Reason.NATURAL_PERSON_NAME_CHANGE, naturalPersonLastName), naturalPersonNameChange);
+            changes.put(PeriodChange.of(Reason.NATURAL_PERSON_COMMON_NAME_CHANGE, naturalPersonCommonName), naturalPersonCommonNameChange);
+            changes.put(PeriodChange.of(Reason.COMPANY_NAME_CHANGE, companyName), companyNameChange);
+            changes.put(PeriodChange.of(Reason.COMPANY_COMMON_NAME_CHANGE, companyCommonName), companyCommonNameChange);
+            changes.put(PeriodChange.of(Reason.LEGAL_CATEGORY_CHANGE, legalCategory), legalCategoryChange);
+            changes.put(PeriodChange.of(Reason.MAIN_ACTIVITY_CHANGE, mainActivity), mainActivityChange);
             return changes;
         }
     }
