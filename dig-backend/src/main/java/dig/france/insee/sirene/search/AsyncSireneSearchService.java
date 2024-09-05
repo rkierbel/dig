@@ -39,9 +39,9 @@ public class AsyncSireneSearchService {
     private static final long RETRY_DELAY = 500L;
 
     public void healthCheck(String message) {
-        log.info("[AsyncSearchService::onPing] Forwarding ping with message {}, transforming to recordO", message);
+        log.info("[AsyncSearchService::healthCheck] Forwarding ping with message {}, transforming to recordO", message);
         HealthCheckEvent event = new HealthCheckEvent(UUID.randomUUID().toString(), message);
-        log.info("[AsyncSearchService::onPing] Sending healthcheck event with id {} and message {}", event.id(), event.message());
+        log.info("[AsyncSearchService::healthCheck] Sending healthcheck event with id {} and message {}", event.id(), event.message());
         digProducer.sendPing(event);
     }
 
@@ -86,7 +86,7 @@ public class AsyncSireneSearchService {
     }
 
     private Mono<SireneSearchCompletedEvent> emptyMonoOnError(Throwable ex) {
-        log.error("Error fetching Siret information: {}", ex.getMessage());
+        log.error("[AsyncSearchService::emptyMonoOnError] Error fetching Siret information: {}", ex.getMessage());
         return Mono.just(SireneSearchCompletedEvent.emptyWithId());
     }
 }

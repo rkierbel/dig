@@ -19,10 +19,7 @@ public record SiretSearchResponse(Header header,
                                   @JsonProperty(ESTABLISHMENTS) List<Establishment> establishments) {
 
     @Serdeable
-    record Header(int statut,
-                  String message,
-                  int total,
-                  int nombre) {
+    record Header(int statut, String message, int total, int nombre) {
     }
 
     /**
