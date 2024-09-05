@@ -13,22 +13,28 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.LocalDateTime;
+import java.util.Collections;
 
 import static dig.common.util.DateTimeUtil.ZONE_BRUSSELS;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.instancio.Select.field;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @MicronautTest
-class SireneSearchMapperTest { //TODO -> check instant parsing + empty report creation / mapping null props -> what strategy to apply
+class SireneSearchMapperTest {
 
     @Inject
     SireneSearchMapper mapper;
 
-    private final SireneSearchResponse sireneResponse = SireneSearchResponseFixtures.createSireneSearchResponse();;
+    private final SireneSearchResponse sireneResponse = SireneSearchResponseFixtures.createSireneSearchResponse();
     private final SiretSearchResponse siretResponse = SiretSearchResponseFixtures.createSiretSearchResponse();
 
     @Test
-    void testToReport() {
+    void validDataToReport_shouldMapCorrectly() {
         SearchReportDto report = mapper.toReport(sireneResponse, siretResponse);
 
         assertNotNull(report);
@@ -36,14 +42,16 @@ class SireneSearchMapperTest { //TODO -> check instant parsing + empty report cr
     }
 
     @Test
-    void testToSireneUnitDto() {
+    void validSireneUnitToDto_shouldMapCorrectly() {
         SearchReportDto.SireneUnitDto unitDto = mapper.toSireneUnitDto(
                 sireneResponse.sireneUnits().getFirst(), siretResponse);
 
         assertNotNull(unitDto);
         assertEquals(123456789, unitDto.siren());
         assertEquals(LocalDate.parse("2024-09-04"), unitDto.creationDate());
-        //assertEquals(Instant.parse("2024-01-01T09:00:00").atZone(ZONE_BRUSSELS), unitDto.lastModifiedDate());
+        assertEquals(
+                Instant.from(LocalDateTime.parse("2024-01-01T09:00:00.000", DateTimeUtil.FORMATTER).atZone(ZONE_BRUSSELS)),
+                unitDto.lastModifiedDate());
         assertEquals(UnitType.NATURAL_PERSON, unitDto.type());
         assertEquals("Prison Mike", unitDto.commonFirstName());
         assertEquals("Michael, Gary", unitDto.firstNames());
@@ -61,7 +69,9 @@ class SireneSearchMapperTest { //TODO -> check instant parsing + empty report cr
         assertEquals("50-99", establishmentDto.employeeHeadcountBand());
         assertEquals("2024", establishmentDto.employeeHeadcountValidityYear());
         assertEquals("62.01Z", establishmentDto.tradeRegisterMainActivity());
-        //assertEquals(Instant.parse("2024-01-01T09:00:00Z").atZone(ZONE_BRUSSELS), establishmentDto.establishmentLastModifiedDate());
+        assertEquals(
+                Instant.from(LocalDateTime.parse("2024-01-01T09:00:00.000", DateTimeUtil.FORMATTER).atZone(ZONE_BRUSSELS)),
+                establishmentDto.establishmentLastModifiedDate());
         assertTrue(establishmentDto.isHead());
         assertNotNull(establishmentDto.address());
         assertNotNull(establishmentDto.address2()); //TODO -> test addresses
@@ -73,7 +83,7 @@ class SireneSearchMapperTest { //TODO -> check instant parsing + empty report cr
 
     @Test
     void testToEstablishmentPeriodDto() {
-        SearchReportDto.EstablishmentDto.EstablishmentPeriodDto periodDto = mapper.toEstablishmentPeriodDto(
+        SearchReportDto.EstablishmentPeriodDto periodDto = mapper.toEstablishmentPeriodDto(
                 siretResponse.establishments().getFirst().establishmentPeriods().getFirst());
 
         assertNotNull(periodDto);
@@ -89,11 +99,9 @@ class SireneSearchMapperTest { //TODO -> check instant parsing + empty report cr
     @Test
     void testToPeriodDto() {
         SearchReportDto.PeriodDto lastPeriodDto = mapper.toPeriodDto(
-                sireneResponse.sireneUnits().getFirst().periods().getFirst()
-        );
+                sireneResponse.sireneUnits().getFirst().periods().getFirst());
         SearchReportDto.PeriodDto firstPeriodDto = mapper.toPeriodDto(
-                sireneResponse.getSireneUnits().getFirst().periods().getLast()
-        );
+                sireneResponse.getSireneUnits().getFirst().periods().getLast());
 
         assertNotNull(lastPeriodDto);
         assertEquals(LocalDate.parse("2024-01-02"), lastPeriodDto.startDate());
@@ -121,7 +129,7 @@ class SireneSearchMapperTest { //TODO -> check instant parsing + empty report cr
     void testToInstant() {
         Instant result = mapper.toInstant("2023-01-01T10:00:00.000");
 
-       // assertEquals(Instant.parse("2023-01-01T10:00:00Z"), result);
+        assertEquals(Instant.parse("2023-01-01T09:00:00Z"), result);
     }
 
     @Test
@@ -146,7 +154,16 @@ class SireneSearchMapperTest { //TODO -> check instant parsing + empty report cr
     @Test
     void testToSireneUnitDtoWithNullUnit() {
         SearchReportDto.SireneUnitDto unitDto = mapper.toSireneUnitDto(null, siretResponse);
-        //assertNull(unitDto); //TODO -> check
+
+        assertNotNull(unitDto);
+        assertNull(unitDto.siren());
+        assertNull(unitDto.creationDate());
+        assertNull(unitDto.lastModifiedDate());
+        assertNull(unitDto.type());
+        assertNull(unitDto.commonFirstName());
+        assertNull(unitDto.firstNames());
+        assertNull(unitDto.periods());
+        assertTrue(unitDto.establishments().isEmpty());
     }
 
     @Test
@@ -161,8 +178,8 @@ class SireneSearchMapperTest { //TODO -> check instant parsing + empty report cr
         assertNull(unitDto.lastModifiedDate());
         assertNull(unitDto.commonFirstName());
         assertEquals("", unitDto.firstNames());
-        //TODO -> handle null periods -> assertTrue(unitDto.periods().isEmpty());
-        //TODO -> handle null estabs -> assertTrue(unitDto.establishments().isEmpty());
+        assertTrue(unitDto.periods().isEmpty());
+        assertTrue(unitDto.establishments().isEmpty());
     }
 
     @Test
@@ -187,40 +204,55 @@ class SireneSearchMapperTest { //TODO -> check instant parsing + empty report cr
         assertFalse(establishmentDto.isHead());
         assertNull(establishmentDto.address());
         assertNull(establishmentDto.address2());
-        assertNull(establishmentDto.establishmentPeriods());
+        assertTrue(establishmentDto.establishmentPeriods().isEmpty());
     }
 
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {"invalid-date", "2023-13-01", "2023-01-32"})
     void testToInstantWithInvalidInput(String input) {
-        assertThrows(Exception.class, () -> mapper.toInstant(input));
+        assertNull(mapper.toInstant(input));
     }
 
     @Test
     void testAddEstablishmentsWithNullSiretResponse() {
-        SearchReportDto.SireneUnitDto unitDto = Instancio.create(SearchReportDto.SireneUnitDto.class);
-        mapper.addEstablishments(unitDto, null);
-        //TODO -> check failure assertTrue(unitDto.establishments().isEmpty());
+        SearchReportDto.SireneUnitDto unitDtoEmptyEstablishments = Instancio.of(SearchReportDto.SireneUnitDto.class)
+                .set(field(SearchReportDto.SireneUnitDto::establishments), Collections.emptyList())
+                .create();
+        SearchReportDto.SireneUnitDto unitDtoNullEstablishments = Instancio.of(SearchReportDto.SireneUnitDto.class)
+                .set(field(SearchReportDto.SireneUnitDto::establishments), null)
+                .create();
+
+        mapper.addEstablishments(unitDtoEmptyEstablishments, null);
+        mapper.addEstablishments(unitDtoNullEstablishments, null);
+
+        assertTrue(unitDtoEmptyEstablishments.establishments().isEmpty());
+        assertNull(unitDtoNullEstablishments.establishments());
     }
 
     @Test
     void testAddEstablishmentsWithNonMatchingSiren() {
-        SearchReportDto.SireneUnitDto unitDto = Instancio.create(SearchReportDto.SireneUnitDto.class);
+        SearchReportDto.SireneUnitDto unitDto = Instancio.of(SearchReportDto.SireneUnitDto.class)
+                .set(field(SearchReportDto.SireneUnitDto::establishments), Collections.emptyList())
+                .create();
         SiretSearchResponse nonMatchingSiretResponse = Instancio.create(SiretSearchResponse.class);
-        //TODO - > NumFormatEx handle -> mapper.addEstablishments(unitDto, nonMatchingSiretResponse);
+
+        mapper.addEstablishments(unitDto, nonMatchingSiretResponse);
+
         assertTrue(unitDto.establishments().isEmpty());
     }
 
     @Test
     void testToPeriodDtoWithNullPeriod() {
         SearchReportDto.PeriodDto periodDto = mapper.toPeriodDto(null);
+
         assertNull(periodDto);
     }
 
     @Test
     void testToEstablishmentPeriodDtoWithNullPeriod() {
-        SearchReportDto.EstablishmentDto.EstablishmentPeriodDto periodDto = mapper.toEstablishmentPeriodDto(null);
+        SearchReportDto.EstablishmentPeriodDto periodDto = mapper.toEstablishmentPeriodDto(null);
+
         assertNull(periodDto);
     }
 }

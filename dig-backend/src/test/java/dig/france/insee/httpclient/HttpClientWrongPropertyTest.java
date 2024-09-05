@@ -22,7 +22,8 @@ public class HttpClientWrongPropertyTest {
     void invalidCredentials_whenGetToken_shouldBeBadRequest() {
         StepVerifier.create(Mono.from(client.token(InseeConstant.CLIENT_CREDENTIALS)))
                 .expectError(HttpClientException.class)
-                .verifyThenAssertThat().hasNotDroppedErrors();
+                .verifyThenAssertThat()
+                .hasNotDroppedErrors();
     }
 
     @Test

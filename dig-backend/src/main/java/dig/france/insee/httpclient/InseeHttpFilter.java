@@ -26,7 +26,7 @@ class InseeHttpFilter {
     @RequestFilter("${sirene.api.prefix}${micronaut.http.wildcard}")
     void doFilterSirene(MutableHttpRequest<?> request) {
         if (!tokenMaintainer.hasValidTokenData()) {
-            log.info("[InseeHttpFilter::doFilterSirene] Invalid bearer token - an token refresh will be performed");
+            log.warn("[InseeHttpFilter::doFilterSirene] Invalid bearer token - a token refresh will be performed");
             tokenMaintainer.updateToken();
             throw InseeHttpException.missingBearerToken();
         } else {

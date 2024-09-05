@@ -35,12 +35,11 @@ class SiretSearchResponseFixtures {
                 true, // isHead
                 1, // numberEstablishmentPeriods
                 createAddress(), // address
-                createAddress2(), // address2
+                createAddress(), // address2
                 createEstablishmentPeriods() // establishmentPeriods
         );
     }
 
-    // Fixture for Address
     static SiretSearchResponse.Address createAddress() {
         return new SiretSearchResponse.Address(
                 "Apt 4B", // addressSupplement
@@ -65,10 +64,6 @@ class SiretSearchResponseFixtures {
         );
     }
 
-    static SiretSearchResponse.Address createAddress2() {
-        return createAddress();
-    }
-
     static SiretSearchResponse.EstablishmentPeriod createEstablishmentPeriod() {
         return new SiretSearchResponse.EstablishmentPeriod(
                 "2023-01-01", // startDate
@@ -89,12 +84,10 @@ class SiretSearchResponseFixtures {
         );
     }
 
-    // Fixture for a list of Establishments
     static List<SiretSearchResponse.Establishment> createEstablishments() {
         return List.of(createEstablishment());
     }
 
-    // Fixture for a list of EstablishmentPeriods
     static List<SiretSearchResponse.EstablishmentPeriod> createEstablishmentPeriods() {
         return List.of(createEstablishmentPeriod());
     }

@@ -126,66 +126,66 @@ public record SearchReportDto(List<SireneUnitDto> sireneUnits) {
                             .collect(Collectors.joining(",")) + "\n") +
                     "}";
         }
+    }
 
-        @Serdeable
-        record EstablishmentAddressDto(String addressSupplement,
-                                       String roadNumber,
-                                       String repetitionIndex,
-                                       String roadType,
-                                       String roadName,
-                                       String postalCode,
-                                       String municipalityName,
-                                       String foreignMunicipalityName,
-                                       String municipalityCode,
-                                       String codeCedex,
-                                       String wordedCedex,
-                                       String foreignCountryCode,
-                                       String foreignCountryName) {
-            @Override
-            public String toString() {
-                return "EstablishmentAddressDto {\n" +
-                        TAB_3 + "addressSupplement: " + addressSupplement + COMMA_BR +
-                        TAB_3 + "roadNumber: " + roadNumber + COMMA_BR +
-                        TAB_3 + "repetitionIndex: " + repetitionIndex + COMMA_BR +
-                        TAB_3 + "roadType: " + roadType + COMMA_BR +
-                        TAB_3 + "roadName: " + roadName + COMMA_BR +
-                        TAB_3 + "postalCode: " + postalCode + COMMA_BR +
-                        TAB_3 + "municipalityName: " + municipalityName + COMMA_BR +
-                        TAB_3 + "foreignMunicipalityName: " + foreignMunicipalityName + COMMA_BR +
-                        TAB_3 + "municipalityCode: " + municipalityCode + COMMA_BR +
-                        TAB_3 + "codeCedex: " + codeCedex + COMMA_BR +
-                        TAB_3 + "wordedCedex: " + wordedCedex + COMMA_BR +
-                        TAB_3 + "foreignCountryCode: " + foreignCountryCode + COMMA_BR +
-                        TAB_3 + "foreignCountryName: " + foreignCountryName + "\n" +
-                        TAB_2 + "}";
-            }
+    @Serdeable
+    record EstablishmentAddressDto(String addressSupplement,
+                                   String roadNumber,
+                                   String repetitionIndex,
+                                   String roadType,
+                                   String roadName,
+                                   String postalCode,
+                                   String municipalityName,
+                                   String foreignMunicipalityName,
+                                   String municipalityCode,
+                                   String codeCedex,
+                                   String wordedCedex,
+                                   String foreignCountryCode,
+                                   String foreignCountryName) {
+        @Override
+        public String toString() {
+            return "EstablishmentAddressDto {\n" +
+                    TAB_3 + "addressSupplement: " + addressSupplement + COMMA_BR +
+                    TAB_3 + "roadNumber: " + roadNumber + COMMA_BR +
+                    TAB_3 + "repetitionIndex: " + repetitionIndex + COMMA_BR +
+                    TAB_3 + "roadType: " + roadType + COMMA_BR +
+                    TAB_3 + "roadName: " + roadName + COMMA_BR +
+                    TAB_3 + "postalCode: " + postalCode + COMMA_BR +
+                    TAB_3 + "municipalityName: " + municipalityName + COMMA_BR +
+                    TAB_3 + "foreignMunicipalityName: " + foreignMunicipalityName + COMMA_BR +
+                    TAB_3 + "municipalityCode: " + municipalityCode + COMMA_BR +
+                    TAB_3 + "codeCedex: " + codeCedex + COMMA_BR +
+                    TAB_3 + "wordedCedex: " + wordedCedex + COMMA_BR +
+                    TAB_3 + "foreignCountryCode: " + foreignCountryCode + COMMA_BR +
+                    TAB_3 + "foreignCountryName: " + foreignCountryName + "\n" +
+                    TAB_2 + "}";
         }
+    }
 
-        @Serdeable
-        record EstablishmentPeriodDto(List<PeriodChange> changes,
-                                      LocalDate startDate,
-                                      LocalDate endDate,
-                                      AdministrativeStatus administrativeStatus,
-                                      String sign,
-                                      String commonName,
-                                      String mainActivity,
-                                      String employerType) {
-            @Override
-            public String toString() {
-                return "EstablishmentPeriodDto {\n" +
-                        TAB_4 + "changes: " + (changes == null ? "null" :
-                        changes.stream()
-                                .map(change -> change.toChangeString(TAB_4))
+    @Serdeable
+    record EstablishmentPeriodDto(List<PeriodChange> changes,
+                                  LocalDate startDate,
+                                  LocalDate endDate,
+                                  AdministrativeStatus administrativeStatus,
+                                  String sign,
+                                  String commonName,
+                                  String mainActivity,
+                                  String employerType) {
+        @Override
+        public String toString() {
+            return "EstablishmentPeriodDto {\n" +
+                    TAB_4 + "changes: " + (changes == null ? "null" :
+                    changes.stream()
+                            .map(change -> change.toChangeString(TAB_4))
                             .collect(Collectors.joining(", ", "[", "\n" + TAB_4 + "]"))) + COMMA_BR +
-                        TAB_4 + "startDate: " + startDate + COMMA_BR +
-                        TAB_4 + "endDate: " + endDate + COMMA_BR +
-                        TAB_4 + "administrativeStatus: " + administrativeStatus + COMMA_BR +
-                        TAB_4 + "sign: " + sign + COMMA_BR +
-                        TAB_4 + "commonName: " + commonName + COMMA_BR +
-                        TAB_4 + "mainActivity: " + mainActivity + COMMA_BR +
-                        TAB_4 + "employerType: " + employerType + "\n" +
-                        "}";
-            }
+                    TAB_4 + "startDate: " + startDate + COMMA_BR +
+                    TAB_4 + "endDate: " + endDate + COMMA_BR +
+                    TAB_4 + "administrativeStatus: " + administrativeStatus + COMMA_BR +
+                    TAB_4 + "sign: " + sign + COMMA_BR +
+                    TAB_4 + "commonName: " + commonName + COMMA_BR +
+                    TAB_4 + "mainActivity: " + mainActivity + COMMA_BR +
+                    TAB_4 + "employerType: " + employerType + "\n" +
+                    "}";
         }
     }
 }

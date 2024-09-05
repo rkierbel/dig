@@ -7,10 +7,10 @@ import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @MicronautTest
@@ -32,7 +32,10 @@ class InseeHttpClientTest {
 
     @Test
     void invalidGrantType_shouldBeBadRequest() {
-        assertThrows(HttpClientException.class, () -> Mono.from(client.token("bad")).block());
+        StepVerifier.create(Mono.from(client.token("bad")))
+                .expectError(HttpClientException.class)
+                .verifyThenAssertThat()
+                .hasNotDroppedErrors();
     }
 
     @Test
