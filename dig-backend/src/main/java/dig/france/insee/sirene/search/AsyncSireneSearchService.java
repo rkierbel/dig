@@ -39,7 +39,7 @@ public class AsyncSireneSearchService {
     private static final long RETRY_DELAY = 500L;
 
     public void healthCheck(String message) {
-        log.info("[AsyncSearchService::healthCheck] Forwarding ping with message {}, transforming to recordO", message);
+        log.info("[AsyncSearchService::healthCheck] Forwarding ping with message {}, transforming to record", message);
         HealthCheckEvent event = new HealthCheckEvent(UUID.randomUUID().toString(), message);
         log.info("[AsyncSearchService::healthCheck] Sending healthcheck event with id {} and message {}", event.id(), event.message());
         digProducer.sendPing(event);
@@ -74,19 +74,18 @@ public class AsyncSireneSearchService {
         }
         return Mono.from(
                         httpClient.siretSearchAsync(
-                                SireneSearchFactory.multipleSiren(apiResponse.sirenNumbers()))
-                )
+                                SireneSearchFactory.multipleSiren(apiResponse.sirenNumbers())))
                 .map(siretResponse -> sireneSearchMapper.toReport(apiResponse, siretResponse))
                 .map(SireneSearchCompletedEvent::withReport)
-                .onErrorResume(this::emptyMonoOnError);
+                .onErrorResume(this::fallBackOnError);
     }
 
     private void handleSearchError(Throwable ex) {
-        // TODO -> handle error
+        log.error("[AsyncSearchService::handleSearchError] An exception occurred after the 5th Sirene call: {}", ex.toString());
     }
 
-    private Mono<SireneSearchCompletedEvent> emptyMonoOnError(Throwable ex) {
-        log.error("[AsyncSearchService::emptyMonoOnError] Error fetching Siret information: {}", ex.getMessage());
+    private Mono<SireneSearchCompletedEvent> fallBackOnError(Throwable ex) {
+        log.error("[AsyncSearchService::fallBackOnError] Error fetching Siret information: {}", ex.getMessage());
         return Mono.just(SireneSearchCompletedEvent.emptyWithId());
     }
 }

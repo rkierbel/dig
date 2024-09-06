@@ -80,9 +80,7 @@ public abstract class SireneSearchMapper {
     Instant toInstant(String input) {
         try {
             return Optional.ofNullable(input)
-                    .map(str -> LocalDateTime.parse(str, DateTimeUtil.FORMATTER)
-                                    .atZone(ZONE_BRUSSELS)
-                                    .toInstant())
+                    .map(str -> LocalDateTime.parse(str, DateTimeUtil.FORMATTER).atZone(ZONE_BRUSSELS).toInstant())
                     .orElseThrow(DateTimeUtil::nullOrEmptyParseEx);
         } catch (DateTimeParseException dateTimeParseEx) {
             log.warn("[SireneSearchMapper::toInstant] threw DateTimeParseException on input {} at index {}",
