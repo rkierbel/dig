@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { search } from '$lib/api';
+	import { search } from '$lib/http-actions/natural-person-api';
 
 	const dispatch = createEventDispatcher();
 	let searchTerm = '';
