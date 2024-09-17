@@ -10,6 +10,7 @@ import dig.france.insee.sirene.search.request.SearchCriteria;
 import dig.france.insee.sirene.search.request.SearchOperator;
 import dig.france.insee.sirene.search.request.SearchVariable;
 import dig.france.insee.sirene.search.request.SireneSearchFactory;
+import dig.france.insee.sirene.search.response.SearchReportDto;
 import dig.france.insee.sirene.search.response.SireneSearchMapper;
 import dig.france.insee.sirene.search.response.SireneSearchResponse;
 import jakarta.inject.Inject;
@@ -73,19 +74,23 @@ public class AsyncSireneSearchService {
             return Mono.just(SireneSearchCompletedEvent.emptyWithId());
         }
         return Mono.from(
-                        httpClient.siretSearchAsync(
-                                SireneSearchFactory.multipleSiren(apiResponse.sirenNumbers())))
+                        httpClient.siretSearchAsync(SireneSearchFactory.multipleSiren(apiResponse.sirenNumbers()))
+                )
                 .map(siretResponse -> sireneSearchMapper.toReport(apiResponse, siretResponse))
                 .map(SireneSearchCompletedEvent::withReport)
-                .onErrorResume(this::fallBackOnError);
+                .onErrorResume(exception -> this.partialSireneReportOnError(exception, sireneSearchMapper.toReport(apiResponse)));
     }
 
     private void handleSearchError(Throwable ex) {
         log.error("[AsyncSearchService::handleSearchError] An exception occurred after the 5th Sirene call: {}", ex.toString());
     }
 
-    private Mono<SireneSearchCompletedEvent> fallBackOnError(Throwable ex) {
-        log.error("[AsyncSearchService::fallBackOnError] Error fetching Siret information: {}", ex.getMessage());
-        return Mono.just(SireneSearchCompletedEvent.emptyWithId());
+    private Mono<SireneSearchCompletedEvent> partialSireneReportOnError(Throwable ex, SearchReportDto partialReport) {
+        log.error("[AsyncSearchService::partialSireneReportOnError] Error fetching Siret information: {}", ex.getMessage());
+        return Mono.just(
+                SireneSearchCompletedEvent
+                        .withReport(partialReport)
+                        .toBuilder()
+                        .build());
     }
 }

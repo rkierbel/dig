@@ -30,9 +30,13 @@ import static dig.common.util.DateTimeUtil.ZONE_BRUSSELS;
 @Slf4j
 public abstract class SireneSearchMapper {
 
+    public SearchReportDto toReport(SireneSearchResponse sireneSearchResponse) {
+        return toReport(sireneSearchResponse, null);
+    }
+
     public SearchReportDto toReport(SireneSearchResponse sireneResponse,
                                     SiretSearchResponse siretResponse) {
-        if (sireneResponse == null || siretResponse == null) {
+        if (sireneResponse == null) {
             return SearchReportDto.emptyReport();
         }
         return SearchReportDto.builder()
@@ -67,8 +71,7 @@ public abstract class SireneSearchMapper {
             @Mapping(target = "changes", expression = "java(establishmentPeriod.getPeriodChanges())"),
             @Mapping(target = "sign", expression = "java(establishmentPeriod.sign())"),
     })
-    abstract SearchReportDto.EstablishmentPeriodDto toEstablishmentPeriodDto(
-            SiretSearchResponse.EstablishmentPeriod establishmentPeriod);
+    abstract SearchReportDto.EstablishmentPeriodDto toEstablishmentPeriodDto(SiretSearchResponse.EstablishmentPeriod establishmentPeriod);
 
     @Mappings({
             @Mapping(target = "changes", expression = "java(unitPeriod.getPeriodChanges())"),
@@ -110,4 +113,6 @@ public abstract class SireneSearchMapper {
             return false;
         }
     }
+
+
 }
