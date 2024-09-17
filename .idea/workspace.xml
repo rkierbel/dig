@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="cleanup">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/AsyncSireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/AsyncSireneSearchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/InseeConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/InseeConstant.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -427,6 +425,7 @@
       <workItem from="1725540106805" duration="2347000" />
       <workItem from="1725608431441" duration="5436000" />
       <workItem from="1725632909548" duration="2253000" />
+      <workItem from="1726472033785" duration="287000" />
     </task>
     <task id="LOCAL-00020" summary="mapping works - except one localdate parse exception">
       <option name="closed" value="true" />

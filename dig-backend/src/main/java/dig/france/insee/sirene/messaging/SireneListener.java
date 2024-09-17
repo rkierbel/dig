@@ -2,9 +2,7 @@ package dig.france.insee.sirene.messaging;
 
 import dig.common.messaging.HealthCheckEvent;
 import dig.france.insee.sirene.messaging.event.SireneSearchCompletedEvent;
-import dig.france.insee.sirene.search.AsyncSireneSearchService;
-import io.micronaut.context.annotation.Requires;
-import io.micronaut.context.env.Environment;
+import dig.france.insee.sirene.search.service.AsyncSireneSearchService;
 import io.micronaut.rabbitmq.annotation.Queue;
 import io.micronaut.rabbitmq.annotation.RabbitListener;
 import jakarta.inject.Inject;

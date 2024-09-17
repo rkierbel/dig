@@ -1,4 +1,4 @@
-package dig.france.insee.sirene.search;
+package dig.france.insee.sirene.search.service;
 
 import dig.common.messaging.DigProducer;
 import dig.common.messaging.HealthCheckEvent;
@@ -46,7 +46,7 @@ public class AsyncSireneSearchService {
     }
 
     //TODO -> full test
-    public void sireneSearchByNaturalNameHistoricized(String term) {
+    public void sireneSearchByNaturalName(String term) {
         executeSearchPipeline(
                 Set.of(SearchCriteria.builder()
                         .searchVar(SearchVariable.NATURAL_PERSON_NAME)
@@ -56,7 +56,7 @@ public class AsyncSireneSearchService {
         );
     }
 
-    public void sireneSearchByMultiCriteriaHistoricized(Set<SearchCriteria> criteria) {
+    public void sireneSearchByMultiCriteria(Set<SearchCriteria> criteria) {
         executeSearchPipeline(criteria);
     }
 

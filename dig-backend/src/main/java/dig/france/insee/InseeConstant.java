@@ -7,5 +7,6 @@ public class InseeConstant {
     public static final String QUERY = "q";
     public static final String WHITESPACE = " ";
     public static final String OR = " OR ";
+    public static final String AND = " AND ";
     public static final int MAX_RETRY = 5;
 }

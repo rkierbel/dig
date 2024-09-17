@@ -1,4 +1,4 @@
-package dig.france.insee.sirene.search;
+package dig.france.insee.sirene.search.service;
 
 import dig.france.insee.httpclient.InseeHttpClient;
 import dig.france.insee.sirene.search.request.SearchCriteria;
@@ -23,25 +23,25 @@ public class SireneSearchService {
     @Inject
     SireneSearchMapper sireneSearchMapper;
 
-    SearchReportDto sireneSearchByNaturalNameHistoricized(String term) {
+    public SearchReportDto sireneSearchByNaturalName(String term) {
         String queryString = SireneSearchFactory.naturalPersonName(term);
         log.info("Built query string for natural person name search: {}", queryString);
         return fullResultFromHttp(queryString);
     }
 
-    SearchReportDto sireneSearchByCompanyNameHistoricized(String term) {
+    public SearchReportDto sireneSearchByCompanyName(String term) {
         String queryString = SireneSearchFactory.companyName(term);
         log.info("Built query string for company name search: {}", queryString);
         return fullResultFromHttp(queryString);
     }
 
-    void siretSearchByMultipleSiren(Set<Integer> sirenNumbers) {
+    public void siretSearchByMultipleSiren(Set<Integer> sirenNumbers) {
         String queryString = SireneSearchFactory.multipleSiren(sirenNumbers);
         log.info("Built query string for multiple siren search on the Siret register: {}", queryString);
         httpClient.siretSearch(queryString);
     }
 
-    SearchReportDto sireneSearchByMultiCriteriaHistoricized(Set<SearchCriteria> criteria) {
+    public SearchReportDto sireneSearchByMultiCriteria(Set<SearchCriteria> criteria) {
         String queryString = SireneSearchFactory.historicized(criteria);
         log.info("Built query string for multi-criteria search: {}", queryString);
         return fullResultFromHttp(queryString);

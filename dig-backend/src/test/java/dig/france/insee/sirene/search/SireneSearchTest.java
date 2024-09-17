@@ -1,5 +1,6 @@
 package dig.france.insee.sirene.search;
 
+import dig.france.insee.sirene.search.service.SireneSearchService;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Disabled;
@@ -21,7 +22,7 @@ public class SireneSearchTest {
     void validSimpleSearchByNaturalPersonName_ShouldReturnSireneSearchResult() throws InterruptedException {
         var naturalPersonName = "grzeszezak";
         Thread.sleep(3000);
-        sireneController.sireneSearchByNaturalNameHistoricized(naturalPersonName);
+        sireneController.sireneSearchByNaturalName(naturalPersonName);
     }
 
     @Test
