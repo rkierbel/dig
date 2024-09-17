@@ -1,19 +1,22 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { search } from '$lib/api';
+	import { search } from '$lib/http-actions/natural-person-api';
+	import { Search, X } from 'lucide-svelte';
 
 	const dispatch = createEventDispatcher();
 	let searchTerm = '';
 	let isLoading = false;
 
 	async function handleSubmit() {
+		if (!searchTerm.trim()) return;
+
 		dispatch('searchStart');
 		isLoading = true;
 		try {
 			const results = await search(searchTerm);
 			dispatch('results', { searchResults: results.sireneUnits });
 		} catch (error) {
-			let errorMessage = 'An unkown error occured';
+			let errorMessage = 'An unknown error occurred';
 			if (error instanceof Error) {
 				errorMessage = error.message;
 			}
@@ -23,44 +26,41 @@
 			dispatch('searchEnd');
 		}
 	}
+
+	function clearSearch() {
+		searchTerm = '';
+	}
 </script>
 
-<form on:submit|preventDefault={handleSubmit}>
-	<div class="search-container">
-		<input type="text" bind:value={searchTerm} placeholder="Enter search term" />
-		<button type="submit" disabled={isLoading}>
+<form on:submit|preventDefault={handleSubmit} class="mb-8">
+	<div class="flex">
+		<div class="relative flex-grow">
+			<input
+				type="text"
+				bind:value={searchTerm}
+				placeholder="Enter search term"
+				class="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-l-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+				disabled={isLoading}
+			/>
+			<div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+				<Search class="h-5 w-5 text-gray-400" />
+			</div>
+			{#if searchTerm}
+				<button
+					type="button"
+					class="absolute inset-y-0 right-3 flex items-center"
+					on:click={clearSearch}
+				>
+					<X class="h-5 w-5 text-gray-400 hover:text-gray-600" />
+				</button>
+			{/if}
+		</div>
+		<button
+			type="submit"
+			class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-300 disabled:cursor-not-allowed"
+			disabled={isLoading}
+		>
 			{isLoading ? 'Searching...' : 'Search'}
 		</button>
 	</div>
 </form>
-
-<style>
-	form {
-		margin-bottom: 2rem;
-	}
-	.search-container {
-		display: flex;
-	}
-	input {
-		flex-grow: 1;
-		padding: 0.5rem 1rem;
-		border: 1px solid #ccc;
-		border-right: none;
-		border-radius: 4px 0 0 4px;
-	}
-	button {
-		padding: 0.5rem 1rem;
-		background-color: #3b82f6;
-		color: white;
-		border: none;
-		border-radius: 0 4px 4px 0;
-		cursor: pointer;
-	}
-	button:hover {
-		background-color: #2563eb;
-	}
-	button:disabled {
-		background-color: #9ca3af;
-		cursor: not-allowed;
-	}
-</style>

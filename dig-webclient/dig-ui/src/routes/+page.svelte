@@ -4,12 +4,13 @@
 	import LoadingSpinner from '$lib/components/LoadingSpinner.svelte';
 	import ErrorMessage from '$lib/components/ErrorMessage.svelte';
 	import type { SirenUnit } from '$lib/types';
+	import { fade } from 'svelte/transition';
 
 	let searchResults: SirenUnit[] = [];
 	let isLoading = false;
 	let error = '';
 
-	function handleSearchResults(event: CustomEvent) {
+	function handleSearchResults(event: CustomEvent<{ searchResults: SirenUnit[] }>) {
 		searchResults = event.detail.searchResults;
 	}
 
@@ -22,12 +23,12 @@
 		isLoading = false;
 	}
 
-	function handleSearchError(event: CustomEvent) {
+	function handleSearchError(event: CustomEvent<{ message: string }>) {
 		error = event.detail.message;
 	}
 </script>
 
-<div class="container">
+<div class="container mx-auto max-w-3xl px-4">
 	<SearchForm
 		on:results={handleSearchResults}
 		on:searchStart={handleSearchStart}
@@ -36,24 +37,20 @@
 	/>
 
 	{#if isLoading}
-		<LoadingSpinner size="3rem" />
+		<div class="flex justify-center my-8" transition:fade>
+			<LoadingSpinner size="3rem" />
+		</div>
 	{:else if error}
-		<ErrorMessage message={error} />
+		<div transition:fade>
+			<ErrorMessage message={error} />
+		</div>
 	{:else if searchResults.length > 0}
-		<SearchResults results={searchResults} />
+		<div transition:fade>
+			<SearchResults results={searchResults} />
+		</div>
 	{:else}
-		<p class="no-results">No results to display. Start by searching for an entity.</p>
+		<p class="text-center text-gray-500 my-8" transition:fade>
+			No results to display. Start by searching for an entity.
+		</p>
 	{/if}
 </div>
-
-<style>
-	.container {
-		max-width: 800px;
-		margin: 0 auto;
-	}
-
-	.no-results {
-		text-align: center;
-		color: #6b7280;
-	}
-</style>

@@ -1,40 +1,39 @@
 <script lang="ts">
 	import type { Change } from '$lib/types';
+	import { fade, slide } from 'svelte/transition';
+	import { ChevronDown, ChevronUp } from 'lucide-svelte';
 
 	export let changes: Change[] = [];
+	let isExpanded = false;
+
+	function toggleExpanded() {
+		isExpanded = !isExpanded;
+	}
 </script>
 
-<div class="changes-list">
-	<h4>Changes:</h4>
-	<ul>
-		{#each changes as change}
-			<li>
-				<span class="change-reason">{change.changeReason ?? 'Unknown'}:</span>
-				{change.changeValue ?? 'N/A'}
-			</li>
-		{/each}
-	</ul>
-</div>
+{#if changes.length > 0}
+	<div class="mt-4" transition:fade>
+		<button
+			class="flex items-center justify-between w-full text-lg font-semibold mb-2 text-left"
+			on:click={toggleExpanded}
+		>
+			<span>Changes ({changes.length})</span>
+			{#if isExpanded}
+				<ChevronUp class="h-5 w-5" />
+			{:else}
+				<ChevronDown class="h-5 w-5" />
+			{/if}
+		</button>
 
-<style>
-	.changes-list {
-		margin-top: 1rem;
-	}
-	h4 {
-		font-weight: 600;
-		margin-bottom: 0.5rem;
-	}
-	ul {
-		list-style-type: none;
-		padding: 0;
-	}
-	li {
-		background-color: #f3f4f6;
-		padding: 0.75rem;
-		border-radius: 4px;
-		margin-bottom: 0.5rem;
-	}
-	.change-reason {
-		font-weight: 500;
-	}
-</style>
+		{#if isExpanded}
+			<ul class="space-y-2" transition:slide>
+				{#each changes as change}
+					<li class="bg-gray-100 p-3 rounded">
+						<span class="font-medium text-gray-700">{change.changeReason ?? 'Unknown'}:</span>
+						<span class="text-gray-600">{change.changeValue ?? 'N/A'}</span>
+					</li>
+				{/each}
+			</ul>
+		{/if}
+	</div>
+{/if}
