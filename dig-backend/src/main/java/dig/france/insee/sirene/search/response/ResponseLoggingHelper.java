@@ -6,11 +6,9 @@ import java.util.stream.Collectors;
 class ResponseLoggingHelper {
 
     private static final ResponseLoggingHelper INSTANCE = new ResponseLoggingHelper();
-    private static final String COMMA_BR = ",\n";
-    private static final String TAB = "\t";
-    private static final String TAB_2 = "\t\t";
-    private static final String TAB_3 = "\t\t\t";
-    private static final String TAB_4 = "\t\t\t\t";
+    private final String COMMA_BR = ",\n";
+    private final String TAB_2 = "\t\t";
+    private final String TAB_3 = "\t\t\t";
 
     public static ResponseLoggingHelper instance() {
         return INSTANCE;
@@ -20,12 +18,14 @@ class ResponseLoggingHelper {
         return "SireneSearchResultDto {\n" +
                 "\tsireneUnits: " + (dto.sireneUnits() == null ? "null" :
                 dto.sireneUnits().stream()
-                        .map(unit -> "\n"+ TAB_2 + unit.toString().replace("\n", "\n"+ TAB_2))
+                        .map(unit -> "\n" + TAB_2 + unit.toString().replace("\n", "\n" + TAB_2))
                         .collect(Collectors.joining(",")) + "\n\t") +
                 "\n}";
     }
 
     String toString(SearchResponseDto.SireneUnitDto dto) {
+        String TAB = "\t";
+
         return "SireneUnitDto {\n" +
                 TAB + "siren=" + dto.siren() + COMMA_BR +
                 TAB + "creationDate: " + dto.creationDate() + COMMA_BR +
@@ -33,7 +33,7 @@ class ResponseLoggingHelper {
                 TAB + "type: " + dto.type() + COMMA_BR +
                 TAB + "commonFirstName: " + (dto.commonFirstName() != null ? dto.commonFirstName() : "null - legal entity") + COMMA_BR +
                 TAB + "firstNames: " + (dto.firstNames() != null ? dto.firstNames() : "null - legal entity") + COMMA_BR +
-                TAB + "periods: " + formatPeriods(dto.periods()) +
+                TAB + "periods: " + formatList(dto.periods()) +
                 TAB + "establishments: " + formatEstablishments(dto.establishments()) +
                 "\n}";
     }
@@ -62,7 +62,7 @@ class ResponseLoggingHelper {
                 TAB_2 + "isHead: " + dto.isHead() + COMMA_BR +
                 TAB_2 + "address: " + (dto.address() != null ? toString(dto.address()) : "null") + COMMA_BR +
                 TAB_2 + "address2: " + (dto.address2() != null ? toString(dto.address2()) : "null") + COMMA_BR +
-                TAB_2 + "establishmentPeriods: " + formatEstablishmentPeriods(dto.establishmentPeriods()) +
+                TAB_2 + "establishmentPeriods: " + formatList(dto.establishmentPeriods()) +
                 "}";
     }
 
@@ -85,6 +85,8 @@ class ResponseLoggingHelper {
     }
 
     String toString(SearchResponseDto.EstablishmentPeriodDto dto) {
+        String TAB_4 = "\t\t\t\t";
+
         return "EstablishmentPeriodDto {\n" +
                 TAB_4 + "changes: " + formatChanges(dto.changes(), TAB_4) + COMMA_BR +
                 TAB_4 + "startDate: " + dto.startDate() + COMMA_BR +
@@ -97,10 +99,16 @@ class ResponseLoggingHelper {
                 "}";
     }
 
-    private String formatPeriods(List<SearchResponseDto.PeriodDto> periods) {
-        if (periods == null) return "null\n";
-        return periods.stream()
-                .map(period -> "\n" + TAB_2 + toString(period).replace("\n", "\n" + TAB_2))
+    private <ELEMENT> String formatList(List<ELEMENT> elements) {
+        if (elements == null) return "null\n";
+        return elements.stream()
+                .map(e -> switch (e) {
+                    case SearchResponseDto.PeriodDto p ->
+                            "\n" + TAB_2 + toString(p).replace("\n", "\n" + TAB_2);
+                    case SearchResponseDto.EstablishmentPeriodDto ep ->
+                            "\n" + TAB_3 + toString(ep).replace("\n", "\n" + TAB_3);
+                    default -> "null";
+                })
                 .collect(Collectors.joining(",")) + "\n";
     }
 
@@ -108,13 +116,6 @@ class ResponseLoggingHelper {
         if (establishments == null) return "null\n";
         return establishments.stream()
                 .map(e -> "\n" + TAB_2 + toString(e).replace("\n", "\n" + TAB_2))
-                .collect(Collectors.joining(",")) + "\n";
-    }
-
-    private String formatEstablishmentPeriods(List<SearchResponseDto.EstablishmentPeriodDto> periods) {
-        if (periods == null) return "null\n";
-        return periods.stream()
-                .map(period -> "\n" + TAB_3 + toString(period).replace("\n", "\n" + TAB_3))
                 .collect(Collectors.joining(",")) + "\n";
     }
 
