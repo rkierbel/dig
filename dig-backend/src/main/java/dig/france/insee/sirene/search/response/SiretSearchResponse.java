@@ -119,10 +119,6 @@ public record SiretSearchResponse(Header header,
                     .collect(Collectors.joining(", "));
         }
 
-        public String adminStatusMeaning() {
-            return administrativeStatus.meaning();
-        }
-
         //TODO -> abstract
         public List<PeriodChange> getPeriodChanges() {
             return changeMap().entrySet().stream()

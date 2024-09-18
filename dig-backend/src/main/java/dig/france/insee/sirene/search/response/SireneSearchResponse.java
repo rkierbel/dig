@@ -103,9 +103,8 @@ public record SireneSearchResponse(SireneHeader header,
                     .collect(Collectors.joining(", "));
         }
 
-        public String inferUnitType() {
-            UnitType type = this.commonFirstName != null ? UnitType.NATURAL_PERSON : UnitType.LEGAL_ENTITY;
-            return type.name().toLowerCase().replace("_", " ");
+        public UnitType inferUnitType() {
+            return this.commonFirstName != null ? UnitType.NATURAL_PERSON : UnitType.LEGAL_ENTITY;
         }
     }
 
@@ -166,10 +165,6 @@ public record SireneSearchResponse(SireneHeader header,
             return Stream.of(companyName, companyCommonName1, companyCommonName2, companyCommonName3)
                     .filter(Objects::nonNull)
                     .collect(Collectors.joining(", "));
-        }
-
-        public String adminStatusMeaning() {
-            return administrativeStatus.meaning();
         }
 
         public List<PeriodChange> getPeriodChanges() {

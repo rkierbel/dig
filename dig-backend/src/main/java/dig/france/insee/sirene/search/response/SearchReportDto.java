@@ -1,5 +1,7 @@
 package dig.france.insee.sirene.search.response;
 
+import dig.france.insee.sirene.search.response.enumerated.AdministrativeStatus;
+import dig.france.insee.sirene.search.response.enumerated.UnitType;
 import io.micronaut.serde.annotation.Serdeable;
 import lombok.Builder;
 
@@ -25,7 +27,7 @@ public record SearchReportDto(List<SireneUnitDto> sireneUnits) {
     record SireneUnitDto(Integer siren,
                          LocalDate creationDate,
                          Instant lastModifiedDate,
-                         String type,
+                         UnitType type,
                          String commonFirstName,
                          String firstNames,
                          List<PeriodDto> periods,
@@ -43,7 +45,7 @@ public record SearchReportDto(List<SireneUnitDto> sireneUnits) {
 
     @Serdeable
     record PeriodDto(List<PeriodChange> changes,
-                     String administrativeStatus,
+                     AdministrativeStatus administrativeStatus,
                      String naturalPersonLastName,
                      String naturalPersonCommonName,
                      String companyNames,
@@ -100,7 +102,7 @@ public record SearchReportDto(List<SireneUnitDto> sireneUnits) {
     record EstablishmentPeriodDto(List<PeriodChange> changes,
                                   LocalDate startDate,
                                   LocalDate endDate,
-                                  String administrativeStatus,
+                                  AdministrativeStatus administrativeStatus,
                                   String sign,
                                   String commonName,
                                   String mainActivity,

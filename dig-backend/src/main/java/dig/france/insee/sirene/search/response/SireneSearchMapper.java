@@ -52,8 +52,8 @@ public abstract class SireneSearchMapper {
     @Mappings({
             @Mapping(target = "lastModifiedDate", source = "unit.lastModifiedDate", qualifiedByName = "toInstant"),
             @Mapping(target = "firstNames", expression = "java(unit != null ? unit.firstNames() : null)"),
-            @Mapping(target = "type", expression = "java(unit != null ? unit.inferUnitType() : null)"),
-            @Mapping(target = "establishments", expression = "java(initEstablishments())")
+            @Mapping(target = "establishments", expression = "java(initEstablishments())"),
+            @Mapping(target = "type", expression = "java(unit.inferUnitType())")
     })
     abstract SearchReportDto.SireneUnitDto toSireneUnitDto(SireneSearchResponse.SireneUnit unit,
                                                            SiretSearchResponse siretResponse);
@@ -69,15 +69,13 @@ public abstract class SireneSearchMapper {
 
     @Mappings({
             @Mapping(target = "changes", expression = "java(period.getPeriodChanges())"),
-            @Mapping(target = "sign", expression = "java(period.sign())"),
-            @Mapping(target = "administrativeStatus", expression = "java(period.adminStatusMeaning())")
+            @Mapping(target = "sign", expression = "java(period.sign())")
     })
     abstract SearchReportDto.EstablishmentPeriodDto toEstablishmentPeriodDto(SiretSearchResponse.EstablishmentPeriod period);
 
     @Mappings({
             @Mapping(target = "changes", expression = "java(period.getPeriodChanges())"),
             @Mapping(target = "companyNames", expression = "java(period.companyNames())"),
-            @Mapping(target = "administrativeStatus", expression = "java(period.adminStatusMeaning())")
     })
     abstract SearchReportDto.PeriodDto toPeriodDto(SireneSearchResponse.Period period);
 
