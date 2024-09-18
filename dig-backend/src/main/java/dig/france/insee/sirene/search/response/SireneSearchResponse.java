@@ -103,8 +103,9 @@ public record SireneSearchResponse(SireneHeader header,
                     .collect(Collectors.joining(", "));
         }
 
-        public UnitType inferUnitType() {
-            return this.commonFirstName != null ? UnitType.NATURAL_PERSON : UnitType.LEGAL_ENTITY;
+        public String inferUnitType() {
+            UnitType type = this.commonFirstName != null ? UnitType.NATURAL_PERSON : UnitType.LEGAL_ENTITY;
+            return type.name().toLowerCase().replace("_", " ");
         }
     }
 
@@ -167,6 +168,10 @@ public record SireneSearchResponse(SireneHeader header,
                     .collect(Collectors.joining(", "));
         }
 
+        public String adminStatusMeaning() {
+            return administrativeStatus.meaning();
+        }
+
         public List<PeriodChange> getPeriodChanges() {
             return changeMap().entrySet().stream()
                     .filter(Map.Entry::getValue)
@@ -177,7 +182,7 @@ public record SireneSearchResponse(SireneHeader header,
         private Map<PeriodChange, Boolean> changeMap() {
             String companyCommonName = Stream.of(companyCommonName1, companyCommonName2, companyCommonName3)
                     .filter(Objects::nonNull).findFirst().orElse(null);
-            String adminStatus = administrativeStatus != null ? administrativeStatus.name() : null;
+            String adminStatus = administrativeStatus != null ? administrativeStatus.meaning() : null;
 
             Map<PeriodChange, Boolean> changes = HashMap.newHashMap(7);
             changes.put(PeriodChange.of(Reason.ADMIN_STATUS_CHANGE, adminStatus), administrativeStatusChange);

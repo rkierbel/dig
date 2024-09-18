@@ -68,16 +68,18 @@ public abstract class SireneSearchMapper {
     abstract SearchReportDto.EstablishmentDto toEstablishmentDto(SiretSearchResponse.Establishment establishment);
 
     @Mappings({
-            @Mapping(target = "changes", expression = "java(establishmentPeriod.getPeriodChanges())"),
-            @Mapping(target = "sign", expression = "java(establishmentPeriod.sign())"),
+            @Mapping(target = "changes", expression = "java(period.getPeriodChanges())"),
+            @Mapping(target = "sign", expression = "java(period.sign())"),
+            @Mapping(target = "administrativeStatus", expression = "java(period.adminStatusMeaning())")
     })
-    abstract SearchReportDto.EstablishmentPeriodDto toEstablishmentPeriodDto(SiretSearchResponse.EstablishmentPeriod establishmentPeriod);
+    abstract SearchReportDto.EstablishmentPeriodDto toEstablishmentPeriodDto(SiretSearchResponse.EstablishmentPeriod period);
 
     @Mappings({
-            @Mapping(target = "changes", expression = "java(unitPeriod.getPeriodChanges())"),
-            @Mapping(target = "companyNames", expression = "java(unitPeriod.companyNames())"),
+            @Mapping(target = "changes", expression = "java(period.getPeriodChanges())"),
+            @Mapping(target = "companyNames", expression = "java(period.companyNames())"),
+            @Mapping(target = "administrativeStatus", expression = "java(period.adminStatusMeaning())")
     })
-    abstract SearchReportDto.PeriodDto toPeriodDto(SireneSearchResponse.Period unitPeriod);
+    abstract SearchReportDto.PeriodDto toPeriodDto(SireneSearchResponse.Period period);
 
     @Named("toInstant")
     Instant toInstant(String input) {

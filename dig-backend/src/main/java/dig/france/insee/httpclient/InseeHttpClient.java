@@ -37,13 +37,13 @@ public interface InseeHttpClient {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
-    SireneSearchResponse search(@QueryValue(value = InseeConstant.QUERY) String sireneSearch);
+    SireneSearchResponse sireneSearch(@QueryValue(value = InseeConstant.QUERY) String sireneSearch);
 
     @Get("${sirene.api.prefix}${sirene.api.version-3-11}${sirene.api.sirene-search}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @SingleResult
-    Publisher<SireneSearchResponse> searchAsync(@QueryValue(value = InseeConstant.QUERY) String sireneSearch);
+    Publisher<SireneSearchResponse> sireneSearchAsync(@QueryValue(value = InseeConstant.QUERY) String sireneSearch);
 
     @Get("${sirene.api.prefix}${sirene.api.version-3-11}${sirene.api.siret-search}")
     @Consumes(MediaType.APPLICATION_JSON)

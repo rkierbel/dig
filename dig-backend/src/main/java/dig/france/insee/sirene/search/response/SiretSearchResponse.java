@@ -119,6 +119,10 @@ public record SiretSearchResponse(Header header,
                     .collect(Collectors.joining(", "));
         }
 
+        public String adminStatusMeaning() {
+            return administrativeStatus.meaning();
+        }
+
         //TODO -> abstract
         public List<PeriodChange> getPeriodChanges() {
             return changeMap().entrySet().stream()
@@ -129,7 +133,7 @@ public record SiretSearchResponse(Header header,
 
         private Map<PeriodChange, Boolean> changeMap() {
             String sign = sign();
-            String adminStatus = administrativeStatus != null ? administrativeStatus.name() : null;
+            String adminStatus = administrativeStatus != null ? administrativeStatus.meaning() : null;
 
             Map<PeriodChange, Boolean> changes = HashMap.newHashMap(7);
             changes.put(PeriodChange.of(Reason.ESTABLISHMENT_ADMIN_STATUS_CHANGE, adminStatus), administrativeStatusChange);

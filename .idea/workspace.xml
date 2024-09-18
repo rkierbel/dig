@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="refactor sirene search services into package">
+    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="fallback with partial report on async search">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeHttpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeHttpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeTokenMaintainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/httpclient/InseeTokenMaintainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/ResponseLoggingHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/ResponseLoggingHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SearchReportDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SearchReportDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SiretSearchResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SiretSearchResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/enumerated/AdministrativeStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/enumerated/AdministrativeStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/enumerated/UnitType.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/enumerated/UnitType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/service/AsyncSireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/service/AsyncSireneSearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/service/SireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/service/SireneSearchService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,77 +80,80 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.dig-backend/Dockerfile builder.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.dig-backend/Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.dig-backend: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.rabbitmq: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;JAR Application.dig-backend-1.0-SNAPSHOT.jar.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.HttpClientWrongPropertyTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.HttpClientWrongPropertyTest.invalidCredentials_whenGetToken_shouldBeBadRequest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InseeHttpClientTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InseeHttpClientTest.givenInvalidCredentials_whenGetInfo_isBadRequest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InseeHttpClientTest.givenInvalidCredentials_whenPostToken_isBadRequest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SearchVariableTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneControllerTest.containerRuns.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneControllerTest.testPing.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchMapperTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchMapperTest.testAddEstablishmentsWithNullSiretResponse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchMapperTest.testToInstantWithInvalidInput.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchMapperTest.testToSireneUnitDto.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchMapperTest.testToSireneUnitDtoWithNullFields.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchMapperTest.testToSireneUnitDtoWithNullUnit.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchTest.givenValidSimpleSearchByMultipleSiren_returnSiretSearchResult.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchTest.givenValidSimpleSearchByNaturalPersonName_returnSireneSearchResult.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchTest.givenValidSimpleSearchByNaturalPersonName_returnSiretSearchResult.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchTest.givenValidSimpleSearchBySiren_returnSiretSearchResult.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (2).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SireneSearchTest.givenValidSimpleSearch_returnSiretSearchResult.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.java in dig-backend.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dig [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dig [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dig [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dig-backend [clean,install,-Pnative].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dig-backend [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dig-backend [mn:run].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dig-backend [mvn,idea:idea].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dig-backend [package,-Dpackaging=docker].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.dig-backend [run].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.skilld [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Micronaut.DigApplication (2).executor&quot;: &quot;Run&quot;,
-    &quot;OpenAPI/Swagger Code Generator.dig-application-1.0.yml.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/rkierbel/IdeaProjects/dig/dig-backend/src/main/java/france/insee/sirene&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/rkierbel/IdeaProjects/dig/dig-webclient&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.stylelint&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\rkierbel\\IdeaProjects\\dig\\dig-webclient\\dig-ui\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.dig-backend/Dockerfile builder.executor": "Run",
+    "Docker.dig-backend/Dockerfile.executor": "Run",
+    "Docker.docker-compose.yaml.dig-backend: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.rabbitmq: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml: Compose Deployment.executor": "Run",
+    "JAR Application.dig-backend-1.0-SNAPSHOT.jar.executor": "Run",
+    "JUnit.HttpClientWrongPropertyTest.executor": "Run",
+    "JUnit.HttpClientWrongPropertyTest.invalidCredentials_whenGetToken_shouldBeBadRequest.executor": "Run",
+    "JUnit.InseeHttpClientTest.executor": "Run",
+    "JUnit.InseeHttpClientTest.givenInvalidCredentials_whenGetInfo_isBadRequest.executor": "Run",
+    "JUnit.InseeHttpClientTest.givenInvalidCredentials_whenPostToken_isBadRequest.executor": "Run",
+    "JUnit.InseeHttpClientTest.givenValidBearerToken_whenGetInfoFromSirenV3_isOk.executor": "Run",
+    "JUnit.SearchVariableTest.executor": "Run",
+    "JUnit.SireneControllerTest.callingPing_shouldSendMessageAndResponseOk.executor": "Run",
+    "JUnit.SireneControllerTest.containerRuns.executor": "Run",
+    "JUnit.SireneControllerTest.executor": "Run",
+    "JUnit.SireneControllerTest.testPing.executor": "Run",
+    "JUnit.SireneSearchMapperTest.executor": "Run",
+    "JUnit.SireneSearchMapperTest.testAddEstablishmentsWithNullSiretResponse.executor": "Run",
+    "JUnit.SireneSearchMapperTest.testToInstantWithInvalidInput.executor": "Run",
+    "JUnit.SireneSearchMapperTest.testToSireneUnitDto.executor": "Run",
+    "JUnit.SireneSearchMapperTest.testToSireneUnitDtoWithNullFields.executor": "Run",
+    "JUnit.SireneSearchMapperTest.testToSireneUnitDtoWithNullUnit.executor": "Run",
+    "JUnit.SireneSearchTest.executor": "Run",
+    "JUnit.SireneSearchTest.givenValidSimpleSearchByMultipleSiren_returnSiretSearchResult.executor": "Run",
+    "JUnit.SireneSearchTest.givenValidSimpleSearchByNaturalPersonName_returnSireneSearchResult.executor": "Run",
+    "JUnit.SireneSearchTest.givenValidSimpleSearchByNaturalPersonName_returnSiretSearchResult.executor": "Run",
+    "JUnit.SireneSearchTest.givenValidSimpleSearchBySiren_returnSiretSearchResult.executor": "Debug",
+    "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (1).executor": "Run",
+    "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult (2).executor": "Run",
+    "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSireneSearchResult.executor": "Run",
+    "JUnit.SireneSearchTest.givenValidSimpleSearch_returnSiretSearchResult.executor": "Run",
+    "JUnit.SireneSearchTest.validSimpleSearchByMultipleSiren_shouldReturnSiretSearchResult.executor": "Run",
+    "JUnit.SireneSearchTest.validSimpleSearchByNaturalPersonName_ShouldReturnSireneSearchResult.executor": "Run",
+    "JUnit.java in dig-backend.executor": "Run",
+    "Maven.dig [clean,install].executor": "Run",
+    "Maven.dig [clean].executor": "Run",
+    "Maven.dig [install].executor": "Run",
+    "Maven.dig-backend [clean,install,-Pnative].executor": "Run",
+    "Maven.dig-backend [clean,install].executor": "Run",
+    "Maven.dig-backend [mn:run].executor": "Run",
+    "Maven.dig-backend [mvn,idea:idea].executor": "Run",
+    "Maven.dig-backend [package,-Dpackaging=docker].executor": "Run",
+    "Maven.dig-backend [run].executor": "Run",
+    "Maven.skilld [clean,install].executor": "Run",
+    "Micronaut.DigApplication (2).executor": "Run",
+    "OpenAPI/Swagger Code Generator.dig-application-1.0.yml.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "main",
+    "ignore.preview.features.used": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/rkierbel/IdeaProjects/dig/dig-backend/src/main/java/france/insee/sirene",
+    "last_opened_file_path": "C:/Users/rkierbel/IdeaProjects/dig/dig-webclient",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.stylelint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "ts.external.directory.path": "C:\\Users\\rkierbel\\IdeaProjects\\dig\\dig-webclient\\dig-ui\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -169,64 +181,65 @@
       <recent name="dig.france.insee.sirene.search.response" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.java in dig-backend">
-    <configuration name="HttpClientWrongPropertyTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.SireneSearchTest.validSimpleSearchByNaturalPersonName_ShouldReturnSireneSearchResult">
+    <configuration name="SireneControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dig-backend" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dig.france.insee.httpclient.*" />
+          <option name="PATTERN" value="dig.france.insee.sirene.search.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="dig.france.insee.httpclient" />
-      <option name="MAIN_CLASS_NAME" value="dig.france.insee.httpclient.HttpClientWrongPropertyTest" />
+      <option name="PACKAGE_NAME" value="dig.france.insee.sirene.search" />
+      <option name="MAIN_CLASS_NAME" value="dig.france.insee.sirene.search.SireneControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HttpClientWrongPropertyTest.invalidCredentials_whenGetToken_shouldBeBadRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SireneControllerTest.callingPing_shouldSendMessageAndResponseOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dig-backend" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dig.france.insee.httpclient.*" />
+          <option name="PATTERN" value="dig.france.insee.sirene.search.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="dig.france.insee.httpclient" />
-      <option name="MAIN_CLASS_NAME" value="dig.france.insee.httpclient.HttpClientWrongPropertyTest" />
-      <option name="METHOD_NAME" value="invalidCredentials_whenGetToken_shouldBeBadRequest" />
+      <option name="PACKAGE_NAME" value="dig.france.insee.sirene.search" />
+      <option name="MAIN_CLASS_NAME" value="dig.france.insee.sirene.search.SireneControllerTest" />
+      <option name="METHOD_NAME" value="callingPing_shouldSendMessageAndResponseOk" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SireneSearchMapperTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SireneSearchTest.validSimpleSearchByMultipleSiren_shouldReturnSiretSearchResult" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dig-backend" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dig.france.insee.sirene.search.response.*" />
+          <option name="PATTERN" value="dig.france.insee.sirene.search.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="dig.france.insee.sirene.search.response" />
-      <option name="MAIN_CLASS_NAME" value="dig.france.insee.sirene.search.response.SireneSearchMapperTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="dig.france.insee.sirene.search" />
+      <option name="MAIN_CLASS_NAME" value="dig.france.insee.sirene.search.SireneSearchTest" />
+      <option name="METHOD_NAME" value="validSimpleSearchByMultipleSiren_shouldReturnSiretSearchResult" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SireneSearchMapperTest.testToSireneUnitDtoWithNullUnit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SireneSearchTest.validSimpleSearchByNaturalPersonName_ShouldReturnSireneSearchResult" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dig-backend" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dig.france.insee.sirene.search.response.*" />
+          <option name="PATTERN" value="dig.france.insee.sirene.search.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="dig.france.insee.sirene.search.response" />
-      <option name="MAIN_CLASS_NAME" value="dig.france.insee.sirene.search.response.SireneSearchMapperTest" />
-      <option name="METHOD_NAME" value="testToSireneUnitDtoWithNullUnit" />
+      <option name="PACKAGE_NAME" value="dig.france.insee.sirene.search" />
+      <option name="MAIN_CLASS_NAME" value="dig.france.insee.sirene.search.SireneSearchTest" />
+      <option name="METHOD_NAME" value="validSimpleSearchByNaturalPersonName_ShouldReturnSireneSearchResult" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -345,11 +358,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SireneSearchTest.validSimpleSearchByNaturalPersonName_ShouldReturnSireneSearchResult" />
+        <item itemvalue="JUnit.SireneControllerTest" />
+        <item itemvalue="JUnit.SireneControllerTest.callingPing_shouldSendMessageAndResponseOk" />
+        <item itemvalue="JUnit.SireneSearchTest.validSimpleSearchByMultipleSiren_shouldReturnSiretSearchResult" />
         <item itemvalue="JUnit.java in dig-backend" />
-        <item itemvalue="JUnit.HttpClientWrongPropertyTest" />
-        <item itemvalue="JUnit.HttpClientWrongPropertyTest.invalidCredentials_whenGetToken_shouldBeBadRequest" />
-        <item itemvalue="JUnit.SireneSearchMapperTest" />
-        <item itemvalue="JUnit.SireneSearchMapperTest.testToSireneUnitDtoWithNullUnit" />
       </list>
     </recent_temporary>
   </component>
@@ -429,14 +442,8 @@
       <workItem from="1725632909548" duration="2253000" />
       <workItem from="1726472033785" duration="287000" />
       <workItem from="1726576020285" duration="1127000" />
-    </task>
-    <task id="LOCAL-00021" summary="clear logging + mapper works">
-      <option name="closed" value="true" />
-      <created>1723305644920</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1723305644920</updated>
+      <workItem from="1726584392054" duration="309000" />
+      <workItem from="1726646273236" duration="3494000" />
     </task>
     <task id="LOCAL-00022" summary="ready to rumble">
       <option name="closed" value="true" />
@@ -822,7 +829,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726576245802</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="fallback with partial report on async search">
+      <option name="closed" value="true" />
+      <created>1726584694428</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1726584694428</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -855,7 +870,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="sirene controller uses slf4j" />
     <MESSAGE value="encapsulation improved in search package" />
     <MESSAGE value="working state mapper includes establishments" />
     <MESSAGE value="TODO -&gt; handle null admin status" />
@@ -880,6 +894,7 @@
     <MESSAGE value="extract SearchReportDto logging in dedicated class" />
     <MESSAGE value="cleanup" />
     <MESSAGE value="refactor sirene search services into package" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor sirene search services into package" />
+    <MESSAGE value="fallback with partial report on async search" />
+    <option name="LAST_COMMIT_MESSAGE" value="fallback with partial report on async search" />
   </component>
 </project>

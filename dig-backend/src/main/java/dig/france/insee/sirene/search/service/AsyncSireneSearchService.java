@@ -62,7 +62,7 @@ public class AsyncSireneSearchService {
     }
 
     private void executeSearchPipeline(Set<SearchCriteria> criteria) {
-        Mono.from(httpClient.searchAsync(SireneSearchFactory.historicized(criteria)))
+        Mono.from(httpClient.sireneSearchAsync(SireneSearchFactory.historicized(criteria)))
                 .doOnError(InseeHttpException::logSireneSearchFailure)
                 .retryWhen(Retry.fixedDelay(InseeConstant.MAX_RETRY, Duration.ofMillis(RETRY_DELAY)))
                 .flatMap(this::executeSiretSearch)

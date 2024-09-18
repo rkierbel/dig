@@ -48,7 +48,7 @@ public class SireneSearchService {
     }
 
     private SearchReportDto fullResultFromHttp(String query) {
-        SireneSearchResponse sireneResponse = httpClient.search(query);
+        SireneSearchResponse sireneResponse = httpClient.sireneSearch(query);
         log.info("Successfully retrieved Sirene data");
         SiretSearchResponse siretResponse = httpClient.siretSearch(
                 SireneSearchFactory.multipleSiren(sireneResponse.sirenNumbers()));

@@ -41,6 +41,7 @@ class ResponseLoggingHelper {
     String toString(SearchReportDto.PeriodDto dto) {
         return "PeriodDto {\n" +
                 TAB_2 + "changes: " + formatChanges(dto.changes(), TAB_2) + COMMA_BR +
+                TAB_2 + "administrative status: " + dto.administrativeStatus() + COMMA_BR +
                 TAB_2 + "naturalPersonLastName: " + dto.naturalPersonLastName() + COMMA_BR +
                 TAB_2 + "legalCategory: " + dto.legalCategory() + COMMA_BR +
                 TAB_2 + "mainActivity: " + dto.mainActivity() + COMMA_BR +
