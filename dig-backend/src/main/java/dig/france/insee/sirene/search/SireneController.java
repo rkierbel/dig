@@ -2,7 +2,7 @@ package dig.france.insee.sirene.search;
 
 import dig.france.insee.InseeConstant;
 import dig.france.insee.sirene.search.request.SearchCriteria;
-import dig.france.insee.sirene.search.response.SearchReportDto;
+import dig.france.insee.sirene.search.response.SearchResponseDto;
 import dig.france.insee.sirene.search.service.AsyncSireneSearchService;
 import dig.france.insee.sirene.search.service.SireneSearchService;
 import dig.france.insee.sirene.validation.ValidSireneSimpleSearch;
@@ -33,7 +33,7 @@ public class SireneController {
     @Get("/natural-person")
     @Produces(MediaType.APPLICATION_JSON)
     @ExecuteOn(TaskExecutors.BLOCKING)
-    public HttpResponse<SearchReportDto> sireneSearchByNaturalName(@QueryValue String term) {
+    public HttpResponse<SearchResponseDto> sireneSearchByNaturalName(@QueryValue String term) {
         log.info("Sending HTTP request to Sirene for natural person with name {}", term);
         return HttpResponse.ok(searchService.sireneSearchByNaturalName(term));
     }
@@ -41,7 +41,7 @@ public class SireneController {
     @Get("/multi-criteria")
     @Produces(MediaType.APPLICATION_JSON)
     @ExecuteOn(TaskExecutors.BLOCKING)
-    public HttpResponse<SearchReportDto> sireneSearchByMultiCriteria(@QueryValue Set<SearchCriteria> searchCriteria) {
+    public HttpResponse<SearchResponseDto> sireneSearchByMultiCriteria(@QueryValue Set<SearchCriteria> searchCriteria) {
         log.info("Sending HTTP request to Sirene for multi-criteria search {}",
                 searchCriteria.stream().map(SearchCriteria::toString).collect(Collectors.joining(InseeConstant.WHITESPACE)));
         return HttpResponse.ok(searchService.sireneSearchByMultiCriteria(searchCriteria));
@@ -57,7 +57,7 @@ public class SireneController {
 
     @Get("/multi-criteria")
     @Produces(MediaType.APPLICATION_JSON)
-    public HttpResponse<SearchReportDto> asyncSireneSearchByMultiCriteria(@QueryValue Set<SearchCriteria> searchCriteria) {
+    public HttpResponse<SearchResponseDto> asyncSireneSearchByMultiCriteria(@QueryValue Set<SearchCriteria> searchCriteria) {
         log.info("Sending non-blocking request to Sirene for multi-criteria search {}",
                 searchCriteria.stream().map(SearchCriteria::log).collect(Collectors.joining(", ")));
         asyncSearchService.sireneSearchByMultiCriteria(searchCriteria);

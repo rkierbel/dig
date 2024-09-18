@@ -1,6 +1,6 @@
 package dig.france.insee.sirene.messaging.event;
 
-import dig.france.insee.sirene.search.response.SearchReportDto;
+import dig.france.insee.sirene.search.response.SearchResponseDto;
 import io.micronaut.serde.annotation.Serdeable;
 import lombok.Builder;
 
@@ -9,17 +9,17 @@ import java.util.UUID;
 @Serdeable
 @Builder(toBuilder = true)
 public record SireneSearchCompletedEvent(String id,
-                                         SearchReportDto reportDto) {
+                                         SearchResponseDto reportDto) {
 
     public static SireneSearchCompletedEvent emptyWithId() {
         return SireneSearchCompletedEvent
                 .builder()
                 .id(UUID.randomUUID().toString())
-                .reportDto(SearchReportDto.emptyReport())
+                .reportDto(SearchResponseDto.emptyReport())
                 .build();
     }
 
-    public static SireneSearchCompletedEvent withReport(SearchReportDto report) {
+    public static SireneSearchCompletedEvent withReport(SearchResponseDto report) {
         return SireneSearchCompletedEvent
                 .builder()
                 .id(UUID.randomUUID().toString())

@@ -16,7 +16,7 @@ class ResponseLoggingHelper {
         return INSTANCE;
     }
 
-    String toString(SearchReportDto dto) {
+    String toString(SearchResponseDto dto) {
         return "SireneSearchResultDto {\n" +
                 "\tsireneUnits: " + (dto.sireneUnits() == null ? "null" :
                 dto.sireneUnits().stream()
@@ -25,7 +25,7 @@ class ResponseLoggingHelper {
                 "\n}";
     }
 
-    String toString(SearchReportDto.SireneUnitDto dto) {
+    String toString(SearchResponseDto.SireneUnitDto dto) {
         return "SireneUnitDto {\n" +
                 TAB + "siren=" + dto.siren() + COMMA_BR +
                 TAB + "creationDate: " + dto.creationDate() + COMMA_BR +
@@ -38,7 +38,7 @@ class ResponseLoggingHelper {
                 "\n}";
     }
 
-    String toString(SearchReportDto.PeriodDto dto) {
+    String toString(SearchResponseDto.PeriodDto dto) {
         return "PeriodDto {\n" +
                 TAB_2 + "changes: " + formatChanges(dto.changes(), TAB_2) + COMMA_BR +
                 TAB_2 + "administrative status: " + dto.administrativeStatus() + COMMA_BR +
@@ -51,7 +51,7 @@ class ResponseLoggingHelper {
                 "}";
     }
 
-    String toString(SearchReportDto.EstablishmentDto dto) {
+    String toString(SearchResponseDto.EstablishmentDto dto) {
         return "EstablishmentDto {\n" +
                 TAB_2 + "siret: " + dto.siret() + COMMA_BR +
                 TAB_2 + "establishmentCreationDate: " + dto.establishmentCreationDate() + COMMA_BR +
@@ -66,7 +66,7 @@ class ResponseLoggingHelper {
                 "}";
     }
 
-    String toString(SearchReportDto.EstablishmentAddressDto dto) {
+    String toString(SearchResponseDto.EstablishmentAddressDto dto) {
         return "EstablishmentAddressDto {\n" +
                 TAB_3 + "addressSupplement: " + dto.addressSupplement() + COMMA_BR +
                 TAB_3 + "roadNumber: " + dto.roadNumber() + COMMA_BR +
@@ -84,7 +84,7 @@ class ResponseLoggingHelper {
                 TAB_2 + "}";
     }
 
-    String toString(SearchReportDto.EstablishmentPeriodDto dto) {
+    String toString(SearchResponseDto.EstablishmentPeriodDto dto) {
         return "EstablishmentPeriodDto {\n" +
                 TAB_4 + "changes: " + formatChanges(dto.changes(), TAB_4) + COMMA_BR +
                 TAB_4 + "startDate: " + dto.startDate() + COMMA_BR +
@@ -97,21 +97,21 @@ class ResponseLoggingHelper {
                 "}";
     }
 
-    private String formatPeriods(List<SearchReportDto.PeriodDto> periods) {
+    private String formatPeriods(List<SearchResponseDto.PeriodDto> periods) {
         if (periods == null) return "null\n";
         return periods.stream()
                 .map(period -> "\n" + TAB_2 + toString(period).replace("\n", "\n" + TAB_2))
                 .collect(Collectors.joining(",")) + "\n";
     }
 
-    private String formatEstablishments(List<SearchReportDto.EstablishmentDto> establishments) {
+    private String formatEstablishments(List<SearchResponseDto.EstablishmentDto> establishments) {
         if (establishments == null) return "null\n";
         return establishments.stream()
                 .map(e -> "\n" + TAB_2 + toString(e).replace("\n", "\n" + TAB_2))
                 .collect(Collectors.joining(",")) + "\n";
     }
 
-    private String formatEstablishmentPeriods(List<SearchReportDto.EstablishmentPeriodDto> periods) {
+    private String formatEstablishmentPeriods(List<SearchResponseDto.EstablishmentPeriodDto> periods) {
         if (periods == null) return "null\n";
         return periods.stream()
                 .map(period -> "\n" + TAB_3 + toString(period).replace("\n", "\n" + TAB_3))

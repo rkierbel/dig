@@ -25,17 +25,17 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @MicronautTest
-class SireneSearchMapperTest {
+class SireneResponseMapperTest {
 
     @Inject
-    SireneSearchMapper mapper;
+    SireneResponseMapper mapper;
 
     private final SireneSearchResponse sireneResponse = SireneSearchResponseFixtures.createSireneSearchResponse();
     private final SiretSearchResponse siretResponse = SiretSearchResponseFixtures.createSiretSearchResponse();
 
     @Test
-    void validDataToReport_shouldMapCorrectly() {
-        SearchReportDto report = mapper.toReport(sireneResponse, siretResponse);
+    void validDataToDto_shouldMapCorrectly() {
+        SearchResponseDto report = mapper.toDto(sireneResponse, siretResponse);
 
         assertNotNull(report);
         assertEquals(1, report.sireneUnits().size());
@@ -43,7 +43,7 @@ class SireneSearchMapperTest {
 
     @Test
     void validSireneUnitToDto_shouldMapCorrectly() {
-        SearchReportDto.SireneUnitDto unitDto = mapper.toSireneUnitDto(
+        SearchResponseDto.SireneUnitDto unitDto = mapper.toSireneUnitDto(
                 sireneResponse.sireneUnits().getFirst(), siretResponse);
 
         assertNotNull(unitDto);
@@ -61,7 +61,7 @@ class SireneSearchMapperTest {
 
     @Test
     void testToEstablishmentDto() {
-        SearchReportDto.EstablishmentDto establishmentDto = mapper.toEstablishmentDto(siretResponse.establishments().getFirst());
+        SearchResponseDto.EstablishmentDto establishmentDto = mapper.toEstablishmentDto(siretResponse.establishments().getFirst());
 
         assertNotNull(establishmentDto);
         assertEquals(12345678900123L, establishmentDto.siret());
@@ -83,7 +83,7 @@ class SireneSearchMapperTest {
 
     @Test
     void testToEstablishmentPeriodDto() {
-        SearchReportDto.EstablishmentPeriodDto periodDto = mapper.toEstablishmentPeriodDto(
+        SearchResponseDto.EstablishmentPeriodDto periodDto = mapper.toEstablishmentPeriodDto(
                 siretResponse.establishments().getFirst().establishmentPeriods().getFirst());
 
         assertNotNull(periodDto);
@@ -98,9 +98,9 @@ class SireneSearchMapperTest {
 
     @Test
     void testToPeriodDto() {
-        SearchReportDto.PeriodDto lastPeriodDto = mapper.toPeriodDto(
+        SearchResponseDto.PeriodDto lastPeriodDto = mapper.toPeriodDto(
                 sireneResponse.sireneUnits().getFirst().periods().getFirst());
-        SearchReportDto.PeriodDto firstPeriodDto = mapper.toPeriodDto(
+        SearchResponseDto.PeriodDto firstPeriodDto = mapper.toPeriodDto(
                 sireneResponse.getSireneUnits().getFirst().periods().getLast());
 
         assertNotNull(lastPeriodDto);
@@ -133,19 +133,19 @@ class SireneSearchMapperTest {
     }
 
     @Test
-    void testToReportWithNullInputs() {
-        SearchReportDto report = mapper.toReport(null, null);
+    void testToDtoWithNullInputs() {
+        SearchResponseDto report = mapper.toDto(null, null);
 
         assertNotNull(report);
         assertNull(report.sireneUnits());
     }
 
     @Test
-    void testToReportWithEmptyInputs() {
+    void testToDtoWithEmptyInputs() {
         SireneSearchResponse emptySireneResponse = SireneSearchResponseFixtures.empty();
         SiretSearchResponse emptySiretResponse = SiretSearchResponseFixtures.empty();
 
-        SearchReportDto report = mapper.toReport(emptySireneResponse, emptySiretResponse);
+        SearchResponseDto report = mapper.toDto(emptySireneResponse, emptySiretResponse);
 
         assertNotNull(report);
         assertTrue(report.sireneUnits().isEmpty());
@@ -153,7 +153,7 @@ class SireneSearchMapperTest {
 
     @Test
     void testToSireneUnitDtoWithNullUnit() {
-        SearchReportDto.SireneUnitDto unitDto = mapper.toSireneUnitDto(null, siretResponse);
+        SearchResponseDto.SireneUnitDto unitDto = mapper.toSireneUnitDto(null, siretResponse);
 
         assertNotNull(unitDto);
         assertNull(unitDto.siren());
@@ -170,7 +170,7 @@ class SireneSearchMapperTest {
     void testToSireneUnitDtoWithNullFields() {
         SireneSearchResponse.SireneUnit unitWithNulls = SireneSearchResponseFixtures.nullDataSireneUnit();
 
-        SearchReportDto.SireneUnitDto unitDto = mapper.toSireneUnitDto(unitWithNulls, null);
+        SearchResponseDto.SireneUnitDto unitDto = mapper.toSireneUnitDto(unitWithNulls, null);
 
         assertNotNull(unitDto);
         assertNull(unitDto.siren());
@@ -184,7 +184,7 @@ class SireneSearchMapperTest {
 
     @Test
     void testToEstablishmentDtoWithNullEstablishment() {
-        SearchReportDto.EstablishmentDto establishmentDto = mapper.toEstablishmentDto(null);
+        SearchResponseDto.EstablishmentDto establishmentDto = mapper.toEstablishmentDto(null);
         assertNull(establishmentDto);
     }
 
@@ -192,7 +192,7 @@ class SireneSearchMapperTest {
     void testToEstablishmentDtoWithNullFields() {
         SiretSearchResponse.Establishment establishmentWithNulls = SiretSearchResponseFixtures.nullDataEstablishment();
 
-        SearchReportDto.EstablishmentDto establishmentDto = mapper.toEstablishmentDto(establishmentWithNulls);
+        SearchResponseDto.EstablishmentDto establishmentDto = mapper.toEstablishmentDto(establishmentWithNulls);
 
         assertNotNull(establishmentDto);
         assertNull(establishmentDto.siret());
@@ -216,11 +216,11 @@ class SireneSearchMapperTest {
 
     @Test
     void testAddEstablishmentsWithNullSiretResponse() {
-        SearchReportDto.SireneUnitDto unitDtoEmptyEstablishments = Instancio.of(SearchReportDto.SireneUnitDto.class)
-                .set(field(SearchReportDto.SireneUnitDto::establishments), Collections.emptyList())
+        SearchResponseDto.SireneUnitDto unitDtoEmptyEstablishments = Instancio.of(SearchResponseDto.SireneUnitDto.class)
+                .set(field(SearchResponseDto.SireneUnitDto::establishments), Collections.emptyList())
                 .create();
-        SearchReportDto.SireneUnitDto unitDtoNullEstablishments = Instancio.of(SearchReportDto.SireneUnitDto.class)
-                .set(field(SearchReportDto.SireneUnitDto::establishments), null)
+        SearchResponseDto.SireneUnitDto unitDtoNullEstablishments = Instancio.of(SearchResponseDto.SireneUnitDto.class)
+                .set(field(SearchResponseDto.SireneUnitDto::establishments), null)
                 .create();
 
         mapper.addEstablishments(unitDtoEmptyEstablishments, null);
@@ -232,8 +232,8 @@ class SireneSearchMapperTest {
 
     @Test
     void testAddEstablishmentsWithNonMatchingSiren() {
-        SearchReportDto.SireneUnitDto unitDto = Instancio.of(SearchReportDto.SireneUnitDto.class)
-                .set(field(SearchReportDto.SireneUnitDto::establishments), Collections.emptyList())
+        SearchResponseDto.SireneUnitDto unitDto = Instancio.of(SearchResponseDto.SireneUnitDto.class)
+                .set(field(SearchResponseDto.SireneUnitDto::establishments), Collections.emptyList())
                 .create();
         SiretSearchResponse nonMatchingSiretResponse = Instancio.create(SiretSearchResponse.class);
 
@@ -244,14 +244,14 @@ class SireneSearchMapperTest {
 
     @Test
     void testToPeriodDtoWithNullPeriod() {
-        SearchReportDto.PeriodDto periodDto = mapper.toPeriodDto(null);
+        SearchResponseDto.PeriodDto periodDto = mapper.toPeriodDto(null);
 
         assertNull(periodDto);
     }
 
     @Test
     void testToEstablishmentPeriodDtoWithNullPeriod() {
-        SearchReportDto.EstablishmentPeriodDto periodDto = mapper.toEstablishmentPeriodDto(null);
+        SearchResponseDto.EstablishmentPeriodDto periodDto = mapper.toEstablishmentPeriodDto(null);
 
         assertNull(periodDto);
     }

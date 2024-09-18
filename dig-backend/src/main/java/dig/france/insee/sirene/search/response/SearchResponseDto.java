@@ -11,11 +11,10 @@ import java.util.List;
 
 @Serdeable
 @Builder(toBuilder = true)
-public record SearchReportDto(List<SireneUnitDto> sireneUnits) {
+public record SearchResponseDto(List<SireneUnitDto> sireneUnits) {
 
-
-    public static SearchReportDto emptyReport() {
-        return SearchReportDto.builder().build();
+    public static SearchResponseDto emptyReport() {
+        return SearchResponseDto.builder().build();
     }
 
     @Override

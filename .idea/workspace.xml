@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="send meaningful values in place of enum constants to frontend in search report">
+    <list default="true" id="233f41ea-7d0d-4a96-b958-e44dd52067a0" name="Changes" comment="revert enum value serialization for internationalization facilitation in the frontend">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SearchReportDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SearchReportDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SiretSearchResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SiretSearchResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/enumerated/UnitType.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/enumerated/UnitType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/messaging/event/SireneSearchCompletedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/messaging/event/SireneSearchCompletedEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/SireneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/SireneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/ResponseLoggingHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/ResponseLoggingHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SearchReportDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SearchResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneSearchMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/response/SireneResponseMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/service/AsyncSireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/service/AsyncSireneSearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/service/SireneSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/main/java/dig/france/insee/sirene/search/service/SireneSearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/response/SireneSearchMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dig-backend/src/test/java/dig/france/insee/sirene/search/response/SireneResponseMapperTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +178,7 @@
       <recent name="dig.france.insee.sirene.search.response" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SireneSearchTest.validSimpleSearchByNaturalPersonName_ShouldReturnSireneSearchResult">
+  <component name="RunManager" selected="JUnit.java in dig-backend">
     <configuration name="SireneControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dig-backend" />
       <extension name="coverage">
@@ -352,11 +355,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.java in dig-backend" />
         <item itemvalue="JUnit.SireneSearchTest.validSimpleSearchByNaturalPersonName_ShouldReturnSireneSearchResult" />
         <item itemvalue="JUnit.SireneControllerTest" />
         <item itemvalue="JUnit.SireneControllerTest.callingPing_shouldSendMessageAndResponseOk" />
         <item itemvalue="JUnit.SireneSearchTest.validSimpleSearchByMultipleSiren_shouldReturnSiretSearchResult" />
-        <item itemvalue="JUnit.java in dig-backend" />
       </list>
     </recent_temporary>
   </component>
@@ -437,15 +440,7 @@
       <workItem from="1726472033785" duration="287000" />
       <workItem from="1726576020285" duration="1127000" />
       <workItem from="1726584392054" duration="309000" />
-      <workItem from="1726646273236" duration="5676000" />
-    </task>
-    <task id="LOCAL-00023" summary="added token generation on server startup">
-      <option name="closed" value="true" />
-      <created>1723397150197</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1723397150197</updated>
+      <workItem from="1726646273236" duration="7236000" />
     </task>
     <task id="LOCAL-00024" summary="correct typo">
       <option name="closed" value="true" />
@@ -831,7 +826,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726650436508</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="revert enum value serialization for internationalization facilitation in the frontend">
+      <option name="closed" value="true" />
+      <created>1726652523412</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1726652523412</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -864,7 +867,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="working state mapper includes establishments" />
     <MESSAGE value="TODO -&gt; handle null admin status" />
     <MESSAGE value="handle null admin status + logging result of mapping" />
     <MESSAGE value="add json with estabs" />
@@ -889,6 +891,7 @@
     <MESSAGE value="refactor sirene search services into package" />
     <MESSAGE value="fallback with partial report on async search" />
     <MESSAGE value="send meaningful values in place of enum constants to frontend in search report" />
-    <option name="LAST_COMMIT_MESSAGE" value="send meaningful values in place of enum constants to frontend in search report" />
+    <MESSAGE value="revert enum value serialization for internationalization facilitation in the frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="revert enum value serialization for internationalization facilitation in the frontend" />
   </component>
 </project>

@@ -28,18 +28,18 @@ import static dig.common.util.DateTimeUtil.ZONE_BRUSSELS;
 @Singleton
 @Primary
 @Slf4j
-public abstract class SireneSearchMapper {
+public abstract class SireneResponseMapper {
 
-    public SearchReportDto toReport(SireneSearchResponse sireneSearchResponse) {
-        return toReport(sireneSearchResponse, null);
+    public SearchResponseDto toDto(SireneSearchResponse sireneSearchResponse) {
+        return toDto(sireneSearchResponse, null);
     }
 
-    public SearchReportDto toReport(SireneSearchResponse sireneResponse,
-                                    SiretSearchResponse siretResponse) {
+    public SearchResponseDto toDto(SireneSearchResponse sireneResponse,
+                                   SiretSearchResponse siretResponse) {
         if (sireneResponse == null) {
-            return SearchReportDto.emptyReport();
+            return SearchResponseDto.emptyReport();
         }
-        return SearchReportDto.builder()
+        return SearchResponseDto.builder()
                 .sireneUnits(
                         Optional.ofNullable(sireneResponse.sireneUnits())
                                 .orElse(Collections.emptyList())
@@ -52,32 +52,32 @@ public abstract class SireneSearchMapper {
     @Mappings({
             @Mapping(target = "lastModifiedDate", source = "unit.lastModifiedDate", qualifiedByName = "toInstant"),
             @Mapping(target = "firstNames", expression = "java(unit != null ? unit.firstNames() : null)"),
-            @Mapping(target = "establishments", expression = "java(initEstablishments())"),
-            @Mapping(target = "type", expression = "java(unit.inferUnitType())")
+            @Mapping(target = "type", expression = "java(unit != null ? unit.inferUnitType() : null)"),
+            @Mapping(target = "establishments", expression = "java(initEstablishments())")
     })
-    abstract SearchReportDto.SireneUnitDto toSireneUnitDto(SireneSearchResponse.SireneUnit unit,
-                                                           SiretSearchResponse siretResponse);
+    abstract SearchResponseDto.SireneUnitDto toSireneUnitDto(SireneSearchResponse.SireneUnit unit,
+                                                             SiretSearchResponse siretResponse);
 
-    ArrayList<SearchReportDto.EstablishmentDto> initEstablishments() {
+    ArrayList<SearchResponseDto.EstablishmentDto> initEstablishments() {
         return new ArrayList<>();
     }
 
     @Mappings({
             @Mapping(target = "establishmentLastModifiedDate", qualifiedByName = "toInstant")
     })
-    abstract SearchReportDto.EstablishmentDto toEstablishmentDto(SiretSearchResponse.Establishment establishment);
+    abstract SearchResponseDto.EstablishmentDto toEstablishmentDto(SiretSearchResponse.Establishment establishment);
 
     @Mappings({
             @Mapping(target = "changes", expression = "java(period.getPeriodChanges())"),
             @Mapping(target = "sign", expression = "java(period.sign())")
     })
-    abstract SearchReportDto.EstablishmentPeriodDto toEstablishmentPeriodDto(SiretSearchResponse.EstablishmentPeriod period);
+    abstract SearchResponseDto.EstablishmentPeriodDto toEstablishmentPeriodDto(SiretSearchResponse.EstablishmentPeriod period);
 
     @Mappings({
             @Mapping(target = "changes", expression = "java(period.getPeriodChanges())"),
             @Mapping(target = "companyNames", expression = "java(period.companyNames())"),
     })
-    abstract SearchReportDto.PeriodDto toPeriodDto(SireneSearchResponse.Period period);
+    abstract SearchResponseDto.PeriodDto toPeriodDto(SireneSearchResponse.Period period);
 
     @Named("toInstant")
     Instant toInstant(String input) {
@@ -93,7 +93,7 @@ public abstract class SireneSearchMapper {
     }
 
     @AfterMapping
-    void addEstablishments(@MappingTarget SearchReportDto.SireneUnitDto unitDto,
+    void addEstablishments(@MappingTarget SearchResponseDto.SireneUnitDto unitDto,
                            SiretSearchResponse siretResponse) {
         if (siretResponse == null || unitDto == null || unitDto.siren() == null) return;
 
