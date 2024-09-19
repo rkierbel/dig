@@ -1,5 +1,6 @@
 package dig.france.insee.sirene.search;
 
+import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import dig.france.insee.sirene.search.service.SireneSearchService;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
@@ -10,6 +11,7 @@ import java.util.Set;
 
 @MicronautTest
 @Disabled
+@WireMockTest(httpsEnabled = true)
 public class SireneSearchTest {
 
     @Inject
@@ -17,6 +19,7 @@ public class SireneSearchTest {
 
     @Inject
     SireneSearchService sireneSearchService;
+
 
     @Test
     void validSimpleSearchByNaturalPersonName_ShouldReturnSireneSearchResult() throws InterruptedException {

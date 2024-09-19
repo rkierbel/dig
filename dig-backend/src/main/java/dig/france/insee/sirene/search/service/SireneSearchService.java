@@ -50,10 +50,13 @@ public class SireneSearchService {
     private SearchResponseDto fullResultFromHttp(String query) {
         SireneSearchResponse sireneResponse = httpClient.sireneSearch(query);
         log.info("Successfully retrieved Sirene data");
+
         SiretSearchResponse siretResponse = httpClient.siretSearch(
                 SireneSearchFactory.multipleSiren(sireneResponse.sirenNumbers()));
         log.info("Successfully retrieved Siret register data");
+
         SearchResponseDto report = sireneResponseMapper.toDto(sireneResponse, siretResponse);
+
         if (log.isDebugEnabled()) {
             log.debug("Successfully generated a search report ! {}", report);
         }

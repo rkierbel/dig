@@ -47,6 +47,7 @@
         <reactor.test.version>3.6.4</reactor.test.version>
         <release.version>21</release.version>
         <swagger.annotations.version>2.2.20</swagger.annotations.version>
+        <wiremock.version>3.9.1</wiremock.version>
     </properties>
 
     <profiles>
@@ -217,6 +218,12 @@
             <groupId>org.instancio</groupId>
             <artifactId>instancio-junit</artifactId>
             <version>${instancio.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.wiremock</groupId>
+            <artifactId>wiremock</artifactId>
+            <version>${wiremock.version}</version>
             <scope>test</scope>
         </dependency>
 

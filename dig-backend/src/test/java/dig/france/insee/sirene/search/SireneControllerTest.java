@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @MicronautTest
 @Testcontainers
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS) // Implement TestPropertyProvider => must use annotation to create a single class instance for all tests
 class SireneControllerTest implements TestPropertyProvider {
 
     @Inject

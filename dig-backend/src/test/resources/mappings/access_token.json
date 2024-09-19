@@ -1,0 +1,25 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "url": "https://api.insee.fr/token",
+        "method": "GET",
+        "queryParameters": {
+          "grant_type": {
+            "equalTo": "client_credentials"
+          }
+        },
+        "basicAuthCredentials": {
+          "username": "SIRENE_CONSUMER_KEY",
+          "password": "SIRENE_CONSUMER_SECRET"
+        }
+      },
+      "response": {
+        "access_token": "i4md3finit3el1_4fa8e_t0ke7",
+        "scope": "am_application_scope default",
+        "token_type": "Bearer",
+        "expires_in": 95971
+      }
+    }
+  ]
+}
