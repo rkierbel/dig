@@ -23,6 +23,12 @@ public class SireneSearchService {
     @Inject
     SireneResponseMapper sireneResponseMapper;
 
+    public SearchResponseDto sireneSearchByCompanyOrNaturalName(String term) {
+        String queryString = SireneSearchFactory.companyOrNaturalName(term);
+        log.info("Built query string for natural person OR company name search: {}", queryString);
+        return fullResultFromHttp(queryString);
+    }
+
     public SearchResponseDto sireneSearchByNaturalName(String term) {
         String queryString = SireneSearchFactory.naturalPersonName(term);
         log.info("Built query string for natural person name search: {}", queryString);

@@ -46,11 +46,35 @@ public class AsyncSireneSearchService {
         digProducer.sendPing(event);
     }
 
-    //TODO -> full test
+    public void sireneSearchByCompanyOrNaturalName(String term) {
+        executeSearchPipeline(
+                Set.of(SearchCriteria.builder()
+                                .searchVar(SearchVariable.NATURAL_PERSON_NAME)
+                                .value(term)
+                                .operator(SearchOperator.NONE)
+                                .build(),
+                        SearchCriteria.builder()
+                                .searchVar(SearchVariable.COMPANY_NAME)
+                                .value(term)
+                                .operator(SearchOperator.NONE)
+                                .build())
+        );
+    }
+
     public void sireneSearchByNaturalName(String term) {
         executeSearchPipeline(
                 Set.of(SearchCriteria.builder()
                         .searchVar(SearchVariable.NATURAL_PERSON_NAME)
+                        .value(term)
+                        .operator(SearchOperator.NONE)
+                        .build())
+        );
+    }
+
+    public void sireneSearchByCompanyName(String term) {
+        executeSearchPipeline(
+                Set.of(SearchCriteria.builder()
+                        .searchVar(SearchVariable.COMPANY_NAME)
                         .value(term)
                         .operator(SearchOperator.NONE)
                         .build())

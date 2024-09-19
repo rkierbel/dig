@@ -14,6 +14,20 @@ public class SireneSearchFactory {
 
     private static final SireneSearchFactory INSTANCE = new SireneSearchFactory();
 
+    public static String companyOrNaturalName(String term) {
+        SearchCriteria byNaturalPersonName = SearchCriteria.builder()
+                .searchVar(SearchVariable.NATURAL_PERSON_NAME)
+                .value(term)
+                .operator(SearchOperator.NONE)
+                .build();
+        SearchCriteria byCompanyName = SearchCriteria.builder()
+                .searchVar(SearchVariable.COMPANY_NAME)
+                .value(term)
+                .operator(SearchOperator.NONE)
+                .build();
+        return historicized(Set.of(byNaturalPersonName, byCompanyName));
+    }
+
     public static String naturalPersonName(String term) {
         return historicized(Set.of(SearchCriteria.builder()
                 .searchVar(SearchVariable.NATURAL_PERSON_NAME)
