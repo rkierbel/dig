@@ -8,3 +8,6 @@ rabbitmq:
 insee:
   test-consumer-key: test_key
   test-consumer-secret: test_secret
+wiremock:
+  jsonpath:
+    unauthorized-get-token: /wiremock/unauthorized_get_token.json

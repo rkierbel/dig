@@ -1,5 +1,6 @@
 package dig.france.insee.sirene.search;
 
+import io.micronaut.context.annotation.Value;
 import io.micronaut.core.annotation.NonNull;
 import io.micronaut.runtime.server.EmbeddedServer;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
@@ -28,6 +29,9 @@ class SireneControllerTest implements TestPropertyProvider {
 
     @Container
     public static RabbitMQContainer rabbitMQContainer = RabbitMQContainer.getInstance();
+
+    @Value("${sirene.api.prefix}${sirene.api.version-3-11}${sirene.api.sirene-search}")
+    private String searchUrl;
 
     @BeforeAll
     public void setUp() {
@@ -62,7 +66,7 @@ class SireneControllerTest implements TestPropertyProvider {
 
     @Test
     void validNaturalPersonSearch_shouldReturnOk() { //TODO -> mock insee API
-
+        //stubFor(get())
     }
 
 }
