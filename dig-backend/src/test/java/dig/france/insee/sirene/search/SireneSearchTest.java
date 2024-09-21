@@ -11,7 +11,7 @@ import java.util.Set;
 
 @MicronautTest
 @Disabled
-@WireMockTest(httpsEnabled = true)
+//@WireMockTest(httpsEnabled = true)
 public class SireneSearchTest {
 
     @Inject

@@ -32,20 +32,19 @@
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <micronaut.version>4.6.2</micronaut.version>
+        <micronaut.version>4.6.3</micronaut.version>
         <micronaut.aot.enabled>${profile.aot.enabled}</micronaut.aot.enabled>
         <micronaut.aot.packageName>com.dig.aot.generated</micronaut.aot.packageName>
-        <micronaut.client.core.version>4.6.2</micronaut.client.core.version>
-        <micronaut.context.version>4.6.2</micronaut.context.version>
-        <micronaut.core.version>4.6.2</micronaut.core.version>
-        <micronaut.http.version>4.6.2</micronaut.http.version>
+        <micronaut.client.core.version>4.6.3</micronaut.client.core.version>
+        <micronaut.context.version>4.6.3</micronaut.context.version>
+        <micronaut.core.version>4.6.3</micronaut.core.version>
+        <micronaut.http.version>4.6.3</micronaut.http.version>
         <micronaut.maven.plugin.version>4.6.3</micronaut.maven.plugin.version>
         <micronaut.openapi.version>6.12.3</micronaut.openapi.version>
         <micronaut.rabbit.version>4.3.0</micronaut.rabbit.version>
         <micronaut.runtime>netty</micronaut.runtime>
-        <micronaut.serde.api.version>2.8.2</micronaut.serde.api.version>
+        <micronaut.serde.api.version>2.11.0</micronaut.serde.api.version>
         <micronaut.serialization.version>2.11.0</micronaut.serialization.version>
-        <micronaut.test.version>4.5.0</micronaut.test.version>
         <mockito.junit.version>5.3.1</mockito.junit.version>
         <native.maven.plugin.version>0.10.1</native.maven.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

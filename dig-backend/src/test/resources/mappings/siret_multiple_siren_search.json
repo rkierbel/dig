@@ -9,9 +9,13 @@
             "equalTo": "siren:111111111 OR siren:222222222 OR siren: 333333333 OR siren: 444444444 OR siren: 555555555"
           }
         },
-        "basicAuthCredentials": {
-          "username": "SIRENE_CONSUMER_KEY",
-          "password": "SIRENE_CONSUMER_SECRET"
+        "headers": {
+          "Authorization": {
+            "equalTo": "Bearer test-token"
+          },
+          "Accept": {
+            "equalTo": "application/json"
+          }
         }
       },
       "response": {
@@ -21,6 +25,17 @@
           "total": 6,
           "debut": 0,
           "nombre": 6
+        },
+        "headers": {
+          "Content-Type": {
+            "equalTo": "application/json"
+          },
+          "Access-Control-Allow-Origin": {
+            "equalTo": "*"
+          },
+          "Access-Control-Allow-Methods": {
+            "equalTo": "POST,GET"
+          }
         },
         "etablissements": [
           {

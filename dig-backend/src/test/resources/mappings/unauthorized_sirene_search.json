@@ -1,0 +1,29 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "url": "https://api.insee.fr/entreprises/sirene/V3.11/siret",
+        "method": "GET",
+        "queryParameters": {
+          "q": {
+            "equalTo": "siren:111111111 OR siren:222222222 OR siren: 333333333 OR siren: 444444444 OR siren: 555555555"
+          }
+        },
+        "headers": {
+          "Authorization": {
+            "equalTo": "Bearer INVALID"
+          },
+          "Accept": {
+            "equalTo": "application/json"
+          }
+        }
+      },
+      "response": {
+        "_comment": "should be in nested fault object",
+        "code": 900901,
+        "message": "Invalid Credentials",
+        "description": "Access failure for API: /entreprises/sirene/V3.11, version: V3.11 status: (900901) - Invalid Credentials. Make sure you have given the correct access token"
+      }
+    }
+  ]
+}

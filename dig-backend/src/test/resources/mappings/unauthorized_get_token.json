@@ -10,7 +10,7 @@
           }
         },
         "basicAuthCredentials": {
-          "username": "SIRENE_CONSUMER_KEY",
+          "username": "WRONG_KEY",
           "password": "SIRENE_CONSUMER_SECRET"
         },
         "headers": {
@@ -23,10 +23,8 @@
         }
       },
       "response": {
-        "access_token": "test-token",
-        "scope": "am_application_scope default",
-        "token_type": "Bearer",
-        "expires_in": 95971
+        "error_description": "A valid OAuth client could not be found for client_id:bad",
+        "error": "invalid_client"
       }
     }
   ]
