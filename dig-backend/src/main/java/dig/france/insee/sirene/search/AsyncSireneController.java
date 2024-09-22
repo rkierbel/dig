@@ -1,4 +1,4 @@
-package dig.france.insee.sirene;
+package dig.france.insee.sirene.search;
 
 import dig.france.insee.sirene.search.request.SearchCriteria;
 import dig.france.insee.sirene.search.response.SearchResponseDto;

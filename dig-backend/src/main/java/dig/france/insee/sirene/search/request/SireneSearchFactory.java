@@ -18,7 +18,7 @@ public class SireneSearchFactory {
         SearchCriteria byNaturalPersonName = SearchCriteria.builder()
                 .searchVar(SearchVariable.NATURAL_PERSON_NAME)
                 .value(term)
-                .operator(SearchOperator.NONE)
+                .operator(SearchOperator.OR)
                 .build();
         SearchCriteria byCompanyName = SearchCriteria.builder()
                 .searchVar(SearchVariable.COMPANY_NAME)
