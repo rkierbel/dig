@@ -63,7 +63,7 @@ class InseeTokenMaintainer {
     }
 
     @EventListener
-    @Requires(notEnv = Environment.TEST)
+    //@Requires(notEnv = Environment.TEST)
     void onStartUp(ServerStartupEvent event) {
         log.info("[InseeClientRunner::onStartup] Begin fetching Sirene access token");
         executeTokenFetchPipeline()

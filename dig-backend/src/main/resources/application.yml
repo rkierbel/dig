@@ -19,6 +19,8 @@ micronaut:
       insee:
         url: https://api.insee.fr
     wildcard: /**
+    client:
+      log-level: debug
 
 rabbitmq:
   exchange:

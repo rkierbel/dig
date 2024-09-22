@@ -23,7 +23,7 @@ public class SireneSearchTest {
 
     @Test
     void validSimpleSearchByNaturalPersonName_ShouldReturnSireneSearchResult() throws InterruptedException {
-        var naturalPersonName = "grzeszezak";
+        var naturalPersonName = "papadopoulos";
         Thread.sleep(3000);
         sireneController.sireneSearchByName(naturalPersonName);
     }
