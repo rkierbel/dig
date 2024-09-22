@@ -20,7 +20,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 
 @MicronautTest
 @WireMockTest(httpsEnabled = true)
-@Property(name = "insee.consumer-key", value="WRONG_KEY")
+@Property(name="insee.consumer-key", value="WRONG_KEY")
 public class HttpClientWrongPropertyTest {
 
     @Inject

@@ -52,9 +52,11 @@ class InseeTokenMaintainer {
     void updateToken() {
         log.info("[TestTokenMaintainer::updateTokenJob] Begin update Sirene access token");
         if (hasValidTokenData()) {
-            log.info("[TestTokenMaintainer::updateTokenJob] Sirene access token already valid");
+            log.info("[TestTokenMaintainer::updateTokenJob] Sirene access token already valid, created at {}",
+                    tokenData.tokenCreation);
         } else {
-            log.info("[TestTokenMaintainer::updateTokenJob] Sirene access token is invalid, fetching token");
+            log.info("[TestTokenMaintainer::updateTokenJob] Sirene access token is invalid - created at {}, fetching token",
+                    tokenData.tokenCreation);
             executeTokenFetchPipeline()
                     .subscribe(tokenResponse -> this.setTokenData(TokenData.of(tokenResponse.accessToken())));
         }
