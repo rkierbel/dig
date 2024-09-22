@@ -9,7 +9,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static dig.france.insee.InseeConstant.OR;
-import static dig.france.insee.InseeConstant.WHITESPACE;
 import static dig.france.insee.sirene.search.request.SearchOperator.NONE;
 
 public class SireneSearchFactory {
