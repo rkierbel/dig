@@ -6,7 +6,7 @@ It uses free public data provided by the French government (Siren and Siret, def
 
 With Dig, you can:
 
-- easily search for the one or more individuals
+- easily search for one or more individuals
 - view the history of their business formation and changes
 - find information on self-employed individuals and other types of companies
 - access data on various establishments of businesses in France and abroad
