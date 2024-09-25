@@ -1,11 +1,24 @@
-## France
+### What's Dig ?
 
-### What do Siren and Siret mean?
-Siren stands for Système d'identification du répertoire des entreprises. It consists of 9 digits.
+Dig is a tool that allows you to search for data about French businesses.
 
-Siret stands for Système d'identification du répertoire des établissements. It is made up of 14 digits: the 9 digits of the Siren + 5 digits specific to each establishment (these 5 digits are called NIC, Insee internal classification number).
+It uses free public data provided by the French government (Siren and Siret, defined below).
 
-The Siren number is included in the Siret number.
+With Dig, you can:
+
+- easily search for the one or more individuals
+- view the history of their business formation and changes
+- find information on self-employed individuals and other types of companies
+- access data on various establishments of businesses in France and abroad
+
+It's a simple and powerful way to access official data about French businesses.
+
+For example, given the name and surname of an individual, you can view in an expressive display all the businesses this individual has formed, their changes, and their establishments in France and abroad, dating back to the mid-70s.
+
+### What do Siren and Siret mean ?
+Siren stands for "Système d'identification du répertoire des entreprises" (Business Directory Identification System). It consists of 9 digits.
+
+Siret stands for "Système d'identification du répertoire des établissements" (Establishment Directory Identification System). It is made up of 14 digits: the 9 digits of the Siren + 5 digits specific to each establishment (these 5 digits are called NIC, Insee internal classification number).
 
 ### What's the difference ?
 The Siren number is the company's unique identification number.
@@ -24,7 +37,7 @@ Examples:
 
 Both numbers are allocated when a company is registered (also known as declaring an activity).
 
-### What is the Siren used for ?
+### What is the Siren directory used for ?
 It provides access to a company's legal and financial information.
 
 This data is public. Anyone who wishes to can consult it.
@@ -33,7 +46,7 @@ The Siren number is quoted on employees' payslips, on all commercial documents a
 
 Assigning a Siren number automatically registers a company in the Sirene register. The Sirene register records the identity of all companies established in France, whatever their status. It is managed by INSEE.
 
-### What is the Siret used for ?
+### What is the Siret directory used for ?
 The Siret number is used to identify a company geographically and each of the establishments that make it up.
 
 It identifies the place(s) where the activity takes place.
