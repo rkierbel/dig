@@ -1,6 +1,6 @@
 ### What's Dig ?
 
-Dig is a tool that allows you to search for data about French businesses.
+Dig is a tool that allows you to search and visualize data about French businesses.
 
 It uses free public data provided by the French government (specifically from the Siren and Siret directories, defined below).
 
@@ -9,8 +9,6 @@ With Dig, you can:
 - easily search for one or more individuals or companies using a variety of denominations (name, surname, common name, company name, etc)
 - view the history of their business formation and changes
 - access data on various establishments of businesses in France and abroad
-
-It's a simple and powerful way to access official data about French businesses.
 
 For example, given the name and surname of an individual, you can view in an expressive display all the businesses this individual has formed, their changes, and their establishments in France and abroad, dating back to the mid-70s.
 
