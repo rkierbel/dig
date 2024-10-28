@@ -6,9 +6,8 @@ It uses free public data provided by the French government (specifically from th
 
 With Dig, you can:
 
-- easily search for one or more individuals
+- easily search for one or more individuals or companies using a variety of denominations (name, surname, common name, company name, etc)
 - view the history of their business formation and changes
-- find information on self-employed individuals and other types of companies
 - access data on various establishments of businesses in France and abroad
 
 It's a simple and powerful way to access official data about French businesses.
